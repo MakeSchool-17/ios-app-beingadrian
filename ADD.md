@@ -1,5 +1,6 @@
 #App Design Document
 
+- 
 
 ##Objective
 The objective of the app is to allow users to get fit or to monitor their fitness (specifically on walking and running) via an interactive virtual pet. 
