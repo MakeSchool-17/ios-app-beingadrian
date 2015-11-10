@@ -11,16 +11,25 @@ The objective of the app is to allow users to get fit or to monitor their fitnes
 
 ##Experience
 - Initial
--   Test
+  - Choose and name a character/pet
+- General
+  - See the pet's stats (based on data retrieved fro HealthKit)
+  - Interact with the pet (feed, play, etc)
 
 ##Technical
 
 ####External Services
+- Realm
+- Alamofire
 
 ####Screens
+- Main screen (shows the Pet and basic stats)
+- Stats screen (a more in depth overview of the stats)
+- Social screen (optional)
 
 ####Views / View Controllers/ Classes
 
 ####Data Models
 
 ##MVP Milestones
+
