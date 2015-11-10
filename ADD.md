@@ -1,6 +1,6 @@
 #App Design Document
 
-- 
+- [Screens](https://github.com/MakeSchool-17/ios-app-beingadrian/blob/master/ADD.md#screens)
 
 ##Objective
 The objective of the app is to allow users to get fit or to monitor their fitness (specifically on walking and running) via an interactive virtual pet. 
