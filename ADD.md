@@ -1,6 +1,11 @@
 #App Design Document
 
-- [Screens](https://github.com/MakeSchool-17/ios-app-beingadrian/blob/master/ADD.md#screens)
+- [Objective](https://github.com/MakeSchool-17/ios-app-beingadrian/blob/master/ADD.md#objective)
+- [Audience](https://github.com/MakeSchool-17/ios-app-beingadrian/blob/master/ADD.md#audience)
+- [Experience](https://github.com/MakeSchool-17/ios-app-beingadrian/blob/master/ADD.md#experience)
+- [Technical](https://github.com/MakeSchool-17/ios-app-beingadrian/blob/master/ADD.md#technical)
+  - [Screens](https://github.com/MakeSchool-17/ios-app-beingadrian/blob/master/ADD.md#screens)
+  - [Views](https://github.com/MakeSchool-17/ios-app-beingadrian/blob/master/ADD.md#)
 
 ##Objective
 The objective of the app is to allow users to get fit or to monitor their fitness (specifically on walking and running) via an interactive virtual pet. 
