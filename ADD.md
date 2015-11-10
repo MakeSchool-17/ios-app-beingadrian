@@ -5,7 +5,7 @@
 - [Experience](https://github.com/MakeSchool-17/ios-app-beingadrian/blob/master/ADD.md#experience)
 - [Technical](https://github.com/MakeSchool-17/ios-app-beingadrian/blob/master/ADD.md#technical)
   - [Screens](https://github.com/MakeSchool-17/ios-app-beingadrian/blob/master/ADD.md#screens)
-  - [Views/View Controllers/Classes](https://github.com/MakeSchool-17/ios-app-beingadrian/blob/master/ADD.md#views-view-controllers-classes)
+  - [Views/View Controllers/Classes](https://github.com/MakeSchool-17/ios-app-beingadrian/blob/master/ADD.md#views--view-controllers--classes)
   - [Data Models](https://github.com/MakeSchool-17/ios-app-beingadrian/blob/master/ADD.md#data-models)
 - [MVP Miledstones](https://github.com/MakeSchool-17/ios-app-beingadrian/blob/master/ADD.md#mvp-milestones) 
   
