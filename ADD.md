@@ -41,4 +41,24 @@ The objective of the app is to allow users to get fit or to monitor their fitnes
 ####Data Models
 
 ##MVP Milestones
-
+- Week 1
+  - Finish prototyping
+  - Finalize idea
+  - Finalize project mindmap
+    - Dependencies
+    - Frameworks
+    - Tools
+    - Structure
+- Week 2
+  - Project creation
+  - Start with designs
+  - Implement HealthKit
+  - Start with the backend
+- Week 3
+  - Finish the backend
+  - Continue with designs
+- Week 4
+- Week 5
+- Week 6
+- Week 7
+- Week 8
