@@ -96,6 +96,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		331E66C71BF6A6B4003AB81D /* HealthKit */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HealthKit;
+			sourceTree = "<group>";
+		};
 		338368CE1BF67852006407FF = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +128,7 @@
 			children = (
 				3383692A1BF69FE6006407FF /* SpriteKit */,
 				3383692C1BF69FE6006407FF /* UI */,
+				331E66C71BF6A6B4003AB81D /* HealthKit */,
 				338369281BF69FE6006407FF /* CoreData */,
 				338369291BF69FE6006407FF /* Parse */,
 				338369191BF69042006407FF /* Frameworks */,
