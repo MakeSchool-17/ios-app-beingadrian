@@ -504,7 +504,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
 					"$(PROJECT_DIR)/ProjectCreature/Frameworks",
 				);
 				INFOPLIST_FILE = ProjectCreature/Info.plist;
@@ -524,7 +523,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
 					"$(PROJECT_DIR)/ProjectCreature/Frameworks",
 				);
 				INFOPLIST_FILE = ProjectCreature/Info.plist;
@@ -604,6 +602,7 @@
 				338369051BF67852006407FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		338369061BF67852006407FF /* Build configuration list for PBXNativeTarget "ProjectCreatureTests" */ = {
 			isa = XCConfigurationList;
@@ -612,6 +611,7 @@
 				338369081BF67852006407FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		338369091BF67852006407FF /* Build configuration list for PBXNativeTarget "ProjectCreatureUITests" */ = {
 			isa = XCConfigurationList;
@@ -620,6 +620,7 @@
 				3383690B1BF67852006407FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
