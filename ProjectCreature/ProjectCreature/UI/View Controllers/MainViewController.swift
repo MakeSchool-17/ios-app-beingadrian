@@ -12,19 +12,15 @@ import SpriteKit
 
 class MainViewController: UIViewController {
 
-    
     // MARK: - Base methods
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        if let view = self.view as? SKView {
-            
-            let dashboardScene = SKScene(fileNamed: "DashboardScene")
-            dashboardScene?.scaleMode = .AspectFill
-            view.presentScene(dashboardScene)
-            
-        }
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        guard let view = self.view as? SKView else { return }
+        guard let dashboardScene = SKScene(fileNamed: "DashboardScene") else { return }
+        dashboardScene.scaleMode = .AspectFill
+        view.presentScene(dashboardScene)
         
     }
     
