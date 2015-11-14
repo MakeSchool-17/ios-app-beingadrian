@@ -6,14 +6,19 @@
 //  Copyright © 2015 BeingAdrian. All rights reserved.
 //
 
-import UIKit
 import SpriteKit
 
 class DashboardScene: SKScene {
     
+    // MARK: - Properties
+    
+    weak var label: SKLabelNode!
+    
+    // MARK: - Base methods
+    
     override func didMoveToView(view: SKView) {
         
-        // insert code here
+        label = self.childNodeWithName("label") as! SKLabelNode
         
     }
     
