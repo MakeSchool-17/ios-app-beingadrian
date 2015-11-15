@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3309FB4D1BF7F64300BE0310 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3309FB4C1BF7F64300BE0310 /* HealthKit.framework */; };
+		3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */; };
 		331E66C91BF6A780003AB81D /* DashboardScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 331E66C81BF6A780003AB81D /* DashboardScene.sks */; };
 		331E66D11BF6AC55003AB81D /* DashboardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331E66D01BF6AC55003AB81D /* DashboardScene.swift */; };
 		331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331E66D21BF6AEDB003AB81D /* MainViewController.swift */; };
@@ -44,6 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3309FB4C1BF7F64300BE0310 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		3309FB4E1BF7F64300BE0310 /* ProjectCreature.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ProjectCreature.entitlements; sourceTree = "<group>"; };
+		3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HKHelper.swift; path = ProjectCreature/HealthKit/HKHelper.swift; sourceTree = "<group>"; };
 		331E66C81BF6A780003AB81D /* DashboardScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DashboardScene.sks; sourceTree = "<group>"; };
 		331E66D01BF6AC55003AB81D /* DashboardScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardScene.swift; sourceTree = "<group>"; };
 		331E66D21BF6AEDB003AB81D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +85,7 @@
 				338369271BF69043006407FF /* ParseUI.framework in Frameworks */,
 				338369241BF69043006407FF /* ParseFacebookUtils.framework in Frameworks */,
 				338369211BF69043006407FF /* Bolts.framework in Frameworks */,
+				3309FB4D1BF7F64300BE0310 /* HealthKit.framework in Frameworks */,
 				338369261BF69043006407FF /* ParseTwitterUtils.framework in Frameworks */,
 				338369251BF69043006407FF /* ParseFacebookUtilsV4.framework in Frameworks */,
 			);
@@ -112,6 +118,8 @@
 		338368CE1BF67852006407FF = {
 			isa = PBXGroup;
 			children = (
+				3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */,
+				3309FB4C1BF7F64300BE0310 /* HealthKit.framework */,
 				338368D91BF67852006407FF /* ProjectCreature */,
 				338368F21BF67852006407FF /* ProjectCreatureTests */,
 				338368FD1BF67852006407FF /* ProjectCreatureUITests */,
@@ -132,6 +140,7 @@
 		338368D91BF67852006407FF /* ProjectCreature */ = {
 			isa = PBXGroup;
 			children = (
+				3309FB4E1BF7F64300BE0310 /* ProjectCreature.entitlements */,
 				3383692A1BF69FE6006407FF /* SpriteKit */,
 				3383692C1BF69FE6006407FF /* UI */,
 				331E66C71BF6A6B4003AB81D /* HealthKit */,
@@ -305,6 +314,11 @@
 					338368D61BF67852006407FF = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = E94PZ6NN69;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 					338368EE1BF67852006407FF = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -371,6 +385,7 @@
 			files = (
 				338368DB1BF67852006407FF /* AppDelegate.swift in Sources */,
 				331E66D11BF6AC55003AB81D /* DashboardScene.swift in Sources */,
+				3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */,
 				338369301BF6A01E006407FF /* ParseHelper.swift in Sources */,
 				331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */,
 			);
@@ -513,6 +528,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ProjectCreature/ProjectCreature.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -532,6 +548,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ProjectCreature/ProjectCreature.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

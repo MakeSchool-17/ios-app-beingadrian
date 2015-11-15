@@ -21,6 +21,19 @@ class MainViewController: UIViewController {
         guard let dashboardScene = SKScene(fileNamed: "DashboardScene") else { return }
         dashboardScene.scaleMode = .AspectFill
         view.presentScene(dashboardScene)
+
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        // healthKit permission
+        HKHelper().requestHealthKitAuthorization {
+            (success, error) in
+            
+            if let error = error {
+                print(error)
+            }
+        }
         
     }
     

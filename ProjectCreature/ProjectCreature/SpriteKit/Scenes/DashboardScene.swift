@@ -28,6 +28,20 @@ class DashboardScene: SKScene {
         
         stepCountLabel.text = "1000"
         
+        
+        // health kit test
+        HKHelper().queryTotalStepCountSinceDate {
+            (stepCount, error) in
+            
+            print(stepCount)
+        }
+        
+        HKHelper().queryTotalDistanceOnFoot {
+            (totalDistanceOnFoot, error) in
+            
+            print(totalDistanceOnFoot)
+        }
+        
     }
     
 }
