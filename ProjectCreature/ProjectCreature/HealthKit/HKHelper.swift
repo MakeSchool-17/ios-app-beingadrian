@@ -70,13 +70,16 @@ class HKHelper {
     
     // MARK: - Health Queries
     
-    func queryTotalStepCountSinceDate(completion: HKStepCountQueryCallback) {
+    func queryTotalStepCount(sinceTimeInterval timeInterval: NSTimeInterval, completion: HKStepCountQueryCallback) {
+        
+        let date = NSDate(timeIntervalSince1970: timeInterval)
+        let predicate = HKQuery.predicateForSamplesWithStartDate(date, endDate: NSDate(), options: .None)
         
         guard let stepsType = self.stepsType else { return }
         
         let sumOption = HKStatisticsOptions.CumulativeSum
         
-        let stepCountQuery = HKStatisticsQuery(quantityType: stepsType, quantitySamplePredicate: nil, options: sumOption) {
+        let stepCountQuery = HKStatisticsQuery(quantityType: stepsType, quantitySamplePredicate: predicate, options: sumOption) {
             (query, result, error) in
             
             if let result = result {
@@ -94,13 +97,16 @@ class HKHelper {
         
     }
     
-    func queryTotalDistanceOnFoot(completion: HKDistanceOnFootQueryCallback) {
+    func queryTotalDistanceOnFoot(sinceTimeInterval timeInterval: NSTimeInterval, completion: HKDistanceOnFootQueryCallback) {
+        
+        let date = NSDate(timeIntervalSince1970: timeInterval)
+        let predicate = HKQuery.predicateForSamplesWithStartDate(date, endDate: NSDate(), options: .None)
         
         guard let distanceOnFootType = self.distanceOnFootType else { return }
         
         let sumOption = HKStatisticsOptions.CumulativeSum
         
-        let distanceOnFootQuery = HKStatisticsQuery(quantityType: distanceOnFootType, quantitySamplePredicate: nil, options: sumOption) {
+        let distanceOnFootQuery = HKStatisticsQuery(quantityType: distanceOnFootType, quantitySamplePredicate: predicate, options: sumOption) {
             (query, result, error) in
             
             if let result = result {

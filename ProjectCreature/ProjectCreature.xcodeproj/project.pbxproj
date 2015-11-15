@@ -48,7 +48,7 @@
 /* Begin PBXFileReference section */
 		3309FB4C1BF7F64300BE0310 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		3309FB4E1BF7F64300BE0310 /* ProjectCreature.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ProjectCreature.entitlements; sourceTree = "<group>"; };
-		3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HKHelper.swift; path = ProjectCreature/HealthKit/HKHelper.swift; sourceTree = "<group>"; };
+		3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKHelper.swift; sourceTree = "<group>"; };
 		331E66C81BF6A780003AB81D /* DashboardScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DashboardScene.sks; sourceTree = "<group>"; };
 		331E66D01BF6AC55003AB81D /* DashboardScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardScene.swift; sourceTree = "<group>"; };
 		331E66D21BF6AEDB003AB81D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +111,7 @@
 		331E66C71BF6A6B4003AB81D /* HealthKit */ = {
 			isa = PBXGroup;
 			children = (
+				3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */,
 			);
 			path = HealthKit;
 			sourceTree = "<group>";
@@ -118,7 +119,6 @@
 		338368CE1BF67852006407FF = {
 			isa = PBXGroup;
 			children = (
-				3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */,
 				3309FB4C1BF7F64300BE0310 /* HealthKit.framework */,
 				338368D91BF67852006407FF /* ProjectCreature */,
 				338368F21BF67852006407FF /* ProjectCreatureTests */,

@@ -15,6 +15,8 @@ class DashboardScene: SKScene {
     weak var label: SKLabelNode!
     weak var stepCountLabel: SKLabelNode!
     
+    let healthHelper = HKHelper()
+    
     
     // MARK: - Base methods
     
@@ -25,23 +27,7 @@ class DashboardScene: SKScene {
         
         label.position = CGPoint(x: frame.midX, y: frame.midY + 30)
         stepCountLabel.position = CGPoint(x: frame.midX, y: frame.midY - 50)
-        
-        stepCountLabel.text = "1000"
-        
-        
-        // health kit test
-        HKHelper().queryTotalStepCountSinceDate {
-            (stepCount, error) in
-            
-            print(stepCount)
-        }
-        
-        HKHelper().queryTotalDistanceOnFoot {
-            (totalDistanceOnFoot, error) in
-            
-            print(totalDistanceOnFoot)
-        }
-        
+
     }
     
 }
