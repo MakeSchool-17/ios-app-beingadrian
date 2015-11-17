@@ -27,18 +27,6 @@ class DashboardScene: SKScene {
         
         label.position = CGPoint(x: frame.midX, y: frame.midY + 30)
         stepCountLabel.position = CGPoint(x: frame.midX, y: frame.midY - 50)
-        
-        // healthkit test 
-        let calendar = NSCalendar.currentCalendar()
-        let yesterady = calendar.dateByAddingUnit(.Hour, value: -1, toDate: NSDate(), options: [])
-        let interval = yesterady?.timeIntervalSince1970
-        
-        
-        healthHelper.queryTotalStepCount(sinceTimeInterval: interval!) {
-            (totalStepCount, error) in
-            
-            print(totalStepCount)
-        }
 
     }
     

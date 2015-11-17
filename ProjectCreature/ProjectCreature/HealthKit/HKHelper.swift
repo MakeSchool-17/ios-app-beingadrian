@@ -9,15 +9,21 @@
 import Foundation
 import HealthKit
 
-
 typealias HKRequestPermissionCallback = (success: Bool, error: NSError?) -> Void
-typealias HKStepCountQueryCallback = (totalStepCount: Double?, error: NSError?) -> Void
-typealias HKDistanceOnFootQueryCallback = (totalDistance: Double?, error: NSError?) -> Void
+typealias HKQueryCallback = (value: Double?, error: HKQueryErrorType?) -> Void
+typealias HKStepCountQueryCallback = (totalStepCount: Double?, error: HKQueryErrorType?) -> Void
+typealias HKDistanceOnFootQueryCallback = (totalDistance: Double?, error: HKQueryErrorType?) -> Void
 
+
+enum HKQueryErrorType: ErrorType {
+    case NoResult
+    case NoDeviceSource
+    case NoSumQuantity
+    case DefaultError(NSError?)
+}
 
 class HKHelper {
     
-    // get health store
     let healthStore: HKHealthStore? = {
         if HKHealthStore.isHealthDataAvailable() {
             return HKHealthStore()
@@ -42,8 +48,9 @@ class HKHelper {
     
     func requestHealthKitAuthorization(completion: HKRequestPermissionCallback) {
         
-        guard let stepsType = self.stepsType else { return }
-        guard let distanceOnFootType = self.distanceOnFootType else { return }
+        guard let stepsType = self.stepsType, distanceOnFootType = self.distanceOnFootType else {
+            return
+        }
         
         let dataTypesToRead = Set<HKQuantityType>(arrayLiteral: stepsType, distanceOnFootType)
 
@@ -61,51 +68,88 @@ class HKHelper {
     }
     
     
+    // MARK: - Pre-methods 
+    
+    func createPredicate(fromInterval interval: NSTimeInterval) -> NSPredicate {
+        
+        let date = NSDate(timeIntervalSince1970: interval)
+        let predicate = HKQuery.predicateForSamplesWithStartDate(date, endDate: NSDate(), options: .None)
+        
+        return predicate
+        
+    }
+    
+    func createStatisticsQuery(forQuantityType quantityType: HKQuantityType, predicate: NSPredicate, completion: HKQueryCallback) -> HKStatisticsQuery {
+        
+        let queryOptions: HKStatisticsOptions = [.CumulativeSum, .SeparateBySource]
+        
+        let query = HKStatisticsQuery(quantityType: quantityType, quantitySamplePredicate: predicate, options: queryOptions) {
+            (query, result, error) in
+            
+            if let error = error {
+                completion(value: nil, error: .DefaultError(error))
+            }
+            
+            guard let result = result else {
+                // error: there is no result
+                print("There is no result")
+                completion(value: nil, error: .NoResult)
+                return
+            }
+            
+            guard let deviceSource = self.getDeviceSource(fromResult: result) else {
+                // error: there is no device source
+                print("There is no device source")
+                completion(value: nil, error: .NoDeviceSource)
+                return
+            }
+            
+            guard let sumQuantity = result.sumQuantityForSource(deviceSource) else {
+                // error: no sum quantity
+                print("There is no sum quantity")
+                completion(value: nil, error: .NoSumQuantity)
+                return
+            }
+            
+            let value = sumQuantity.doubleValueForUnit(HKUnit.countUnit())
+            completion(value: value, error: .DefaultError(error))
+            
+        }
+        
+        return query
+        
+    }
+    
+    func getDeviceSource(fromResult result: HKStatistics) -> HKSource? {
+        
+        let deviceName = UIDevice.currentDevice().name
+        
+        guard let sources = result.sources else {
+            return nil
+        }
+        
+        let sourcesFiltered = sources.filter { $0.name == deviceName }
+        
+        if (sourcesFiltered.count != 0) {
+            let deviceSource = sourcesFiltered[0]
+            return deviceSource
+        } else {
+            return nil
+        }
+        
+    }
+    
+    
     // MARK: - Health Queries
     
     func queryTotalStepCount(sinceTimeInterval timeInterval: NSTimeInterval, completion: HKStepCountQueryCallback) {
         
-        let date = NSDate(timeIntervalSince1970: timeInterval)
-        let predicate = HKQuery.predicateForSamplesWithStartDate(date, endDate: NSDate(), options: .None)
+        let predicate = self.createPredicate(fromInterval: timeInterval)
         
         guard let stepsType = self.stepsType else { return }
         
-        let sumOption = HKStatisticsOptions.CumulativeSum
-        let option = HKStatisticsOptions.SeparateBySource
-        
-        let stepCountQuery = HKStatisticsQuery(quantityType: stepsType, quantitySamplePredicate: predicate, options: [sumOption, option]) {
-            (query, result, error) in
-            
-            guard let result = result else {
-                // TODO: Handle error
-                print("There is no result")
-                completion(totalStepCount: nil, error: error)
-                return
-            }
-            
-            let deviceName = UIDevice.currentDevice().name
-            
-            guard let sources = result.sources else {
-                completion(totalStepCount: nil, error: error)
-                return
-            }
-            
-            let sourcesFiltered = sources.filter { $0.name == deviceName }
-            
-            if (sourcesFiltered.count != 0) {
-                let deviceSource = sourcesFiltered[0]
-                guard let sumQuantity = result.sumQuantityForSource(deviceSource) else {
-                    // no sum quantity
-                    completion(totalStepCount: nil, error: error)
-                    return
-                }
-                let totalStepCount = sumQuantity.doubleValueForUnit(HKUnit.countUnit())
-                completion(totalStepCount: totalStepCount, error: error)
-            } else {
-                // there is no device source
-                completion(totalStepCount: nil, error: error)
-            }
-        
+        let stepCountQuery = self.createStatisticsQuery(forQuantityType: stepsType, predicate: predicate) {
+            completion(totalStepCount: $0, error: $1)
         }
         
         guard let healthStore = self.healthStore else { return }
@@ -115,48 +159,15 @@ class HKHelper {
     
     func queryTotalDistanceOnFoot(sinceTimeInterval timeInterval: NSTimeInterval, completion: HKDistanceOnFootQueryCallback) {
         
-        let date = NSDate(timeIntervalSince1970: timeInterval)
-        let predicate = HKQuery.predicateForSamplesWithStartDate(date, endDate: NSDate(), options: .None)
+        let predicate = self.createPredicate(fromInterval: timeInterval)
         
         guard let distanceOnFootType = self.distanceOnFootType else { return }
         
-        let sumOption = HKStatisticsOptions.CumulativeSum
-        
-        let distanceOnFootQuery = HKStatisticsQuery(quantityType: distanceOnFootType, quantitySamplePredicate: predicate, options: sumOption) {
-            (query, result, error) in
-            
-            guard let result = result else {
-                // TODO: Handle error
-                print("There is no result")
-                completion(totalDistance: nil, error: error)
-                return
-            }
-            
-            let deviceName = UIDevice.currentDevice().name
-            
-            guard let sources = result.sources else {
-                completion(totalDistance: nil, error: error)
-                return
-            }
-            
-            let sourcesFiltered = sources.filter { $0.name == deviceName }
-            
-            if (sourcesFiltered.count != 0) {
-                let deviceSource = sourcesFiltered[0]
-                guard let sumQuantity = result.sumQuantityForSource(deviceSource) else {
-                    // no sum quantity
-                    completion(totalDistance: nil, error: error)
-                    return
-                }
-                let totalDistanceOnFoot = sumQuantity.doubleValueForUnit(HKUnit.countUnit())
-                completion(totalDistance: totalDistanceOnFoot, error: error)
-            } else {
-                // there is no device source
-                completion(totalDistance: nil, error: error)
-            }
+        let distanceOnFootQuery = self.createStatisticsQuery(forQuantityType: distanceOnFootType, predicate: predicate) {
+            completion(totalDistance: $0, error: $1)
         }
         
-        guard let healthStore = self.healthStore else  { return }
+        guard let healthStore = self.healthStore else { return }
         healthStore.executeQuery(distanceOnFootQuery)
         
     }
