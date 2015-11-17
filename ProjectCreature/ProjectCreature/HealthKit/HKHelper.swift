@@ -24,7 +24,7 @@ enum HKQueryErrorType: ErrorType {
 
 class HKHelper {
     
-    let healthStore: HKHealthStore? = {
+    private let healthStore: HKHealthStore? = {
         if HKHealthStore.isHealthDataAvailable() {
             return HKHealthStore()
         } else {
@@ -35,11 +35,11 @@ class HKHelper {
     
     // MARK: - Types to read
     
-    let stepsType = HKQuantityType.quantityTypeForIdentifier(
+    private let stepsType = HKQuantityType.quantityTypeForIdentifier(
         HKQuantityTypeIdentifierStepCount
     )
     
-    let distanceOnFootType = HKQuantityType.quantityTypeForIdentifier(
+    private let distanceOnFootType = HKQuantityType.quantityTypeForIdentifier(
         HKQuantityTypeIdentifierDistanceWalkingRunning
     )
     
@@ -70,7 +70,7 @@ class HKHelper {
     
     // MARK: - Pre-methods 
     
-    func createPredicate(fromInterval interval: NSTimeInterval) -> NSPredicate {
+    private func createPredicate(fromInterval interval: NSTimeInterval) -> NSPredicate {
         
         let date = NSDate(timeIntervalSince1970: interval)
         let predicate = HKQuery.predicateForSamplesWithStartDate(date, endDate: NSDate(), options: .None)
@@ -79,7 +79,7 @@ class HKHelper {
         
     }
     
-    func createStatisticsQuery(forQuantityType quantityType: HKQuantityType, predicate: NSPredicate, completion: HKQueryCallback) -> HKStatisticsQuery {
+    private func createStatisticsQuery(forQuantityType quantityType: HKQuantityType, predicate: NSPredicate, unit: HKUnit, completion: HKQueryCallback) -> HKStatisticsQuery {
         
         let queryOptions: HKStatisticsOptions = [.CumulativeSum, .SeparateBySource]
         
@@ -92,27 +92,24 @@ class HKHelper {
             
             guard let result = result else {
                 // error: there is no result
-                print("There is no result")
                 completion(value: nil, error: .NoResult)
                 return
             }
             
             guard let deviceSource = self.getDeviceSource(fromResult: result) else {
                 // error: there is no device source
-                print("There is no device source")
                 completion(value: nil, error: .NoDeviceSource)
                 return
             }
             
             guard let sumQuantity = result.sumQuantityForSource(deviceSource) else {
                 // error: no sum quantity
-                print("There is no sum quantity")
                 completion(value: nil, error: .NoSumQuantity)
                 return
             }
             
-            let value = sumQuantity.doubleValueForUnit(HKUnit.countUnit())
-            completion(value: value, error: .DefaultError(error))
+            let value = sumQuantity.doubleValueForUnit(unit)
+            completion(value: value, error: nil)
             
         }
         
@@ -120,7 +117,7 @@ class HKHelper {
         
     }
     
-    func getDeviceSource(fromResult result: HKStatistics) -> HKSource? {
+    private func getDeviceSource(fromResult result: HKStatistics) -> HKSource? {
         
         let deviceName = UIDevice.currentDevice().name
         
@@ -148,7 +145,7 @@ class HKHelper {
         
         guard let stepsType = self.stepsType else { return }
         
-        let stepCountQuery = self.createStatisticsQuery(forQuantityType: stepsType, predicate: predicate) {
+        let stepCountQuery = self.createStatisticsQuery(forQuantityType: stepsType, predicate: predicate, unit: HKUnit.countUnit()) {
             completion(totalStepCount: $0, error: $1)
         }
         
@@ -163,7 +160,7 @@ class HKHelper {
         
         guard let distanceOnFootType = self.distanceOnFootType else { return }
         
-        let distanceOnFootQuery = self.createStatisticsQuery(forQuantityType: distanceOnFootType, predicate: predicate) {
+        let distanceOnFootQuery = self.createStatisticsQuery(forQuantityType: distanceOnFootType, predicate: predicate, unit: HKUnit.meterUnit()) {
             completion(totalDistance: $0, error: $1)
         }
         
