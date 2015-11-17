@@ -12,18 +12,27 @@ import SpriteKit
 
 class MainViewController: UIViewController {
 
-    
     // MARK: - Base methods
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        guard let view = self.view as? SKView else { return }
+        guard let dashboardScene = SKScene(fileNamed: "DashboardScene") else { return }
+        dashboardScene.scaleMode = .AspectFill
+        view.presentScene(dashboardScene)
 
-        if let view = self.view as? SKView {
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        // healthKit permission
+        HKHelper().requestHealthKitAuthorization {
+            (success, error) in
             
-            let dashboardScene = SKScene(fileNamed: "DashboardScene")
-            dashboardScene?.scaleMode = .AspectFill
-            view.presentScene(dashboardScene)
-            
+            if let error = error {
+                print(error)
+            }
         }
         
     }
