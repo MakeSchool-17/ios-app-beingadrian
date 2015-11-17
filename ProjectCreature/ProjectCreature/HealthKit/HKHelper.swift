@@ -22,7 +22,6 @@ class HKHelper {
         if HKHealthStore.isHealthDataAvailable() {
             return HKHealthStore()
         } else {
-            // TODO: Health data not avialable
             return nil
         }
     }()
@@ -43,19 +42,13 @@ class HKHelper {
     
     func requestHealthKitAuthorization(completion: HKRequestPermissionCallback) {
         
-        guard let stepsType = self.stepsType else {
-            // TODO: Handle if steps data is not available
-            return
-        }
-        
-        guard let distanceOnFootType = self.distanceOnFootType else {
-            // TODO: Handle if distance walked and run data is not available
-            return
-        }
+        guard let stepsType = self.stepsType else { return }
+        guard let distanceOnFootType = self.distanceOnFootType else { return }
         
         let dataTypesToRead = Set<HKQuantityType>(arrayLiteral: stepsType, distanceOnFootType)
 
         guard let healthStore = self.healthStore else {
+            // TODO: manage if healthStore is not available
             return
         }
         
@@ -78,18 +71,41 @@ class HKHelper {
         guard let stepsType = self.stepsType else { return }
         
         let sumOption = HKStatisticsOptions.CumulativeSum
+        let option = HKStatisticsOptions.SeparateBySource
         
-        let stepCountQuery = HKStatisticsQuery(quantityType: stepsType, quantitySamplePredicate: predicate, options: sumOption) {
+        let stepCountQuery = HKStatisticsQuery(quantityType: stepsType, quantitySamplePredicate: predicate, options: [sumOption, option]) {
             (query, result, error) in
             
-            if let result = result {
-                guard let sumQuantity = result.sumQuantity() else { return }
+            guard let result = result else {
+                // TODO: Handle error
+                print("There is no result")
+                completion(totalStepCount: nil, error: error)
+                return
+            }
+            
+            let deviceName = UIDevice.currentDevice().name
+            
+            guard let sources = result.sources else {
+                completion(totalStepCount: nil, error: error)
+                return
+            }
+            
+            let sourcesFiltered = sources.filter { $0.name == deviceName }
+            
+            if (sourcesFiltered.count != 0) {
+                let deviceSource = sourcesFiltered[0]
+                guard let sumQuantity = result.sumQuantityForSource(deviceSource) else {
+                    // no sum quantity
+                    completion(totalStepCount: nil, error: error)
+                    return
+                }
                 let totalStepCount = sumQuantity.doubleValueForUnit(HKUnit.countUnit())
                 completion(totalStepCount: totalStepCount, error: error)
             } else {
-                // TODO: Handle no result
-                print("There is no result")
+                // there is no device source
+                completion(totalStepCount: nil, error: error)
             }
+        
         }
         
         guard let healthStore = self.healthStore else { return }
@@ -109,13 +125,34 @@ class HKHelper {
         let distanceOnFootQuery = HKStatisticsQuery(quantityType: distanceOnFootType, quantitySamplePredicate: predicate, options: sumOption) {
             (query, result, error) in
             
-            if let result = result {
-                guard let sumQuantity = result.sumQuantity() else { return }
-                let totalDistanceOnFoot = sumQuantity.doubleValueForUnit(HKUnit.meterUnit())
+            guard let result = result else {
+                // TODO: Handle error
+                print("There is no result")
+                completion(totalDistance: nil, error: error)
+                return
+            }
+            
+            let deviceName = UIDevice.currentDevice().name
+            
+            guard let sources = result.sources else {
+                completion(totalDistance: nil, error: error)
+                return
+            }
+            
+            let sourcesFiltered = sources.filter { $0.name == deviceName }
+            
+            if (sourcesFiltered.count != 0) {
+                let deviceSource = sourcesFiltered[0]
+                guard let sumQuantity = result.sumQuantityForSource(deviceSource) else {
+                    // no sum quantity
+                    completion(totalDistance: nil, error: error)
+                    return
+                }
+                let totalDistanceOnFoot = sumQuantity.doubleValueForUnit(HKUnit.countUnit())
                 completion(totalDistance: totalDistanceOnFoot, error: error)
             } else {
-                // TODO: Handle no result
-                print("There is no result")
+                // there is no device source
+                completion(totalDistance: nil, error: error)
             }
         }
         
