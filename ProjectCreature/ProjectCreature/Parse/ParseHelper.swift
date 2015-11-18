@@ -9,6 +9,9 @@
 import Foundation
 
 
+typealias RetrieveLocalObjectCallback = (object: PFObject?, error: NSError?) -> Void
+typealias DeleteLocalObjectCallback = (success: Bool, error: NSError?) -> Void
+
 class ParseHelper {
     
     // MARK: - Keys
@@ -22,14 +25,43 @@ class ParseHelper {
     let CreatureOwnerKey = "owner"
     
     
-    // MARK: - Class methods
+    // MARK: - Local datastore methods
     
-    func saveObjectLocally(object: PFObject) {
+    func saveObjectLocallyAndOnline(object: PFObject) {
         
         object.pinInBackgroundWithBlock {
             (success, error) in
             
+            print(success)
             
+            object.saveEventually {
+                (success, error) in
+                
+                print(success)
+            }
+        }
+        
+    }
+    
+    func retrieveLocalObject(withClassName className: String, completion: RetrieveLocalObjectCallback) {
+        
+        let query = PFQuery(className: className)
+        query.fromLocalDatastore()
+        
+        query.getFirstObjectInBackgroundWithBlock {
+            (object, error) in
+            
+            completion(object: object, error: error)
+        }
+        
+    }
+    
+    func deleteLocalObject(object: PFObject, completion: DeleteLocalObjectCallback) {
+        
+        object.unpinInBackgroundWithBlock {
+            (success, error) in
+            
+            completion(success: success, error: error)
         }
         
     }
