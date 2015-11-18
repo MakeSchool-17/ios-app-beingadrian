@@ -11,6 +11,27 @@ import Foundation
 
 class ParseHelper {
     
+    // MARK: - Keys
     
+    let CreatureClassName = "Creature"
+    let CreatureNameKey = "name"
+    let CreatureLevelKey = "level"
+    let CreatureExpKey = "exp"
+    let CreatureHappinessKey = "happiness"
+    let CreatureObjectIDKey = "objectId"
+    let CreatureOwnerKey = "owner"
+    
+    
+    // MARK: - Class methods
+    
+    func saveObjectLocally(object: PFObject) {
+        
+        object.pinInBackgroundWithBlock {
+            (success, error) in
+            
+            
+        }
+        
+    }
     
 }
