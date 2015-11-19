@@ -19,6 +19,7 @@ class Creature {
     var level: Int
     var exp: Int
     var happiness: Int
+    var evolutionStage: Int
     var objectID: String?
     var owner: PFUser?
     
@@ -31,6 +32,7 @@ class Creature {
         self.level = 0
         self.exp = 0
         self.happiness = 0
+        self.evolutionStage = 0
         
     }
     
@@ -40,6 +42,7 @@ class Creature {
         self.level = parseObject[parseHelper.CreatureLevelKey] as! Int
         self.exp = parseObject[parseHelper.CreatureExpKey] as! Int
         self.happiness = parseObject[parseHelper.CreatureHappinessKey] as! Int
+        self.evolutionStage = parseObject[parseHelper.CreatureEvolutionStageKey] as! Int
         self.objectID = parseObject.objectId!
         self.owner = parseObject[parseHelper.CreatureOwnerKey] as? PFUser
         
@@ -53,6 +56,7 @@ class Creature {
         creatureParseObject[parseHelper.CreatureLevelKey] = self.level
         creatureParseObject[parseHelper.CreatureExpKey] = self.exp
         creatureParseObject[parseHelper.CreatureHappinessKey] = self.happiness
+        creatureParseObject[parseHelper.CreatureEvolutionStageKey] = self.evolutionStage
         creatureParseObject[parseHelper.CreatureOwnerKey] = self.owner
         
         return creatureParseObject
