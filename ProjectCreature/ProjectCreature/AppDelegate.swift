@@ -25,8 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
+        // force Parse login
         if PFUser.currentUser() == nil {
-            PFUser.logInWithUsernameInBackground("beingadrian", password: "test")
+            PFUser.logInWithUsernameInBackground("beingadrian", password: "test") {
+                (success, error) in
+                print("User log in: \(success)")
+            }
         }
         
         return true

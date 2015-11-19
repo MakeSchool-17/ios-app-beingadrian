@@ -10,7 +10,6 @@ import Foundation
 import PromiseKit
 
 
-typealias PFBooleanResultAdapter = (Bool, NSError?) -> Void
 typealias PFObjectResultAdapter = (PFObject?, NSError?) -> Void
 
 class ParseHelper {
@@ -27,17 +26,7 @@ class ParseHelper {
     let CreatureOwnerKey = "owner"
     
     
-    // MARK: - Local datastore methods
-    
-    func saveObjectLocallyAndOnline(object: PFObject) {
-        
-        firstly {
-            object.saveLocallyInBackground()
-        }.then { (success) in
-            object.saveEventually()
-        }
-
-    }
+    // MARK: - Methods
     
     func retrieveUserCreature() -> Promise<PFObject> {
         
@@ -45,15 +34,10 @@ class ParseHelper {
             let query = PFQuery(className: self.CreatureClassName)
             query.fromLocalDatastore()
             
+            guard let currentUser = PFUser.currentUser() else { return }
+            query.whereKey(self.CreatureOwnerKey, equalTo: currentUser)
+            
             query.getFirstObjectInBackgroundWithBlock(adapter)
-        }
-        
-    }
-    
-    func deleteLocalObject(object: PFObject) -> Promise<Bool> {
-        
-        return Promise { (adapter: PFBooleanResultAdapter) in
-            object.unpinInBackgroundWithBlock(adapter)
         }
         
     }

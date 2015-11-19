@@ -9,13 +9,23 @@
 import Foundation
 import PromiseKit
 
+typealias PFBooleanResultAdapter = (Bool, NSError?) -> Void
+
 
 extension PFObject {
     
-    func saveLocallyInBackground() -> Promise<Bool> {
+    func pinInBackgroundWithBlock() -> Promise<Bool> {
         
         return Promise { (adapter: (Bool, NSError?) -> Void) in
             self.pinInBackgroundWithBlock(adapter)
+        }
+        
+    }
+    
+    func unpinInBackgroundWithBlock() -> Promise<Bool> {
+        
+        return Promise { (adapter: PFBooleanResultAdapter) in
+            self.unpinInBackgroundWithBlock(adapter)
         }
         
     }

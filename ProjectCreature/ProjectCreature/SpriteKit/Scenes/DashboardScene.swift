@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import PromiseKit
 
 
 class DashboardScene: SKScene {
