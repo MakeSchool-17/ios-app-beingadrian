@@ -22,9 +22,8 @@ class ParseHelper {
     let CreatureExpKey = "exp"
     let CreatureHappinessKey = "happiness"
     let CreatureEvolutionStageKey = "evolutionStage"
-    let CreatureObjectIDKey = "objectId"
+    let CreatureFamilyKey = "type"
     let CreatureOwnerKey = "owner"
-    let CreatureDescriptionkey = "description"
     
     
     // MARK: - Methods

@@ -30,4 +30,12 @@ extension PFObject {
         
     }
     
+    func saveEventually() -> Promise<Bool> {
+        
+        return Promise { (adapter: PFBooleanResultAdapter) in
+            self.saveEventually(adapter)
+        }
+        
+    }
+    
 }

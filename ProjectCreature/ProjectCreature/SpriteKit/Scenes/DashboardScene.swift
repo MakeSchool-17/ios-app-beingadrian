@@ -30,7 +30,7 @@ class DashboardScene: SKScene {
         
         label.position = CGPoint(x: frame.midX, y: frame.midY + 30)
         stepCountLabel.position = CGPoint(x: frame.midX, y: frame.midY - 50)
-        
+
     }
     
 }

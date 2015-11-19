@@ -9,6 +9,8 @@
 import Foundation
 
 
+
+
 class Creature {
     
     private let parseHelper = ParseHelper()
@@ -19,20 +21,28 @@ class Creature {
     var level: Int
     var exp: Int
     var happiness: Int
+    var evolutionStage: Int
+    var type: String
     var objectID: String?
     var owner: PFUser?
-    var description: CreatureDescription?
+    
+    enum Family: String {
+        case Seal = "seal"
+        case Panda = "panda"
+        case Dog = "dog"
+    }
     
     
     // MARK: - Base methods
     
-    init(name: String, description: CreatureDescription) {
+    init(name: String, type: String) {
         
         self.name = name
         self.level = 0
         self.exp = 0
         self.happiness = 0
-        self.description = description
+        self.evolutionStage = 0
+        self.type = type
         
     }
     
@@ -42,9 +52,10 @@ class Creature {
         self.level = parseObject[parseHelper.CreatureLevelKey] as! Int
         self.exp = parseObject[parseHelper.CreatureExpKey] as! Int
         self.happiness = parseObject[parseHelper.CreatureHappinessKey] as! Int
-        self.objectID = parseObject.objectId!
+        self.evolutionStage = parseObject[parseHelper.CreatureEvolutionStageKey] as! Int
+        self.type = parseObject[parseHelper.CreatureFamilyKey] as! String
         self.owner = parseObject[parseHelper.CreatureOwnerKey] as? PFUser
-        self.description = parseObject[parseHelper.CreatureDescriptionkey] as? CreatureDescription
+        self.objectID = parseObject.objectId!
         
     }
     
@@ -56,6 +67,8 @@ class Creature {
         creatureParseObject[parseHelper.CreatureLevelKey] = self.level
         creatureParseObject[parseHelper.CreatureExpKey] = self.exp
         creatureParseObject[parseHelper.CreatureHappinessKey] = self.happiness
+        creatureParseObject[parseHelper.CreatureEvolutionStageKey] = self.evolutionStage
+        creatureParseObject[parseHelper.CreatureFamilyKey] = self.type
         creatureParseObject[parseHelper.CreatureOwnerKey] = self.owner
         
         return creatureParseObject
