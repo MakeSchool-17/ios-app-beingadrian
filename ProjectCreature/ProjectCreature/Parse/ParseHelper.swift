@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import PromiseKit
 
 
-typealias RetrieveLocalObjectCallback = (object: PFObject?, error: NSError?) -> Void
-typealias DeleteLocalObjectCallback = (success: Bool, error: NSError?) -> Void
+typealias PFBooleanResultAdapter = (Bool, NSError?) -> Void
+typealias PFObjectResultAdapter = (PFObject?, NSError?) -> Void
 
 class ParseHelper {
     
@@ -21,6 +22,7 @@ class ParseHelper {
     let CreatureLevelKey = "level"
     let CreatureExpKey = "exp"
     let CreatureHappinessKey = "happiness"
+    let CreatureEvolutionStageKey = "evolutionStage"
     let CreatureObjectIDKey = "objectId"
     let CreatureOwnerKey = "owner"
     
@@ -29,39 +31,29 @@ class ParseHelper {
     
     func saveObjectLocallyAndOnline(object: PFObject) {
         
-        object.pinInBackgroundWithBlock {
-            (success, error) in
+        firstly {
+            object.saveLocallyInBackground()
+        }.then { (success) in
+            object.saveEventually()
+        }
+
+    }
+    
+    func retrieveUserCreature() -> Promise<PFObject> {
+        
+        return Promise { (adapter: PFObjectResultAdapter) in
+            let query = PFQuery(className: self.CreatureClassName)
+            query.fromLocalDatastore()
             
-            print(success)
-            
-            object.saveEventually {
-                (success, error) in
-                
-                print(success)
-            }
+            query.getFirstObjectInBackgroundWithBlock(adapter)
         }
         
     }
     
-    func retrieveLocalObject(withClassName className: String, completion: RetrieveLocalObjectCallback) {
+    func deleteLocalObject(object: PFObject) -> Promise<Bool> {
         
-        let query = PFQuery(className: className)
-        query.fromLocalDatastore()
-        
-        query.getFirstObjectInBackgroundWithBlock {
-            (object, error) in
-            
-            completion(object: object, error: error)
-        }
-        
-    }
-    
-    func deleteLocalObject(object: PFObject, completion: DeleteLocalObjectCallback) {
-        
-        object.unpinInBackgroundWithBlock {
-            (success, error) in
-            
-            completion(success: success, error: error)
+        return Promise { (adapter: PFBooleanResultAdapter) in
+            object.unpinInBackgroundWithBlock(adapter)
         }
         
     }

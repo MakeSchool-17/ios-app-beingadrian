@@ -23,7 +23,11 @@
 		333D1B081BFBF1F3001CCD5E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1B071BFBF1F3001CCD5E /* libz.tbd */; };
 		333D1B0A1BFBF1FD001CCD5E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */; };
 		333D1B0D1BFBFACD001CCD5E /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333D1B0C1BFBFACD001CCD5E /* Creature.swift */; };
-		3362D53A1BFD0BE700256348 /* Panda.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3362D5391BFD0BE700256348 /* Panda.swift */; };
+		3362D53C1BFD44D800256348 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3362D53B1BFD44D800256348 /* PromiseKit.framework */; };
+		3362D53E1BFD972B00256348 /* ParseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3362D53D1BFD972B00256348 /* ParseExtension.swift */; };
+		3362D5401BFDB08700256348 /* PromiseKit.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 3362D53F1BFDB08700256348 /* PromiseKit.framework.dSYM */; };
+		3362D5421BFDB11300256348 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3362D53B1BFD44D800256348 /* PromiseKit.framework */; };
+		3362D5431BFDB11300256348 /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3362D53B1BFD44D800256348 /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		338368DB1BF67852006407FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338368DA1BF67852006407FF /* AppDelegate.swift */; };
 		338368E41BF67852006407FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 338368E21BF67852006407FF /* Main.storyboard */; };
 		338368E61BF67852006407FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338368E51BF67852006407FF /* Assets.xcassets */; };
@@ -57,6 +61,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3362D5441BFDB11300256348 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3362D5431BFDB11300256348 /* PromiseKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3309FB4C1BF7F64300BE0310 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		3309FB4E1BF7F64300BE0310 /* ProjectCreature.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ProjectCreature.entitlements; sourceTree = "<group>"; };
@@ -75,7 +93,9 @@
 		333D1B071BFBF1F3001CCD5E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		333D1B0C1BFBFACD001CCD5E /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
-		3362D5391BFD0BE700256348 /* Panda.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Panda.swift; sourceTree = "<group>"; };
+		3362D53B1BFD44D800256348 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = SOURCE_ROOT; };
+		3362D53D1BFD972B00256348 /* ParseExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseExtension.swift; sourceTree = "<group>"; };
+		3362D53F1BFDB08700256348 /* PromiseKit.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = PromiseKit.framework.dSYM; path = "/Users/beingadrian/Developer/Make-School/Semester-1/3-iOSPersonalProject/ios-app-beingadrian/ProjectCreature/Carthage/Build/iOS/PromiseKit.framework.dSYM"; sourceTree = "<absolute>"; };
 		338368D71BF67852006407FF /* ProjectCreature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectCreature.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338368DA1BF67852006407FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		338368E31BF67852006407FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -104,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3362D5421BFDB11300256348 /* PromiseKit.framework in Frameworks */,
 				333D1B0A1BFBF1FD001CCD5E /* libsqlite3.tbd in Frameworks */,
 				333D1B081BFBF1F3001CCD5E /* libz.tbd in Frameworks */,
 				333D1B061BFBF1EC001CCD5E /* SystemConfiguration.framework in Frameworks */,
@@ -119,6 +140,7 @@
 				338369271BF69043006407FF /* ParseUI.framework in Frameworks */,
 				338369241BF69043006407FF /* ParseFacebookUtils.framework in Frameworks */,
 				338369211BF69043006407FF /* Bolts.framework in Frameworks */,
+				3362D53C1BFD44D800256348 /* PromiseKit.framework in Frameworks */,
 				3309FB4D1BF7F64300BE0310 /* HealthKit.framework in Frameworks */,
 				338369261BF69043006407FF /* ParseTwitterUtils.framework in Frameworks */,
 				338369251BF69043006407FF /* ParseFacebookUtilsV4.framework in Frameworks */,
@@ -154,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				333D1B0C1BFBFACD001CCD5E /* Creature.swift */,
-				3362D5391BFD0BE700256348 /* Panda.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -228,6 +249,7 @@
 		338369191BF69042006407FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3362D53B1BFD44D800256348 /* PromiseKit.framework */,
 				333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */,
 				333D1B071BFBF1F3001CCD5E /* libz.tbd */,
 				333D1B051BFBF1EC001CCD5E /* SystemConfiguration.framework */,
@@ -254,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				3383692F1BF6A01E006407FF /* ParseHelper.swift */,
+				3362D53D1BFD972B00256348 /* ParseExtension.swift */,
 			);
 			path = Parse;
 			sourceTree = "<group>";
@@ -301,6 +324,7 @@
 				338368D31BF67852006407FF /* Sources */,
 				338368D41BF67852006407FF /* Frameworks */,
 				338368D51BF67852006407FF /* Resources */,
+				3362D5441BFDB11300256348 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -405,6 +429,7 @@
 				338368E61BF67852006407FF /* Assets.xcassets in Resources */,
 				338368E41BF67852006407FF /* Main.storyboard in Resources */,
 				331E66C91BF6A780003AB81D /* DashboardScene.sks in Resources */,
+				3362D5401BFDB08700256348 /* PromiseKit.framework.dSYM in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,11 +456,11 @@
 			files = (
 				338368DB1BF67852006407FF /* AppDelegate.swift in Sources */,
 				331E66D11BF6AC55003AB81D /* DashboardScene.swift in Sources */,
+				3362D53E1BFD972B00256348 /* ParseExtension.swift in Sources */,
 				333D1B0D1BFBFACD001CCD5E /* Creature.swift in Sources */,
 				3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */,
 				338369301BF6A01E006407FF /* ParseHelper.swift in Sources */,
 				331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */,
-				3362D53A1BFD0BE700256348 /* Panda.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +606,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ProjectCreature/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = ProjectCreature/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -601,6 +627,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ProjectCreature/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = ProjectCreature/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

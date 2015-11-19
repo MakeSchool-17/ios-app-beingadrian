@@ -17,6 +17,7 @@ class DashboardScene: SKScene {
     weak var stepCountLabel: SKLabelNode!
     
     let healthHelper = HKHelper()
+    let parseHelper = ParseHelper()
     
     
     // MARK: - Base methods
@@ -28,25 +29,6 @@ class DashboardScene: SKScene {
         
         label.position = CGPoint(x: frame.midX, y: frame.midY + 30)
         stepCountLabel.position = CGPoint(x: frame.midX, y: frame.midY - 50)
-        
-        try! PFUser.logInWithUsername("beingadrian", password: "test")
-        
-        let creature = Creature(name: "Bob")
-        creature.owner = PFUser.currentUser()
-        
-        let creatureParseObject = creature.parseObjectFromClass()
-        
-        creatureParseObject.pinInBackgroundWithBlock {
-            (success, error) in
-            
-            print(success)
-            
-            creatureParseObject.saveEventually {
-                (success, error) in
-                
-                print(success)
-            }
-        }
         
     }
     
