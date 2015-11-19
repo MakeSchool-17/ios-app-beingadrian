@@ -21,16 +21,18 @@ class Creature {
     var happiness: Int
     var objectID: String?
     var owner: PFUser?
+    var description: CreatureDescription?
     
     
     // MARK: - Base methods
     
-    init(name: String) {
+    init(name: String, description: CreatureDescription) {
         
         self.name = name
         self.level = 0
         self.exp = 0
         self.happiness = 0
+        self.description = description
         
     }
     
@@ -42,6 +44,7 @@ class Creature {
         self.happiness = parseObject[parseHelper.CreatureHappinessKey] as! Int
         self.objectID = parseObject.objectId!
         self.owner = parseObject[parseHelper.CreatureOwnerKey] as? PFUser
+        self.description = parseObject[parseHelper.CreatureDescriptionkey] as? CreatureDescription
         
     }
     

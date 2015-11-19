@@ -28,6 +28,10 @@
 		3362D5401BFDB08700256348 /* PromiseKit.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 3362D53F1BFDB08700256348 /* PromiseKit.framework.dSYM */; };
 		3362D5421BFDB11300256348 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3362D53B1BFD44D800256348 /* PromiseKit.framework */; };
 		3362D5431BFDB11300256348 /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3362D53B1BFD44D800256348 /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3362D5461BFE7E8C00256348 /* CreatureDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3362D5451BFE7E8C00256348 /* CreatureDescription.swift */; };
+		3362D5481BFE817D00256348 /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3362D5471BFE817D00256348 /* Gloss.framework */; };
+		3362D5491BFE81C000256348 /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3362D5471BFE817D00256348 /* Gloss.framework */; };
+		3362D54A1BFE81C000256348 /* Gloss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3362D5471BFE817D00256348 /* Gloss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		338368DB1BF67852006407FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338368DA1BF67852006407FF /* AppDelegate.swift */; };
 		338368E41BF67852006407FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 338368E21BF67852006407FF /* Main.storyboard */; };
 		338368E61BF67852006407FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338368E51BF67852006407FF /* Assets.xcassets */; };
@@ -69,6 +73,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				3362D5431BFDB11300256348 /* PromiseKit.framework in Embed Frameworks */,
+				3362D54A1BFE81C000256348 /* Gloss.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,6 +101,8 @@
 		3362D53B1BFD44D800256348 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = SOURCE_ROOT; };
 		3362D53D1BFD972B00256348 /* ParseExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseExtension.swift; sourceTree = "<group>"; };
 		3362D53F1BFDB08700256348 /* PromiseKit.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = PromiseKit.framework.dSYM; path = "/Users/beingadrian/Developer/Make-School/Semester-1/3-iOSPersonalProject/ios-app-beingadrian/ProjectCreature/Carthage/Build/iOS/PromiseKit.framework.dSYM"; sourceTree = "<absolute>"; };
+		3362D5451BFE7E8C00256348 /* CreatureDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureDescription.swift; sourceTree = "<group>"; };
+		3362D5471BFE817D00256348 /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = Carthage/Build/iOS/Gloss.framework; sourceTree = SOURCE_ROOT; };
 		338368D71BF67852006407FF /* ProjectCreature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectCreature.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338368DA1BF67852006407FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		338368E31BF67852006407FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -138,10 +145,12 @@
 				338369221BF69043006407FF /* Parse.framework in Frameworks */,
 				338369231BF69043006407FF /* ParseCrashReporting.framework in Frameworks */,
 				338369271BF69043006407FF /* ParseUI.framework in Frameworks */,
+				3362D5481BFE817D00256348 /* Gloss.framework in Frameworks */,
 				338369241BF69043006407FF /* ParseFacebookUtils.framework in Frameworks */,
 				338369211BF69043006407FF /* Bolts.framework in Frameworks */,
 				3362D53C1BFD44D800256348 /* PromiseKit.framework in Frameworks */,
 				3309FB4D1BF7F64300BE0310 /* HealthKit.framework in Frameworks */,
+				3362D5491BFE81C000256348 /* Gloss.framework in Frameworks */,
 				338369261BF69043006407FF /* ParseTwitterUtils.framework in Frameworks */,
 				338369251BF69043006407FF /* ParseFacebookUtilsV4.framework in Frameworks */,
 			);
@@ -176,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				333D1B0C1BFBFACD001CCD5E /* Creature.swift */,
+				3362D5451BFE7E8C00256348 /* CreatureDescription.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -249,6 +259,7 @@
 		338369191BF69042006407FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3362D5471BFE817D00256348 /* Gloss.framework */,
 				3362D53B1BFD44D800256348 /* PromiseKit.framework */,
 				333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */,
 				333D1B071BFBF1F3001CCD5E /* libz.tbd */,
@@ -457,6 +468,7 @@
 				338368DB1BF67852006407FF /* AppDelegate.swift in Sources */,
 				331E66D11BF6AC55003AB81D /* DashboardScene.swift in Sources */,
 				3362D53E1BFD972B00256348 /* ParseExtension.swift in Sources */,
+				3362D5461BFE7E8C00256348 /* CreatureDescription.swift in Sources */,
 				333D1B0D1BFBFACD001CCD5E /* Creature.swift in Sources */,
 				3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */,
 				338369301BF6A01E006407FF /* ParseHelper.swift in Sources */,
