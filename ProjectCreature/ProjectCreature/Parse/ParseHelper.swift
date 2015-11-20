@@ -31,6 +31,7 @@ class ParseHelper {
     func retrieveUserCreature() -> Promise<PFObject> {
         
         return Promise { (adapter: PFObjectResultAdapter) in
+            
             let query = PFQuery(className: self.CreatureClassName)
             query.fromLocalDatastore()
             
@@ -38,6 +39,7 @@ class ParseHelper {
             query.whereKey(self.CreatureOwnerKey, equalTo: currentUser)
             
             query.getFirstObjectInBackgroundWithBlock(adapter)
+            
         }
         
     }

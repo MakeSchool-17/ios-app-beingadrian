@@ -16,7 +16,7 @@ extension PFObject {
     
     func pinInBackgroundWithBlock() -> Promise<Bool> {
         
-        return Promise { (adapter: (Bool, NSError?) -> Void) in
+        return Promise { (adapter: PFBooleanResultAdapter) in
             self.pinInBackgroundWithBlock(adapter)
         }
         

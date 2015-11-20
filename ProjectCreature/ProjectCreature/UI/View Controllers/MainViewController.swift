@@ -30,6 +30,9 @@ class MainViewController: UIViewController {
         HKHelper().requestHealthKitAuthorization().then {
             (success) in
             print(success)
+        }.error {
+            (error) in
+            print(error)
         }
         
     }
