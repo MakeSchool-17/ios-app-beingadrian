@@ -9,8 +9,6 @@
 import Foundation
 
 
-
-
 class Creature {
     
     private let parseHelper = ParseHelper()
@@ -24,18 +22,18 @@ class Creature {
     var evolutionStage: Int
     var type: String
     var objectID: String?
-    var owner: PFUser?
+    var owner: PFUser
     
     enum Family: String {
-        case Seal = "seal"
-        case Panda = "panda"
-        case Dog = "dog"
+        case FamilyA = "familya"
+        case FamilyB = "familyb"
+        case FamilyC = "familyc"
     }
     
     
     // MARK: - Base methods
     
-    init(name: String, type: String) {
+    init(name: String, type: String, owner: PFUser) {
         
         self.name = name
         self.level = 0
@@ -43,6 +41,7 @@ class Creature {
         self.happiness = 0
         self.evolutionStage = 0
         self.type = type
+        self.owner = owner
         
     }
     
@@ -54,7 +53,7 @@ class Creature {
         self.happiness = parseObject[parseHelper.CreatureHappinessKey] as! Int
         self.evolutionStage = parseObject[parseHelper.CreatureEvolutionStageKey] as! Int
         self.type = parseObject[parseHelper.CreatureFamilyKey] as! String
-        self.owner = parseObject[parseHelper.CreatureOwnerKey] as? PFUser
+        self.owner = parseObject[parseHelper.CreatureOwnerKey] as! PFUser
         self.objectID = parseObject.objectId!
         
     }

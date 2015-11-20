@@ -8,21 +8,33 @@
 
 import Foundation
 import HealthKit
+import PromiseKit
 
 typealias HKRequestPermissionCallback = (success: Bool, error: NSError?) -> Void
-typealias HKQueryCallback = (value: Double?, error: HKQueryErrorType?) -> Void
-typealias HKStepCountQueryCallback = (totalStepCount: Double?, error: HKQueryErrorType?) -> Void
-typealias HKDistanceOnFootQueryCallback = (totalDistance: Double?, error: HKQueryErrorType?) -> Void
+typealias HKQueryCallback = (value: Double, error: NSError?) -> Void
+typealias HKStepCountQueryCallback = (totalStepCount: Double?, error: NSError?) -> Void
+typealias HKDistanceOnFootQueryCallback = (totalDistance: Double?, error: NSError?) -> Void
 
 
-enum HKQueryErrorType: ErrorType {
+enum HKErrorType: ErrorType {
+    case NoHealthStore
     case NoResult
     case NoDeviceSource
     case NoSumQuantity
+    case TypeNotAvailable
     case DefaultError(NSError?)
 }
 
 class HKHelper {
+    
+    // MARK: - Typealias
+    
+    private typealias HKRequestAuthorizationToShareTypesAdapter = (Bool, NSError?) -> Void
+    private typealias HKStepCountQueryAdapter = (Double, NSError?) -> Void
+    private typealias HKDistanceOnFootQueryAdapter = (Double, NSError?) -> Void
+
+    
+    // MARK: - Propertoes
     
     private let healthStore: HKHealthStore? = {
         if HKHealthStore.isHealthDataAvailable() {
@@ -46,23 +58,21 @@ class HKHelper {
     
     // MARK: - Request permissions
     
-    func requestHealthKitAuthorization(completion: HKRequestPermissionCallback) {
+    func requestHealthKitAuthorization() -> Promise<Bool> {
         
-        guard let stepsType = self.stepsType, distanceOnFootType = self.distanceOnFootType else {
-            return
-        }
-        
-        let dataTypesToRead = Set<HKQuantityType>(arrayLiteral: stepsType, distanceOnFootType)
-
-        guard let healthStore = self.healthStore else {
-            // TODO: manage if healthStore is not available
-            return
-        }
-        
-        healthStore.requestAuthorizationToShareTypes(nil, readTypes: dataTypesToRead) {
-            (success, error) in
+        return Promise { (adapter: HKRequestAuthorizationToShareTypesAdapter) in
+            guard let stepsType = self.stepsType, distanceOnFootType = self.distanceOnFootType else {
+                return
+            }
             
-            completion(success: success, error: error)
+            let dataTypesToRead = Set<HKQuantityType>(arrayLiteral: stepsType, distanceOnFootType)
+            
+            guard let healthStore = self.healthStore else {
+                // TODO: manage if healthStore is not available
+                return
+            }
+            
+            healthStore.requestAuthorizationToShareTypes(nil, readTypes: dataTypesToRead, completion: adapter)
         }
         
     }
@@ -79,41 +89,47 @@ class HKHelper {
         
     }
     
-    private func createStatisticsQuery(forQuantityType quantityType: HKQuantityType, predicate: NSPredicate, unit: HKUnit, completion: HKQueryCallback) -> HKStatisticsQuery {
+    private func createStatisticsQuery(forQuantityType quantityType: HKQuantityType, predicate: NSPredicate, unit: HKUnit) -> Promise<Double> {
         
-        let queryOptions: HKStatisticsOptions = [.CumulativeSum, .SeparateBySource]
-        
-        let query = HKStatisticsQuery(quantityType: quantityType, quantitySamplePredicate: predicate, options: queryOptions) {
-            (query, result, error) in
+        return Promise { fulfill, reject in
+            let queryOptions: HKStatisticsOptions = [.CumulativeSum, .SeparateBySource]
             
-            if let error = error {
-                completion(value: nil, error: .DefaultError(error))
+            let query = HKStatisticsQuery(quantityType: quantityType, quantitySamplePredicate: predicate, options: queryOptions) {
+                (query, result, error) in
+                
+                if let error = error {
+                    reject(HKErrorType.DefaultError(error))
+                }
+                
+                guard let result = result else {
+                    // error: there is no result
+                    reject(HKErrorType.NoResult)
+                    return
+                }
+                
+                guard let deviceSource = self.getDeviceSource(fromResult: result) else {
+                    // error: there is no device source
+                    reject(HKErrorType.NoDeviceSource)
+                    return
+                }
+                
+                guard let sumQuantity = result.sumQuantityForSource(deviceSource) else {
+                    // error: no sum quantity
+                    reject(HKErrorType.NoSumQuantity)
+                    return
+                }
+                
+                let value = sumQuantity.doubleValueForUnit(unit)
+                fulfill(value)
+                
             }
             
-            guard let result = result else {
-                // error: there is no result
-                completion(value: nil, error: .NoResult)
-                return
+            guard let healthStore = self.healthStore else {
+                throw HKErrorType.NoHealthStore
             }
-            
-            guard let deviceSource = self.getDeviceSource(fromResult: result) else {
-                // error: there is no device source
-                completion(value: nil, error: .NoDeviceSource)
-                return
-            }
-            
-            guard let sumQuantity = result.sumQuantityForSource(deviceSource) else {
-                // error: no sum quantity
-                completion(value: nil, error: .NoSumQuantity)
-                return
-            }
-            
-            let value = sumQuantity.doubleValueForUnit(unit)
-            completion(value: value, error: nil)
+            healthStore.executeQuery(query)
             
         }
-        
-        return query
         
     }
     
@@ -139,33 +155,51 @@ class HKHelper {
     
     // MARK: - Health Queries
     
-    func queryTotalStepCount(sinceTimeInterval timeInterval: NSTimeInterval, completion: HKStepCountQueryCallback) {
+    func queryTotalStepCount(sinceTimeInterval timeInterval: NSTimeInterval) -> Promise<Int> {
         
-        let predicate = self.createPredicate(fromInterval: timeInterval)
-        
-        guard let stepsType = self.stepsType else { return }
-        
-        let stepCountQuery = self.createStatisticsQuery(forQuantityType: stepsType, predicate: predicate, unit: HKUnit.countUnit()) {
-            completion(totalStepCount: $0, error: $1)
+        return Promise { fulfill, reject in
+            
+            let predicate = self.createPredicate(fromInterval: timeInterval)
+            
+            guard let stepsType = self.stepsType else {
+                reject(HKErrorType.TypeNotAvailable)
+                return
+            }
+            
+            firstly {
+                self.createStatisticsQuery(forQuantityType: stepsType, predicate: predicate, unit: HKUnit.countUnit())
+            }.then { (value) -> Void in
+                let stepCount = Int(value)
+                fulfill(stepCount)
+            }.error { (error) in
+                reject(error)
+            }
+            
         }
-        
-        guard let healthStore = self.healthStore else { return }
-        healthStore.executeQuery(stepCountQuery)
         
     }
     
-    func queryTotalDistanceOnFoot(sinceTimeInterval timeInterval: NSTimeInterval, completion: HKDistanceOnFootQueryCallback) {
+    func queryTotalDistanceOnFoot(sinceTimeInterval timeInterval: NSTimeInterval) -> Promise<Int> {
         
-        let predicate = self.createPredicate(fromInterval: timeInterval)
-        
-        guard let distanceOnFootType = self.distanceOnFootType else { return }
-        
-        let distanceOnFootQuery = self.createStatisticsQuery(forQuantityType: distanceOnFootType, predicate: predicate, unit: HKUnit.meterUnit()) {
-            completion(totalDistance: $0, error: $1)
+        return Promise { fulfill, reject in
+            
+            let predicate = self.createPredicate(fromInterval: timeInterval)
+            
+            guard let distanceOnFootType = self.distanceOnFootType else {
+                reject(HKErrorType.TypeNotAvailable)
+                return
+            }
+            
+            firstly {
+                self.createStatisticsQuery(forQuantityType: distanceOnFootType, predicate: predicate, unit: HKUnit.meterUnit())
+            }.then { (value) -> Void in
+                let stepCount = Int(value)
+                fulfill(stepCount)
+            }.error { (error) in
+                reject(error)
+            }
+            
         }
-        
-        guard let healthStore = self.healthStore else { return }
-        healthStore.executeQuery(distanceOnFootQuery)
         
     }
     

@@ -10,9 +10,9 @@ import Foundation
 import PromiseKit
 
 
-typealias PFObjectResultAdapter = (PFObject?, NSError?) -> Void
-
 class ParseHelper {
+    
+    private typealias PFObjectResultAdapter = (PFObject?, NSError?) -> Void
     
     // MARK: - Keys
     

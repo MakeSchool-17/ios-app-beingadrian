@@ -9,10 +9,10 @@
 import Foundation
 import PromiseKit
 
-typealias PFBooleanResultAdapter = (Bool, NSError?) -> Void
-
 
 extension PFObject {
+    
+    private typealias PFBooleanResultAdapter = (Bool, NSError?) -> Void
     
     func pinInBackgroundWithBlock() -> Promise<Bool> {
         

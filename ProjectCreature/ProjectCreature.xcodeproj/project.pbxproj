@@ -45,6 +45,7 @@
 		338369261BF69043006407FF /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3383691F1BF69043006407FF /* ParseTwitterUtils.framework */; };
 		338369271BF69043006407FF /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338369201BF69043006407FF /* ParseUI.framework */; };
 		338369301BF6A01E006407FF /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3383692F1BF6A01E006407FF /* ParseHelper.swift */; };
+		339874251BFF968700F47B2B /* HKExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339874241BFF968700F47B2B /* HKExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		3383691F1BF69043006407FF /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseTwitterUtils.framework; sourceTree = "<group>"; };
 		338369201BF69043006407FF /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		3383692F1BF6A01E006407FF /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
+		339874241BFF968700F47B2B /* HKExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */,
+				339874241BFF968700F47B2B /* HKExtensions.swift */,
 			);
 			path = HealthKit;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				339874251BFF968700F47B2B /* HKExtensions.swift in Sources */,
 				338368DB1BF67852006407FF /* AppDelegate.swift in Sources */,
 				331E66D11BF6AC55003AB81D /* DashboardScene.swift in Sources */,
 				3362D53E1BFD972B00256348 /* ParseExtension.swift in Sources */,
