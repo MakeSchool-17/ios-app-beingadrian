@@ -27,12 +27,12 @@ class MainViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         
         // healthKit permission
-        HKHelper().requestHealthKitAuthorization {
-            (success, error) in
-            
-            if let error = error {
-                print(error)
-            }
+        HKHelper().requestHealthKitAuthorization().then {
+            (success) in
+            print(success)
+        }.error {
+            (error) in
+            print(error)
         }
         
     }

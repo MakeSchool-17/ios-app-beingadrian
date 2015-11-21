@@ -7,6 +7,8 @@
 //
 
 import SpriteKit
+import PromiseKit
+
 
 class DashboardScene: SKScene {
     
@@ -16,6 +18,7 @@ class DashboardScene: SKScene {
     weak var stepCountLabel: SKLabelNode!
     
     let healthHelper = HKHelper()
+    let parseHelper = ParseHelper()
     
     
     // MARK: - Base methods
@@ -27,7 +30,7 @@ class DashboardScene: SKScene {
         
         label.position = CGPoint(x: frame.midX, y: frame.midY + 30)
         stepCountLabel.position = CGPoint(x: frame.midX, y: frame.midY - 50)
-
+        
     }
     
 }

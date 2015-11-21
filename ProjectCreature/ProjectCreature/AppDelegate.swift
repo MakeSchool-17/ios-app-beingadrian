@@ -21,9 +21,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.enableLocalDatastore()
         
-        Parse.setApplicationId("svqUPEoqPQ0jCpbnuWDWCShnYM4QKAai9R5DLqmK", clientKey: "JPcshb6ILHye98SIWX9cujreV50z3zUkkSUAfIxS")
+        Parse.setApplicationId("PBf2QMcCJkBiQ2zxktGr5NSHkUarsaYNgzmhVNjB", clientKey: "4prrsitPiS5HiTrr9Nby3dn6UOaESatTLIOx0NVJ")
         
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        
+        // force Parse login
+        if PFUser.currentUser() == nil {
+            PFUser.logInWithUsernameInBackground("beingadrian", password: "test").then {
+                (user) -> Void in
+                print(user.username)
+            }.error { (error) in
+                print(error)
+            }
+        }
         
         return true
     }
