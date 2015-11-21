@@ -27,9 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // force Parse login
         if PFUser.currentUser() == nil {
-            PFUser.logInWithUsernameInBackground("beingadrian", password: "test") {
-                (success, error) in
-                print("User log in: \(success)")
+            PFUser.logInWithUsernameInBackground("beingadrian", password: "test").then {
+                (user) -> Void in
+                print(user.username)
+            }.error { (error) in
+                print(error)
             }
         }
         

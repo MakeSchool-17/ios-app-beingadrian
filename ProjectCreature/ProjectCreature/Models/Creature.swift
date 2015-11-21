@@ -20,7 +20,7 @@ class Creature {
     var exp: Int
     var happiness: Int
     var evolutionStage: Int
-    var type: String
+    var family: String
     var objectID: String?
     var owner: PFUser
     
@@ -33,26 +33,26 @@ class Creature {
     
     // MARK: - Base methods
     
-    init(name: String, type: String, owner: PFUser) {
+    init(name: String, family: String, owner: PFUser) {
         
         self.name = name
         self.level = 0
         self.exp = 0
         self.happiness = 0
         self.evolutionStage = 0
-        self.type = type
+        self.family = family
         self.owner = owner
         
     }
     
-    init?(parseObject: PFObject) {
+    init(parseObject: PFObject) {
         
         self.name = parseObject[parseHelper.CreatureNameKey] as! String
         self.level = parseObject[parseHelper.CreatureLevelKey] as! Int
         self.exp = parseObject[parseHelper.CreatureExpKey] as! Int
         self.happiness = parseObject[parseHelper.CreatureHappinessKey] as! Int
         self.evolutionStage = parseObject[parseHelper.CreatureEvolutionStageKey] as! Int
-        self.type = parseObject[parseHelper.CreatureFamilyKey] as! String
+        self.family = parseObject[parseHelper.CreatureFamilyKey] as! String
         self.owner = parseObject[parseHelper.CreatureOwnerKey] as! PFUser
         self.objectID = parseObject.objectId!
         
@@ -67,7 +67,7 @@ class Creature {
         creatureParseObject[parseHelper.CreatureExpKey] = self.exp
         creatureParseObject[parseHelper.CreatureHappinessKey] = self.happiness
         creatureParseObject[parseHelper.CreatureEvolutionStageKey] = self.evolutionStage
-        creatureParseObject[parseHelper.CreatureFamilyKey] = self.type
+        creatureParseObject[parseHelper.CreatureFamilyKey] = self.family
         creatureParseObject[parseHelper.CreatureOwnerKey] = self.owner
         
         return creatureParseObject

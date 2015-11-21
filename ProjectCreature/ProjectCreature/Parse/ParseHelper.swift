@@ -14,6 +14,15 @@ class ParseHelper {
     
     private typealias PFObjectResultAdapter = (PFObject?, NSError?) -> Void
     
+    enum DataStoreType {
+        case Parse
+        case Local
+    }
+    
+    enum PFErrorType: ErrorType {
+        case NoUserLoggedIn
+    }
+    
     // MARK: - Keys
     
     let CreatureClassName = "Creature"
@@ -28,20 +37,43 @@ class ParseHelper {
     
     // MARK: - Methods
     
-    func retrieveUserCreature() -> Promise<PFObject> {
+    func retrieveUserCreatureParseObjectFrom(store: DataStoreType) -> Promise<PFObject>{
         
-        return Promise { (adapter: PFObjectResultAdapter) in
-            
-            let query = PFQuery(className: self.CreatureClassName)
+        let query = PFQuery(className: CreatureClassName)
+        
+        if store == .Local {
             query.fromLocalDatastore()
+        }
+        
+        guard let currentUser = PFUser.currentUser() else {
+            return Promise(error: PFErrorType.NoUserLoggedIn)
+        }
+        
+        query.whereKey(CreatureOwnerKey, equalTo: currentUser)
+        
+        return query.getFirstObjectInBackgroundWithBlock().then {
+            (object) -> PFObject in
             
-            guard let currentUser = PFUser.currentUser() else { return }
-            query.whereKey(self.CreatureOwnerKey, equalTo: currentUser)
-            
-            query.getFirstObjectInBackgroundWithBlock(adapter)
-            
+            return object
         }
         
     }
+    
+    func removeUserCreatureFrom(store: DataStoreType) -> Promise<Bool> {
+        
+        return retrieveUserCreatureParseObjectFrom(store).then {
+            (object) -> Promise<Bool> in
+            
+            switch store {
+            case .Local:
+                return object.unpinInBackgroundWithPromise()
+            case .Parse:
+                return object.deleteInBackgroundWithPromise()
+            }
+
+        }
+        
+    }
+
     
 }

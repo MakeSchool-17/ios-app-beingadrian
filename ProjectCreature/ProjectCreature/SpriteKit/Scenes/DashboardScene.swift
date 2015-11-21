@@ -31,24 +31,37 @@ class DashboardScene: SKScene {
         label.position = CGPoint(x: frame.midX, y: frame.midY + 30)
         stepCountLabel.position = CGPoint(x: frame.midX, y: frame.midY - 50)
         
-        // test HKHelper
         
-        let calendar = NSCalendar.currentCalendar()
-        let twoDaysAgo = calendar.dateByAddingUnit(.Day, value: -2, toDate: NSDate(), options: [])
-        let twoDaysAgoInterval = twoDaysAgo!.timeIntervalSince1970
+//        firstly {
+//            parseHelper.retrieveUserCreatureParseObjectFrom(.Parse)
+//        }.then { (object) in
+//            object.deleteInBackgroundWithPromise()
+//        }.then { (success) -> Promise<PFObject> in
+//            print("Delete in background: \(success)")
+//            return self.parseHelper.retrieveUserCreatureParseObjectFrom(.Local)
+//        }.then { (object) in
+//            object.unpinInBackgroundWithPromise()
+//        }.then { (success) in
+//            print("Unpin in background: \(success)")
+//        }.error { (error) in
+//            print(error)
+//        }
         
-        healthHelper.queryTotalStepCount(sinceTimeInterval: twoDaysAgoInterval).then {
-            (stepCount) in
-            print(stepCount)
-        }.error { (error) in
-            print(error)
-        }
+//        let creature = Creature(name: "Bill", family: Creature.Family.FamilyA.rawValue, owner: PFUser.currentUser()!)
+//        
+//        let object = creature.parseObject()
+//        
+//        firstly {
+//            return object.pinInBackgroundWithPromise()
+//        }.then { success -> Promise<Bool> in
+//            print("Pinning: \(success)")
+//            return object.saveEventuallyWithPromise()
+//        }.then { (success) in
+//            print("Save eventually: \(success)")
+//        }.error { error in
+//            print(error)
+//        }
         
-        healthHelper.queryTotalDistanceOnFoot(sinceTimeInterval: twoDaysAgoInterval).then {
-            (distance) in
-            print(distance)
-        }
-
     }
     
 }
