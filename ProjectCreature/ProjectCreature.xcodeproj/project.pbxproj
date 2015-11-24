@@ -23,11 +23,8 @@
 		333D1B081BFBF1F3001CCD5E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1B071BFBF1F3001CCD5E /* libz.tbd */; };
 		333D1B0A1BFBF1FD001CCD5E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */; };
 		333D1B0D1BFBFACD001CCD5E /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333D1B0C1BFBFACD001CCD5E /* Creature.swift */; };
-		3362D53C1BFD44D800256348 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3362D53B1BFD44D800256348 /* PromiseKit.framework */; };
 		3362D53E1BFD972B00256348 /* ParseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3362D53D1BFD972B00256348 /* ParseExtensions.swift */; };
 		3362D5401BFDB08700256348 /* PromiseKit.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 3362D53F1BFDB08700256348 /* PromiseKit.framework.dSYM */; };
-		3362D5421BFDB11300256348 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3362D53B1BFD44D800256348 /* PromiseKit.framework */; };
-		3362D5431BFDB11300256348 /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3362D53B1BFD44D800256348 /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3362D5481BFE817D00256348 /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3362D5471BFE817D00256348 /* Gloss.framework */; };
 		3362D5491BFE81C000256348 /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3362D5471BFE817D00256348 /* Gloss.framework */; };
 		3362D54A1BFE81C000256348 /* Gloss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3362D5471BFE817D00256348 /* Gloss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -72,7 +69,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3362D5431BFDB11300256348 /* PromiseKit.framework in Embed Frameworks */,
 				3362D54A1BFE81C000256348 /* Gloss.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -98,7 +94,6 @@
 		333D1B071BFBF1F3001CCD5E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		333D1B0C1BFBFACD001CCD5E /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
-		3362D53B1BFD44D800256348 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = SOURCE_ROOT; };
 		3362D53D1BFD972B00256348 /* ParseExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseExtensions.swift; sourceTree = "<group>"; };
 		3362D53F1BFDB08700256348 /* PromiseKit.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = PromiseKit.framework.dSYM; path = "/Users/beingadrian/Developer/Make-School/Semester-1/3-iOSPersonalProject/ios-app-beingadrian/ProjectCreature/Carthage/Build/iOS/PromiseKit.framework.dSYM"; sourceTree = "<absolute>"; };
 		3362D5471BFE817D00256348 /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = Carthage/Build/iOS/Gloss.framework; sourceTree = SOURCE_ROOT; };
@@ -131,7 +126,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3362D5421BFDB11300256348 /* PromiseKit.framework in Frameworks */,
 				333D1B0A1BFBF1FD001CCD5E /* libsqlite3.tbd in Frameworks */,
 				333D1B081BFBF1F3001CCD5E /* libz.tbd in Frameworks */,
 				333D1B061BFBF1EC001CCD5E /* SystemConfiguration.framework in Frameworks */,
@@ -148,7 +142,6 @@
 				3362D5481BFE817D00256348 /* Gloss.framework in Frameworks */,
 				338369241BF69043006407FF /* ParseFacebookUtils.framework in Frameworks */,
 				338369211BF69043006407FF /* Bolts.framework in Frameworks */,
-				3362D53C1BFD44D800256348 /* PromiseKit.framework in Frameworks */,
 				3309FB4D1BF7F64300BE0310 /* HealthKit.framework in Frameworks */,
 				3362D5491BFE81C000256348 /* Gloss.framework in Frameworks */,
 				338369261BF69043006407FF /* ParseTwitterUtils.framework in Frameworks */,
@@ -260,7 +253,6 @@
 			isa = PBXGroup;
 			children = (
 				3362D5471BFE817D00256348 /* Gloss.framework */,
-				3362D53B1BFD44D800256348 /* PromiseKit.framework */,
 				333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */,
 				333D1B071BFBF1F3001CCD5E /* libz.tbd */,
 				333D1B051BFBF1EC001CCD5E /* SystemConfiguration.framework */,
