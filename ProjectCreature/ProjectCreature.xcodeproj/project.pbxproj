@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		3309FB4D1BF7F64300BE0310 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3309FB4C1BF7F64300BE0310 /* HealthKit.framework */; };
 		3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */; };
+		33130C411C04E19000689F1B /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33130C401C04E19000689F1B /* PromiseKit.framework */; };
+		33130C421C04E19700689F1B /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33130C401C04E19000689F1B /* PromiseKit.framework */; };
+		33130C431C04E19700689F1B /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 33130C401C04E19000689F1B /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		33130C451C04EA7100689F1B /* CreatureDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33130C441C04EA7100689F1B /* CreatureDecorator.swift */; };
 		331E66C91BF6A780003AB81D /* DashboardScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 331E66C81BF6A780003AB81D /* DashboardScene.sks */; };
 		331E66D11BF6AC55003AB81D /* DashboardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331E66D01BF6AC55003AB81D /* DashboardScene.swift */; };
 		331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331E66D21BF6AEDB003AB81D /* MainViewController.swift */; };
@@ -70,6 +74,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				3362D54A1BFE81C000256348 /* Gloss.framework in Embed Frameworks */,
+				33130C431C04E19700689F1B /* PromiseKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,6 +85,8 @@
 		3309FB4C1BF7F64300BE0310 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		3309FB4E1BF7F64300BE0310 /* ProjectCreature.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ProjectCreature.entitlements; sourceTree = "<group>"; };
 		3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKHelper.swift; sourceTree = "<group>"; };
+		33130C401C04E19000689F1B /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = SOURCE_ROOT; };
+		33130C441C04EA7100689F1B /* CreatureDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureDecorator.swift; sourceTree = "<group>"; };
 		331E66C81BF6A780003AB81D /* DashboardScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DashboardScene.sks; sourceTree = "<group>"; };
 		331E66D01BF6AC55003AB81D /* DashboardScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardScene.swift; sourceTree = "<group>"; };
 		331E66D21BF6AEDB003AB81D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -126,10 +133,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33130C411C04E19000689F1B /* PromiseKit.framework in Frameworks */,
 				333D1B0A1BFBF1FD001CCD5E /* libsqlite3.tbd in Frameworks */,
 				333D1B081BFBF1F3001CCD5E /* libz.tbd in Frameworks */,
 				333D1B061BFBF1EC001CCD5E /* SystemConfiguration.framework in Frameworks */,
 				333D1B041BFBF1E3001CCD5E /* StoreKit.framework in Frameworks */,
+				33130C421C04E19700689F1B /* PromiseKit.framework in Frameworks */,
 				333D1B021BFBF1DC001CCD5E /* Security.framework in Frameworks */,
 				333D1B001BFBF1D0001CCD5E /* QuartzCore.framework in Frameworks */,
 				333D1AFE1BFBF1C7001CCD5E /* CoreLocation.framework in Frameworks */,
@@ -178,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				333D1B0C1BFBFACD001CCD5E /* Creature.swift */,
+				33130C441C04EA7100689F1B /* CreatureDecorator.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -252,6 +262,7 @@
 		338369191BF69042006407FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				33130C401C04E19000689F1B /* PromiseKit.framework */,
 				3362D5471BFE817D00256348 /* Gloss.framework */,
 				333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */,
 				333D1B071BFBF1F3001CCD5E /* libz.tbd */,
@@ -471,6 +482,7 @@
 				3362D53E1BFD972B00256348 /* ParseExtensions.swift in Sources */,
 				333D1B0D1BFBFACD001CCD5E /* Creature.swift in Sources */,
 				3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */,
+				33130C451C04EA7100689F1B /* CreatureDecorator.swift in Sources */,
 				338369301BF6A01E006407FF /* ParseHelper.swift in Sources */,
 				331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */,
 			);

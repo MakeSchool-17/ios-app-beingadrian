@@ -21,6 +21,7 @@ class ParseHelper {
     
     enum PFErrorType: ErrorType {
         case NoUserLoggedIn
+        case NoValueForKey
     }
     
     // MARK: - Keys
