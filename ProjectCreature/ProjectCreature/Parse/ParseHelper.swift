@@ -37,7 +37,7 @@ class ParseHelper {
     
     // MARK: - Methods
     
-    func retrieveUserCreatureParseObjectFrom(store: DataStoreType) -> Promise<PFObject>{
+    func retrieveUserCreatureParseObjectFrom(store: DataStoreType) -> Promise<PFObject> {
         
         let query = PFQuery(className: CreatureClassName)
         

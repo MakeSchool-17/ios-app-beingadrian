@@ -20,7 +20,6 @@ class DashboardScene: SKScene {
     let healthHelper = HKHelper()
     let parseHelper = ParseHelper()
     
-    
     // MARK: - Base methods
     
     override func didMoveToView(view: SKView) {
@@ -28,9 +27,10 @@ class DashboardScene: SKScene {
         label = self.childNodeWithName("label") as! SKLabelNode
         stepCountLabel = self.childNodeWithName("stepCountLabel") as! SKLabelNode
         
-        label.position = CGPoint(x: frame.midX, y: frame.midY + 30)
-        stepCountLabel.position = CGPoint(x: frame.midX, y: frame.midY - 50)
+        label.setHorizontalPosition(.Center)
+        label.setVerticalPosition(50, relativeTo: stepCountLabel)
         
+        stepCountLabel.position = CGPoint(x: frame.midX, y: frame.midY - 50)
     }
     
 }
