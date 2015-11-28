@@ -14,8 +14,8 @@ class DashboardScene: SKScene {
     
     // MARK: - Properties
     
-    weak var label: SKLabelNode!
-    weak var stepCountLabel: SKLabelNode!
+    var background: SKSpriteNode!
+    var statsButton: SKButton!
     
     let healthHelper = HKHelper()
     let parseHelper = ParseHelper()
@@ -24,13 +24,24 @@ class DashboardScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         
-        label = self.childNodeWithName("label") as! SKLabelNode
-        stepCountLabel = self.childNodeWithName("stepCountLabel") as! SKLabelNode
+        background = self.childNodeWithName("Background") as? SKSpriteNode
+        background.position = CGPointZero
         
-        label.setHorizontalPosition(.Center)
-        label.setVerticalPosition(50, relativeTo: stepCountLabel)
+        statsButton = self.childNodeWithName("Stats button") as? SKButton
+        statsButton.setHorizontalPosition(15 + statsButton.frame.width / 2, fromMargin: .LeftMargin)
+        statsButton.setVerticalPosition(15 + statsButton.frame.height / 2, fromMargin: .BottomMargin)
         
-        stepCountLabel.position = CGPoint(x: frame.midX, y: frame.midY - 50)
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        guard let touch = touches.first else { return }
+        let location = touch.locationInNode(self)
+        
+        if statsButton.containsPoint(location) {
+            statsButton.touchesBegan(touches, withEvent: event)
+        }
+        
     }
     
 }

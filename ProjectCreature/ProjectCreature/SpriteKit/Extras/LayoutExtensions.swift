@@ -50,22 +50,22 @@ extension SKNode {
         
         switch margin {
         case .TopMargin:
-            self.position = CGPoint(x: self.position.x, y: parent.frame.maxY - value)
+            self.position = CGPoint(x: self.position.x, y: parent.frame.height - value)
         case .BottomMargin:
-            self.position = CGPoint(x: self.position.y, y: parent.frame.minY + value)
+            self.position = CGPoint(x: self.position.x, y: value)
         }
         
     }
     
     func setHorizontalPosition(value: CGFloat, fromMargin margin: HorizontalMargin) {
-        
+            
         guard let parent = self.parent else { return }
         
         switch margin {
         case .LeftMargin:
-            self.position = CGPoint(x: parent.frame.minX + value, y: self.position.y)
+            self.position = CGPoint(x: value, y: self.position.y)
         case .RightMargin:
-            self.position = CGPoint(x: parent.frame.maxX - value, y: self.position.y)
+            self.position = CGPoint(x: parent.frame.width - value, y: self.position.y)
         }
         
     }
@@ -107,28 +107,12 @@ extension SKNode {
     func setVerticalPosition(value: CGFloat, relativeTo node: SKNode) {
         
         self.position = CGPoint(x: self.position.x, y: node.position.y + value)
-
-        let offset = node.frame.height / 2
-        if (self.position.y < node.position.y) {
-            self.position.y -= offset
-        }
-        if (self.position.y > node.position.y) {
-            self.position.y += offset
-        }
         
     }
     
     func setHorizontalPosition(value: CGFloat, relativeTo node: SKNode) {
         
         self.position = CGPoint(x: node.position.x + value, y: self.position.y)
-        
-        let offset = node.frame.width / 2
-        if (self.position.x < node.position.x) {
-            self.position.x -= offset
-        }
-        if (self.position.x > node.position.x) {
-            self.position.x += offset
-        }
         
     }
     

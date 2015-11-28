@@ -13,6 +13,7 @@
 		330B47FF1C08E8CD00C6074C /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 330B47FE1C08E8CD00C6074C /* PromiseKit.framework */; };
 		330B48001C08E8D100C6074C /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 330B47FE1C08E8CD00C6074C /* PromiseKit.framework */; };
 		330B48011C08E8D100C6074C /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 330B47FE1C08E8CD00C6074C /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		330F8CA81C096F7200A765F0 /* ButtonTapped.sks in Resources */ = {isa = PBXBuildFile; fileRef = 330F8CA71C096F7200A765F0 /* ButtonTapped.sks */; };
 		331E66C91BF6A780003AB81D /* DashboardScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 331E66C81BF6A780003AB81D /* DashboardScene.sks */; };
 		331E66D11BF6AC55003AB81D /* DashboardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331E66D01BF6AC55003AB81D /* DashboardScene.swift */; };
 		331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331E66D21BF6AEDB003AB81D /* MainViewController.swift */; };
@@ -47,6 +48,9 @@
 		338369271BF69043006407FF /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338369201BF69043006407FF /* ParseUI.framework */; };
 		338369301BF6A01E006407FF /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3383692F1BF6A01E006407FF /* ParseHelper.swift */; };
 		339874281BFFFE7200F47B2B /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339874271BFFFE7200F47B2B /* GameManager.swift */; };
+		33E68FC21C093E0100D8D3FE /* Positionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E68FC11C093E0100D8D3FE /* Positionable.swift */; };
+		33E68FC51C093FAF00D8D3FE /* GradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E68FC41C093FAF00D8D3FE /* GradientBackground.swift */; };
+		33E68FC91C0958F800D8D3FE /* SKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E68FC81C0958F800D8D3FE /* SKButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +91,7 @@
 		3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKHelper.swift; sourceTree = "<group>"; };
 		330B47FC1C08E6CE00C6074C /* LayoutExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutExtensions.swift; sourceTree = "<group>"; };
 		330B47FE1C08E8CD00C6074C /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = SOURCE_ROOT; };
+		330F8CA71C096F7200A765F0 /* ButtonTapped.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ButtonTapped.sks; sourceTree = "<group>"; };
 		331E66C81BF6A780003AB81D /* DashboardScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DashboardScene.sks; sourceTree = "<group>"; };
 		331E66D01BF6AC55003AB81D /* DashboardScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardScene.swift; sourceTree = "<group>"; };
 		331E66D21BF6AEDB003AB81D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +131,9 @@
 		338369201BF69043006407FF /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		3383692F1BF6A01E006407FF /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 		339874271BFFFE7200F47B2B /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		33E68FC11C093E0100D8D3FE /* Positionable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Positionable.swift; sourceTree = "<group>"; };
+		33E68FC41C093FAF00D8D3FE /* GradientBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientBackground.swift; sourceTree = "<group>"; };
+		33E68FC81C0958F800D8D3FE /* SKButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				330B47FC1C08E6CE00C6074C /* LayoutExtensions.swift */,
+				33E68FC11C093E0100D8D3FE /* Positionable.swift */,
 			);
 			path = Extras;
 			sourceTree = "<group>";
@@ -305,6 +314,8 @@
 		3383692A1BF69FE6006407FF /* SpriteKit */ = {
 			isa = PBXGroup;
 			children = (
+				33E68FCC1C096A2700D8D3FE /* Actions */,
+				33E68FC31C093F7500D8D3FE /* Subclasses */,
 				330B47FB1C08E67800C6074C /* Extras */,
 				3383692B1BF69FE6006407FF /* Scenes */,
 			);
@@ -342,6 +353,23 @@
 				339874271BFFFE7200F47B2B /* GameManager.swift */,
 			);
 			path = Game;
+			sourceTree = "<group>";
+		};
+		33E68FC31C093F7500D8D3FE /* Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				33E68FC41C093FAF00D8D3FE /* GradientBackground.swift */,
+				33E68FC81C0958F800D8D3FE /* SKButton.swift */,
+			);
+			path = Subclasses;
+			sourceTree = "<group>";
+		};
+		33E68FCC1C096A2700D8D3FE /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				330F8CA71C096F7200A765F0 /* ButtonTapped.sks */,
+			);
+			path = Actions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -458,6 +486,7 @@
 				338368E91BF67852006407FF /* LaunchScreen.storyboard in Resources */,
 				338368E61BF67852006407FF /* Assets.xcassets in Resources */,
 				338368E41BF67852006407FF /* Main.storyboard in Resources */,
+				330F8CA81C096F7200A765F0 /* ButtonTapped.sks in Resources */,
 				331E66C91BF6A780003AB81D /* DashboardScene.sks in Resources */,
 				3362D5401BFDB08700256348 /* PromiseKit.framework.dSYM in Resources */,
 			);
@@ -489,9 +518,12 @@
 				331E66D11BF6AC55003AB81D /* DashboardScene.swift in Sources */,
 				3362D53E1BFD972B00256348 /* ParseExtensions.swift in Sources */,
 				330B47FD1C08E6CE00C6074C /* LayoutExtensions.swift in Sources */,
+				33E68FC51C093FAF00D8D3FE /* GradientBackground.swift in Sources */,
 				333D1B0D1BFBFACD001CCD5E /* Creature.swift in Sources */,
+				33E68FC91C0958F800D8D3FE /* SKButton.swift in Sources */,
 				3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */,
 				338369301BF6A01E006407FF /* ParseHelper.swift in Sources */,
+				33E68FC21C093E0100D8D3FE /* Positionable.swift in Sources */,
 				331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

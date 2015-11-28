@@ -148,5 +148,5 @@ public func jsonify(array: [JSON?]) -> JSON? {
         }
     }
     
-    return json
+    return json.isEmpty ? nil : json
 }

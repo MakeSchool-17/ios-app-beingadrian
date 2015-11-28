@@ -42,11 +42,8 @@ struct TestModel: Glossy {
     let enumValue: EnumValue?
     let enumValueArray: [EnumValue]?
     let date: NSDate?
-    let dateArray: [NSDate]?
     let dateISO8601: NSDate?
-    let dateISO8601Array: [NSDate]?
     let url: NSURL?
-    let urlArray: [NSURL]?
     
     enum EnumValue: String {
         case A = "A"
@@ -76,11 +73,8 @@ struct TestModel: Glossy {
         self.enumValue = "enumValue" <~~ json
         self.enumValueArray = "enumValueArray" <~~ json
         self.date = Decoder.decodeDate("date", dateFormatter: TestModel.dateFormatter)(json)
-        self.dateArray = Decoder.decodeDateArray("dateArray", dateFormatter: TestModel.dateFormatter)(json)
         self.dateISO8601 = Decoder.decodeDateISO8601("dateISO8601")(json)
-        self.dateISO8601Array = Decoder.decodeDateISO8601Array("dateISO8601Array")(json)
         self.url = "url" <~~ json
-        self.urlArray = "urlArray" <~~ json
     }
 
     // MARK: - Serialization
@@ -102,11 +96,8 @@ struct TestModel: Glossy {
             "enumValue" ~~> self.enumValue,
             "enumValueArray" ~~> self.enumValueArray,
             Encoder.encodeDate("date", dateFormatter: TestModel.dateFormatter)(self.date),
-            Encoder.encodeDateArray("dateArray", dateFormatter: TestModel.dateFormatter)(self.dateArray),
             Encoder.encodeDateISO8601("dateISO8601")(self.dateISO8601),
-            Encoder.encodeDateISO8601Array("dateISO8601Array")(self.dateISO8601Array),
-            "url" ~~> self.url,
-            "urlArray" ~~> self.urlArray
+            "url" ~~> self.url
             ])
     }
     
