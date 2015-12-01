@@ -11,14 +11,12 @@ import Foundation
 
 
 class SKButton: SKSpriteNode {
-
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         guard let action = SKAction(named: "ButtonTapped") else { return }
         self.runAction(action)
         
     }
-
-
     
 }

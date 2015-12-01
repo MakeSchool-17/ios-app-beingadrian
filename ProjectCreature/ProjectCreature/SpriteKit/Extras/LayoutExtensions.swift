@@ -116,4 +116,12 @@ extension SKNode {
         
     }
     
+    func moveHorizontallyByPercentage(percentage: Double) {
+        
+        let initialPosition = -(self.frame.width / 2)
+        self.position.x = initialPosition + (self.frame.width * CGFloat(percentage / 100))
+        
+    }
+    
 }
+

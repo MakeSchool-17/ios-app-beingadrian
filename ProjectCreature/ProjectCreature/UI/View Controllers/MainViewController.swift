@@ -19,7 +19,7 @@ class MainViewController: UIViewController {
         
         guard let view = self.view as? SKView else { return }
         guard let dashboardScene = SKScene(fileNamed: "DashboardScene") else { return }
-        dashboardScene.scaleMode = .AspectFill
+        dashboardScene.scaleMode = .Fill
         view.presentScene(dashboardScene)
 
     }
@@ -29,10 +29,10 @@ class MainViewController: UIViewController {
         // healthKit permission
         HKHelper().requestHealthKitAuthorization().then {
             (success) in
-            print(success)
+            print("Request HealthKit authorization: \(success)")
         }.error {
             (error) in
-            print(error)
+            print("Error requesting HealthKit authorization: \(error)")
         }
         
     }

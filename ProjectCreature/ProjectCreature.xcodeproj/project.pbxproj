@@ -47,10 +47,10 @@
 		338369261BF69043006407FF /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3383691F1BF69043006407FF /* ParseTwitterUtils.framework */; };
 		338369271BF69043006407FF /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338369201BF69043006407FF /* ParseUI.framework */; };
 		338369301BF6A01E006407FF /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3383692F1BF6A01E006407FF /* ParseHelper.swift */; };
+		3393E5B71C0C1395001C4A37 /* DashboardSceneSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3393E5B61C0C1395001C4A37 /* DashboardSceneSetup.swift */; };
 		339874281BFFFE7200F47B2B /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339874271BFFFE7200F47B2B /* GameManager.swift */; };
-		33E68FC21C093E0100D8D3FE /* Positionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E68FC11C093E0100D8D3FE /* Positionable.swift */; };
-		33E68FC51C093FAF00D8D3FE /* GradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E68FC41C093FAF00D8D3FE /* GradientBackground.swift */; };
 		33E68FC91C0958F800D8D3FE /* SKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E68FC81C0958F800D8D3FE /* SKButton.swift */; };
+		33FDFF5A1C0D407500AA6C77 /* CreatureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FDFF591C0D407500AA6C77 /* CreatureViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,10 +130,10 @@
 		3383691F1BF69043006407FF /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseTwitterUtils.framework; sourceTree = "<group>"; };
 		338369201BF69043006407FF /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		3383692F1BF6A01E006407FF /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
+		3393E5B61C0C1395001C4A37 /* DashboardSceneSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardSceneSetup.swift; sourceTree = "<group>"; };
 		339874271BFFFE7200F47B2B /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
-		33E68FC11C093E0100D8D3FE /* Positionable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Positionable.swift; sourceTree = "<group>"; };
-		33E68FC41C093FAF00D8D3FE /* GradientBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientBackground.swift; sourceTree = "<group>"; };
 		33E68FC81C0958F800D8D3FE /* SKButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButton.swift; sourceTree = "<group>"; };
+		33FDFF591C0D407500AA6C77 /* CreatureViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,7 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				330B47FC1C08E6CE00C6074C /* LayoutExtensions.swift */,
-				33E68FC11C093E0100D8D3FE /* Positionable.swift */,
 			);
 			path = Extras;
 			sourceTree = "<group>";
@@ -232,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				3309FB4E1BF7F64300BE0310 /* ProjectCreature.entitlements */,
+				33FDFF581C0D405500AA6C77 /* ViewModels */,
 				3383692A1BF69FE6006407FF /* SpriteKit */,
 				339874261BFFFE5E00F47B2B /* Game */,
 				3383692C1BF69FE6006407FF /* UI */,
@@ -318,6 +318,7 @@
 				33E68FC31C093F7500D8D3FE /* Subclasses */,
 				330B47FB1C08E67800C6074C /* Extras */,
 				3383692B1BF69FE6006407FF /* Scenes */,
+				3393E5B51C0C135A001C4A37 /* SceneSetup */,
 			);
 			path = SpriteKit;
 			sourceTree = "<group>";
@@ -347,6 +348,14 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		3393E5B51C0C135A001C4A37 /* SceneSetup */ = {
+			isa = PBXGroup;
+			children = (
+				3393E5B61C0C1395001C4A37 /* DashboardSceneSetup.swift */,
+			);
+			path = SceneSetup;
+			sourceTree = "<group>";
+		};
 		339874261BFFFE5E00F47B2B /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,7 +367,6 @@
 		33E68FC31C093F7500D8D3FE /* Subclasses */ = {
 			isa = PBXGroup;
 			children = (
-				33E68FC41C093FAF00D8D3FE /* GradientBackground.swift */,
 				33E68FC81C0958F800D8D3FE /* SKButton.swift */,
 			);
 			path = Subclasses;
@@ -370,6 +378,14 @@
 				330F8CA71C096F7200A765F0 /* ButtonTapped.sks */,
 			);
 			path = Actions;
+			sourceTree = "<group>";
+		};
+		33FDFF581C0D405500AA6C77 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				33FDFF591C0D407500AA6C77 /* CreatureViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -518,12 +534,12 @@
 				331E66D11BF6AC55003AB81D /* DashboardScene.swift in Sources */,
 				3362D53E1BFD972B00256348 /* ParseExtensions.swift in Sources */,
 				330B47FD1C08E6CE00C6074C /* LayoutExtensions.swift in Sources */,
-				33E68FC51C093FAF00D8D3FE /* GradientBackground.swift in Sources */,
+				33FDFF5A1C0D407500AA6C77 /* CreatureViewModel.swift in Sources */,
 				333D1B0D1BFBFACD001CCD5E /* Creature.swift in Sources */,
 				33E68FC91C0958F800D8D3FE /* SKButton.swift in Sources */,
 				3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */,
+				3393E5B71C0C1395001C4A37 /* DashboardSceneSetup.swift in Sources */,
 				338369301BF6A01E006407FF /* ParseHelper.swift in Sources */,
-				33E68FC21C093E0100D8D3FE /* Positionable.swift in Sources */,
 				331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

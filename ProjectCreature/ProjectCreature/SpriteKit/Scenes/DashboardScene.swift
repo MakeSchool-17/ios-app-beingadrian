@@ -12,24 +12,46 @@ import PromiseKit
 
 class DashboardScene: SKScene {
     
+    let healthHelper = HKHelper()
+    let parseHelper = ParseHelper()
+    
     // MARK: - Properties
     
     var background: SKSpriteNode!
     var statsButton: SKButton!
+    var menuButton: SKButton!
     
-    let healthHelper = HKHelper()
-    let parseHelper = ParseHelper()
+    var dashboard: SKSpriteNode!
+    var circleFrame: SKSpriteNode!
+    
+    var creatureNameLabel: SKLabelNode!
+    var lvLabel: SKLabelNode!
+    var creatureLevelLabel: SKLabelNode!
+    
+    var healthBarBack: SKSpriteNode!
+    var healthBarFront: SKSpriteNode!
+    var healthBarCrop: SKCropNode!
+    var HPLabel: SKLabelNode!
+    var HPPercentageLabel: SKLabelNode!
+    
+    var expBarBack: SKSpriteNode!
+    var expBarFront: SKSpriteNode!
+    var expBarCrop: SKCropNode!
+    var EXPLabel: SKLabelNode!
+    
+    var creature: CreatureViewModel! {
+        didSet {
+            self.creatureNameLabel.text = creature.name
+            self.creatureLevelLabel.text = "\(creature.level)"
+        }
+    }
     
     // MARK: - Base methods
     
     override func didMoveToView(view: SKView) {
         
-        background = self.childNodeWithName("Background") as? SKSpriteNode
-        background.position = CGPointZero
-        
-        statsButton = self.childNodeWithName("Stats button") as? SKButton
-        statsButton.setHorizontalPosition(15 + statsButton.frame.width / 2, fromMargin: .LeftMargin)
-        statsButton.setVerticalPosition(15 + statsButton.frame.height / 2, fromMargin: .BottomMargin)
+        // TODO: Function or initializer
+        let _ = DashboardSceneUI(scene: self)
         
     }
     
@@ -42,6 +64,10 @@ class DashboardScene: SKScene {
             statsButton.touchesBegan(touches, withEvent: event)
         }
         
+        if menuButton.containsPoint(location) {
+            menuButton.touchesBegan(touches, withEvent: event)
+        }
+
     }
     
 }
