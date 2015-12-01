@@ -39,10 +39,12 @@ class DashboardScene: SKScene {
     var expBarCrop: SKCropNode!
     var EXPLabel: SKLabelNode!
     
-    var creature: CreatureViewModel! {
+    var viewModel: DashboardViewModel? {
         didSet {
-            self.creatureNameLabel.text = creature.name
-            self.creatureLevelLabel.text = "\(creature.level)"
+            if let viewModel = viewModel {
+                self.creatureNameLabel.text = viewModel.name
+                self.creatureLevelLabel.text = "\(viewModel.level)"
+            }
         }
     }
     

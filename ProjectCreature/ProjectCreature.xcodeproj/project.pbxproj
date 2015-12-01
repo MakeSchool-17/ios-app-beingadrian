@@ -50,7 +50,7 @@
 		3393E5B71C0C1395001C4A37 /* DashboardSceneSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3393E5B61C0C1395001C4A37 /* DashboardSceneSetup.swift */; };
 		339874281BFFFE7200F47B2B /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339874271BFFFE7200F47B2B /* GameManager.swift */; };
 		33E68FC91C0958F800D8D3FE /* SKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E68FC81C0958F800D8D3FE /* SKButton.swift */; };
-		33FDFF5A1C0D407500AA6C77 /* CreatureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FDFF591C0D407500AA6C77 /* CreatureViewModel.swift */; };
+		33FDFF5C1C0E36B100AA6C77 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FDFF5B1C0E36B100AA6C77 /* DashboardViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,7 +133,7 @@
 		3393E5B61C0C1395001C4A37 /* DashboardSceneSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardSceneSetup.swift; sourceTree = "<group>"; };
 		339874271BFFFE7200F47B2B /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		33E68FC81C0958F800D8D3FE /* SKButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButton.swift; sourceTree = "<group>"; };
-		33FDFF591C0D407500AA6C77 /* CreatureViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureViewModel.swift; sourceTree = "<group>"; };
+		33FDFF5B1C0E36B100AA6C77 /* DashboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -383,7 +383,7 @@
 		33FDFF581C0D405500AA6C77 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				33FDFF591C0D407500AA6C77 /* CreatureViewModel.swift */,
+				33FDFF5B1C0E36B100AA6C77 /* DashboardViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -534,11 +534,11 @@
 				331E66D11BF6AC55003AB81D /* DashboardScene.swift in Sources */,
 				3362D53E1BFD972B00256348 /* ParseExtensions.swift in Sources */,
 				330B47FD1C08E6CE00C6074C /* LayoutExtensions.swift in Sources */,
-				33FDFF5A1C0D407500AA6C77 /* CreatureViewModel.swift in Sources */,
 				333D1B0D1BFBFACD001CCD5E /* Creature.swift in Sources */,
 				33E68FC91C0958F800D8D3FE /* SKButton.swift in Sources */,
 				3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */,
 				3393E5B71C0C1395001C4A37 /* DashboardSceneSetup.swift in Sources */,
+				33FDFF5C1C0E36B100AA6C77 /* DashboardViewModel.swift in Sources */,
 				338369301BF6A01E006407FF /* ParseHelper.swift in Sources */,
 				331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */,
 			);
