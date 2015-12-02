@@ -10,9 +10,6 @@
 		3309FB4D1BF7F64300BE0310 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3309FB4C1BF7F64300BE0310 /* HealthKit.framework */; };
 		3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */; };
 		330B47FD1C08E6CE00C6074C /* LayoutExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330B47FC1C08E6CE00C6074C /* LayoutExtensions.swift */; };
-		330B47FF1C08E8CD00C6074C /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 330B47FE1C08E8CD00C6074C /* PromiseKit.framework */; };
-		330B48001C08E8D100C6074C /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 330B47FE1C08E8CD00C6074C /* PromiseKit.framework */; };
-		330B48011C08E8D100C6074C /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 330B47FE1C08E8CD00C6074C /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		330F8CA81C096F7200A765F0 /* ButtonTapped.sks in Resources */ = {isa = PBXBuildFile; fileRef = 330F8CA71C096F7200A765F0 /* ButtonTapped.sks */; };
 		331E66C91BF6A780003AB81D /* DashboardScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 331E66C81BF6A780003AB81D /* DashboardScene.sks */; };
 		331E66D11BF6AC55003AB81D /* DashboardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331E66D01BF6AC55003AB81D /* DashboardScene.swift */; };
@@ -27,12 +24,8 @@
 		333D1B061BFBF1EC001CCD5E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1B051BFBF1EC001CCD5E /* SystemConfiguration.framework */; };
 		333D1B081BFBF1F3001CCD5E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1B071BFBF1F3001CCD5E /* libz.tbd */; };
 		333D1B0A1BFBF1FD001CCD5E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */; };
-		333D1B0D1BFBFACD001CCD5E /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333D1B0C1BFBFACD001CCD5E /* Creature.swift */; };
-		3362D53E1BFD972B00256348 /* ParseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3362D53D1BFD972B00256348 /* ParseExtensions.swift */; };
+		3362D53E1BFD972B00256348 /* ParseRxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3362D53D1BFD972B00256348 /* ParseRxExtensions.swift */; };
 		3362D5401BFDB08700256348 /* PromiseKit.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 3362D53F1BFDB08700256348 /* PromiseKit.framework.dSYM */; };
-		3362D5481BFE817D00256348 /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3362D5471BFE817D00256348 /* Gloss.framework */; };
-		3362D5491BFE81C000256348 /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3362D5471BFE817D00256348 /* Gloss.framework */; };
-		3362D54A1BFE81C000256348 /* Gloss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3362D5471BFE817D00256348 /* Gloss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		338368DB1BF67852006407FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338368DA1BF67852006407FF /* AppDelegate.swift */; };
 		338368E41BF67852006407FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 338368E21BF67852006407FF /* Main.storyboard */; };
 		338368E61BF67852006407FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338368E51BF67852006407FF /* Assets.xcassets */; };
@@ -49,8 +42,18 @@
 		338369301BF6A01E006407FF /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3383692F1BF6A01E006407FF /* ParseHelper.swift */; };
 		3393E5B71C0C1395001C4A37 /* DashboardSceneSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3393E5B61C0C1395001C4A37 /* DashboardSceneSetup.swift */; };
 		339874281BFFFE7200F47B2B /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339874271BFFFE7200F47B2B /* GameManager.swift */; };
+		339DA2C31C0E541B0025F064 /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339DA2C21C0E541B0025F064 /* Creature.swift */; };
 		33E68FC91C0958F800D8D3FE /* SKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E68FC81C0958F800D8D3FE /* SKButton.swift */; };
 		33FDFF5C1C0E36B100AA6C77 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FDFF5B1C0E36B100AA6C77 /* DashboardViewModel.swift */; };
+		33FDFF601C0E3F2800AA6C77 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33FDFF5D1C0E3F2800AA6C77 /* RxBlocking.framework */; };
+		33FDFF611C0E3F2800AA6C77 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33FDFF5E1C0E3F2800AA6C77 /* RxCocoa.framework */; };
+		33FDFF621C0E3F2800AA6C77 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33FDFF5F1C0E3F2800AA6C77 /* RxSwift.framework */; };
+		33FDFF631C0E3F3D00AA6C77 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33FDFF5D1C0E3F2800AA6C77 /* RxBlocking.framework */; };
+		33FDFF641C0E3F3D00AA6C77 /* RxBlocking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 33FDFF5D1C0E3F2800AA6C77 /* RxBlocking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		33FDFF651C0E3F3D00AA6C77 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33FDFF5E1C0E3F2800AA6C77 /* RxCocoa.framework */; };
+		33FDFF661C0E3F3D00AA6C77 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 33FDFF5E1C0E3F2800AA6C77 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		33FDFF671C0E3F3D00AA6C77 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33FDFF5F1C0E3F2800AA6C77 /* RxSwift.framework */; };
+		33FDFF681C0E3F3D00AA6C77 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 33FDFF5F1C0E3F2800AA6C77 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,8 +80,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3362D54A1BFE81C000256348 /* Gloss.framework in Embed Frameworks */,
-				330B48011C08E8D100C6074C /* PromiseKit.framework in Embed Frameworks */,
+				33FDFF681C0E3F3D00AA6C77 /* RxSwift.framework in Embed Frameworks */,
+				33FDFF661C0E3F3D00AA6C77 /* RxCocoa.framework in Embed Frameworks */,
+				33FDFF641C0E3F3D00AA6C77 /* RxBlocking.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,10 +109,8 @@
 		333D1B051BFBF1EC001CCD5E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		333D1B071BFBF1F3001CCD5E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		333D1B0C1BFBFACD001CCD5E /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
-		3362D53D1BFD972B00256348 /* ParseExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseExtensions.swift; sourceTree = "<group>"; };
+		3362D53D1BFD972B00256348 /* ParseRxExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseRxExtensions.swift; sourceTree = "<group>"; };
 		3362D53F1BFDB08700256348 /* PromiseKit.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = PromiseKit.framework.dSYM; path = "/Users/beingadrian/Developer/Make-School/Semester-1/3-iOSPersonalProject/ios-app-beingadrian/ProjectCreature/Carthage/Build/iOS/PromiseKit.framework.dSYM"; sourceTree = "<absolute>"; };
-		3362D5471BFE817D00256348 /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = Carthage/Build/iOS/Gloss.framework; sourceTree = SOURCE_ROOT; };
 		338368D71BF67852006407FF /* ProjectCreature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectCreature.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338368DA1BF67852006407FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		338368E31BF67852006407FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -132,8 +134,12 @@
 		3383692F1BF6A01E006407FF /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 		3393E5B61C0C1395001C4A37 /* DashboardSceneSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardSceneSetup.swift; sourceTree = "<group>"; };
 		339874271BFFFE7200F47B2B /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		339DA2C21C0E541B0025F064 /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
 		33E68FC81C0958F800D8D3FE /* SKButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButton.swift; sourceTree = "<group>"; };
 		33FDFF5B1C0E36B100AA6C77 /* DashboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		33FDFF5D1C0E3F2800AA6C77 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = SOURCE_ROOT; };
+		33FDFF5E1C0E3F2800AA6C77 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = SOURCE_ROOT; };
+		33FDFF5F1C0E3F2800AA6C77 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,27 +147,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				330B47FF1C08E8CD00C6074C /* PromiseKit.framework in Frameworks */,
+				33FDFF621C0E3F2800AA6C77 /* RxSwift.framework in Frameworks */,
 				333D1B0A1BFBF1FD001CCD5E /* libsqlite3.tbd in Frameworks */,
 				333D1B081BFBF1F3001CCD5E /* libz.tbd in Frameworks */,
 				333D1B061BFBF1EC001CCD5E /* SystemConfiguration.framework in Frameworks */,
 				333D1B041BFBF1E3001CCD5E /* StoreKit.framework in Frameworks */,
-				330B48001C08E8D100C6074C /* PromiseKit.framework in Frameworks */,
+				33FDFF671C0E3F3D00AA6C77 /* RxSwift.framework in Frameworks */,
 				333D1B021BFBF1DC001CCD5E /* Security.framework in Frameworks */,
+				33FDFF651C0E3F3D00AA6C77 /* RxCocoa.framework in Frameworks */,
 				333D1B001BFBF1D0001CCD5E /* QuartzCore.framework in Frameworks */,
 				333D1AFE1BFBF1C7001CCD5E /* CoreLocation.framework in Frameworks */,
 				333D1AFC1BFBF1BE001CCD5E /* CoreGraphics.framework in Frameworks */,
+				33FDFF631C0E3F3D00AA6C77 /* RxBlocking.framework in Frameworks */,
 				333D1AFA1BFBF1B6001CCD5E /* CFNetwork.framework in Frameworks */,
 				333D1AF81BFBF1AE001CCD5E /* AudioToolbox.framework in Frameworks */,
 				338369221BF69043006407FF /* Parse.framework in Frameworks */,
 				338369231BF69043006407FF /* ParseCrashReporting.framework in Frameworks */,
+				33FDFF601C0E3F2800AA6C77 /* RxBlocking.framework in Frameworks */,
 				338369271BF69043006407FF /* ParseUI.framework in Frameworks */,
-				3362D5481BFE817D00256348 /* Gloss.framework in Frameworks */,
 				338369241BF69043006407FF /* ParseFacebookUtils.framework in Frameworks */,
 				338369211BF69043006407FF /* Bolts.framework in Frameworks */,
 				3309FB4D1BF7F64300BE0310 /* HealthKit.framework in Frameworks */,
-				3362D5491BFE81C000256348 /* Gloss.framework in Frameworks */,
 				338369261BF69043006407FF /* ParseTwitterUtils.framework in Frameworks */,
+				33FDFF611C0E3F2800AA6C77 /* RxCocoa.framework in Frameworks */,
 				338369251BF69043006407FF /* ParseFacebookUtilsV4.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,14 +207,6 @@
 			path = HealthKit;
 			sourceTree = "<group>";
 		};
-		333D1B0B1BFBFA57001CCD5E /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				333D1B0C1BFBFACD001CCD5E /* Creature.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		338368CE1BF67852006407FF = {
 			isa = PBXGroup;
 			children = (
@@ -235,7 +235,6 @@
 				3383692A1BF69FE6006407FF /* SpriteKit */,
 				339874261BFFFE5E00F47B2B /* Game */,
 				3383692C1BF69FE6006407FF /* UI */,
-				333D1B0B1BFBFA57001CCD5E /* Models */,
 				331E66C71BF6A6B4003AB81D /* HealthKit */,
 				338369291BF69FE6006407FF /* Parse */,
 				338369191BF69042006407FF /* Frameworks */,
@@ -278,8 +277,10 @@
 		338369191BF69042006407FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				33FDFF5D1C0E3F2800AA6C77 /* RxBlocking.framework */,
+				33FDFF5E1C0E3F2800AA6C77 /* RxCocoa.framework */,
+				33FDFF5F1C0E3F2800AA6C77 /* RxSwift.framework */,
 				330B47FE1C08E8CD00C6074C /* PromiseKit.framework */,
-				3362D5471BFE817D00256348 /* Gloss.framework */,
 				333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */,
 				333D1B071BFBF1F3001CCD5E /* libz.tbd */,
 				333D1B051BFBF1EC001CCD5E /* SystemConfiguration.framework */,
@@ -305,8 +306,9 @@
 		338369291BF69FE6006407FF /* Parse */ = {
 			isa = PBXGroup;
 			children = (
+				339DA2C11C0E541B0025F064 /* Models */,
 				3383692F1BF6A01E006407FF /* ParseHelper.swift */,
-				3362D53D1BFD972B00256348 /* ParseExtensions.swift */,
+				3362D53D1BFD972B00256348 /* ParseRxExtensions.swift */,
 			);
 			path = Parse;
 			sourceTree = "<group>";
@@ -362,6 +364,14 @@
 				339874271BFFFE7200F47B2B /* GameManager.swift */,
 			);
 			path = Game;
+			sourceTree = "<group>";
+		};
+		339DA2C11C0E541B0025F064 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				339DA2C21C0E541B0025F064 /* Creature.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		33E68FC31C093F7500D8D3FE /* Subclasses */ = {
@@ -532,9 +542,9 @@
 				338368DB1BF67852006407FF /* AppDelegate.swift in Sources */,
 				339874281BFFFE7200F47B2B /* GameManager.swift in Sources */,
 				331E66D11BF6AC55003AB81D /* DashboardScene.swift in Sources */,
-				3362D53E1BFD972B00256348 /* ParseExtensions.swift in Sources */,
+				3362D53E1BFD972B00256348 /* ParseRxExtensions.swift in Sources */,
 				330B47FD1C08E6CE00C6074C /* LayoutExtensions.swift in Sources */,
-				333D1B0D1BFBFACD001CCD5E /* Creature.swift in Sources */,
+				339DA2C31C0E541B0025F064 /* Creature.swift in Sources */,
 				33E68FC91C0958F800D8D3FE /* SKButton.swift in Sources */,
 				3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */,
 				3393E5B71C0C1395001C4A37 /* DashboardSceneSetup.swift in Sources */,

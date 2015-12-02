@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 
 @UIApplicationMain
@@ -17,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        let disposeBag = DisposeBag()
+        
         // Parse setup
         
         Parse.enableLocalDatastore()
@@ -25,14 +28,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
+        // Register subclasses 
+        Creature.registerSubclass()
+        
         // force Parse login
         if PFUser.currentUser() == nil {
-            PFUser.logInWithUsernameInBackground("beingadrian", password: "test").then {
-                (user) -> Void in
-                print(user.username)
-            }.error { (error) in
-                print(error)
-            }
+            PFUser.rx_logInWithUsernameInBackground("beingadrian", password: "test")
+                .subscribeError { error in
+                    print(error)
+                }
+                .addDisposableTo(disposeBag)
         }
         
         return true

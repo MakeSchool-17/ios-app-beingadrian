@@ -1,5 +1,2 @@
-# PromiseKit v3 (for Swift 2)
-github "mxcl/PromiseKit" ~> 3.0
-
-# Glossy (for JSON)
-github "hkellaway/Gloss"
+# RxSwift 2.0.0-beta.3
+github "ReactiveX/RxSwift" "2.0.0-beta.3"
