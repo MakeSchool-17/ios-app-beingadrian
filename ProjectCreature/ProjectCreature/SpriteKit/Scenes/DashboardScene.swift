@@ -7,13 +7,15 @@
 //
 
 import SpriteKit
-import PromiseKit
+import RxSwift
 
 
 class DashboardScene: SKScene {
     
     let healthHelper = HKHelper()
     let parseHelper = ParseHelper()
+    
+    var disposeBag = DisposeBag()
     
     // MARK: - Properties
     
@@ -39,12 +41,10 @@ class DashboardScene: SKScene {
     var expBarCrop: SKCropNode!
     var EXPLabel: SKLabelNode!
     
-    var viewModel: DashboardViewModel? {
+    var viewModel: DashboardViewModel! {
         didSet {
-            if let viewModel = viewModel {
-                self.creatureNameLabel.text = viewModel.name
-                self.creatureLevelLabel.text = "\(viewModel.level)"
-            }
+            self.creatureNameLabel.text = viewModel.creatureName
+            self.creatureLevelLabel.text = viewModel.creatureLevel
         }
     }
     
@@ -52,6 +52,22 @@ class DashboardScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         
+        setup()
+        
+        // FIXME: Testing
+        parseHelper.retrieveUserCreatureParseObjectFrom(.Server)
+            .subscribeNext { object in
+                if let creature = object as? Creature {
+                    print(creature)
+                }
+            }
+            .addDisposableTo(disposeBag)
+        
+    }
+    
+    func setup() {
+        
+        // setup scene UI
         // TODO: Function or initializer
         let _ = DashboardSceneUI(scene: self)
         

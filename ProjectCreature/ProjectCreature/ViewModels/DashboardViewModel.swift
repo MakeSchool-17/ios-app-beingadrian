@@ -11,10 +11,10 @@ import SpriteKit
 
 protocol DashboardViewModelProtocol {
     
-    var name: String { get }
-    var level: String { get }
-    var exp: Int { get }
-    var healthPoints: Int { get }
+    var creatureName: String { get }
+    var creatureLevel: String { get }
+    var creatureExp: Int { get }
+    var creatureHealthPoints: Int { get }
     var creatureSprite: SKSpriteNode { get }
     var cash: Int { get }
     
@@ -22,19 +22,19 @@ protocol DashboardViewModelProtocol {
 
 class DashboardViewModel: DashboardViewModelProtocol {
     
-    let name: String
-    let level: String
-    let exp: Int
-    let healthPoints: Int
+    let creatureName: String
+    let creatureLevel: String
+    let creatureExp: Int
+    let creatureHealthPoints: Int
     let creatureSprite: SKSpriteNode
     let cash: Int
     
     init(creature: Creature) {
         
-        self.name = creature.name
-        self.level = String(creature.level)
-        self.exp = creature.exp
-        self.healthPoints = creature.happiness
+        self.creatureName = creature.name
+        self.creatureLevel = String(creature.level)
+        self.creatureExp = creature.exp
+        self.creatureHealthPoints = creature.healthPoints
         self.cash = PFUser.currentUser()!["cash"] as! Int
         
         let imageName = creature.family + String(creature.evolutionStage)

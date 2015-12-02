@@ -8,10 +8,13 @@
 
 import UIKit
 import SpriteKit
+import RxSwift
 
 
 class MainViewController: UIViewController {
 
+    let disposeBag = DisposeBag()
+    
     // MARK: - Base methods
     
     override func viewWillLayoutSubviews() {
@@ -27,13 +30,11 @@ class MainViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         
         // healthKit permission
-        HKHelper().requestHealthKitAuthorization().then {
-            (success) in
-            print("Request HealthKit authorization: \(success)")
-        }.error {
-            (error) in
-            print("Error requesting HealthKit authorization: \(error)")
-        }
+//        HKHelper().requestHealthKitAuthorization()
+//            .subscribeNext { success in
+//                print("Request HealthKit authorization: \(success)")
+//            }
+//            .addDisposableTo(disposeBag)
         
     }
     

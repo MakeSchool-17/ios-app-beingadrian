@@ -7,15 +7,13 @@
 //
 
 import Foundation
-import PromiseKit
+import RxSwift
 
 
 class ParseHelper {
     
-    private typealias PFObjectResultAdapter = (PFObject?, NSError?) -> Void
-    
     enum DataStoreType {
-        case Parse
+        case Server
         case Local
     }
     
@@ -37,43 +35,36 @@ class ParseHelper {
     
     // MARK: - Methods
     
-    func retrieveUserCreatureParseObjectFrom(store: DataStoreType) -> Promise<PFObject> {
+    func retrieveUserCreatureParseObjectFrom(store: DataStoreType) -> Observable<PFObject> {
         
         let query = PFQuery(className: CreatureClassName)
         
-        if store == .Local {
+        if (store == .Local) {
             query.fromLocalDatastore()
         }
         
         guard let currentUser = PFUser.currentUser() else {
-            return Promise(error: PFErrorType.NoUserLoggedIn)
+            return failWith(PFErrorType.NoUserLoggedIn)
         }
         
         query.whereKey(CreatureOwnerKey, equalTo: currentUser)
         
-        return query.getFirstObjectInBackgroundWithBlock().then {
-            (object) -> PFObject in
-            
-            return object
-        }
-        
+        return query.rx_getFirstObjectInBackground()
+    
     }
     
-    func removeUserCreatureFrom(store: DataStoreType) -> Promise<Bool> {
+    func removeUserCreatureFrom(store: DataStoreType) -> Observable<Bool> {
         
-        return retrieveUserCreatureParseObjectFrom(store).then {
-            (object) -> Promise<Bool> in
-            
-            switch store {
-            case .Local:
-                return object.unpinInBackgroundWithPromise()
-            case .Parse:
-                return object.deleteInBackgroundWithPromise()
+        return retrieveUserCreatureParseObjectFrom(store)
+            .flatMap { object -> Observable<Bool> in
+                switch store {
+                case .Local:
+                    return object.rx_unpinInBackground()
+                case .Server:
+                    return object.rx_deleteInBackground()
+                }
             }
 
-        }
-        
     }
-
     
 }

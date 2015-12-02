@@ -8,7 +8,7 @@
 
 import Foundation
 import HealthKit
-import PromiseKit
+import RxSwift
 
 
 class HKHelper {
@@ -53,21 +53,25 @@ class HKHelper {
     
     // MARK: - Request permissions
     
-    func requestHealthKitAuthorization() -> Promise<Bool> {
+    func requestHealthKitAuthorization() -> Observable<Bool> {
         
-        return Promise { (adapter: HKRequestAuthorizationToShareTypesAdapter) in
-            guard let stepsType = self.stepsType, distanceOnFootType = self.distanceOnFootType else {
-                return
+        guard let stepsType = self.stepsType, distanceOnFootType = self.distanceOnFootType else {
+            return failWith(HKErrorType.TypeNotAvailable)
+        }
+        
+        let dataTypesToRead = Set<HKQuantityType>(arrayLiteral: stepsType, distanceOnFootType)
+        
+        guard let healthStore = self.healthStore else {
+            return failWith(HKErrorType.NoHealthStore)
+        }
+        
+        return create { observer in
+            healthStore.requestAuthorizationToShareTypes(nil, readTypes: dataTypesToRead) {
+                (success, error) in
+                
+                observer.on(.Next(success))
             }
-            
-            let dataTypesToRead = Set<HKQuantityType>(arrayLiteral: stepsType, distanceOnFootType)
-            
-            guard let healthStore = self.healthStore else {
-                // TODO: manage if healthStore is not available
-                return
-            }
-            
-            healthStore.requestAuthorizationToShareTypes(nil, readTypes: dataTypesToRead, completion: adapter)
+            return NopDisposable.instance
         }
         
     }
@@ -84,42 +88,46 @@ class HKHelper {
         
     }
     
-    private func createStatisticsQuery(forQuantityType quantityType: HKQuantityType, predicate: NSPredicate, unit: HKUnit) -> Promise<Double> {
+    private func createStatisticsQuery(forQuantityType quantityType: HKQuantityType, predicate: NSPredicate, unit: HKUnit) -> Observable<Double> {
         
-        return Promise { fulfill, reject in
+        guard let healthStore = self.healthStore else {
+            return failWith(HKErrorType.NoHealthStore)
+        }
+        
+        return create { observer in
             let queryOptions: HKStatisticsOptions = [.CumulativeSum, .SeparateBySource]
             
             let query = HKStatisticsQuery(quantityType: quantityType, quantitySamplePredicate: predicate, options: queryOptions) {
                 (query, result, error) in
                 
                 if let error = error {
-                    reject(HKErrorType.DefaultError(error))
+                    observer.on(.Error(HKErrorType.DefaultError(error)))
+                    return
                 }
                 
                 guard let result = result else {
-                    reject(HKErrorType.NoResult)
+                    observer.on(.Error(HKErrorType.NoResult))
                     return
                 }
                 
                 guard let deviceSource = self.getDeviceSource(fromResult: result) else {
-                    reject(HKErrorType.NoDeviceSource)
+                    observer.on(.Error(HKErrorType.NoDeviceSource))
                     return
                 }
                 
                 guard let sumQuantity = result.sumQuantityForSource(deviceSource) else {
-                    reject(HKErrorType.NoSumQuantity)
+                    observer.on(.Error(HKErrorType.NoSumQuantity))
                     return
                 }
                 
                 let value = sumQuantity.doubleValueForUnit(unit)
-                fulfill(value)
+                return observer.on(.Next(value))
                 
             }
-            
-            guard let healthStore = self.healthStore else {
-                throw HKErrorType.NoHealthStore
-            }
+
             healthStore.executeQuery(query)
+            
+            return NopDisposable.instance
             
         }
         
@@ -147,37 +155,35 @@ class HKHelper {
     
     // MARK: - Health Queries
     
-    func queryTotalStepCount(sinceTimeInterval timeInterval: NSTimeInterval) -> Promise<Int> {
+    func queryTotalStepCount(sinceTimeInterval timeInterval: NSTimeInterval) -> Observable<Int> {
         
         let predicate = self.createPredicate(fromInterval: timeInterval)
         
         guard let stepsType = self.stepsType else {
-            return Promise(error: HKErrorType.TypeNotAvailable)
+            return failWith(HKErrorType.TypeNotAvailable)
         }
         
-        return self.createStatisticsQuery(forQuantityType: stepsType, predicate: predicate, unit: HKUnit.countUnit()).then {
-            (value) -> Int in
-           
-            let stepCount = Int(value)
-            return stepCount
-        }
+        return self.createStatisticsQuery(forQuantityType: stepsType, predicate: predicate, unit: HKUnit.countUnit())
+            .flatMap { value -> Observable<Int> in
+                let stepCount = Int(value)
+                return just(stepCount)
+            }
         
     }
     
-    func queryTotalDistanceOnFoot(sinceTimeInterval timeInterval: NSTimeInterval) -> Promise<Int> {
+    func queryTotalDistanceOnFoot(sinceTimeInterval timeInterval: NSTimeInterval) -> Observable<Int> {
         
         let predicate = self.createPredicate(fromInterval: timeInterval)
         
         guard let distanceOnFootType = self.distanceOnFootType else {
-            return Promise(error: HKErrorType.TypeNotAvailable)
+            return failWith(HKErrorType.TypeNotAvailable)
         }
         
-        return self.createStatisticsQuery(forQuantityType: distanceOnFootType, predicate: predicate, unit: HKUnit.meterUnit()).then {
-            (value) -> Int in
-            
-            let distanceInMeters = Int(value)
-            return distanceInMeters
-        }
+        return self.createStatisticsQuery(forQuantityType: distanceOnFootType, predicate: predicate, unit: HKUnit.meterUnit())
+            .flatMap { value -> Observable<Int> in
+                let distance = Int(value)
+                return just(distance)
+            }
         
     }
     
