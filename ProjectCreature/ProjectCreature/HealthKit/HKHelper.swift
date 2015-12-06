@@ -70,6 +70,7 @@ class HKHelper {
                 (success, error) in
                 
                 observer.on(.Next(success))
+                observer.on(.Completed)
             }
             return NopDisposable.instance
         }
@@ -121,7 +122,8 @@ class HKHelper {
                 }
                 
                 let value = sumQuantity.doubleValueForUnit(unit)
-                return observer.on(.Next(value))
+                observer.on(.Next(value))
+                observer.on(.Completed)
                 
             }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SpriteKit
 import RxSwift
 
 
@@ -28,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
-        // Register subclasses 
+        // register subclasses
         Creature.registerSubclass()
         
         // force Parse login
@@ -39,6 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 .addDisposableTo(disposeBag)
         }
+        
+        // TODO: check if there is a creature locally
+
+
         
         return true
     }

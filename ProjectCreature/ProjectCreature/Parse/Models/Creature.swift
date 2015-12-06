@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import RxCocoa
+
 
 class Creature: PFObject, PFSubclassing {
     
@@ -34,10 +36,10 @@ class Creature: PFObject, PFSubclassing {
     
     @NSManaged var name: String
     @NSManaged var level: Int
-    @NSManaged var exp: Int
-    @NSManaged var maxExp: Int
-    @NSManaged var healthPoints: Int
-    @NSManaged var maxHealthPoints: Int
+    @NSManaged var exp: Double
+    @NSManaged var expMax: Double
+    @NSManaged var hp: Double
+    @NSManaged var hpMax: Double
     @NSManaged var evolutionStage: Int
     @NSManaged var family: String
     @NSManaged var owner: PFUser
