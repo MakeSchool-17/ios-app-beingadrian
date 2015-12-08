@@ -66,6 +66,8 @@
 		33BBFD7A1C121F8300E76511 /* DashboardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD6C1C121F8300E76511 /* DashboardScene.swift */; };
 		33BBFD7B1C121F8300E76511 /* DashboardSceneUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD6D1C121F8300E76511 /* DashboardSceneUI.swift */; };
 		33BBFD7F1C121F8300E76511 /* BarHorizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD731C121F8300E76511 /* BarHorizontal.swift */; };
+		33EE3A361C1756980026B526 /* blurShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 33EE3A351C1756980026B526 /* blurShader.fsh */; };
+		33EE3A381C1765740026B526 /* test.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 33EE3A371C1765740026B526 /* test.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +166,8 @@
 		33BBFD6C1C121F8300E76511 /* DashboardScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardScene.swift; sourceTree = "<group>"; };
 		33BBFD6D1C121F8300E76511 /* DashboardSceneUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardSceneUI.swift; sourceTree = "<group>"; };
 		33BBFD731C121F8300E76511 /* BarHorizontal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarHorizontal.swift; sourceTree = "<group>"; };
+		33EE3A351C1756980026B526 /* blurShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = blurShader.fsh; sourceTree = "<group>"; };
+		33EE3A371C1765740026B526 /* test.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -437,6 +441,7 @@
 		33BBFD621C121F8300E76511 /* Extras */ = {
 			isa = PBXGroup;
 			children = (
+				33EE3A341C1756890026B526 /* Shaders */,
 				330F6B441C14C040004CCAED /* SpriteKit+Rx */,
 				33BBFD631C121F8300E76511 /* ButtonProtocol.swift */,
 				33BBFD641C121F8300E76511 /* LayoutExtensions.swift */,
@@ -481,6 +486,15 @@
 				33BBFD731C121F8300E76511 /* BarHorizontal.swift */,
 			);
 			path = Subclasses;
+			sourceTree = "<group>";
+		};
+		33EE3A341C1756890026B526 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				33EE3A351C1756980026B526 /* blurShader.fsh */,
+				33EE3A371C1765740026B526 /* test.fsh */,
+			);
+			path = Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -595,6 +609,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				338368E91BF67852006407FF /* LaunchScreen.storyboard in Resources */,
+				33EE3A381C1765740026B526 /* test.fsh in Resources */,
+				33EE3A361C1756980026B526 /* blurShader.fsh in Resources */,
 				338368E61BF67852006407FF /* Assets.xcassets in Resources */,
 				338368E41BF67852006407FF /* Main.storyboard in Resources */,
 				33BBFD791C121F8300E76511 /* DashboardScene.sks in Resources */,

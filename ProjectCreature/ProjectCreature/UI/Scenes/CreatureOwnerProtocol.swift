@@ -11,7 +11,7 @@ import SpriteKit
 import RxSwift
 
 
-protocol CreatureOwner {
+protocol CreatureOwner: class {
     
     var creature: Creature? { get set }
     

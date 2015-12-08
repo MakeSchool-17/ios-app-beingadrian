@@ -75,10 +75,11 @@ class DashboardScene: SKScene {
             }
             .addDisposableTo(disposeBag)
         
-        transitionIn()
+        transitionIn {}
+
     }
     
-    func testCreateCreature() -> Creature {
+    func createTestCreature() -> Creature {
         
         // TEST: initial creature creation
         let testCreature = Creature()
@@ -138,15 +139,52 @@ class DashboardScene: SKScene {
         
         let touchedNode = self.nodeAtPoint(touchLocation)
         
-        if let _ = touchedNode as? NavigationButton {
-            
-            transitionOut()
-            
-//            let statsLayer = StatsLayer(size: self.frame.size, scene: self)
-//            addChild(statsLayer)
+        if let navButton = touchedNode as? NavigationButton {
+            switch navButton {
+            case is StatsButton:
+                transitionOut {
+                    let statsLayer = StatsLayer(size: self.frame.size, scene: self)
+                    self.addChild(statsLayer)
+                }
+            case is MenuButton:
+                
+                print("> Added shader")
+                
+                blur()
+            default:
+                break
+            }
+
         }
         
     }
+    
+    func blur() {
+        
+        let texture = self.view!.textureFromNode(self)
+        texture?.filteringMode = .Nearest
+        
+        let screenshotNode = SKSpriteNode(texture: texture)
+        screenshotNode.anchorPoint = CGPointZero
+        
+        let blurEffectNode = SKEffectNode()
+        blurEffectNode.filter = CIFilter(name: "CIGaussianBlur", withInputParameters: ["inputRadius": 15.0])
+        
+//        // add shader
+//        let shader = SKShader(fileNamed: "blurShader.fsh")
+//        let radiusUniform = SKUniform(name: "radius", float: 0.6)
+//        let resolutionUniform = SKUniform(name: "resolution", float: 227)
+//        shader.uniforms = [radiusUniform, resolutionUniform]
+//        screenshotNode.shader = shader
+        
+        blurEffectNode.alpha = 0
+        
+        blurEffectNode.addChild(screenshotNode)
+        self.addChild(blurEffectNode)
+//        self.addChild(screenshotNode)
+        
+    }
+
     
 }
 

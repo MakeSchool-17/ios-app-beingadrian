@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 
-protocol NavigationButton {
+protocol NavigationButton: class {
     
     func navigateToScene(scene: SKScene)
 

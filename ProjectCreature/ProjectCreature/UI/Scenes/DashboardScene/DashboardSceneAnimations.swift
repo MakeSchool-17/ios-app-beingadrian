@@ -19,23 +19,22 @@ extension DashboardScene {
     
     // MARK: - Transitions
     
-    func transitionIn() {
+    typealias TransitionCallback = () -> Void
+    
+    func transitionIn(completion completion: TransitionCallback) {
         
         let transition: Transition = .In
         
         let dashboardAction = createTopUIAction(
             forTransition: transition,
-            finalPositionY: self.frame.maxY - 25
-        )
-        let statsButtonAction = createUpwardsAction(
+            finalPositionY: self.frame.maxY - 25)
+        let statsButtonAction = createBottomUIAction(
             forTransition: transition,
-            finalPositionY: 15 + statsButton.size.height / 2
-        )
-        let menuButtonAction = createUpwardsAction(
+            finalPositionY: 15 + statsButton.size.height / 2)
+        let menuButtonAction = createBottomUIAction(
             forTransition: transition,
-            finalPositionY: 15 + menuButton.size.width / 2
-        )
-        let energyGroupAction = createUpwardsAction(
+            finalPositionY: 15 + menuButton.size.width / 2)
+        let energyGroupAction = createBottomUIAction(
             forTransition: transition,
             finalPositionY: 35)
         
@@ -46,31 +45,26 @@ extension DashboardScene {
             self.energyGroup.runAction(energyGroupAction)
         }
         
-        self.runAction(action)
+        self.runAction(action, completion: completion)
         
     }
     
-    func transitionOut() {
+    func transitionOut(completion: TransitionCallback) {
         
         let transition: Transition = .Out
         
         let dashboardAction = createTopUIAction(
             forTransition: transition,
-            finalPositionY: self.frame.maxY + 200
-        )
-        
-        let statsButtonAction = createUpwardsAction(
+            finalPositionY: self.frame.maxY + 200)
+        let statsButtonAction = createBottomUIAction(
             forTransition: transition,
-            finalPositionY: -100
-        )
-        let menuButtonAction = createUpwardsAction(
+            finalPositionY: -100)
+        let menuButtonAction = createBottomUIAction(
             forTransition: transition,
-            finalPositionY: -100
-        )
-        let energyGroupAction = createUpwardsAction(
+            finalPositionY: -100)
+        let energyGroupAction = createBottomUIAction(
             forTransition: transition,
-            finalPositionY: -100
-        )
+            finalPositionY: -100)
         
         let action = SKAction.runBlock {
             self.dashboard.runAction(dashboardAction)
@@ -79,7 +73,7 @@ extension DashboardScene {
             self.energyGroup.runAction(energyGroupAction)
         }
         
-        self.runAction(action)
+        self.runAction(action, completion: completion)
         
     }
     
@@ -103,7 +97,7 @@ extension DashboardScene {
         
     }
     
-    func createUpwardsAction(forTransition transition: Transition, finalPositionY y: CGFloat) -> SKAction {
+    func createBottomUIAction(forTransition transition: Transition, finalPositionY y: CGFloat) -> SKAction {
         
         let actionUp = SKAction.moveToY(y + 10, duration: 0.3)
         let actionDown = SKAction.moveToY(y, duration: 0.4)
