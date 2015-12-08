@@ -9,18 +9,16 @@
 import UIKit
 import SpriteKit
 
-class MenuButton: SKSpriteNode, Button {
+class MenuButton: SKSpriteNode {
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    func navigateToScene(scene: SKScene) {
         
         
         
     }
     
-    func performAction() {
-        
-        // TODO: Menu button action and UI setup
-        
-    }
+
 }
+
+extension MenuButton: NavigationButton {}
 

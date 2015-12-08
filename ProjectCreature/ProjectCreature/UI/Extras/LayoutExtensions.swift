@@ -34,14 +34,6 @@ extension SKNode {
         case Bottom
     }
     
-    // MARK: - Basic positioning
-    
-    func setPosition(x: CGFloat, y: CGFloat) {
-        
-        self.position = CGPoint(x: x, y: y)
-        
-    }
-    
     // MARK: - Marginal positioning
     
     func setVerticalPosition(value: CGFloat, fromMargin margin: VerticalMargin) {
@@ -50,9 +42,9 @@ extension SKNode {
         
         switch margin {
         case .TopMargin:
-            self.position = CGPoint(x: self.position.x, y: parent.frame.height - value)
+            self.position = CGPoint(x: self.position.x, y: parent.frame.maxY - value)
         case .BottomMargin:
-            self.position = CGPoint(x: self.position.x, y: value)
+            self.position = CGPoint(x: self.position.x, y: parent.frame.minY + value)
         }
         
     }
@@ -63,63 +55,42 @@ extension SKNode {
         
         switch margin {
         case .LeftMargin:
-            self.position = CGPoint(x: value, y: self.position.y)
+            self.position = CGPoint(x: parent.frame.minX + value, y: self.position.y)
         case .RightMargin:
-            self.position = CGPoint(x: parent.frame.width - value, y: self.position.y)
+            self.position = CGPoint(x: parent.frame.maxX - value, y: self.position.y)
         }
         
     }
     
     // MARK: - Relative positioning
     
-    func setHorizontalPosition(horizontalPosition: HorizontalPosition) {
+    func setHorizontalPosition(horizontalPosition: HorizontalPosition, byValue value: CGFloat) {
         
         guard let parent = self.parent else { return }
         
         switch horizontalPosition {
         case .Left:
-            self.position = CGPoint(x: parent.frame.minX, y: self.position.y)
+            self.position = CGPoint(x: parent.frame.minX + value, y: self.position.y)
         case .Center:
-            self.position = CGPoint(x: parent.frame.maxX / 2, y: self.position.y)
+            self.position = CGPoint(x: (parent.frame.maxX / 2) + value, y: self.position.y)
         case .Right:
-            self.position = CGPoint(x: parent.frame.maxX, y: self.position.y)
+            self.position = CGPoint(x: parent.frame.maxX + value, y: self.position.y)
         }
         
     }
     
-    func setVerticalPosition(verticalPosition: VerticalPosition) {
+    func setVerticalPosition(verticalPosition: VerticalPosition, byValue value: CGFloat) {
         
         guard let parent = self.parent else { return }
         
         switch verticalPosition {
         case .Top:
-            self.position = CGPoint(x: self.position.x, y: parent.frame.maxY)
+            self.position = CGPoint(x: self.position.x, y: parent.frame.maxY + value)
         case .Middle:
-            self.position = CGPoint(x: self.position.x, y: parent.frame.maxY / 2)
+            self.position = CGPoint(x: self.position.x, y: (parent.frame.maxY / 2) + value)
         case .Bottom:
-            self.position = CGPoint(x: self.position.x, y: parent.frame.minY)
+            self.position = CGPoint(x: self.position.x, y: parent.frame.minY + value)
         }
-        
-    }
-    
-    // MARK: - Positioning relative to node
-    
-    func setVerticalPosition(value: CGFloat, relativeTo node: SKNode) {
-        
-        self.position = CGPoint(x: self.position.x, y: node.position.y + value)
-        
-    }
-    
-    func setHorizontalPosition(value: CGFloat, relativeTo node: SKNode) {
-        
-        self.position = CGPoint(x: node.position.x + value, y: self.position.y)
-        
-    }
-    
-    func moveHorizontallyByPercentage(percentage: Double) {
-        
-        let initialPosition = -(self.frame.width / 2)
-        self.position.x = initialPosition + (self.frame.width * CGFloat(percentage / 100))
         
     }
     

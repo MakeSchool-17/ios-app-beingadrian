@@ -9,7 +9,19 @@
 /* Begin PBXBuildFile section */
 		3309FB4D1BF7F64300BE0310 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3309FB4C1BF7F64300BE0310 /* HealthKit.framework */; };
 		3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */; };
+		330F6B401C14C01A004CCAED /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F6B3C1C14C01A004CCAED /* ParseHelper.swift */; };
+		330F6B411C14C01A004CCAED /* PFObject+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F6B3D1C14C01A004CCAED /* PFObject+Rx.swift */; };
+		330F6B421C14C01A004CCAED /* PFQuery+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F6B3E1C14C01A004CCAED /* PFQuery+Rx.swift */; };
+		330F6B431C14C01A004CCAED /* PFUser+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F6B3F1C14C01A004CCAED /* PFUser+Rx.swift */; };
+		330F6B461C14C040004CCAED /* SKLabelNode+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F6B451C14C040004CCAED /* SKLabelNode+Rx.swift */; };
+		330F6B4B1C150BA2004CCAED /* CreatureOwnerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F6B4A1C150BA2004CCAED /* CreatureOwnerProtocol.swift */; };
+		330F6B4D1C151557004CCAED /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F6B4C1C151557004CCAED /* StatsViewModel.swift */; };
 		331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331E66D21BF6AEDB003AB81D /* MainViewController.swift */; };
+		3335326E1C164F6B003145AA /* StatsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335326D1C164F6B003145AA /* StatsLayer.swift */; };
+		333532701C164FC9003145AA /* StatsLayerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335326F1C164FC9003145AA /* StatsLayerUI.swift */; };
+		333532731C165176003145AA /* MenuLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333532721C165176003145AA /* MenuLayer.swift */; };
+		333532751C1651D4003145AA /* MenuLayerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333532741C1651D4003145AA /* MenuLayerUI.swift */; };
+		333532771C169158003145AA /* DashboardSceneAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333532761C169158003145AA /* DashboardSceneAnimations.swift */; };
 		333D1AF81BFBF1AE001CCD5E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1AF71BFBF1AE001CCD5E /* AudioToolbox.framework */; };
 		333D1AFA1BFBF1B6001CCD5E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1AF91BFBF1B6001CCD5E /* CFNetwork.framework */; };
 		333D1AFC1BFBF1BE001CCD5E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1AFB1BFBF1BE001CCD5E /* CoreGraphics.framework */; };
@@ -20,7 +32,6 @@
 		333D1B061BFBF1EC001CCD5E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1B051BFBF1EC001CCD5E /* SystemConfiguration.framework */; };
 		333D1B081BFBF1F3001CCD5E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1B071BFBF1F3001CCD5E /* libz.tbd */; };
 		333D1B0A1BFBF1FD001CCD5E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */; };
-		3362D53E1BFD972B00256348 /* Parse+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3362D53D1BFD972B00256348 /* Parse+Rx.swift */; };
 		338368DB1BF67852006407FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338368DA1BF67852006407FF /* AppDelegate.swift */; };
 		338368E41BF67852006407FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 338368E21BF67852006407FF /* Main.storyboard */; };
 		338368E61BF67852006407FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338368E51BF67852006407FF /* Assets.xcassets */; };
@@ -34,9 +45,7 @@
 		338369251BF69043006407FF /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3383691E1BF69043006407FF /* ParseFacebookUtilsV4.framework */; };
 		338369261BF69043006407FF /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3383691F1BF69043006407FF /* ParseTwitterUtils.framework */; };
 		338369271BF69043006407FF /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338369201BF69043006407FF /* ParseUI.framework */; };
-		338369301BF6A01E006407FF /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3383692F1BF6A01E006407FF /* ParseHelper.swift */; };
 		339874281BFFFE7200F47B2B /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339874271BFFFE7200F47B2B /* GameManager.swift */; };
-		339CF2981C136A88003E58D4 /* SKLabelNode+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339CF2971C136A88003E58D4 /* SKLabelNode+Rx.swift */; };
 		339DA2C31C0E541B0025F064 /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339DA2C21C0E541B0025F064 /* Creature.swift */; };
 		339DA2C91C0F6E430025F064 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C61C0F6E430025F064 /* RxBlocking.framework */; };
 		339DA2CA1C0F6E430025F064 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C71C0F6E430025F064 /* RxCocoa.framework */; };
@@ -56,9 +65,6 @@
 		33BBFD791C121F8300E76511 /* DashboardScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33BBFD6B1C121F8300E76511 /* DashboardScene.sks */; };
 		33BBFD7A1C121F8300E76511 /* DashboardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD6C1C121F8300E76511 /* DashboardScene.swift */; };
 		33BBFD7B1C121F8300E76511 /* DashboardSceneUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD6D1C121F8300E76511 /* DashboardSceneUI.swift */; };
-		33BBFD7C1C121F8300E76511 /* StatsScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33BBFD6F1C121F8300E76511 /* StatsScene.sks */; };
-		33BBFD7D1C121F8300E76511 /* StatsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD701C121F8300E76511 /* StatsScene.swift */; };
-		33BBFD7E1C121F8300E76511 /* StatsSceneUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD711C121F8300E76511 /* StatsSceneUI.swift */; };
 		33BBFD7F1C121F8300E76511 /* BarHorizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD731C121F8300E76511 /* BarHorizontal.swift */; };
 /* End PBXBuildFile section */
 
@@ -99,7 +105,20 @@
 		3309FB4C1BF7F64300BE0310 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		3309FB4E1BF7F64300BE0310 /* ProjectCreature.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ProjectCreature.entitlements; sourceTree = "<group>"; };
 		3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKHelper.swift; sourceTree = "<group>"; };
+		330F6B3C1C14C01A004CCAED /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
+		330F6B3D1C14C01A004CCAED /* PFObject+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PFObject+Rx.swift"; sourceTree = "<group>"; };
+		330F6B3E1C14C01A004CCAED /* PFQuery+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PFQuery+Rx.swift"; sourceTree = "<group>"; };
+		330F6B3F1C14C01A004CCAED /* PFUser+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PFUser+Rx.swift"; sourceTree = "<group>"; };
+		330F6B451C14C040004CCAED /* SKLabelNode+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKLabelNode+Rx.swift"; sourceTree = "<group>"; };
+		330F6B4A1C150BA2004CCAED /* CreatureOwnerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureOwnerProtocol.swift; sourceTree = "<group>"; };
+		330F6B4C1C151557004CCAED /* StatsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
 		331E66D21BF6AEDB003AB81D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		333532681C164234003145AA /* GPUImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GPUImage.framework; path = Carthage/Build/iOS/GPUImage.framework; sourceTree = SOURCE_ROOT; };
+		3335326D1C164F6B003145AA /* StatsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsLayer.swift; sourceTree = "<group>"; };
+		3335326F1C164FC9003145AA /* StatsLayerUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsLayerUI.swift; sourceTree = "<group>"; };
+		333532721C165176003145AA /* MenuLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuLayer.swift; sourceTree = "<group>"; };
+		333532741C1651D4003145AA /* MenuLayerUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuLayerUI.swift; sourceTree = "<group>"; };
+		333532761C169158003145AA /* DashboardSceneAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardSceneAnimations.swift; sourceTree = "<group>"; };
 		333D1AF71BFBF1AE001CCD5E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		333D1AF91BFBF1B6001CCD5E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		333D1AFB1BFBF1BE001CCD5E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -110,7 +129,6 @@
 		333D1B051BFBF1EC001CCD5E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		333D1B071BFBF1F3001CCD5E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		3362D53D1BFD972B00256348 /* Parse+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Parse+Rx.swift"; sourceTree = "<group>"; };
 		338368D71BF67852006407FF /* ProjectCreature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectCreature.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338368DA1BF67852006407FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		338368E31BF67852006407FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -131,9 +149,7 @@
 		3383691E1BF69043006407FF /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		3383691F1BF69043006407FF /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseTwitterUtils.framework; sourceTree = "<group>"; };
 		338369201BF69043006407FF /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
-		3383692F1BF6A01E006407FF /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 		339874271BFFFE7200F47B2B /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
-		339CF2971C136A88003E58D4 /* SKLabelNode+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKLabelNode+Rx.swift"; sourceTree = "<group>"; };
 		339DA2C21C0E541B0025F064 /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
 		339DA2C61C0F6E430025F064 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = SOURCE_ROOT; };
 		339DA2C71C0F6E430025F064 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = SOURCE_ROOT; };
@@ -147,9 +163,6 @@
 		33BBFD6B1C121F8300E76511 /* DashboardScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DashboardScene.sks; sourceTree = "<group>"; };
 		33BBFD6C1C121F8300E76511 /* DashboardScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardScene.swift; sourceTree = "<group>"; };
 		33BBFD6D1C121F8300E76511 /* DashboardSceneUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardSceneUI.swift; sourceTree = "<group>"; };
-		33BBFD6F1C121F8300E76511 /* StatsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StatsScene.sks; sourceTree = "<group>"; };
-		33BBFD701C121F8300E76511 /* StatsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsScene.swift; sourceTree = "<group>"; };
-		33BBFD711C121F8300E76511 /* StatsSceneUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsSceneUI.swift; sourceTree = "<group>"; };
 		33BBFD731C121F8300E76511 /* BarHorizontal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarHorizontal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -202,12 +215,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		330F6B3B1C14C01A004CCAED /* Parse+Rx */ = {
+			isa = PBXGroup;
+			children = (
+				330F6B3C1C14C01A004CCAED /* ParseHelper.swift */,
+				330F6B3D1C14C01A004CCAED /* PFObject+Rx.swift */,
+				330F6B3E1C14C01A004CCAED /* PFQuery+Rx.swift */,
+				330F6B3F1C14C01A004CCAED /* PFUser+Rx.swift */,
+			);
+			path = "Parse+Rx";
+			sourceTree = "<group>";
+		};
+		330F6B441C14C040004CCAED /* SpriteKit+Rx */ = {
+			isa = PBXGroup;
+			children = (
+				330F6B451C14C040004CCAED /* SKLabelNode+Rx.swift */,
+			);
+			path = "SpriteKit+Rx";
+			sourceTree = "<group>";
+		};
 		331E66C71BF6A6B4003AB81D /* HealthKit */ = {
 			isa = PBXGroup;
 			children = (
 				3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */,
 			);
 			path = HealthKit;
+			sourceTree = "<group>";
+		};
+		333532651C160273003145AA /* NodeLayers */ = {
+			isa = PBXGroup;
+			children = (
+				333532711C165165003145AA /* MenuLayer */,
+				3335326C1C164F6B003145AA /* StatsLayer */,
+			);
+			path = NodeLayers;
+			sourceTree = "<group>";
+		};
+		3335326C1C164F6B003145AA /* StatsLayer */ = {
+			isa = PBXGroup;
+			children = (
+				3335326D1C164F6B003145AA /* StatsLayer.swift */,
+				3335326F1C164FC9003145AA /* StatsLayerUI.swift */,
+			);
+			path = StatsLayer;
+			sourceTree = "<group>";
+		};
+		333532711C165165003145AA /* MenuLayer */ = {
+			isa = PBXGroup;
+			children = (
+				333532721C165176003145AA /* MenuLayer.swift */,
+				333532741C1651D4003145AA /* MenuLayerUI.swift */,
+			);
+			path = MenuLayer;
 			sourceTree = "<group>";
 		};
 		338368CE1BF67852006407FF = {
@@ -279,6 +338,7 @@
 		338369191BF69042006407FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				333532681C164234003145AA /* GPUImage.framework */,
 				339DA2C61C0F6E430025F064 /* RxBlocking.framework */,
 				339DA2C71C0F6E430025F064 /* RxCocoa.framework */,
 				339DA2C81C0F6E430025F064 /* RxSwift.framework */,
@@ -308,8 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				339DA2C11C0E541B0025F064 /* Models */,
-				3383692F1BF6A01E006407FF /* ParseHelper.swift */,
-				3362D53D1BFD972B00256348 /* Parse+Rx.swift */,
+				330F6B3B1C14C01A004CCAED /* Parse+Rx */,
 			);
 			path = Parse;
 			sourceTree = "<group>";
@@ -317,6 +376,7 @@
 		3383692C1BF69FE6006407FF /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				333532651C160273003145AA /* NodeLayers */,
 				33BBFD661C121F8300E76511 /* Scenes */,
 				33BBFD5D1C121E9900E76511 /* ViewModels */,
 				3383692D1BF69FE6006407FF /* View Controllers */,
@@ -343,14 +403,6 @@
 			path = Game;
 			sourceTree = "<group>";
 		};
-		339CF2961C136A70003E58D4 /* RxExtensions */ = {
-			isa = PBXGroup;
-			children = (
-				339CF2971C136A88003E58D4 /* SKLabelNode+Rx.swift */,
-			);
-			path = RxExtensions;
-			sourceTree = "<group>";
-		};
 		339DA2C11C0E541B0025F064 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,6 +415,7 @@
 			isa = PBXGroup;
 			children = (
 				33BBFD5E1C121E9900E76511 /* DashboardViewModel.swift */,
+				330F6B4C1C151557004CCAED /* StatsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -384,7 +437,7 @@
 		33BBFD621C121F8300E76511 /* Extras */ = {
 			isa = PBXGroup;
 			children = (
-				339CF2961C136A70003E58D4 /* RxExtensions */,
+				330F6B441C14C040004CCAED /* SpriteKit+Rx */,
 				33BBFD631C121F8300E76511 /* ButtonProtocol.swift */,
 				33BBFD641C121F8300E76511 /* LayoutExtensions.swift */,
 				33BBFD651C121F8300E76511 /* SKSceneExtension.swift */,
@@ -396,7 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				33BBFD671C121F8300E76511 /* DashboardScene */,
-				33BBFD6E1C121F8300E76511 /* StatsScene */,
+				330F6B4A1C150BA2004CCAED /* CreatureOwnerProtocol.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -408,6 +461,7 @@
 				33BBFD6B1C121F8300E76511 /* DashboardScene.sks */,
 				33BBFD6C1C121F8300E76511 /* DashboardScene.swift */,
 				33BBFD6D1C121F8300E76511 /* DashboardSceneUI.swift */,
+				333532761C169158003145AA /* DashboardSceneAnimations.swift */,
 			);
 			path = DashboardScene;
 			sourceTree = "<group>";
@@ -419,16 +473,6 @@
 				33BBFD6A1C121F8300E76511 /* StatsButton.swift */,
 			);
 			path = Buttons;
-			sourceTree = "<group>";
-		};
-		33BBFD6E1C121F8300E76511 /* StatsScene */ = {
-			isa = PBXGroup;
-			children = (
-				33BBFD6F1C121F8300E76511 /* StatsScene.sks */,
-				33BBFD701C121F8300E76511 /* StatsScene.swift */,
-				33BBFD711C121F8300E76511 /* StatsSceneUI.swift */,
-			);
-			path = StatsScene;
 			sourceTree = "<group>";
 		};
 		33BBFD721C121F8300E76511 /* Subclasses */ = {
@@ -554,7 +598,6 @@
 				338368E61BF67852006407FF /* Assets.xcassets in Resources */,
 				338368E41BF67852006407FF /* Main.storyboard in Resources */,
 				33BBFD791C121F8300E76511 /* DashboardScene.sks in Resources */,
-				33BBFD7C1C121F8300E76511 /* StatsScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,19 +626,26 @@
 				33BBFD7F1C121F8300E76511 /* BarHorizontal.swift in Sources */,
 				338368DB1BF67852006407FF /* AppDelegate.swift in Sources */,
 				33BBFD7A1C121F8300E76511 /* DashboardScene.swift in Sources */,
-				33BBFD7E1C121F8300E76511 /* StatsSceneUI.swift in Sources */,
+				333532771C169158003145AA /* DashboardSceneAnimations.swift in Sources */,
+				333532701C164FC9003145AA /* StatsLayerUI.swift in Sources */,
+				330F6B421C14C01A004CCAED /* PFQuery+Rx.swift in Sources */,
+				333532751C1651D4003145AA /* MenuLayerUI.swift in Sources */,
+				330F6B401C14C01A004CCAED /* ParseHelper.swift in Sources */,
 				33BBFD601C121E9900E76511 /* DashboardViewModel.swift in Sources */,
+				330F6B431C14C01A004CCAED /* PFUser+Rx.swift in Sources */,
+				330F6B4D1C151557004CCAED /* StatsViewModel.swift in Sources */,
+				330F6B461C14C040004CCAED /* SKLabelNode+Rx.swift in Sources */,
 				33BBFD781C121F8300E76511 /* StatsButton.swift in Sources */,
-				339CF2981C136A88003E58D4 /* SKLabelNode+Rx.swift in Sources */,
+				333532731C165176003145AA /* MenuLayer.swift in Sources */,
 				339874281BFFFE7200F47B2B /* GameManager.swift in Sources */,
-				3362D53E1BFD972B00256348 /* Parse+Rx.swift in Sources */,
 				339DA2C31C0E541B0025F064 /* Creature.swift in Sources */,
-				33BBFD7D1C121F8300E76511 /* StatsScene.swift in Sources */,
+				330F6B411C14C01A004CCAED /* PFObject+Rx.swift in Sources */,
 				3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */,
-				338369301BF6A01E006407FF /* ParseHelper.swift in Sources */,
 				33BBFD751C121F8300E76511 /* LayoutExtensions.swift in Sources */,
 				33BBFD771C121F8300E76511 /* MenuButton.swift in Sources */,
+				330F6B4B1C150BA2004CCAED /* CreatureOwnerProtocol.swift in Sources */,
 				33BBFD761C121F8300E76511 /* SKSceneExtension.swift in Sources */,
+				3335326E1C164F6B003145AA /* StatsLayer.swift in Sources */,
 				331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */,
 				33BBFD741C121F8300E76511 /* ButtonProtocol.swift in Sources */,
 			);

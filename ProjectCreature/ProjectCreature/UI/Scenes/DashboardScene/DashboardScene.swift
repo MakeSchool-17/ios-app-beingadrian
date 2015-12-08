@@ -9,6 +9,7 @@
 import SpriteKit
 import RxSwift
 import RxCocoa
+import UIKit
 
 
 class DashboardScene: SKScene {
@@ -43,20 +44,59 @@ class DashboardScene: SKScene {
     var energyLabel: SKLabelNode!
     var energyIcon: SKSpriteNode!
     
-    var viewModel: DashboardViewModel!
+    var creature: Creature?
+    var gameManager: GameManager?
+    
+    var viewModel: DashboardViewModel?
+    
     
     // MARK: - Base methods
     
     override func didMoveToView(view: SKView) {
         
         setupUI()
+    
+        parseHelper.retrieveUserCreatureParseObjectFrom(.Local)
+            .subscribe(
+                onNext: { (object) -> Void in
+                    guard let creature = object as? Creature else { return }
+                    self.creature = creature
+                    self.viewModel = DashboardViewModel(creature: self.creature!)
+                    self.gameManager = GameManager(creature: creature)
+                    self.bindUI()
+                },
+                onError: { (error) -> Void in
+                    print("> Error retrieving user creature")
+                },
+                onCompleted: { () -> Void in
+                    print("> Complete retrieving user creature")
+                }) { () -> Void in
+                    print("> Disposed retrieve creature subscription")
+            }
+            .addDisposableTo(disposeBag)
         
-        // bind UI if viewModel exists
-        if let _ = viewModel { bindUI() }
+        transitionIn()
+    }
+    
+    func testCreateCreature() -> Creature {
+        
+        // TEST: initial creature creation
+        let testCreature = Creature()
+        testCreature.name = "Rob"
+        testCreature.family = "Background"
+        testCreature.hp = 100
+        testCreature.hpMax = 200
+        testCreature.exp = 100
+        testCreature.expMax = 200
+        testCreature.owner = PFUser.currentUser()!
+        
+        return testCreature
         
     }
     
     func bindUI() {
+        
+        guard let viewModel = viewModel else { return }
         
         viewModel.creatureName
             .subscribeNext {
@@ -71,15 +111,15 @@ class DashboardScene: SKScene {
         
         viewModel.creatureHpPercentage
             .map {
-                self.hpBarFront.changeBarProgress(byPercentage: $0)
-                return String($0)
+                self.hpBarFront.animateBarProgress(toPercentage: $0)
+                return String(Int($0)) + "%"
             }
             .bindTo(hpPercentageLabel.rx_text)
             .addDisposableTo(disposeBag)
         
         viewModel.creatureExpPercentage
             .subscribeNext {
-                self.expBarFront.changeBarProgress(byPercentage: $0)
+                self.expBarFront.animateBarProgress(toPercentage: $0)
             }
             .addDisposableTo(disposeBag)
         
@@ -98,10 +138,16 @@ class DashboardScene: SKScene {
         
         let touchedNode = self.nodeAtPoint(touchLocation)
         
-        if let button = touchedNode as? Button {
-            button.touchesBegan(touches, withEvent: event)
+        if let _ = touchedNode as? NavigationButton {
+            
+            transitionOut()
+            
+//            let statsLayer = StatsLayer(size: self.frame.size, scene: self)
+//            addChild(statsLayer)
         }
-    
+        
     }
     
 }
+
+extension DashboardScene: CreatureOwner {}

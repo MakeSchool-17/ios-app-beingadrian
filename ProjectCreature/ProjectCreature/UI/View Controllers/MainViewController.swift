@@ -13,7 +13,7 @@ import RxSwift
 
 class MainViewController: UIViewController {
 
-    let disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
 
     // MARK: - Base methods
     
@@ -24,16 +24,6 @@ class MainViewController: UIViewController {
         guard let scene = SKScene(fileNamed: "DashboardScene") as? DashboardScene else { return }
         scene.scaleMode = .Fill
         
-        // TEST: initial creature creation
-        let creature = Creature()
-        creature.name = "Rob"
-        creature.family = "some family"
-        creature.hp = 100
-        creature.hpMax = 200
-        creature.owner = PFUser.currentUser()!
-        
-        scene.viewModel = DashboardViewModel(creature: creature)
-        
         view.presentScene(scene)
 
     }
@@ -43,7 +33,7 @@ class MainViewController: UIViewController {
         // healthKit permission
         HKHelper().requestHealthKitAuthorization()
             .subscribeNext { success in
-                print("Request HealthKit authorization: \(success)")
+                print("> Request HealthKit authorization: \(success)")
             }
             .addDisposableTo(disposeBag)
         

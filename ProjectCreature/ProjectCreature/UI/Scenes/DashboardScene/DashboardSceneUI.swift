@@ -100,7 +100,7 @@ extension DashboardScene {
         // MARK: Energy
         
         energyGroup = childNodeWithName("energyGroup")
-        energyGroup.setHorizontalPosition(.Center)
+        energyGroup.setHorizontalPosition(.Center, byValue: 0)
         energyGroup.setVerticalPosition(35, fromMargin: .BottomMargin)
         energyGroup.position.x -= energyGroup.frame.width / 2
         energyGroup.position.y -= energyGroup.frame.height / 2

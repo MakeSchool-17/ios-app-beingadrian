@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         let disposeBag = DisposeBag()
@@ -25,7 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.enableLocalDatastore()
         
-        Parse.setApplicationId("PBf2QMcCJkBiQ2zxktGr5NSHkUarsaYNgzmhVNjB", clientKey: "4prrsitPiS5HiTrr9Nby3dn6UOaESatTLIOx0NVJ")
+        let applicationId = "PBf2QMcCJkBiQ2zxktGr5NSHkUarsaYNgzmhVNjB"
+        let clientKey = "4prrsitPiS5HiTrr9Nby3dn6UOaESatTLIOx0NVJ"
+        Parse.setApplicationId(applicationId, clientKey: clientKey)
         
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
@@ -33,19 +34,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Creature.registerSubclass()
         
         // force Parse login
-        if PFUser.currentUser() == nil {
+        if let currentUser = PFUser.currentUser() {
+            print("> Already logged in as \(currentUser.username)")
+        } else {
             PFUser.rx_logInWithUsernameInBackground("beingadrian", password: "test")
-                .subscribeError { error in
-                    print(error)
-                }
+                .subscribe(
+                    onNext: { (user) -> Void in
+                        print("> Logged in as \(user?.username)")
+                    },
+                    onError: { (error) -> Void in
+                        print("> Error logging in user: \(error)")
+                    },
+                    onCompleted: { () -> Void in
+                        print("> Completed logging in user")
+                    },
+                    onDisposed: { () -> Void in
+                        print("> Dispose log in subscription")
+                })
                 .addDisposableTo(disposeBag)
         }
         
-        // TODO: check if there is a creature locally
-
-
-        
         return true
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {

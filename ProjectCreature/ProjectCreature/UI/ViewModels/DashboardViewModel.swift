@@ -42,7 +42,7 @@ class DashboardViewModel {
         self.cash = Variable(String(currentUser["cash"] as! Int))
         
         // TODO: Finalize imageName code
-        let imageName = creature.family + String(creature.evolutionStage)
+        let imageName = creature.family
         self.creatureSprite = Variable(SKSpriteNode(imageNamed: imageName))
         
         // RxObserve

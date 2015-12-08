@@ -7,12 +7,14 @@
 //
 
 import Foundation
+import SpriteKit
 
 
-protocol Button {
+protocol NavigationButton {
     
-    func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
-    
-    func performAction()
-    
+    func navigateToScene(scene: SKScene)
+
 }
+    
+
+    
