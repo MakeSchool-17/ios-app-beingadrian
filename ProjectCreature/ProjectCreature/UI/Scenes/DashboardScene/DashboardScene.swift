@@ -54,8 +54,8 @@ class DashboardScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         
-        setupUI()
-    
+        setup()
+
         parseHelper.retrieveUserCreatureParseObjectFrom(.Local)
             .subscribe(
                 onNext: { (object) -> Void in
@@ -77,6 +77,19 @@ class DashboardScene: SKScene {
         
         transitionIn {}
 
+    }
+    
+    func setup() {
+        
+        setupUI()
+        
+        // setup buttons
+        statsButton.parentScene = self
+        statsButton.userInteractionEnabled = true
+        
+        menuButton.parentScene = self
+        menuButton.userInteractionEnabled = true
+        
     }
     
     func createTestCreature() -> Creature {
@@ -137,18 +150,7 @@ class DashboardScene: SKScene {
         guard let touch = touches.first else { return }
         let touchLocation = touch.locationInNode(self)
         
-        let touchedNode = self.nodeAtPoint(touchLocation)
-        
-        if let navButton = touchedNode as? NavigationButton {
-            switch navButton {
-            case is StatsButton:
-                pushStatsLayer()
-            case is MenuButton:
-                pushMenuLayer()
-            default:
-                break
-            }
-        }
+        let _ = self.nodeAtPoint(touchLocation)
         
     }
     

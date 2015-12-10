@@ -9,16 +9,15 @@
 import UIKit
 import SpriteKit
 
-class MenuButton: SKSpriteNode {
+
+class MenuButton: NavigationButton {
     
-    func navigateToScene(scene: SKScene) {
+    override func performFunction() {
+
+        guard let dashboardScene = parentScene as? DashboardScene else { return }
         
-        
+        dashboardScene.pushMenuLayer()
         
     }
-    
 
 }
-
-extension MenuButton: NavigationButton {}
-

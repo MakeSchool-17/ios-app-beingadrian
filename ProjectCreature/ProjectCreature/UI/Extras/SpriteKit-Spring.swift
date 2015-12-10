@@ -126,7 +126,15 @@ extension SKAction {
         let animation = SKAction.customActionWithDuration(duration) {
             (node, elapsedTime) in
             
-            guard let initialValue = node.valueForKeyPath(keyPath) as? CGFloat else { return }
+            var initialValue: CGFloat
+            if keyPath == "x" {
+                initialValue = node.position.x
+            } else if keyPath == "y" {
+                initialValue = node.position.y
+            } else {
+                guard let value = node.valueForKeyPath(keyPath) as? CGFloat else { return }
+                initialValue = value
+            }
             
             // either initialDistance is not nil or finalValue is not nil
             if let initDistance = initialDistance {
@@ -185,7 +193,14 @@ extension SKAction {
                 currentValue = finValue
             }
             
-            node.setValue(currentValue, forKey: keyPath)
+            if keyPath == "x" {
+                node.position.x = currentValue
+            } else if keyPath == "y" {
+                node.position.y = currentValue
+            } else {
+                node.setValue(currentValue, forKey: keyPath)
+            }
+
             
         }
             

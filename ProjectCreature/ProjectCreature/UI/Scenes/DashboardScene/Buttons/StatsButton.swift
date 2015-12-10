@@ -10,25 +10,14 @@ import UIKit
 import SpriteKit
 
 
-class StatsButton: SKSpriteNode {
+class StatsButton: NavigationButton {
     
-    func navigateToScene(scene: SKScene) {
+    override func performFunction() {
         
-        guard let scene = parent as? SKScene else { return }
+        guard let dashboardScene = parentScene as? DashboardScene else { return }
         
-        let transitionAction = SKAction.runBlock {
-            
-            guard let view = scene.view else { return }
-            let transition = SKTransition.pushWithDirection(.Right, duration: 0.35)
-            guard let scene = SKScene(fileNamed: "StatsScene") else { return }
-            view.presentScene(scene, transition: transition)
-            
-        }
-        
-        self.runAction(transitionAction)
+        dashboardScene.pushStatsLayer()
         
     }
-    
-}
 
-extension StatsButton: NavigationButton {}
+}
