@@ -142,49 +142,32 @@ class DashboardScene: SKScene {
         if let navButton = touchedNode as? NavigationButton {
             switch navButton {
             case is StatsButton:
-                transitionOut {
-                    let statsLayer = StatsLayer(size: self.frame.size, scene: self)
-                    self.addChild(statsLayer)
-                }
+                pushStatsLayer()
             case is MenuButton:
-                
-                print("> Added shader")
-                
-                blur()
+                pushMenuLayer()
             default:
                 break
             }
-
         }
         
     }
     
-    func blur() {
+    func pushStatsLayer() {
         
-        let texture = self.view!.textureFromNode(self)
-        texture?.filteringMode = .Nearest
-        
-        let screenshotNode = SKSpriteNode(texture: texture)
-        screenshotNode.anchorPoint = CGPointZero
-        
-        let blurEffectNode = SKEffectNode()
-        blurEffectNode.filter = CIFilter(name: "CIGaussianBlur", withInputParameters: ["inputRadius": 15.0])
-        
-//        // add shader
-//        let shader = SKShader(fileNamed: "blurShader.fsh")
-//        let radiusUniform = SKUniform(name: "radius", float: 0.6)
-//        let resolutionUniform = SKUniform(name: "resolution", float: 227)
-//        shader.uniforms = [radiusUniform, resolutionUniform]
-//        screenshotNode.shader = shader
-        
-        blurEffectNode.alpha = 0
-        
-        blurEffectNode.addChild(screenshotNode)
-        self.addChild(blurEffectNode)
-//        self.addChild(screenshotNode)
+        transitionOut {
+            let statsLayer = StatsLayer(size: self.frame.size, scene: self)
+            self.addChild(statsLayer)
+        }
         
     }
-
+    
+    func pushMenuLayer() {
+        
+        let menuLayer = MenuLayer(size: self.frame.size, scene: self)
+        self.addChild(menuLayer)
+        menuLayer.transitionIn()
+        
+    }
     
 }
 

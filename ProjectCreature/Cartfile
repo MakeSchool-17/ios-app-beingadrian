@@ -1,2 +1,5 @@
 # RxSwift 2.0.0-beta.3
 github "ReactiveX/RxSwift" "2.0.0-beta.3"
+
+# SpriteKit Spring
+github "ataugeron/SpriteKit-Spring"

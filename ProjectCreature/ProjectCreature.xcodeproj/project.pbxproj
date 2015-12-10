@@ -32,6 +32,7 @@
 		333D1B061BFBF1EC001CCD5E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1B051BFBF1EC001CCD5E /* SystemConfiguration.framework */; };
 		333D1B081BFBF1F3001CCD5E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1B071BFBF1F3001CCD5E /* libz.tbd */; };
 		333D1B0A1BFBF1FD001CCD5E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */; };
+		33595FF31C188F7B003E1AB8 /* SpriteKit-Spring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33595FF21C188F7B003E1AB8 /* SpriteKit-Spring.swift */; };
 		338368DB1BF67852006407FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338368DA1BF67852006407FF /* AppDelegate.swift */; };
 		338368E41BF67852006407FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 338368E21BF67852006407FF /* Main.storyboard */; };
 		338368E61BF67852006407FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338368E51BF67852006407FF /* Assets.xcassets */; };
@@ -66,8 +67,6 @@
 		33BBFD7A1C121F8300E76511 /* DashboardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD6C1C121F8300E76511 /* DashboardScene.swift */; };
 		33BBFD7B1C121F8300E76511 /* DashboardSceneUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD6D1C121F8300E76511 /* DashboardSceneUI.swift */; };
 		33BBFD7F1C121F8300E76511 /* BarHorizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD731C121F8300E76511 /* BarHorizontal.swift */; };
-		33EE3A361C1756980026B526 /* blurShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 33EE3A351C1756980026B526 /* blurShader.fsh */; };
-		33EE3A381C1765740026B526 /* test.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 33EE3A371C1765740026B526 /* test.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +130,7 @@
 		333D1B051BFBF1EC001CCD5E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		333D1B071BFBF1F3001CCD5E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		33595FF21C188F7B003E1AB8 /* SpriteKit-Spring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SpriteKit-Spring.swift"; sourceTree = "<group>"; };
 		338368D71BF67852006407FF /* ProjectCreature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectCreature.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338368DA1BF67852006407FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		338368E31BF67852006407FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -166,8 +166,6 @@
 		33BBFD6C1C121F8300E76511 /* DashboardScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardScene.swift; sourceTree = "<group>"; };
 		33BBFD6D1C121F8300E76511 /* DashboardSceneUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardSceneUI.swift; sourceTree = "<group>"; };
 		33BBFD731C121F8300E76511 /* BarHorizontal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarHorizontal.swift; sourceTree = "<group>"; };
-		33EE3A351C1756980026B526 /* blurShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = blurShader.fsh; sourceTree = "<group>"; };
-		33EE3A371C1765740026B526 /* test.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = test.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -441,11 +439,11 @@
 		33BBFD621C121F8300E76511 /* Extras */ = {
 			isa = PBXGroup;
 			children = (
-				33EE3A341C1756890026B526 /* Shaders */,
 				330F6B441C14C040004CCAED /* SpriteKit+Rx */,
 				33BBFD631C121F8300E76511 /* ButtonProtocol.swift */,
 				33BBFD641C121F8300E76511 /* LayoutExtensions.swift */,
 				33BBFD651C121F8300E76511 /* SKSceneExtension.swift */,
+				33595FF21C188F7B003E1AB8 /* SpriteKit-Spring.swift */,
 			);
 			path = Extras;
 			sourceTree = "<group>";
@@ -486,15 +484,6 @@
 				33BBFD731C121F8300E76511 /* BarHorizontal.swift */,
 			);
 			path = Subclasses;
-			sourceTree = "<group>";
-		};
-		33EE3A341C1756890026B526 /* Shaders */ = {
-			isa = PBXGroup;
-			children = (
-				33EE3A351C1756980026B526 /* blurShader.fsh */,
-				33EE3A371C1765740026B526 /* test.fsh */,
-			);
-			path = Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -609,8 +598,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				338368E91BF67852006407FF /* LaunchScreen.storyboard in Resources */,
-				33EE3A381C1765740026B526 /* test.fsh in Resources */,
-				33EE3A361C1756980026B526 /* blurShader.fsh in Resources */,
 				338368E61BF67852006407FF /* Assets.xcassets in Resources */,
 				338368E41BF67852006407FF /* Main.storyboard in Resources */,
 				33BBFD791C121F8300E76511 /* DashboardScene.sks in Resources */,
@@ -645,6 +632,7 @@
 				333532771C169158003145AA /* DashboardSceneAnimations.swift in Sources */,
 				333532701C164FC9003145AA /* StatsLayerUI.swift in Sources */,
 				330F6B421C14C01A004CCAED /* PFQuery+Rx.swift in Sources */,
+				33595FF31C188F7B003E1AB8 /* SpriteKit-Spring.swift in Sources */,
 				333532751C1651D4003145AA /* MenuLayerUI.swift in Sources */,
 				330F6B401C14C01A004CCAED /* ParseHelper.swift in Sources */,
 				33BBFD601C121E9900E76511 /* DashboardViewModel.swift in Sources */,
