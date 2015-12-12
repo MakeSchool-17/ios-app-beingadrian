@@ -36,7 +36,7 @@ class MenuLayer: SKSpriteNode {
         
         self.alpha = 0
         
-        setupUI(parent: scene)
+        setupUI()
     
     }
 

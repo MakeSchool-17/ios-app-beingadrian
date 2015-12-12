@@ -12,13 +12,38 @@ import RxSwift
 
 class StatsLayer: SKSpriteNode {
     
-    init(size: CGSize, scene: SKScene) {
-        super.init(texture: nil, color: UIColor(), size: size)
+    // MARK: - UI Properties
+    
+    var statisticsTitleLabel: SKLabelNode!
+    
+    var distanceTitleLabel: SKLabelNode!
+    var distanceValueLabel: SKLabelNode!
+    var distanceUnitLabel: SKLabelNode!
 
-        setupUI()
+    var progressTitleLabel: SKLabelNode!
+    var progressValueLabel: SKLabelNode!
+    
+    var stepCircleGroup: SKSpriteNode!
+    var totalStepsTitleLabel: SKLabelNode!
+    var totalStepsValueLabel: SKLabelNode!
+    var dateLabel: SKLabelNode!
+    
+    var circleBack: CircleProgressBar!
+    var circleFront: CircleProgressBar!
+    
+    
+    // MARK: - Base methods
+    
+    init(size: CGSize) {
         
-        let fadeInAction = SKAction.fadeInWithDuration(0.35)
-        self.runAction(fadeInAction)
+        let texture = SKTexture(imageNamed: "Background")
+        super.init(texture: texture, color: UIColor(), size: size)
+        
+        self.userInteractionEnabled = true
+        
+        self.alpha = 0
+        
+        setupUI()
         
     }
 
@@ -26,9 +51,20 @@ class StatsLayer: SKSpriteNode {
         fatalError("> init(coder:) has not been implemented")
     }
     
+    // MARK: - Touch handling
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        
+        
+    }
+    
+    // MARK: - Transitions
+    
     func transitionIn() {
         
-        // insert code here
+        let fadeInAction = SKAction.fadeInWithDuration(0.35)
+        self.runAction(fadeInAction)
         
     }
 

@@ -32,6 +32,8 @@
 		333D1B061BFBF1EC001CCD5E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1B051BFBF1EC001CCD5E /* SystemConfiguration.framework */; };
 		333D1B081BFBF1F3001CCD5E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1B071BFBF1F3001CCD5E /* libz.tbd */; };
 		333D1B0A1BFBF1FD001CCD5E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */; };
+		335557091C1BA00A0027FAE4 /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335557081C1BA00A0027FAE4 /* NavigationButton.swift */; };
+		3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */; };
 		33595FF31C188F7B003E1AB8 /* SpriteKit-Spring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33595FF21C188F7B003E1AB8 /* SpriteKit-Spring.swift */; };
 		338368DB1BF67852006407FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338368DA1BF67852006407FF /* AppDelegate.swift */; };
 		338368E41BF67852006407FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 338368E21BF67852006407FF /* Main.storyboard */; };
@@ -55,7 +57,6 @@
 		339DA2CF1C0F6E8B0025F064 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C71C0F6E430025F064 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		339DA2D11C0F6E8B0025F064 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C81C0F6E430025F064 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		33BBFD601C121E9900E76511 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD5E1C121E9900E76511 /* DashboardViewModel.swift */; };
-		33BBFD741C121F8300E76511 /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD631C121F8300E76511 /* NavigationButton.swift */; };
 		33BBFD751C121F8300E76511 /* LayoutExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD641C121F8300E76511 /* LayoutExtensions.swift */; };
 		33BBFD761C121F8300E76511 /* SKSceneExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD651C121F8300E76511 /* SKSceneExtension.swift */; };
 		33BBFD771C121F8300E76511 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD691C121F8300E76511 /* MenuButton.swift */; };
@@ -127,6 +128,8 @@
 		333D1B051BFBF1EC001CCD5E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		333D1B071BFBF1F3001CCD5E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		335557081C1BA00A0027FAE4 /* NavigationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
+		3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
 		33595FF21C188F7B003E1AB8 /* SpriteKit-Spring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SpriteKit-Spring.swift"; sourceTree = "<group>"; };
 		338368D71BF67852006407FF /* ProjectCreature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectCreature.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338368DA1BF67852006407FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -154,7 +157,6 @@
 		339DA2C71C0F6E430025F064 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = SOURCE_ROOT; };
 		339DA2C81C0F6E430025F064 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = SOURCE_ROOT; };
 		33BBFD5E1C121E9900E76511 /* DashboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
-		33BBFD631C121F8300E76511 /* NavigationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
 		33BBFD641C121F8300E76511 /* LayoutExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutExtensions.swift; sourceTree = "<group>"; };
 		33BBFD651C121F8300E76511 /* SKSceneExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSceneExtension.swift; sourceTree = "<group>"; };
 		33BBFD691C121F8300E76511 /* MenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
@@ -434,7 +436,6 @@
 			isa = PBXGroup;
 			children = (
 				330F6B441C14C040004CCAED /* SpriteKit+Rx */,
-				33BBFD631C121F8300E76511 /* NavigationButton.swift */,
 				33BBFD641C121F8300E76511 /* LayoutExtensions.swift */,
 				33BBFD651C121F8300E76511 /* SKSceneExtension.swift */,
 				33595FF21C188F7B003E1AB8 /* SpriteKit-Spring.swift */,
@@ -476,6 +477,8 @@
 			isa = PBXGroup;
 			children = (
 				33BBFD731C121F8300E76511 /* BarHorizontal.swift */,
+				335557081C1BA00A0027FAE4 /* NavigationButton.swift */,
+				3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */,
 			);
 			path = Subclasses;
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 			files = (
 				33BBFD7B1C121F8300E76511 /* DashboardSceneUI.swift in Sources */,
 				33BBFD7F1C121F8300E76511 /* BarHorizontal.swift in Sources */,
+				3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */,
 				338368DB1BF67852006407FF /* AppDelegate.swift in Sources */,
 				33BBFD7A1C121F8300E76511 /* DashboardScene.swift in Sources */,
 				333532771C169158003145AA /* DashboardSceneAnimations.swift in Sources */,
@@ -639,13 +643,13 @@
 				339DA2C31C0E541B0025F064 /* Creature.swift in Sources */,
 				330F6B411C14C01A004CCAED /* PFObject+Rx.swift in Sources */,
 				3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */,
+				335557091C1BA00A0027FAE4 /* NavigationButton.swift in Sources */,
 				33BBFD751C121F8300E76511 /* LayoutExtensions.swift in Sources */,
 				33BBFD771C121F8300E76511 /* MenuButton.swift in Sources */,
 				330F6B4B1C150BA2004CCAED /* CreatureOwnerProtocol.swift in Sources */,
 				33BBFD761C121F8300E76511 /* SKSceneExtension.swift in Sources */,
 				3335326E1C164F6B003145AA /* StatsLayer.swift in Sources */,
 				331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */,
-				33BBFD741C121F8300E76511 /* NavigationButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -157,8 +157,9 @@ class DashboardScene: SKScene {
     func pushStatsLayer() {
         
         transitionOut {
-            let statsLayer = StatsLayer(size: self.frame.size, scene: self)
+            let statsLayer = StatsLayer(size: self.frame.size)
             self.addChild(statsLayer)
+            statsLayer.transitionIn()
         }
         
     }

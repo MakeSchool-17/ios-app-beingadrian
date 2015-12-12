@@ -12,7 +12,7 @@ import SpriteKit
 
 extension MenuLayer {
     
-    func setupUI(parent parent: SKNode) {
+    func setupUI() {
         
         self.zPosition = 7
         self.anchorPoint = CGPointZero
@@ -37,7 +37,7 @@ extension MenuLayer {
         // MARK: Menu group
         
         menuGroup = SKSpriteNode(imageNamed: "Menu line")
-        menuGroup.position = CGPoint(x: parent.frame.maxX / 2, y: parent.frame.maxY / 2)
+        menuGroup.position = CGPoint(x: self.frame.maxX / 2, y: self.frame.maxY / 2)
         menuGroup.zPosition = 8
         self.addChild(menuGroup)
         
