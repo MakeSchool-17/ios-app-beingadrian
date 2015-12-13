@@ -12,8 +12,6 @@ import SpriteKit
 
 class NavigationButton: SKSpriteNode {
     
-    weak var parentScene: SKScene?
-    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         performFunction()

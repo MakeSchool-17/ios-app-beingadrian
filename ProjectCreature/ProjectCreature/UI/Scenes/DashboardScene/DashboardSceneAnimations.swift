@@ -19,7 +19,7 @@ extension DashboardScene {
     func transitionIn(completion completion: TransitionCallback) {
         
         // set initial position
-        dashboard.position.y = self.frame.maxX + 300
+        dashboard.position.y = self.frame.maxX + 400
         statsButton.position.y = -200
         menuButton.position.y = -200
         energyGroup.position.y = -200
@@ -27,9 +27,9 @@ extension DashboardScene {
         let dashboardAction = createMoveActionSpring(
             finalPositionY: self.frame.maxY - 25)
         let statsButtonAction = createMoveActionSpring(
-            finalPositionY: 15 + statsButton.size.height / 2)
+            finalPositionY: 15 + statsButton.size.halfHeight)
         let menuButtonAction = createMoveActionSpring(
-            finalPositionY: 15 + menuButton.size.width / 2)
+            finalPositionY: 15 + menuButton.size.halfWidth)
         let energyGroupAction = createMoveActionSpring(
             finalPositionY: 35)
         

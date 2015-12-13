@@ -14,7 +14,7 @@ class MenuButton: NavigationButton {
     
     override func performFunction() {
 
-        guard let dashboardScene = parentScene as? DashboardScene else { return }
+        guard let dashboardScene = self.parent as? DashboardScene else { return }
         
         dashboardScene.pushMenuLayer()
         

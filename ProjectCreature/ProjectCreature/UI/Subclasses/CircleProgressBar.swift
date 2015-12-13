@@ -10,18 +10,19 @@
 //
 
 import SpriteKit
-import RxSwift
 
 
 class CircleProgressBar: SKShapeNode {
-
-    var disposeBag = DisposeBag()
     
     // MARK: - Properties
     
     var radius: CGFloat
-    var width: CGFloat
-    var color: UIColor
+    var width: CGFloat {
+        didSet { self.lineWidth = width }
+    }
+    var color: UIColor {
+        didSet { self.strokeColor = color }
+    }
 
     var progress: CGFloat = 0
     
@@ -38,10 +39,8 @@ class CircleProgressBar: SKShapeNode {
         
         // set original rotation (-45 degrees)
         self.zRotation = CGFloat(M_PI) / 2.0
-        
-        // custom initialization
-        self.lineWidth = self.width
-        self.strokeColor = self.color
+        self.lineWidth = width
+        self.strokeColor = color
         self.fillColor = UIColor.clearColor()
         self.path = createBezierPath(self.radius, progress: 0).CGPath
         

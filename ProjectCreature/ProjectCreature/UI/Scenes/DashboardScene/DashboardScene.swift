@@ -19,8 +19,8 @@ class DashboardScene: SKScene {
     // MARK: - UI Properties
     
     var background: SKSpriteNode!
-    var statsButton: StatsButton!
-    var menuButton: MenuButton!
+    var statsButton: SKButtonSprite!
+    var menuButton: SKButtonSprite!
     
     var dashboard: SKSpriteNode!
     var circleFrame: SKSpriteNode!
@@ -75,7 +75,9 @@ class DashboardScene: SKScene {
             }
             .addDisposableTo(disposeBag)
         
-        transitionIn {}
+        transitionIn {
+            self.menuButton.userInteractionEnabled = true
+        }
 
     }
     
@@ -84,10 +86,7 @@ class DashboardScene: SKScene {
         setupUI()
         
         // setup buttons
-        statsButton.parentScene = self
         statsButton.userInteractionEnabled = true
-        
-        menuButton.parentScene = self
         menuButton.userInteractionEnabled = true
         
     }
@@ -150,16 +149,36 @@ class DashboardScene: SKScene {
         guard let touch = touches.first else { return }
         let touchLocation = touch.locationInNode(self)
         
-        let _ = self.nodeAtPoint(touchLocation)
+        let touchedNode = self.nodeAtPoint(touchLocation)
+        
+        // TODO: Combine buttons and let touchesBegan handle all touches
+        
+        switch touchedNode {
+        case touchedNode.isEqualToNode(statsButton):
+            pushStatsLayer()
+        case touchedNode.isEqualToNode(menuButton):
+            pushMenuLayer()
+        default:
+            break
+        }
+        
         
     }
     
     func pushStatsLayer() {
         
-        transitionOut {
+        // disable buttons
+        self.userInteractionEnabled = false
+        statsButton.userInteractionEnabled = false
+        menuButton.userInteractionEnabled = false
+        
+        self.transitionOut {
             let statsLayer = StatsLayer(size: self.frame.size)
             self.addChild(statsLayer)
-            statsLayer.transitionIn()
+            statsLayer.transitionIn {
+                // enable user interaction once transition is complete
+                statsLayer.userInteractionEnabled = true
+            }
         }
         
     }
@@ -173,5 +192,3 @@ class DashboardScene: SKScene {
     }
     
 }
-
-extension DashboardScene: CreatureOwner {}

@@ -47,7 +47,7 @@ extension StatsLayer {
         statisticsTitleLabel = createLabelNode("/statistics",
             fontSize: 18,
             fontName: "Avenir-HeavyOblique")
-        statisticsTitleLabel.position.x = self.size.width / 2
+        statisticsTitleLabel.position.x = self.size.halfWidth
         statisticsTitleLabel.position.y = self.size.height - 40
         self.addChild(statisticsTitleLabel)
         
@@ -134,8 +134,8 @@ extension StatsLayer {
         // circle magic numbers
         let radius: CGFloat = 115 - (37 / 4)
         let width: CGFloat = 37 / 2
-        let greyColor = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1)
-        let tealColor = UIColor(red: 71/255, green: 216/255, blue: 178/255, alpha: 1)
+        let greyColor = UIColor.rgbaColor(216, g: 216, b: 216, a: 1)
+        let tealColor = UIColor.rgbaColor(71, g: 216, b: 178, a: 1)
         
         // circle back
         circleBack = CircleProgressBar(
@@ -155,6 +155,46 @@ extension StatsLayer {
         circleFront.animateToProgress(1, progress: 0.75)
         
         stepCircleGroup.addChild(circleFront)
+        
+        // MARK: Bar graph
+        
+        // base group
+        histogramGroup = SKSpriteNode(imageNamed: "Histogram - base")
+        histogramGroup.position.x = self.frame.midX
+        histogramGroup.position.y = self.frame.minY + 82
+        self.addChild(histogramGroup)
+        
+        // bars back
+        histogramBarsBack = SKSpriteNode(imageNamed: "Histogram - bars - back")
+        histogramBarsBack.anchorPoint = CGPoint(x: 0.5, y: 0)
+        histogramBarsBack.position.x = 0
+        histogramBarsBack.position.y = 10
+        histogramGroup.addChild(histogramBarsBack)
+        
+        // pointer 
+        histogramPointer = SKSpriteNode(imageNamed: "Histogram - pointer")
+        histogramPointer.position.x = histogramBarsBack.frame.midX
+        histogramPointer.position.y = histogramBarsBack.size.height + 20
+        histogramGroup.addChild(histogramPointer)
+        
+        // bars front 
+        for i in 0...6 {
+            let frontBar = SKSpriteNode(imageNamed: "Histogram - bar - front")
+            frontBar.anchorPoint = CGPointZero
+            frontBar.position.x = CGFloat(i) * (17 + frontBar.size.width) - histogramBarsBack.size.halfWidth
+            frontBar.position.y = 0
+            frontBar.size.height = 0
+            
+            histogramBarsBack.addChild(frontBar)
+            histogramBarsFront.append(frontBar)
+        }
+        
+        // MARK: Close button
+        
+        closeButton = SKSpriteNode(imageNamed: "Close button")
+        closeButton.position.x = self.frame.maxX - (15 + closeButton.size.halfWidth)
+        closeButton.position.y = self.frame.minY + (15 + closeButton.size.halfHeight)
+        self.addChild(closeButton)
         
     }
     

@@ -19,15 +19,15 @@ extension DashboardScene {
         
         // MARK: Stats button
         
-        statsButton = childNodeWithName("statsButton") as? StatsButton
-        statsButton.setHorizontalPosition(15 + statsButton.size.width / 2, fromMargin: .LeftMargin)
-        statsButton.setVerticalPosition(15 + statsButton.size.height / 2, fromMargin: .BottomMargin)
+        statsButton = childNodeWithName("statsButton") as? SKButtonSprite
+        statsButton.setHorizontalPosition(15 + statsButton.size.halfWidth, fromMargin: .LeftMargin)
+        statsButton.setVerticalPosition(15 + statsButton.size.halfHeight, fromMargin: .BottomMargin)
         
         // MARK: Menu button
         
-        menuButton = childNodeWithName("menuButton") as? MenuButton
-        menuButton.setHorizontalPosition(15 + menuButton.size.width / 2, fromMargin: .RightMargin)
-        menuButton.setVerticalPosition(15 + menuButton.size.width / 2, fromMargin: .BottomMargin)
+        menuButton = childNodeWithName("menuButton") as? SKButtonSprite
+        menuButton.setHorizontalPosition(15 + menuButton.size.halfWidth, fromMargin: .RightMargin)
+        menuButton.setVerticalPosition(15 + menuButton.size.halfHeight, fromMargin: .BottomMargin)
         
         // MARK: Dashboard
         
@@ -36,8 +36,8 @@ extension DashboardScene {
         dashboard.setVerticalPosition(25, fromMargin: .TopMargin)
         
         circleFrame = dashboard.childNodeWithName("circleFrame") as? SKSpriteNode
-        circleFrame.position.x = circleFrame.size.width / 2
-        circleFrame.position.y =  -(circleFrame.size.height / 2 + 2)
+        circleFrame.position.x = circleFrame.size.halfWidth
+        circleFrame.position.y =  -(circleFrame.size.halfHeight + 2)
         
         creatureNameLabel = dashboard.childNodeWithName("creatureNameLabel") as? SKLabelNode
         creatureNameLabel.position.x = 83
@@ -58,12 +58,12 @@ extension DashboardScene {
         hpBarBack.position.y = -25
         
         let hpBarMask = SKSpriteNode(imageNamed: "Health bar - back")
-        hpBarMask.position.x = hpBarBack.size.width / 2
-        hpBarMask.position.y = -(hpBarBack.size.height / 2)
+        hpBarMask.position.x = hpBarBack.size.halfWidth
+        hpBarMask.position.y = -(hpBarBack.size.halfHeight)
         hpBarCrop = SKCropNode()
         hpBarFront = BarHorizontal(imageNamed: "Health bar - front")
-        hpBarFront.position.x = hpBarFront.size.width / 2 - hpBarFront.size.width
-        hpBarFront.position.y = -(hpBarBack.size.height / 2)
+        hpBarFront.position.x = hpBarFront.size.halfWidth - hpBarFront.size.width
+        hpBarFront.position.y = -(hpBarBack.size.halfHeight)
         hpBarCrop.addChild(hpBarFront)
         hpBarCrop.maskNode = hpBarMask
         hpBarBack.addChild(hpBarCrop)
@@ -83,12 +83,12 @@ extension DashboardScene {
         expBarBack.position.y = -56
         
         let expBarMask = SKSpriteNode(imageNamed: "Exp bar - back")
-        expBarMask.position.x = expBarBack.size.width / 2
-        expBarMask.position.y = -(expBarBack.size.height / 2)
+        expBarMask.position.x = expBarBack.size.halfWidth
+        expBarMask.position.y = -(expBarBack.size.halfHeight)
         expBarCrop = SKCropNode()
         expBarFront = BarHorizontal(imageNamed: "Exp bar - front")
-        expBarFront.position.x = expBarFront.size.width / 2 - expBarFront.size.width
-        expBarFront.position.y = -(expBarBack.size.height / 2)
+        expBarFront.position.x = expBarFront.size.halfWidth - expBarFront.size.width
+        expBarFront.position.y = -(expBarBack.size.halfHeight)
         expBarCrop.addChild(expBarFront)
         expBarCrop.maskNode = expBarMask
         expBarBack.addChild(expBarCrop)
@@ -102,8 +102,8 @@ extension DashboardScene {
         energyGroup = childNodeWithName("energyGroup")
         energyGroup.setHorizontalPosition(.Center, byValue: 0)
         energyGroup.setVerticalPosition(35, fromMargin: .BottomMargin)
-        energyGroup.position.x -= energyGroup.frame.width / 2
-        energyGroup.position.y -= energyGroup.frame.height / 2
+        energyGroup.position.x -= energyGroup.frame.halfWidth
+        energyGroup.position.y -= energyGroup.frame.halfHeight
         
         energyLabel = energyGroup.childNodeWithName("energyLabel") as? SKLabelNode
         energyLabel.position.x = 0

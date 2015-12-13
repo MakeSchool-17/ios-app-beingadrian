@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3305BFF21C1CCEFE00223784 /* SKNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3305BFEF1C1CCEFE00223784 /* SKNode+Extensions.swift */; };
+		3305BFF31C1CCEFE00223784 /* SKScene+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3305BFF01C1CCEFE00223784 /* SKScene+Extension.swift */; };
+		3305BFF41C1CCEFE00223784 /* SpriteKit+Spring+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3305BFF11C1CCEFE00223784 /* SpriteKit+Spring+Extension.swift */; };
+		3305BFF61C1CD0AB00223784 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3305BFF51C1CD0AB00223784 /* UIColor+Extension.swift */; };
+		3305BFF81C1CD4C200223784 /* CGSize+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3305BFF71C1CD4C200223784 /* CGSize+Extension.swift */; };
+		3305BFFA1C1CD73A00223784 /* CGFrame+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3305BFF91C1CD73A00223784 /* CGFrame+Extension.swift */; };
 		3309FB4D1BF7F64300BE0310 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3309FB4C1BF7F64300BE0310 /* HealthKit.framework */; };
 		3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */; };
 		330F6B401C14C01A004CCAED /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F6B3C1C14C01A004CCAED /* ParseHelper.swift */; };
@@ -34,7 +40,7 @@
 		333D1B0A1BFBF1FD001CCD5E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */; };
 		335557091C1BA00A0027FAE4 /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335557081C1BA00A0027FAE4 /* NavigationButton.swift */; };
 		3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */; };
-		33595FF31C188F7B003E1AB8 /* SpriteKit-Spring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33595FF21C188F7B003E1AB8 /* SpriteKit-Spring.swift */; };
+		3378475E1C1E054700B3722D /* SKButtonSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3378475D1C1E054700B3722D /* SKButtonSprite.swift */; };
 		338368DB1BF67852006407FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338368DA1BF67852006407FF /* AppDelegate.swift */; };
 		338368E41BF67852006407FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 338368E21BF67852006407FF /* Main.storyboard */; };
 		338368E61BF67852006407FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338368E51BF67852006407FF /* Assets.xcassets */; };
@@ -57,8 +63,6 @@
 		339DA2CF1C0F6E8B0025F064 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C71C0F6E430025F064 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		339DA2D11C0F6E8B0025F064 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C81C0F6E430025F064 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		33BBFD601C121E9900E76511 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD5E1C121E9900E76511 /* DashboardViewModel.swift */; };
-		33BBFD751C121F8300E76511 /* LayoutExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD641C121F8300E76511 /* LayoutExtensions.swift */; };
-		33BBFD761C121F8300E76511 /* SKSceneExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD651C121F8300E76511 /* SKSceneExtension.swift */; };
 		33BBFD771C121F8300E76511 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD691C121F8300E76511 /* MenuButton.swift */; };
 		33BBFD781C121F8300E76511 /* StatsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD6A1C121F8300E76511 /* StatsButton.swift */; };
 		33BBFD791C121F8300E76511 /* DashboardScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 33BBFD6B1C121F8300E76511 /* DashboardScene.sks */; };
@@ -101,6 +105,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3305BFEF1C1CCEFE00223784 /* SKNode+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKNode+Extensions.swift"; sourceTree = "<group>"; };
+		3305BFF01C1CCEFE00223784 /* SKScene+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKScene+Extension.swift"; sourceTree = "<group>"; };
+		3305BFF11C1CCEFE00223784 /* SpriteKit+Spring+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SpriteKit+Spring+Extension.swift"; sourceTree = "<group>"; };
+		3305BFF51C1CD0AB00223784 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		3305BFF71C1CD4C200223784 /* CGSize+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Extension.swift"; sourceTree = "<group>"; };
+		3305BFF91C1CD73A00223784 /* CGFrame+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFrame+Extension.swift"; sourceTree = "<group>"; };
 		3309FB4C1BF7F64300BE0310 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		3309FB4E1BF7F64300BE0310 /* ProjectCreature.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ProjectCreature.entitlements; sourceTree = "<group>"; };
 		3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKHelper.swift; sourceTree = "<group>"; };
@@ -130,7 +140,7 @@
 		333D1B091BFBF1FD001CCD5E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		335557081C1BA00A0027FAE4 /* NavigationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
 		3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
-		33595FF21C188F7B003E1AB8 /* SpriteKit-Spring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SpriteKit-Spring.swift"; sourceTree = "<group>"; };
+		3378475D1C1E054700B3722D /* SKButtonSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButtonSprite.swift; sourceTree = "<group>"; };
 		338368D71BF67852006407FF /* ProjectCreature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectCreature.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338368DA1BF67852006407FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		338368E31BF67852006407FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -157,8 +167,6 @@
 		339DA2C71C0F6E430025F064 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = SOURCE_ROOT; };
 		339DA2C81C0F6E430025F064 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = SOURCE_ROOT; };
 		33BBFD5E1C121E9900E76511 /* DashboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
-		33BBFD641C121F8300E76511 /* LayoutExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutExtensions.swift; sourceTree = "<group>"; };
-		33BBFD651C121F8300E76511 /* SKSceneExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKSceneExtension.swift; sourceTree = "<group>"; };
 		33BBFD691C121F8300E76511 /* MenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		33BBFD6A1C121F8300E76511 /* StatsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsButton.swift; sourceTree = "<group>"; };
 		33BBFD6B1C121F8300E76511 /* DashboardScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DashboardScene.sks; sourceTree = "<group>"; };
@@ -213,6 +221,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3305BFEE1C1CCEFE00223784 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3305BFEF1C1CCEFE00223784 /* SKNode+Extensions.swift */,
+				3305BFF91C1CD73A00223784 /* CGFrame+Extension.swift */,
+				3305BFF51C1CD0AB00223784 /* UIColor+Extension.swift */,
+				3305BFF71C1CD4C200223784 /* CGSize+Extension.swift */,
+				3305BFF01C1CCEFE00223784 /* SKScene+Extension.swift */,
+				3305BFF11C1CCEFE00223784 /* SpriteKit+Spring+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		330F6B3B1C14C01A004CCAED /* Parse+Rx */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,10 +456,8 @@
 		33BBFD621C121F8300E76511 /* Extras */ = {
 			isa = PBXGroup;
 			children = (
+				3305BFEE1C1CCEFE00223784 /* Extensions */,
 				330F6B441C14C040004CCAED /* SpriteKit+Rx */,
-				33BBFD641C121F8300E76511 /* LayoutExtensions.swift */,
-				33BBFD651C121F8300E76511 /* SKSceneExtension.swift */,
-				33595FF21C188F7B003E1AB8 /* SpriteKit-Spring.swift */,
 			);
 			path = Extras;
 			sourceTree = "<group>";
@@ -479,6 +498,7 @@
 				33BBFD731C121F8300E76511 /* BarHorizontal.swift */,
 				335557081C1BA00A0027FAE4 /* NavigationButton.swift */,
 				3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */,
+				3378475D1C1E054700B3722D /* SKButtonSprite.swift */,
 			);
 			path = Subclasses;
 			sourceTree = "<group>";
@@ -622,6 +642,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3378475E1C1E054700B3722D /* SKButtonSprite.swift in Sources */,
 				33BBFD7B1C121F8300E76511 /* DashboardSceneUI.swift in Sources */,
 				33BBFD7F1C121F8300E76511 /* BarHorizontal.swift in Sources */,
 				3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */,
@@ -629,8 +650,8 @@
 				33BBFD7A1C121F8300E76511 /* DashboardScene.swift in Sources */,
 				333532771C169158003145AA /* DashboardSceneAnimations.swift in Sources */,
 				333532701C164FC9003145AA /* StatsLayerUI.swift in Sources */,
+				3305BFF31C1CCEFE00223784 /* SKScene+Extension.swift in Sources */,
 				330F6B421C14C01A004CCAED /* PFQuery+Rx.swift in Sources */,
-				33595FF31C188F7B003E1AB8 /* SpriteKit-Spring.swift in Sources */,
 				333532751C1651D4003145AA /* MenuLayerUI.swift in Sources */,
 				330F6B401C14C01A004CCAED /* ParseHelper.swift in Sources */,
 				33BBFD601C121E9900E76511 /* DashboardViewModel.swift in Sources */,
@@ -638,16 +659,19 @@
 				330F6B4D1C151557004CCAED /* StatsViewModel.swift in Sources */,
 				330F6B461C14C040004CCAED /* SKLabelNode+Rx.swift in Sources */,
 				33BBFD781C121F8300E76511 /* StatsButton.swift in Sources */,
+				3305BFF21C1CCEFE00223784 /* SKNode+Extensions.swift in Sources */,
 				333532731C165176003145AA /* MenuLayer.swift in Sources */,
 				339874281BFFFE7200F47B2B /* GameManager.swift in Sources */,
+				3305BFF61C1CD0AB00223784 /* UIColor+Extension.swift in Sources */,
 				339DA2C31C0E541B0025F064 /* Creature.swift in Sources */,
 				330F6B411C14C01A004CCAED /* PFObject+Rx.swift in Sources */,
 				3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */,
 				335557091C1BA00A0027FAE4 /* NavigationButton.swift in Sources */,
-				33BBFD751C121F8300E76511 /* LayoutExtensions.swift in Sources */,
+				3305BFFA1C1CD73A00223784 /* CGFrame+Extension.swift in Sources */,
 				33BBFD771C121F8300E76511 /* MenuButton.swift in Sources */,
+				3305BFF41C1CCEFE00223784 /* SpriteKit+Spring+Extension.swift in Sources */,
+				3305BFF81C1CD4C200223784 /* CGSize+Extension.swift in Sources */,
 				330F6B4B1C150BA2004CCAED /* CreatureOwnerProtocol.swift in Sources */,
-				33BBFD761C121F8300E76511 /* SKSceneExtension.swift in Sources */,
 				3335326E1C164F6B003145AA /* StatsLayer.swift in Sources */,
 				331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */,
 			);

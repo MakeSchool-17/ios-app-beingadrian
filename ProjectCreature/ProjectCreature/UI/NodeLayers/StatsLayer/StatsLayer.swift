@@ -31,6 +31,12 @@ class StatsLayer: SKSpriteNode {
     var circleBack: CircleProgressBar!
     var circleFront: CircleProgressBar!
     
+    var histogramGroup: SKSpriteNode!
+    var histogramBarsBack: SKSpriteNode!
+    var histogramPointer: SKSpriteNode!
+    var histogramBarsFront: [SKSpriteNode] = []
+    
+    var closeButton: SKSpriteNode!
     
     // MARK: - Base methods
     
@@ -39,7 +45,8 @@ class StatsLayer: SKSpriteNode {
         let texture = SKTexture(imageNamed: "Background")
         super.init(texture: texture, color: UIColor(), size: size)
         
-        self.userInteractionEnabled = true
+        // disable user interaction to avoid touch conflicts during transition
+        self.userInteractionEnabled = false
         
         self.alpha = 0
         
@@ -55,16 +62,43 @@ class StatsLayer: SKSpriteNode {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
+        guard let touch = touches.first else { return }
+        let touchLocation = touch.locationInNode(self)
         
+        let touchedNode = self.nodeAtPoint(touchLocation)
+        
+        if touchedNode.isEqualToNode(closeButton) {
+            self.transitionOut {
+                guard let dashboardScene = self.parent as? DashboardScene else { return }
+                dashboardScene.transitionIn {
+                    // re-enable dashboard buttons
+                    dashboardScene.menuButton.userInteractionEnabled = true
+                    dashboardScene.statsButton.userInteractionEnabled = true
+                    self.removeFromParent()
+                }
+            }
+        }
         
     }
     
     // MARK: - Transitions
     
-    func transitionIn() {
+    typealias TransitionCallback = () -> Void
+    
+    func transitionIn(completion: TransitionCallback) {
         
         let fadeInAction = SKAction.fadeInWithDuration(0.35)
-        self.runAction(fadeInAction)
+        self.runAction(fadeInAction, completion: completion)
+        
+    }
+    
+    func transitionOut(completion: TransitionCallback) {
+        
+        // disable user interaction to avoid touch conflicts
+        self.userInteractionEnabled = false
+        
+        let fadeOutAction = SKAction.fadeOutWithDuration(0.15)
+        self.runAction(fadeOutAction, completion: completion)
         
     }
 
