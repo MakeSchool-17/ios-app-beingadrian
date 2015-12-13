@@ -9,7 +9,7 @@
 
 extension UIColor {
     
-    public class func rgbaColor(r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) -> UIColor {
+    public class func rgbaColor(r r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) -> UIColor {
     
         return UIColor(
             red: r/255,

@@ -21,7 +21,7 @@ extension MenuLayer {
             
             let fontSize: CGFloat = 15
             let fontName = "HelveticaNeue"
-            let fontColor = UIColor.rgbaColor(141, g: 142, b: 145, a: 1)
+            let fontColor = UIColor.rgbaColor(r: 141, g: 142, b: 145, a: 1)
             
             let label = SKLabelNode(text: text)
             label.fontName = fontName

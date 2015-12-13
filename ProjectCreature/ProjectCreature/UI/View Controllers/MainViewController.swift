@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
         super.viewWillLayoutSubviews()
         
         guard let view = view as? SKView else { return }
-        guard let scene = SKScene(fileNamed: "DashboardScene") as? DashboardScene else { return }
+        let scene = DashboardScene(size: view.frame.size)
         scene.scaleMode = .Fill
         
         view.presentScene(scene)

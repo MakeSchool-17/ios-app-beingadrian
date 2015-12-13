@@ -134,8 +134,8 @@ extension StatsLayer {
         // circle magic numbers
         let radius: CGFloat = 115 - (37 / 4)
         let width: CGFloat = 37 / 2
-        let greyColor = UIColor.rgbaColor(216, g: 216, b: 216, a: 1)
-        let tealColor = UIColor.rgbaColor(71, g: 216, b: 178, a: 1)
+        let greyColor = UIColor.rgbaColor(r: 216, g: 216, b: 216, a: 1)
+        let tealColor = UIColor.rgbaColor(r: 71, g: 216, b: 178, a: 1)
         
         // circle back
         circleBack = CircleProgressBar(

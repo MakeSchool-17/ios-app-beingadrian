@@ -52,6 +52,14 @@ class DashboardScene: SKScene {
     
     // MARK: - Base methods
     
+    override init(size: CGSize) {
+        super.init(size: size)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func didMoveToView(view: SKView) {
         
         setup()
@@ -167,10 +175,7 @@ class DashboardScene: SKScene {
     
     func pushStatsLayer() {
         
-        // disable buttons
         self.userInteractionEnabled = false
-        statsButton.userInteractionEnabled = false
-        menuButton.userInteractionEnabled = false
         
         self.transitionOut {
             let statsLayer = StatsLayer(size: self.frame.size)
