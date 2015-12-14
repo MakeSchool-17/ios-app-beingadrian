@@ -19,18 +19,18 @@ extension DashboardScene {
     func transitionIn(completion completion: TransitionCallback) {
         
         // set initial position
-        dashboard.position.y = self.frame.maxX + 400
+        dashboard.position.y = self.frame.maxY + 70
         statsButton.position.y = -200
         menuButton.position.y = -200
         energyGroup.position.y = -200
         
-        let dashboardAction = createMoveActionSpring(
+        let dashboardAction = createMoveActionCustomEaseOut(
             finalPositionY: self.frame.maxY - 25)
-        let statsButtonAction = createMoveActionSpring(
+        let statsButtonAction = createMoveActionCustomEaseOut(
             finalPositionY: 15 + statsButton.size.halfHeight)
-        let menuButtonAction = createMoveActionSpring(
+        let menuButtonAction = createMoveActionCustomEaseOut(
             finalPositionY: 15 + menuButton.size.halfWidth)
-        let energyGroupAction = createMoveActionSpring(
+        let energyGroupAction = createMoveActionCustomEaseOut(
             finalPositionY: 35)
         
         let action = SKAction.runBlock {
@@ -68,15 +68,18 @@ extension DashboardScene {
     
     // MARK: - Spring action
     
-    func createMoveActionSpring(finalPositionY y: CGFloat) -> SKAction {
+    func createMoveActionCustomEaseOut(finalPositionY y: CGFloat) -> SKAction {
         
-        let springAction = SKAction.moveToY(y,
-            duration: 1.1,
-            delay: 0,
-            usingSpringWithDamping: 1.5,
-            initialSpringVelocity: 0)
+        let duration: Double = 0.7
+        let actionEaseOut = SKAction.moveToY(y, duration: duration)
         
-        return springAction
+        func cubicEaseOut(t: Float) -> Float {
+            return 1 - pow(1 - t / Float(duration), 5)
+        }
+        
+        actionEaseOut.timingFunction = cubicEaseOut
+        
+        return actionEaseOut
         
     }
     

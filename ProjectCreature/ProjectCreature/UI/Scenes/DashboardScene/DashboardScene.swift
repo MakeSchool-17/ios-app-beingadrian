@@ -83,19 +83,15 @@ class DashboardScene: SKScene {
             }
             .addDisposableTo(disposeBag)
         
-        transitionIn {
-            self.menuButton.userInteractionEnabled = true
-        }
+        transitionIn {}
 
     }
     
     func setup() {
         
         setupUI()
-        
-        // setup buttons
-        statsButton.userInteractionEnabled = true
-        menuButton.userInteractionEnabled = true
+    
+        self.userInteractionEnabled = true
         
     }
     
@@ -159,17 +155,11 @@ class DashboardScene: SKScene {
         
         let touchedNode = self.nodeAtPoint(touchLocation)
         
-        // TODO: Combine buttons and let touchesBegan handle all touches
-        
-        switch touchedNode {
-        case touchedNode.isEqualToNode(statsButton):
+        if touchedNode.isEqualToNode(statsButton) {
             pushStatsLayer()
-        case touchedNode.isEqualToNode(menuButton):
+        } else if touchedNode.isEqualToNode(menuButton) {
             pushMenuLayer()
-        default:
-            break
         }
-        
         
     }
     

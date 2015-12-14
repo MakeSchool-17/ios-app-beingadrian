@@ -45,7 +45,7 @@ class StatsLayer: SKSpriteNode {
         let texture = SKTexture(imageNamed: "Background")
         super.init(texture: texture, color: UIColor(), size: size)
         
-        // disable user interaction to avoid touch conflicts during transition
+        // initially disable user interaction to avoid touch conflicts during transition
         self.userInteractionEnabled = false
         
         self.alpha = 0
@@ -71,9 +71,7 @@ class StatsLayer: SKSpriteNode {
             self.transitionOut {
                 guard let dashboardScene = self.parent as? DashboardScene else { return }
                 dashboardScene.transitionIn {
-                    // re-enable dashboard buttons
-                    dashboardScene.menuButton.userInteractionEnabled = true
-                    dashboardScene.statsButton.userInteractionEnabled = true
+                    dashboardScene.userInteractionEnabled = true
                     self.removeFromParent()
                 }
             }
@@ -98,6 +96,7 @@ class StatsLayer: SKSpriteNode {
         self.userInteractionEnabled = false
         
         let fadeOutAction = SKAction.fadeOutWithDuration(0.15)
+        
         self.runAction(fadeOutAction, completion: completion)
         
     }

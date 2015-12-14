@@ -192,9 +192,9 @@ extension StatsLayer {
         // MARK: Close button
         
         closeButton = SKSpriteNode(imageNamed: "Close button")
-        closeButton.position.x = self.frame.maxX - (15 + closeButton.size.halfWidth)
-        closeButton.position.y = self.frame.minY + (15 + closeButton.size.halfHeight)
         self.addChild(closeButton)
+        closeButton.position.x = 15 + closeButton.size.halfWidth
+        closeButton.position.y = 15 + closeButton.size.halfHeight
         
     }
     
