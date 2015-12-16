@@ -60,45 +60,45 @@ extension SKAction {
         return animateKeyPath("y", toValue: y, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
 }
-//
-//
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-//// MARK: Rotate
-//
-//extension SKAction {
-//
-//    public class func rotateByAngle(radians: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-//
-//        return animateKeyPath("zRotation", byValue: radians, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-//    }
-//
-//    public class func rotateToAngle(radians: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-//
-//        return animateKeyPath("zRotation", toValue: radians, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-//    }
-//}
-//
-//
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-//// MARK: Speed
-//
-//extension SKAction {
-//
-//    public class func speedBy(speed: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-//
-//        return animateKeyPath("speed", byValue: speed, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-//    }
-//
-//    public class func speedTo(speed: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-//
-//        return animateKeyPath("speed", toValue: speed, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-//    }
-//}
-//
-//
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-//// MARK: Scale
-//
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// MARK: Rotate
+
+extension SKAction {
+
+    public class func rotateByAngle(radians: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+
+        return animateKeyPath("zRotation", byValue: radians, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    }
+
+    public class func rotateToAngle(radians: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+
+        return animateKeyPath("zRotation", toValue: radians, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// MARK: Speed
+
+extension SKAction {
+
+    public class func speedBy(speed: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+
+        return animateKeyPath("speed", byValue: speed, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    }
+
+    public class func speedTo(speed: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+
+        return animateKeyPath("speed", toValue: speed, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// MARK: Scale
+
 extension SKAction {
 
     public class func scaleBy(scale: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
@@ -137,78 +137,78 @@ extension SKAction {
         return SKAction.group([scaleXTo, scaleYTo])
     }
 }
-//
-//
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-//// MARK: Fade
-//
-//extension SKAction {
-//
-//    public class func fadeInWithDuration(duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-//
-//        return animateKeyPath("alpha", toValue: 1, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-//    }
-//
-//    public class func fadeOutWithDuration(duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-//
-//        return animateKeyPath("alpha", toValue: 0, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-//    }
-//
-//    public class func fadeAlphaBy(factor: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-//
-//        return animateKeyPath("alpha", byValue: factor, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-//    }
-//
-//    public class func fadeAlphaTo(factor: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-//
-//        return animateKeyPath("alpha", toValue: factor, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-//    }
-//}
-//
-//
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-//// MARK: Resize
-//
-//extension SKAction {
-//
-//    public class func resizeByWidth(width: CGFloat, height: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-//
-//        let resizeByWidth = animateKeyPath("width", byValue: width, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-//        let resizeByHeight = animateKeyPath("height", byValue: height, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-//
-//        return SKAction.group([resizeByWidth, resizeByHeight])
-//    }
-//
-//    public class func resizeToWidth(width: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-//
-//        return animateKeyPath("width", toValue: width, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-//    }
-//
-//    public class func resizeToHeight(height: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-//
-//        return animateKeyPath("height", toValue: height, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-//    }
-//
-//    public class func resizeToWidth(width: CGFloat, height: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-//
-//        let resizeToWidth = self.resizeToWidth(width, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-//        let resizeToHeight = self.resizeToHeight(height, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-//
-//        return SKAction.group([resizeToWidth, resizeToHeight])
-//    }
-//}
-//
-//
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-//// MARK: Colorize
-//
-//extension SKAction {
-//
-//    public class func colorizeWithColorBlendFactor(colorBlendFactor: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
-//
-//        return animateKeyPath("colorBlendFactor", toValue: colorBlendFactor, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
-//    }
-//}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// MARK: Fade
+
+extension SKAction {
+
+    public class func fadeInWithDuration(duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+
+        return animateKeyPath("alpha", toValue: 1, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    }
+
+    public class func fadeOutWithDuration(duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+
+        return animateKeyPath("alpha", toValue: 0, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    }
+
+    public class func fadeAlphaBy(factor: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+
+        return animateKeyPath("alpha", byValue: factor, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    }
+
+    public class func fadeAlphaTo(factor: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+
+        return animateKeyPath("alpha", toValue: factor, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// MARK: Resize
+
+extension SKAction {
+
+    public class func resizeByWidth(width: CGFloat, height: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+
+        let resizeByWidth = animateKeyPath("width", byValue: width, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+        let resizeByHeight = animateKeyPath("height", byValue: height, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+
+        return SKAction.group([resizeByWidth, resizeByHeight])
+    }
+
+    public class func resizeToWidth(width: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+
+        return animateKeyPath("width", toValue: width, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    }
+
+    public class func resizeToHeight(height: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+
+        return animateKeyPath("height", toValue: height, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    }
+
+    public class func resizeToWidth(width: CGFloat, height: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+
+        let resizeToWidth = self.resizeToWidth(width, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+        let resizeToHeight = self.resizeToHeight(height, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+
+        return SKAction.group([resizeToWidth, resizeToHeight])
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// MARK: Colorize
+
+extension SKAction {
+
+    public class func colorizeWithColorBlendFactor(colorBlendFactor: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
+
+        return animateKeyPath("colorBlendFactor", toValue: colorBlendFactor, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
+    }
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -226,14 +226,7 @@ extension SKAction {
         return animateKeyPath(keyPath, byValue: nil, toValue: finalValue, duration: duration, delay: delay, usingSpringWithDamping: dampingRatio, initialSpringVelocity: velocity)
     }
 
-    private class func animateKeyPath(
-        keyPath: String,
-        var byValue initialDistance: CGFloat,
-        var toValue finalValue: CGFloat,
-        duration: NSTimeInterval,
-        delay: NSTimeInterval,
-        usingSpringWithDamping dampingRatio: CGFloat,
-        initialSpringVelocity velocity: CGFloat) -> SKAction {
+    private class func animateKeyPath(keyPath: String, var byValue initialDistance: CGFloat!, var toValue finalValue: CGFloat!, duration: NSTimeInterval, delay: NSTimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat) -> SKAction {
 
         var initialValue: CGFloat!
         var naturalFrequency, dampedFrequency, t1, t2: CGFloat!
@@ -305,4 +298,63 @@ extension SKAction {
 }
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// MARK: - KVC Extensions -
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// MARK: SKNode
+
+extension SKNode {
+
+    var x: CGFloat {
+        get {
+
+            return position.x
+        }
+        set {
+
+            position.x = newValue
+        }
+    }
+
+    var y: CGFloat {
+        get {
+
+            return position.y
+        }
+        set {
+
+            position.y = newValue
+        }
+    }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// MARK: SKSpriteNode
+
+extension SKSpriteNode {
+
+    var width: CGFloat {
+        get {
+
+            return size.width
+        }
+        set {
+
+            size.width = newValue
+        }
+    }
+
+    var height: CGFloat {
+        get {
+
+            return size.height
+        }
+        set {
+
+            size.height = newValue
+        }
+    }
+}

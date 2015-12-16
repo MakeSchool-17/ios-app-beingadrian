@@ -11,9 +11,10 @@ import SpriteKit
 
 extension SKScene {
     
-    var parseHelper: ParseHelper {
-        return ParseHelper()
-    }
+    // TODO: Remove ParseHelper
+//    var parseHelper: ParseHelper {
+//        return ParseHelper()
+//    }
     
     var healthHelper: HKHelper {
         return HKHelper()

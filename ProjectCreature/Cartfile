@@ -3,3 +3,6 @@ github "ReactiveX/RxSwift" "2.0.0-beta.3"
 
 # SpriteKit Spring
 github "ataugeron/SpriteKit-Spring"
+
+# Gloss 
+github "hkellaway/Gloss"

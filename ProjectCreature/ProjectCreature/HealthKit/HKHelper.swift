@@ -6,6 +6,7 @@
 //  Copyright © 2015 BeingAdrian. All rights reserved.
 //
 
+import UIKit
 import Foundation
 import HealthKit
 import RxSwift
