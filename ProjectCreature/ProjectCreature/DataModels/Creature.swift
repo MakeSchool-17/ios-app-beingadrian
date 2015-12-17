@@ -45,9 +45,9 @@ class Creature {
         self.name = Variable(name)
         self.level = Variable(0)
         self.exp = Variable(0)
-        self.expMax = Variable(0)
+        self.expMax = Variable(10)
         self.hp = Variable(0)
-        self.hpMax = Variable(0)
+        self.hpMax = Variable(10)
         self.family = Variable(family)
         self.ownerUID = Variable(owner.uid)
         

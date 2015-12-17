@@ -9,7 +9,6 @@
 import Foundation
 import SpriteKit
 import RxSwift
-import RxCocoa
 
 
 class DashboardViewModel {
@@ -25,14 +24,14 @@ class DashboardViewModel {
     var creatureSprite: Variable<SKSpriteNode>
     var cash: Variable<String>
     
-    init(creature: Creature) {
+    init(creature: Creature, user: User) {
         
         func getPercentageFrom(a: Float, dividedBy b: Float) -> Variable<Float> {
             let percentage = round(a / b * 100)
             return Variable(percentage)
         }
         
-        self.creatureName = creature.name
+        self.creatureName = Variable(creature.name.value)
         self.creatureLevel = Variable(String(creature.level.value))
         
         self.creatureExpPercentage = getPercentageFrom(
@@ -41,22 +40,23 @@ class DashboardViewModel {
             creature.hp.value, dividedBy: creature.hpMax.value)
         
         // TODO: Improve cash access code
-        self.cash = Variable("")
+        let cashString = String(user.cash.value)
+        self.cash = Variable(cashString)
         
         // TODO: Finalize imageName code
         let imageName = creature.family.value.description
         self.creatureSprite = Variable(SKSpriteNode(imageNamed: imageName))
         
         // Bind creature and user to model view
-//        rx_bindToViewModel(creature, andUser: currentUser)
+        bindCreatureToViewModel(creature)
         
     }
     
-    func rx_bindToViewModel(creature: Creature, andUser currentUser: User) {
+    func bindCreatureToViewModel(creature: Creature) {
         
         creature.name
-            .subscribeNext {
-                self.creatureName.value = $0
+            .subscribeNext { name in
+                self.creatureName.value = name
             }
             .addDisposableTo(disposeBag)
 
@@ -82,6 +82,8 @@ class DashboardViewModel {
             }
             .addDisposableTo(disposeBag)
 
+        guard let currentUser = FirebaseHelper.currentUser else { return }
+        
         currentUser.cash
             .subscribeNext {
                 self.cash.value = String($0)
