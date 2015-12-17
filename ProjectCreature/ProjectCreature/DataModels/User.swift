@@ -22,17 +22,17 @@ class User {
     var email: String
     var username: String
     var cash: Variable<Int>
-    var id: String
+    var uid: String
     
     /**
     Initializes the class from scratch.
     */
-    init(email: String, username: String, id: String) {
+    init(email: String, username: String, uid: String) {
         
         self.email = email
         self.username = username
         self.cash = Variable(0)
-        self.id = id
+        self.uid = uid
         
         bindToFirebase()
         
@@ -41,12 +41,14 @@ class User {
     /** 
     Initializes the class from a Firebase data model.
     */
-    init(id: String, model: UserJsonModel) {
+    init(uid: String, model: UserJsonModel) {
+        
+        print("> Initializing User from a Firebase data model")
         
         self.email = model.email
         self.username = model.username
         self.cash = Variable(model.cash)
-        self.id = id
+        self.uid = uid
         
         bindToFirebase()
         
@@ -57,12 +59,11 @@ class User {
     */
     func bindToFirebase() {
         
-        let firebaseRef = firebaseHelper.usersRef.childByAppendingPath(id)
+        let ref = firebaseHelper.usersRef.childByAppendingPath(uid)
         
         cash
             .subscribeNext { cash in
-                firebaseRef
-                    .childByAppendingPath("cash")
+                ref.childByAppendingPath("cash")
                     .setValue(cash)
             }
             .addDisposableTo(disposeBag)

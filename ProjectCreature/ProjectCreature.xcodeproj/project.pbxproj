@@ -43,6 +43,7 @@
 		3378477A1C1F6D3200B3722D /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337847791C1F6D3200B3722D /* Gloss.framework */; };
 		3378477B1C1F6D4200B3722D /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337847791C1F6D3200B3722D /* Gloss.framework */; };
 		3378477C1C1F6D4200B3722D /* Gloss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 337847791C1F6D3200B3722D /* Gloss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		337847831C22202E00B3722D /* CreatureJsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337847821C22202E00B3722D /* CreatureJsonModel.swift */; };
 		338368DB1BF67852006407FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338368DA1BF67852006407FF /* AppDelegate.swift */; };
 		338368E41BF67852006407FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 338368E21BF67852006407FF /* Main.storyboard */; };
 		338368E61BF67852006407FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338368E51BF67852006407FF /* Assets.xcassets */; };
@@ -131,6 +132,7 @@
 		337847741C1F556A00B3722D /* Firebase+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Firebase+Rx.swift"; sourceTree = "<group>"; };
 		337847771C1F6B4000B3722D /* UserJsonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserJsonModel.swift; sourceTree = "<group>"; };
 		337847791C1F6D3200B3722D /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = Carthage/Build/iOS/Gloss.framework; sourceTree = SOURCE_ROOT; };
+		337847821C22202E00B3722D /* CreatureJsonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureJsonModel.swift; sourceTree = "<group>"; };
 		338368D71BF67852006407FF /* ProjectCreature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectCreature.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338368DA1BF67852006407FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		338368E31BF67852006407FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				337847771C1F6B4000B3722D /* UserJsonModel.swift */,
+				337847821C22202E00B3722D /* CreatureJsonModel.swift */,
 			);
 			path = "JSON Models";
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				3305BFF21C1CCEFE00223784 /* SKNode+Extensions.swift in Sources */,
 				333532731C165176003145AA /* MenuLayer.swift in Sources */,
 				339874281BFFFE7200F47B2B /* GameManager.swift in Sources */,
+				337847831C22202E00B3722D /* CreatureJsonModel.swift in Sources */,
 				3305BFF61C1CD0AB00223784 /* UIColor+Extension.swift in Sources */,
 				3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */,
 				335557091C1BA00A0027FAE4 /* NavigationButton.swift in Sources */,

@@ -38,111 +38,85 @@ class FirebaseHelper {
     enum FirebaseError: ErrorType {
         case NoConnection
         case ParsingError
+        case SomeError(NSError)
         case UnexpectedError(message: String)
     }
     
-    // MARK: - User
-    
     static var currentUser: User?
     
-    // MARK: - User authentication methods
+    // MARK: - User authentication
     
+    /** 
+    Signs the new user up through the following process:
+    1. Creates the user on Firebase
+    2. Logs in the new user through password authentication 
+    3. Creates user json tree if previous steps are successful
+    */
     func signupUser(username username: String, email: String, password: String) -> Observable<User> {
         
-        return create { observer in
-            
-            self.rootRef.createUser(email, password: password) {
-                (error, result) in
+        return rootRef.rx_createUser(email, password: password)
+            .flatMap { _ -> Observable<User> in
                 
-                if let error = error {
-                    // an error occured
-                    print("> Error signing up: \(error)")
-                    observer.onError(error)
-                } else {
-                    // successfully signed up on firebase
-                    let userRef = self.usersRef.childByAutoId()
-                    let userJsonStruct = UserJsonModel(
-                        email: email,
-                        username: username)
-                    
-                    // create json tree for user
-                    userRef.setValue(userJsonStruct.toJSON()) {
-                        (err, firebaseRef) in
+                return self.rootRef.rx_authUser(email, password: password)
+                    .flatMap { (authData: FAuthData!) -> Observable<User> in
                         
-                        if let error = error {
-                            observer.onError(error)
-                        } else {
-                            let user = User(
-                                email: email,
-                                username: username,
-                                id: firebaseRef.key)
-                            
-                            observer.onNext(user)
-                            observer.onCompleted()
-                        }
+                        let userJson = UserJsonModel(email: email, username: username)
+                            .toJSON()
+                        
+                        let ref = self.usersRef.childByAppendingPath(authData.uid)
+                        return ref.rx_setValue(userJson)
+                            .map { (firebaseRef: Firebase!) -> User in
+                                return User(email: email, username: username, uid: authData.uid)
+                            }
                     }
-                }
             }
-            
-            return NopDisposable.instance
-        }
         
     }
     
-    func loginUser(email email: String, password: String) {
+    func loginUser(email email: String, password: String) -> Observable<User> {
         
-        rootRef.authUser(email, password: password) {
-            (error, authData) in
-            
-            print("> Error logging in user: \(error)")
-            print("> Login auth data: \(authData)")
-        }
-        
-    }
-    
-    func loginUser(username username: String, password: String) {
-
-        
+        return usersRef.rx_authUser(email, password: password)
+            .flatMap { authData in
+                return self.fetchUserData(byUID: authData.uid)
+            }
     }
     
     func logoutUser() {
         
-        
+        rootRef.unauth()
+        FirebaseHelper.currentUser = nil
         
     }
     
-    // MARK: - User methods
+    // MARK: - User data
     
-    func fetchUser(byEmail email: String) -> Observable<User> {
+    func fetchUserData(byUID uid: String) -> Observable<User> {
         
         return create { observer in
-        
+            
             self.usersRef
-                .queryOrderedByChild("email")
-                .queryEqualToValue(email)
+                .childByAppendingPath(uid)
                 .observeSingleEventOfType(.Value) {
                     (snapshot: FDataSnapshot!) in
                     
-                    guard let (key, value) = self.parseSnapshotValue(snapshot.value) else {
+                    guard let userJson = snapshot.value as? JSON else {
                         observer.onError(FirebaseError.ParsingError)
                         return
                     }
-                    
-                    guard let userJsonModel = UserJsonModel(json: value) else {
+                    guard let userJsonModel = UserJsonModel(json: userJson) else {
                         observer.onError(FirebaseError.UnexpectedError(
-                            message: "Error creating UserJsonModel")
-                        )
+                            message: "Error creating UserJsonModel"))
                         return
                     }
                     
-                    let user = User(id: key, model: userJsonModel)
+                    let user = User(uid: uid, model: userJsonModel)
                     observer.onNext(user)
                     observer.onCompleted()
-            }
+                }
             
             return NopDisposable.instance
         }
-
+        
     }
     
     func fetchUserData(byUsername username: String) -> Observable<User> {
@@ -155,19 +129,19 @@ class FirebaseHelper {
                 .observeSingleEventOfType(.Value) {
                     (snapshot: FDataSnapshot!) in
                     
-                    guard let (key, value) = self.parseSnapshotValue(snapshot.value) else {
+                    guard let (uid, jsonModel) = self.parseSnapshotValue(snapshot.value) else {
                         observer.onError(FirebaseError.ParsingError)
                         return
                     }
                     
-                    guard let userJsonModel = UserJsonModel(json: value) else {
+                    guard let userJsonModel = UserJsonModel(json: jsonModel) else {
                         observer.onError(FirebaseError.UnexpectedError(
                             message: "Error creating UserJsonModel")
                         )
                         return
                     }
                     
-                    let user = User(id: key, model: userJsonModel)
+                    let user = User(uid: uid, model: userJsonModel)
                     observer.onNext(user)
                     observer.onCompleted()
             }
@@ -203,12 +177,47 @@ class FirebaseHelper {
         
     }
     
-    // MARK: - Creature meethods
+    // MARK: - Creature methods
     
-    func createCreature(creature: Creature) {
+    func createCreature(fromCreature creature: Creature) {
         
-        
+        let creatureJson = CreatureJsonModel(creature: creature).toJSON()
+
+        creaturesRef
+            .childByAppendingPath(String(creature.id.value))
+            .setValue(creatureJson)
         
     }
     
+    func fetchCreature(fromUser user: User) -> Observable<Creature> {
+        
+        return create { observer in
+            
+            self.creaturesRef
+                .queryOrderedByChild("ownerUID")
+                .queryEqualToValue(user.uid)
+                .observeSingleEventOfType(.Value) {
+                    (snapshot: FDataSnapshot!) in
+                    
+                    guard let (id, jsonModel) = self.parseSnapshotValue(snapshot.value) else {
+                        observer.onError(FirebaseError.ParsingError)
+                        return
+                    }
+                    
+                    guard let creatureJsonModel = CreatureJsonModel(json: jsonModel) else {
+                        observer.onError(FirebaseError.UnexpectedError(
+                            message: "Error creating CreatureJsonModel")
+                        )
+                        return
+                    }
+                    
+                    let creature = Creature(id: id, model: creatureJsonModel)
+                    observer.onNext(creature)
+                    observer.onCompleted()
+            }
+            
+            return NopDisposable.instance
+        }
+        
+    }
 }

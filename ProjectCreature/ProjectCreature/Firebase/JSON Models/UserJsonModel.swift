@@ -16,12 +16,14 @@ struct UserJsonModel: Glossy {
     var username: String
     var cash: Int
     
+    // TODO: Provider
+    
     init(email: String, username: String) {
         
         self.email = email
         self.username = username
         self.cash = 0
-        
+
     }
     
     // MARK: - Deserialization

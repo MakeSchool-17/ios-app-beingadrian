@@ -65,25 +65,6 @@ class DashboardScene: SKScene {
         
         transitionIn {}
         
-//        firebaseHelper.signupUser(username: "beingadrian", email: "dev@beingadrian.com", password: "test")
-//            .subscribe(
-//                onNext: { (user) -> Void in
-//                    print(user)
-//                },
-//                onError: { (error) -> Void in
-//                    print(error)
-//                },
-//                onCompleted: { () -> Void in
-//                    
-//                },
-//                onDisposed: {
-//                
-//                })
-//            .addDisposableTo(disposeBag)
-        
-        
-        
-        
     }
     
     func setup() {
@@ -172,8 +153,6 @@ class DashboardScene: SKScene {
         let menuLayer = MenuLayer(size: self.frame.size, scene: self)
         self.addChild(menuLayer)
         menuLayer.transitionIn()
-        
-        firebaseHelper.loginUser(email: "dev@beingadrian.com", password: "test")
         
     }
     
