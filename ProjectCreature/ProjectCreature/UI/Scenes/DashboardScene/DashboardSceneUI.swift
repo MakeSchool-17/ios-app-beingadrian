@@ -175,8 +175,8 @@ extension DashboardScene {
     
     func readjustLevelLabelXPosition() {
 
-        lvLabel.position.x = creatureNameLabel.frame.maxX + 7
-        creatureLevelLabel.position.x = lvLabel.frame.maxX + 1
+        lvLabel.position.x = creatureNameLabel.frame.width + 7
+        creatureLevelLabel.position.x = lvLabel.frame.width + 1
         
     }
     

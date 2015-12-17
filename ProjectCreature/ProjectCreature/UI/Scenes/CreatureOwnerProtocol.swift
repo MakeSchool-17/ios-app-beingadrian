@@ -13,6 +13,7 @@ import RxSwift
 
 protocol CreatureOwner: class {
     
-    var creature: Creature? { get set }
+    // TODO: CreatureOwner protocol
+//    var creature: Creature? { get set }
     
 }

@@ -12,11 +12,11 @@ import RxSwift
 
 class GameManager {
     
-    var creature: Variable<Creature>
+    var creature: Creature
     
     init(creature: Creature) {
         
-        self.creature = Variable(creature)
+        self.creature = creature
         
     }
     

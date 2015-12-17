@@ -12,6 +12,8 @@ import RxSwift
 
 class StatsLayer: SKSpriteNode {
     
+    private var disposeBag = DisposeBag()
+    
     // MARK: - UI Properties
     
     var statisticsTitleLabel: SKLabelNode!

@@ -9,12 +9,14 @@
 import SpriteKit
 import RxSwift
 import RxCocoa
-import UIKit
+import Firebase
 
 
 class DashboardScene: SKScene {
     
-    var disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
+    
+    let firebaseHelper = FirebaseHelper()
     
     // MARK: - UI Properties
     
@@ -44,47 +46,45 @@ class DashboardScene: SKScene {
     var energyLabel: SKLabelNode!
     var energyIcon: SKSpriteNode!
     
-    var creature: Creature?
     var gameManager: GameManager?
     
     var viewModel: DashboardViewModel?
     
-    
     // MARK: - Base methods
     
-    override init(size: CGSize) {
-        super.init(size: size)
-    }
+    override init(size: CGSize) { super.init(size: size) }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("> init(coder:) has not been implemented")
     }
     
     override func didMoveToView(view: SKView) {
         
         setup()
-
-        parseHelper.retrieveUserCreatureParseObjectFrom(.Local)
-            .subscribe(
-                onNext: { (object) -> Void in
-                    guard let creature = object as? Creature else { return }
-                    self.creature = creature
-                    self.viewModel = DashboardViewModel(creature: self.creature!)
-                    self.gameManager = GameManager(creature: creature)
-                    self.bindUI()
-                },
-                onError: { (error) -> Void in
-                    print("> Error retrieving user creature")
-                },
-                onCompleted: { () -> Void in
-                    print("> Complete retrieving user creature")
-                }) { () -> Void in
-                    print("> Disposed retrieve creature subscription")
-            }
-            .addDisposableTo(disposeBag)
         
         transitionIn {}
 
+        firebaseHelper.loginUser(email: "dev@beingadrian.com", password: "test")
+            .subscribeNext { user in
+                
+                print("> Assign current user")
+                FirebaseHelper.currentUser = user
+                
+                self.firebaseHelper.fetchCreature(fromUser: FirebaseHelper.currentUser!)
+                    .subscribeNext { creature in
+                        
+                        print("> \(creature.name.value)")
+                        
+                        self.gameManager = GameManager(creature: creature)
+                        self.viewModel = DashboardViewModel(creature: self.gameManager!.creature, user: FirebaseHelper.currentUser!)
+                        self.bindUI()
+                        
+                    }
+                    .addDisposableTo(self.disposeBag)
+                
+            }
+            .addDisposableTo(disposeBag)
+        
     }
     
     func setup() {
@@ -95,21 +95,7 @@ class DashboardScene: SKScene {
         
     }
     
-    func createTestCreature() -> Creature {
-        
-        // TEST: initial creature creation
-        let testCreature = Creature()
-        testCreature.name = "Rob"
-        testCreature.family = "Background"
-        testCreature.hp = 100
-        testCreature.hpMax = 200
-        testCreature.exp = 100
-        testCreature.expMax = 200
-        testCreature.owner = PFUser.currentUser()!
-        
-        return testCreature
-        
-    }
+    // MARK: - UI Binding
     
     func bindUI() {
         
@@ -148,6 +134,8 @@ class DashboardScene: SKScene {
         
     }
     
+    // MARK: - Touch handling
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         guard let touch = touches.first else { return }
@@ -162,6 +150,8 @@ class DashboardScene: SKScene {
         }
         
     }
+    
+    // MARK: - Segues
     
     func pushStatsLayer() {
         
@@ -183,6 +173,9 @@ class DashboardScene: SKScene {
         let menuLayer = MenuLayer(size: self.frame.size, scene: self)
         self.addChild(menuLayer)
         menuLayer.transitionIn()
+        
+        self.gameManager?.creature.hp.value = 5
+        self.gameManager?.creature.exp.value = 5
         
     }
     

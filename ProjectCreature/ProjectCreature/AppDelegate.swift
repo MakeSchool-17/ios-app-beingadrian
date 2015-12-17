@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import SpriteKit
 import RxSwift
+import Firebase
 
 
 @UIApplicationMain
@@ -18,41 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        let disposeBag = DisposeBag()
+        // MARK: - Firebase setup
         
-        // Parse setup
+        Firebase.defaultConfig().persistenceEnabled = true
         
-        Parse.enableLocalDatastore()
+        let firebaseHelper = FirebaseHelper()
         
-        let applicationId = "PBf2QMcCJkBiQ2zxktGr5NSHkUarsaYNgzmhVNjB"
-        let clientKey = "4prrsitPiS5HiTrr9Nby3dn6UOaESatTLIOx0NVJ"
-        Parse.setApplicationId(applicationId, clientKey: clientKey)
-        
-        PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
-        
-        // register subclasses
-        Creature.registerSubclass()
-        
-        // force Parse login
-        if let currentUser = PFUser.currentUser() {
-            print("> Already logged in as \(currentUser.username)")
-        } else {
-            PFUser.rx_logInWithUsernameInBackground("beingadrian", password: "test")
-                .subscribe(
-                    onNext: { (user) -> Void in
-                        print("> Logged in as \(user?.username)")
-                    },
-                    onError: { (error) -> Void in
-                        print("> Error logging in user: \(error)")
-                    },
-                    onCompleted: { () -> Void in
-                        print("> Completed logging in user")
-                    },
-                    onDisposed: { () -> Void in
-                        print("> Dispose log in subscription")
-                })
-                .addDisposableTo(disposeBag)
-        }
+        // keep these locations in sync locally and on server
+        firebaseHelper.usersRef.keepSynced(true)
+        firebaseHelper.creaturesRef.keepSynced(true)
         
         return true
         

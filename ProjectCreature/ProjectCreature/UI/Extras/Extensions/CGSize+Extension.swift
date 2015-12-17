@@ -6,6 +6,8 @@
 //  Copyright © 2015 BeingAdrian. All rights reserved.
 //
 
+import UIKit
+
 
 extension CGSize {
     

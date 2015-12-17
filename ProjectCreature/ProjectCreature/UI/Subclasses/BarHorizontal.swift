@@ -30,7 +30,7 @@ class BarHorizontal: SKSpriteNode {
         
     }
     
-    func animateBarProgress(toPercentage percentage: Double) {
+    func animateBarProgress(toPercentage percentage: Float) {
         
         let width = self.size.width
         let targetPositionX = (-width / 2) + width * CGFloat(percentage / 100)
