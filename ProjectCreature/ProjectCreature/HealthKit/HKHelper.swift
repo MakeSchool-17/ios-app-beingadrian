@@ -14,11 +14,6 @@ import RxSwift
 
 class HKHelper {
     
-    // MARK: - Typealias
-    
-    private typealias HKRequestAuthorizationToShareTypesAdapter = (Bool, NSError?) -> Void
-    
-    
     // MARK: - Error types 
     
     enum HKErrorType: ErrorType {
@@ -40,7 +35,6 @@ class HKHelper {
         }
     }()
 
-    
     // MARK: - Types to read
     
     private let stepsType = HKQuantityType.quantityTypeForIdentifier(
@@ -50,7 +44,6 @@ class HKHelper {
     private let distanceOnFootType = HKQuantityType.quantityTypeForIdentifier(
         HKQuantityTypeIdentifierDistanceWalkingRunning
     )
-    
     
     // MARK: - Request permissions
     
@@ -70,24 +63,31 @@ class HKHelper {
             healthStore.requestAuthorizationToShareTypes(nil, readTypes: dataTypesToRead) {
                 (success, error) in
                 
-                observer.on(.Next(success))
-                observer.on(.Completed)
+                observer.onNext(success)
+                observer.onCompleted()
             }
+            
             return NopDisposable.instance
         }
         
     }
     
-    
     // MARK: - Pre-methods 
     
-    private func createPredicate(fromInterval interval: NSTimeInterval) -> NSPredicate {
+    private func createPredicate(fromDate date: NSDate) -> NSPredicate {
         
-        let date = NSDate(timeIntervalSince1970: interval)
         let predicate = HKQuery.predicateForSamplesWithStartDate(date, endDate: NSDate(), options: .None)
         
         return predicate
         
+    }
+    
+    private func createPredicate(from startDate: NSDate, to endDate: NSDate) -> NSPredicate {
+        
+        let predicate = HKQuery.predicateForSamplesWithStartDate(startDate, endDate: endDate, options: .None)
+        
+        return predicate
+
     }
     
     private func createStatisticsQuery(forQuantityType quantityType: HKQuantityType, predicate: NSPredicate, unit: HKUnit) -> Observable<Double> {
@@ -103,35 +103,34 @@ class HKHelper {
                 (query, result, error) in
                 
                 if let error = error {
-                    observer.on(.Error(HKErrorType.DefaultError(error)))
+                    observer.onError(HKErrorType.DefaultError(error))
                     return
                 }
                 
                 guard let result = result else {
-                    observer.on(.Error(HKErrorType.NoResult))
+                    observer.onError(HKErrorType.NoResult)
                     return
                 }
                 
                 guard let deviceSource = self.getDeviceSource(fromResult: result) else {
-                    observer.on(.Error(HKErrorType.NoDeviceSource))
+                    observer.onError(HKErrorType.NoDeviceSource)
                     return
                 }
                 
                 guard let sumQuantity = result.sumQuantityForSource(deviceSource) else {
-                    observer.on(.Error(HKErrorType.NoSumQuantity))
+                    observer.onError(HKErrorType.NoSumQuantity)
                     return
                 }
                 
                 let value = sumQuantity.doubleValueForUnit(unit)
-                observer.on(.Next(value))
-                observer.on(.Completed)
+                observer.onNext(value)
+                observer.onCompleted()
                 
             }
 
             healthStore.executeQuery(query)
             
             return NopDisposable.instance
-            
         }
         
     }
@@ -155,38 +154,29 @@ class HKHelper {
         
     }
     
-    
     // MARK: - Health Queries
     
-    func queryTotalStepCount(sinceTimeInterval timeInterval: NSTimeInterval) -> Observable<Int> {
+    func queryTotalStepCount(fromDate startDate: NSDate, toDate endDate: NSDate) -> Observable<Double> {
         
-        let predicate = self.createPredicate(fromInterval: timeInterval)
+        let predicate = createPredicate(from: startDate, to: endDate)
         
-        guard let stepsType = self.stepsType else {
+        guard let stepsType = stepsType else {
             return failWith(HKErrorType.TypeNotAvailable)
         }
         
-        return self.createStatisticsQuery(forQuantityType: stepsType, predicate: predicate, unit: HKUnit.countUnit())
-            .flatMap { value -> Observable<Int> in
-                let stepCount = Int(value)
-                return just(stepCount)
-            }
+        return createStatisticsQuery(forQuantityType: stepsType, predicate: predicate, unit: HKUnit.countUnit())
         
     }
     
-    func queryTotalDistanceOnFoot(sinceTimeInterval timeInterval: NSTimeInterval) -> Observable<Int> {
+    func queryTotalDistanceOnFoot(fromDate startDate: NSDate, toDate endDate: NSDate) -> Observable<Double> {
         
-        let predicate = self.createPredicate(fromInterval: timeInterval)
+        let predicate = createPredicate(from: startDate, to: endDate)
         
-        guard let distanceOnFootType = self.distanceOnFootType else {
+        guard let distanceOnFootType = distanceOnFootType else {
             return failWith(HKErrorType.TypeNotAvailable)
         }
         
-        return self.createStatisticsQuery(forQuantityType: distanceOnFootType, predicate: predicate, unit: HKUnit.meterUnit())
-            .flatMap { value -> Observable<Int> in
-                let distance = Int(value)
-                return just(distance)
-            }
+        return createStatisticsQuery(forQuantityType: distanceOnFootType, predicate: predicate, unit: HKUnit.meterUnit())
         
     }
     

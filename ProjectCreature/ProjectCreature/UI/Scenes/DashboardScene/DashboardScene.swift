@@ -63,27 +63,8 @@ class DashboardScene: SKScene {
         setup()
         
         transitionIn {}
-
-        firebaseHelper.loginUser(email: "dev@beingadrian.com", password: "test")
-            .subscribeNext { user in
-                
-                print("> Assign current user")
-                FirebaseHelper.currentUser = user
-                
-                self.firebaseHelper.fetchCreature(fromUser: FirebaseHelper.currentUser!)
-                    .subscribeNext { creature in
-                        
-                        print("> \(creature.name.value)")
-                        
-                        self.gameManager = GameManager(creature: creature)
-                        self.viewModel = DashboardViewModel(creature: self.gameManager!.creature, user: FirebaseHelper.currentUser!)
-                        self.bindUI()
-                        
-                    }
-                    .addDisposableTo(self.disposeBag)
-                
-            }
-            .addDisposableTo(disposeBag)
+        
+        Test().simulate(self)
         
     }
     
@@ -173,9 +154,6 @@ class DashboardScene: SKScene {
         let menuLayer = MenuLayer(size: self.frame.size, scene: self)
         self.addChild(menuLayer)
         menuLayer.transitionIn()
-        
-        self.gameManager?.creature.hp.value = 5
-        self.gameManager?.creature.exp.value = 5
         
     }
     

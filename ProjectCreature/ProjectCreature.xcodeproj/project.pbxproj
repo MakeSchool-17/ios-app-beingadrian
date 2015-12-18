@@ -26,6 +26,9 @@
 		333532771C169158003145AA /* DashboardSceneAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333532761C169158003145AA /* DashboardSceneAnimations.swift */; };
 		335557091C1BA00A0027FAE4 /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335557081C1BA00A0027FAE4 /* NavigationButton.swift */; };
 		3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */; };
+		3366C5A81C2337C7001AF86E /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5A71C2337C7001AF86E /* Test.swift */; };
+		3366C5AA1C2373D9001AF86E /* HKStatsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5A91C2373D9001AF86E /* HKStatsHelper.swift */; };
+		3366C5AC1C2390FA001AF86E /* HistogramPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5AB1C2390FA001AF86E /* HistogramPointer.swift */; };
 		3378475E1C1E054700B3722D /* SKButtonSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3378475D1C1E054700B3722D /* SKButtonSprite.swift */; };
 		337847601C1E5EAE00B3722D /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3378475F1C1E5EAE00B3722D /* Firebase.framework */; };
 		337847621C1E826500B3722D /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337847611C1E826500B3722D /* Creature.swift */; };
@@ -119,6 +122,9 @@
 		333532761C169158003145AA /* DashboardSceneAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardSceneAnimations.swift; sourceTree = "<group>"; };
 		335557081C1BA00A0027FAE4 /* NavigationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
 		3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
+		3366C5A71C2337C7001AF86E /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		3366C5A91C2373D9001AF86E /* HKStatsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKStatsHelper.swift; sourceTree = "<group>"; };
+		3366C5AB1C2390FA001AF86E /* HistogramPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistogramPointer.swift; sourceTree = "<group>"; };
 		3378475D1C1E054700B3722D /* SKButtonSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButtonSprite.swift; sourceTree = "<group>"; };
 		3378475F1C1E5EAE00B3722D /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		337847611C1E826500B3722D /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
@@ -219,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */,
+				3366C5A91C2373D9001AF86E /* HKStatsHelper.swift */,
 			);
 			path = HealthKit;
 			sourceTree = "<group>";
@@ -248,6 +255,14 @@
 				333532741C1651D4003145AA /* MenuLayerUI.swift */,
 			);
 			path = MenuLayer;
+			sourceTree = "<group>";
+		};
+		3366C5A61C2337AF001AF86E /* InitialTests */ = {
+			isa = PBXGroup;
+			children = (
+				3366C5A71C2337C7001AF86E /* Test.swift */,
+			);
+			path = InitialTests;
 			sourceTree = "<group>";
 		};
 		337847651C1F3D2400B3722D /* Firebase */ = {
@@ -298,6 +313,7 @@
 				33BBFD611C121EB600E76511 /* DataModels */,
 				337847651C1F3D2400B3722D /* Firebase */,
 				331E66C71BF6A6B4003AB81D /* HealthKit */,
+				3366C5A61C2337AF001AF86E /* InitialTests */,
 				338369191BF69042006407FF /* Frameworks */,
 				338369171BF68F46006407FF /* Bridging */,
 				338368DA1BF67852006407FF /* AppDelegate.swift */,
@@ -443,6 +459,7 @@
 				335557081C1BA00A0027FAE4 /* NavigationButton.swift */,
 				3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */,
 				3378475D1C1E054700B3722D /* SKButtonSprite.swift */,
+				3366C5AB1C2390FA001AF86E /* HistogramPointer.swift */,
 			);
 			path = Subclasses;
 			sourceTree = "<group>";
@@ -590,6 +607,7 @@
 				3378475E1C1E054700B3722D /* SKButtonSprite.swift in Sources */,
 				33BBFD7B1C121F8300E76511 /* DashboardSceneUI.swift in Sources */,
 				33BBFD7F1C121F8300E76511 /* BarHorizontal.swift in Sources */,
+				3366C5A81C2337C7001AF86E /* Test.swift in Sources */,
 				3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */,
 				337847641C1EA1F100B3722D /* User.swift in Sources */,
 				338368DB1BF67852006407FF /* AppDelegate.swift in Sources */,
@@ -602,9 +620,11 @@
 				33BBFD601C121E9900E76511 /* DashboardViewModel.swift in Sources */,
 				337847751C1F556A00B3722D /* Firebase+Rx.swift in Sources */,
 				330F6B4D1C151557004CCAED /* StatsViewModel.swift in Sources */,
+				3366C5AA1C2373D9001AF86E /* HKStatsHelper.swift in Sources */,
 				330F6B461C14C040004CCAED /* SKLabelNode+Rx.swift in Sources */,
 				3305BFF21C1CCEFE00223784 /* SKNode+Extensions.swift in Sources */,
 				333532731C165176003145AA /* MenuLayer.swift in Sources */,
+				3366C5AC1C2390FA001AF86E /* HistogramPointer.swift in Sources */,
 				339874281BFFFE7200F47B2B /* GameManager.swift in Sources */,
 				337847831C22202E00B3722D /* CreatureJsonModel.swift in Sources */,
 				3305BFF61C1CD0AB00223784 /* UIColor+Extension.swift in Sources */,

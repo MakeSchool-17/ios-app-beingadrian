@@ -22,12 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Firebase.defaultConfig().persistenceEnabled = true
         
-        let firebaseHelper = FirebaseHelper()
-        
-        // keep these locations in sync locally and on server
-        firebaseHelper.usersRef.keepSynced(true)
-        firebaseHelper.creaturesRef.keepSynced(true)
-        
         return true
         
     }

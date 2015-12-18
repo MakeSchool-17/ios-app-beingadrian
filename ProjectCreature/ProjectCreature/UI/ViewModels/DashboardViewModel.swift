@@ -24,6 +24,8 @@ class DashboardViewModel {
     var creatureSprite: Variable<SKSpriteNode>
     var cash: Variable<String>
     
+    // MARK: - Initialization
+    
     init(creature: Creature, user: User) {
         
         func getPercentageFrom(a: Float, dividedBy b: Float) -> Variable<Float> {
@@ -51,6 +53,8 @@ class DashboardViewModel {
         bindCreatureToViewModel(creature)
         
     }
+    
+    // MARK: - Model binding
     
     func bindCreatureToViewModel(creature: Creature) {
         

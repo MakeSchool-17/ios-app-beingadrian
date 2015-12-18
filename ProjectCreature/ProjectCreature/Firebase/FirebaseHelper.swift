@@ -44,6 +44,34 @@ class FirebaseHelper {
     
     static var currentUser: User?
     
+    // MARK: - JSON parsing
+    
+    /**
+     Converts a snapshot value to return a tuple of the key and JSON mode.
+     Returns nil if casting fails.
+     
+     - parameter value: AnyObject The snapshot value e.g. `snapshot.value`.
+     - returns: A tuple of the key (which is usually the ID) and the JSON model.
+     
+     JSON structure:
+     
+         { "id" = {
+             "email" = ""
+             "username" = ""
+             "cash" = ""
+             }
+         }
+     */
+    func parseSnapshotValue(value: AnyObject) -> (String, JSON)? {
+        
+        guard let initialDict = value as? Dictionary<String, JSON> else { return nil }
+        guard let key = initialDict.keys.first else { return nil }
+        guard let value = initialDict.values.first else { return nil }
+        
+        return (key, value)
+        
+    }
+    
     // MARK: - User authentication
     
     /** 
@@ -51,7 +79,7 @@ class FirebaseHelper {
     1. Creates the user on Firebase
     2. Logs in the new user through password authentication 
     3. Creates user json tree if previous steps are successful
-    */
+     */
     func signupUser(username username: String, email: String, password: String) -> Observable<User> {
         
         return rootRef.rx_createUser(email, password: password)
@@ -88,7 +116,7 @@ class FirebaseHelper {
         
     }
     
-    // MARK: - User data
+    // MARK: - Fetching data
     
     func fetchUserData(byUID uid: String) -> Observable<User> {
         
@@ -96,7 +124,7 @@ class FirebaseHelper {
             
             self.usersRef
                 .childByAppendingPath(uid)
-                .observeSingleEventOfType(.Value) {
+                .observeSingleEventOfType(.Value, withBlock: {
                     (snapshot: FDataSnapshot!) in
                     
                     guard let userJson = snapshot.value as? JSON else {
@@ -112,7 +140,10 @@ class FirebaseHelper {
                     let user = User(uid: uid, model: userJsonModel)
                     observer.onNext(user)
                     observer.onCompleted()
-                }
+                }, withCancelBlock: { error in
+                    print("> Error accessing data snapshot: \(error)")
+                    observer.onError(FirebaseError.SomeError(error))
+                })
             
             return NopDisposable.instance
         }
@@ -151,32 +182,6 @@ class FirebaseHelper {
     
     }
     
-    /**
-    Converts a snapshot value to return a tuple of the key and JSON mode.
-    Returns nil if casting fails.
-    
-    - parameter value: AnyObject The snapshot value e.g. `snapshot.value`.
-    - returns: A tuple of the key (which is usually the ID) and the JSON model.
-     
-    JSON structure:
-     
-        { "id" = {
-            "email" = ""
-            "username" = ""
-            "cash" = ""
-            }
-        }
-    */
-    func parseSnapshotValue(value: AnyObject) -> (String, JSON)? {
-        
-        guard let initialDict = value as? Dictionary<String, JSON> else { return nil }
-        guard let key = initialDict.keys.first else { return nil }
-        guard let value = initialDict.values.first else { return nil }
-        
-        return (key, value)
-        
-    }
-    
     // MARK: - Creature methods
     
     func createCreature(fromCreature creature: Creature) {
@@ -196,7 +201,7 @@ class FirebaseHelper {
             self.creaturesRef
                 .queryOrderedByChild("ownerUID")
                 .queryEqualToValue(user.uid)
-                .observeSingleEventOfType(.Value) {
+                .observeSingleEventOfType(.Value, withBlock: {
                     (snapshot: FDataSnapshot!) in
                     
                     guard let (id, jsonModel) = self.parseSnapshotValue(snapshot.value) else {
@@ -214,7 +219,10 @@ class FirebaseHelper {
                     let creature = Creature(id: id, model: creatureJsonModel)
                     observer.onNext(creature)
                     observer.onCompleted()
-            }
+                    }, withCancelBlock: { error in
+                        print("> Error accessing data snapshot: \(error)")
+                        observer.onError(FirebaseError.SomeError(error))
+                    })
             
             return NopDisposable.instance
         }

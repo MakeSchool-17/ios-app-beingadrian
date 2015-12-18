@@ -151,9 +151,7 @@ extension StatsLayer {
             radius: radius,
             width: width,
             color: tealColor)
-        circleFront.position =  CGPointZero
-        circleFront.animateToProgress(1, progress: 0.75)
-        
+        circleFront.position = CGPointZero
         stepCircleGroup.addChild(circleFront)
         
         // MARK: Bar graph
@@ -172,10 +170,10 @@ extension StatsLayer {
         histogramGroup.addChild(histogramBarsBack)
         
         // pointer 
-        histogramPointer = SKSpriteNode(imageNamed: "Histogram - pointer")
+        histogramPointer = HistogramPointer(imageNamed: "Histogram - pointer")
         histogramPointer.position.x = histogramBarsBack.frame.midX
-        histogramPointer.position.y = histogramBarsBack.size.height + 20
-        histogramGroup.addChild(histogramPointer)
+        histogramPointer.position.y = histogramBarsBack.size.height + 10
+        histogramBarsBack.addChild(histogramPointer)
         
         // bars front 
         for i in 0...6 {

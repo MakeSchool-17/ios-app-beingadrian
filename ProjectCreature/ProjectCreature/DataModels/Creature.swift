@@ -16,16 +16,6 @@ class Creature {
     
     let firebaseHelper = FirebaseHelper()
     
-    enum Family: String {
-        case Dog = "dog"
-        case Cat = "cat"
-        case Panda = "panda"
-        
-        var description: String {
-            return ""
-        }
-    }
-    
     // MARK: - Properties
     
     var name: Variable<String>
@@ -38,8 +28,21 @@ class Creature {
     var ownerUID: Variable<String>
     var id: Variable<String>
     
+    enum Family: String {
+        case Dog = "dog"
+        case Cat = "cat"
+        case Panda = "panda"
+        
+        var description: String {
+            return ""
+        }
+    }
+    
     // MARK: - Initialization
     
+    /**
+    Initializes the class from scratch.
+     */
     init(name: String, family: Family, owner: User) {
         
         self.name = Variable(name)
@@ -58,6 +61,9 @@ class Creature {
         
     }
     
+    /**
+     Initializes the class from a Firebase data model.
+     */
     init(id: String, model: CreatureJsonModel) {
         
         print("> Initializing Creature from a Firebase data model")
@@ -74,63 +80,58 @@ class Creature {
         
     }
     
+    /**
+     Binds each of `Creature` property to Firebase.
+     */
     func bindToFirebase() {
         
         let ref = firebaseHelper.creaturesRef.childByAppendingPath(id.value)
         
         name
             .subscribeNext { name in
-                ref.childByAppendingPath("name")
-                    .setValue(name)
+                ref.updateChildValues(["name": name])
             }
             .addDisposableTo(disposeBag)
         
         level
             .subscribeNext { level in
-                ref.childByAppendingPath("level")
-                    .setValue(level)
+                ref.updateChildValues(["level": level])
             }
             .addDisposableTo(disposeBag)
         
         exp
             .subscribeNext { exp in
-                ref.childByAppendingPath("exp")
-                    .setValue(exp)
+                ref.updateChildValues(["exp": exp])
             }
             .addDisposableTo(disposeBag)
         
         expMax
             .subscribeNext { expMax in
-                ref.childByAppendingPath("expMax")
-                    .setValue(expMax)
+                ref.updateChildValues(["expMax": expMax])
             }
             .addDisposableTo(disposeBag)
         
         hp
             .subscribeNext { hp in
-                ref.childByAppendingPath("hp")
-                    .setValue(hp)
+                ref.updateChildValues(["hp": hp])
             }
             .addDisposableTo(disposeBag)
         
         hpMax
-            .subscribeNext { maxHp in
-                ref.childByAppendingPath("hpMax")
-                    .setValue(maxHp)
+            .subscribeNext { hpMax in
+                ref.updateChildValues(["hpMax": hpMax])
             }
             .addDisposableTo(disposeBag)
         
         family
             .subscribeNext { family in
-                ref.childByAppendingPath("family")
-                    .setValue(family.rawValue)
+                ref.updateChildValues(["family": family.rawValue])
             }
             .addDisposableTo(disposeBag)
         
         ownerUID
             .subscribeNext { ownerUID in
-                ref.childByAppendingPath("ownerUID")
-                    .setValue(ownerUID)
+                ref.updateChildValues(["ownerUID": ownerUID])
             }
             .addDisposableTo(disposeBag)
         

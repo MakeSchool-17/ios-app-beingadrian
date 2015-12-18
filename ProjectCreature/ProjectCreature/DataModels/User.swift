@@ -26,7 +26,7 @@ class User {
     
     /**
     Initializes the class from scratch.
-    */
+     */
     init(email: String, username: String, uid: String) {
         
         self.email = email
@@ -40,7 +40,7 @@ class User {
     
     /** 
     Initializes the class from a Firebase data model.
-    */
+     */
     init(uid: String, model: UserJsonModel) {
         
         print("> Initializing User from a Firebase data model")
@@ -56,15 +56,14 @@ class User {
     
     /**
     Binds the `cash` property with its corresponding property on Firebase.
-    */
+     */
     func bindToFirebase() {
         
         let ref = firebaseHelper.usersRef.childByAppendingPath(uid)
         
         cash
             .subscribeNext { cash in
-                ref.childByAppendingPath("cash")
-                    .setValue(cash)
+                ref.updateChildValues(["cash": cash])
             }
             .addDisposableTo(disposeBag)
         
