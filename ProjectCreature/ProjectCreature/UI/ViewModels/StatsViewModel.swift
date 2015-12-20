@@ -33,11 +33,18 @@ class StatsViewModel {
     var fridayProgress: Variable<Float> = Variable(0)
     var saturdayProgress: Variable<Float> = Variable(0)
     
+    var weekProgresses: [Variable<Float>]
+    
     var pointerIndex: Variable<Int> = Variable(0)
     
     // MARK: - Initialization
     
     init() {
+        
+        self.weekProgresses = [sundayProgress, mondayProgress, tuesdayProgress, wednesdayProgress, thursdayProgress, fridayProgress, saturdayProgress]
+        
+        // temporary value
+        self.progress.value = 75
         
         bindDataToUI()
         
@@ -73,6 +80,20 @@ class StatsViewModel {
             .addDisposableTo(disposeBag)
         
         self.date.value = NSDate().localTimestamp
+        
+        for i in 0...(weekProgresses.count-1) {
+            
+            let dayProgress = weekProgresses[i]
+            
+            stats.getStepsForWeekday(i+1)
+                .map { return Float($0) / 10000 }
+                .subscribeNext { progress in
+                    dayProgress.value = progress
+                }
+                .addDisposableTo(disposeBag)
+            
+        }
+        
         
     }
     

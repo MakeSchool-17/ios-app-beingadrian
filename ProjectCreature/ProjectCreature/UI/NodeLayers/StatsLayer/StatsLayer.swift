@@ -36,7 +36,7 @@ class StatsLayer: SKSpriteNode {
     var histogramGroup: SKSpriteNode!
     var histogramBarsBack: SKSpriteNode!
     var histogramPointer: HistogramPointer!
-    var histogramBarsFront: [SKSpriteNode] = []
+    var histogramBarsFront: [BarVertical] = []
     
     var closeButton: SKSpriteNode!
     
@@ -68,9 +68,10 @@ class StatsLayer: SKSpriteNode {
     
     func bindUI() {
         
-        guard let viewModel = viewModel else { return }
+        guard let viewModel = self.viewModel else { return }
         
         viewModel.distance
+            .delaySubscription(1.0, MainScheduler.sharedInstance)
             .subscribeOn(MainScheduler.sharedInstance)
             .map { return $0 / 1000 }
             .subscribeNext { distance in
@@ -88,6 +89,7 @@ class StatsLayer: SKSpriteNode {
             .addDisposableTo(disposeBag)
 
         viewModel.progress
+            .delaySubscription(1.0, MainScheduler.sharedInstance)
             .subscribeOn(MainScheduler.sharedInstance)
             .subscribeNext { progress in
                 self.circleFront.animateToProgress(1.0, progress: progress / 100)
@@ -100,6 +102,7 @@ class StatsLayer: SKSpriteNode {
             .addDisposableTo(disposeBag)
 
         viewModel.totalSteps
+            .delaySubscription(1.0, MainScheduler.sharedInstance)
             .subscribeOn(MainScheduler.sharedInstance)
             .map { return Float($0) }
             .subscribeNext { totalSteps in
@@ -122,6 +125,18 @@ class StatsLayer: SKSpriteNode {
                 self.histogramPointer.animateToBar(bar)
             }
             .addDisposableTo(disposeBag)
+        
+        for i in 0...(histogramBarsFront.count-1) {
+            
+            viewModel.weekProgresses[i]
+                .delaySubscription(1.0, MainScheduler.sharedInstance)
+                .subscribeOn(MainScheduler.sharedInstance)
+                .subscribeNext { progress in
+                    self.histogramBarsFront[i].animateBarProgress(toPercentage: progress)
+                }
+                .addDisposableTo(disposeBag)
+            
+        }
         
     }
     

@@ -177,10 +177,12 @@ extension StatsLayer {
         
         // bars front 
         for i in 0...6 {
-            let frontBar = SKSpriteNode(imageNamed: "Histogram - bar - front")
+            let frontBar = BarVertical(imageNamed: "Histogram - bar - front")
             frontBar.anchorPoint = CGPointZero
             frontBar.position.x = CGFloat(i) * (17 + frontBar.size.width) - histogramBarsBack.size.halfWidth
             frontBar.position.y = 0
+            
+            // final height is 94
             frontBar.size.height = 0
             
             histogramBarsBack.addChild(frontBar)

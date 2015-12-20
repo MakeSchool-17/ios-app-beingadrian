@@ -63,6 +63,7 @@
 		339DA2CE1C0F6E8B0025F064 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C71C0F6E430025F064 /* RxCocoa.framework */; };
 		339DA2CF1C0F6E8B0025F064 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C71C0F6E430025F064 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		339DA2D11C0F6E8B0025F064 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C81C0F6E430025F064 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		33AC1D031C266F170066FCB3 /* BarVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AC1D021C266F170066FCB3 /* BarVertical.swift */; };
 		33BBFD601C121E9900E76511 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD5E1C121E9900E76511 /* DashboardViewModel.swift */; };
 		33BBFD7A1C121F8300E76511 /* DashboardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD6C1C121F8300E76511 /* DashboardScene.swift */; };
 		33BBFD7B1C121F8300E76511 /* DashboardSceneUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD6D1C121F8300E76511 /* DashboardSceneUI.swift */; };
@@ -162,6 +163,7 @@
 		339DA2C61C0F6E430025F064 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = SOURCE_ROOT; };
 		339DA2C71C0F6E430025F064 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = SOURCE_ROOT; };
 		339DA2C81C0F6E430025F064 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = SOURCE_ROOT; };
+		33AC1D021C266F170066FCB3 /* BarVertical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarVertical.swift; sourceTree = "<group>"; };
 		33BBFD5E1C121E9900E76511 /* DashboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		33BBFD6C1C121F8300E76511 /* DashboardScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardScene.swift; sourceTree = "<group>"; };
 		33BBFD6D1C121F8300E76511 /* DashboardSceneUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardSceneUI.swift; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 		33BBFD721C121F8300E76511 /* Subclasses */ = {
 			isa = PBXGroup;
 			children = (
+				33AC1D021C266F170066FCB3 /* BarVertical.swift */,
 				33BBFD731C121F8300E76511 /* BarHorizontal.swift */,
 				335557081C1BA00A0027FAE4 /* NavigationButton.swift */,
 				3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */,
@@ -666,6 +669,7 @@
 				3366C5CA1C24B38A001AF86E /* CGFrame+Extension.swift in Sources */,
 				33BBFD7B1C121F8300E76511 /* DashboardSceneUI.swift in Sources */,
 				33BBFD7F1C121F8300E76511 /* BarHorizontal.swift in Sources */,
+				33AC1D031C266F170066FCB3 /* BarVertical.swift in Sources */,
 				3366C5A81C2337C7001AF86E /* Test.swift in Sources */,
 				3366C5C51C24B38A001AF86E /* SKLabelNode+Rx.swift in Sources */,
 				3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */,
@@ -847,6 +851,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beingadrian.ProjectCreature;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "58f2ba41-28bf-4b2c-90e1-808a440ad199";
 				SWIFT_OBJC_BRIDGING_HEADER = "ProjectCreature/Bridging/ProjectCreature-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -868,6 +873,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beingadrian.ProjectCreature;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "58f2ba41-28bf-4b2c-90e1-808a440ad199";
 				SWIFT_OBJC_BRIDGING_HEADER = "ProjectCreature/Bridging/ProjectCreature-Bridging-Header.h";
 			};
 			name = Release;

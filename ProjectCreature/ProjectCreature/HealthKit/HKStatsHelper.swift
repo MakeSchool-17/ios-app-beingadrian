@@ -15,6 +15,10 @@ class HKStatsHelper {
     
     private let healthHelper = HKHelper()
     
+    enum StatsError: ErrorType {
+        case ErrorGettingDate
+    }
+    
     // MARK: - Properties 
     
     
@@ -34,6 +38,21 @@ class HKStatsHelper {
         return healthHelper.queryTotalDistanceOnFoot(
             fromDate: NSDate().startDay,
             toDate: NSDate())
+        
+    }
+    
+    func getStepsForWeekday(weekday: Int) -> Observable<Double> {
+
+        guard let day = NSDate().getDateFromWeekday(weekday) else {
+            return failWith(StatsError.ErrorGettingDate) }
+        
+        guard let endOfDay = day.endOfDay else {
+            return failWith(StatsError.ErrorGettingDate)
+        }
+        
+        return healthHelper.queryTotalStepCount(
+            fromDate: day.startDay,
+            toDate: endOfDay)
         
     }
     
