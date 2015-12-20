@@ -14,15 +14,16 @@ class StatsViewModel {
     
     var disposeBag = DisposeBag()
     
-    let statsHelper = HKStatsHelper()
+    // TODO: Stats is leaking memory
+    private let stats = HKStatsHelper()
     
     // MARK: - Properties
     
-    var distance: Variable<Float>
-    var progress: Variable<Float>
+    var distance: Variable<Float> = Variable(0)
+    var progress: Variable<Float> = Variable(0)
     
-    var totalSteps: Variable<Int>
-    var date: Variable<String>
+    var totalSteps: Variable<Int> = Variable(0)
+    var date: Variable<String> = Variable("")
     
     var sundayProgress: Variable<Float> = Variable(0)
     var mondayProgress: Variable<Float> = Variable(0)
@@ -38,26 +39,41 @@ class StatsViewModel {
     
     init() {
         
-        self.distance = Variable(5.7)
-        self.progress = Variable(66)
-        
-        self.totalSteps = Variable(10000)
-        self.date = Variable("December 28, 2015")
-        
-        self.sundayProgress = Variable(0.8)
-        
         bindDataToUI()
         
     }
     
     // MARK: - Model binding
     
-    func bindDataToUI() {
+    private func bindDataToUI() {
         
-        guard let todayIndex = statsHelper.getWeekdayFromDate(fromDate: NSDate()) else { return }
-        self.pointerIndex.value = todayIndex
+        self.pointerIndex.value = NSDate().weekday
+        
+        stats.getStepsForToday()
+            .subscribe(
+                onNext: { (steps) -> Void in
+                    let stepsString = Int(round(steps))
+                    self.totalSteps.value = stepsString
+                },
+                onError: { (error) -> Void in
+                    print("> Error getting steps: \(error)")
+                },
+                onCompleted: {}, onDisposed: {})
+            .addDisposableTo(disposeBag)
+        
+        stats.getDistanceForToday()
+            .subscribe(
+                onNext: { (distance) -> Void in
+                    self.distance.value = Float(distance)
+                },
+                onError: { (error) -> Void in
+                    print("> Error getting distance: \(error)")
+                },
+                onCompleted: {}, onDisposed: {})
+            .addDisposableTo(disposeBag)
+        
+        self.date.value = NSDate().localTimestamp
         
     }
-    
     
 }

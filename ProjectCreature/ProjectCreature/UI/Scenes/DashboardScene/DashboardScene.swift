@@ -48,15 +48,9 @@ class DashboardScene: SKScene {
     
     var gameManager: GameManager?
     
-    var viewModel: DashboardViewModel?
+    weak var viewModel: DashboardViewModel?
     
     // MARK: - Base methods
-    
-    override init(size: CGSize) { super.init(size: size) }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("> init(coder:) has not been implemented")
-    }
     
     override func didMoveToView(view: SKView) {
         
@@ -83,33 +77,42 @@ class DashboardScene: SKScene {
         guard let viewModel = viewModel else { return }
         
         viewModel.creatureName
-            .subscribeNext {
-                self.creatureNameLabel.text = $0
+            .subscribeOn(MainScheduler.sharedInstance)
+            .subscribeNext { name in
+                self.creatureNameLabel.text = name
                 self.readjustLevelLabelXPosition()
             }
             .addDisposableTo(disposeBag)
         
         viewModel.creatureLevel
+            .observeOn(MainScheduler.sharedInstance)
             .bindTo(creatureLevelLabel.rx_text)
             .addDisposableTo(disposeBag)
         
         viewModel.creatureHpPercentage
-            .map {
-                self.hpBarFront.animateBarProgress(toPercentage: $0)
-                return String(Int($0)) + "%"
+            .subscribeOn(MainScheduler.sharedInstance)
+            .subscribeNext { percentage in
+                self.hpBarFront.animateBarProgress(toPercentage: percentage / 100)
+                self.hpPercentageLabel.animateToValueFromZero(
+                    percentage,
+                    duration: 0.5,
+                    rounded: true,
+                    addString: "%")
             }
-            .bindTo(hpPercentageLabel.rx_text)
             .addDisposableTo(disposeBag)
         
         viewModel.creatureExpPercentage
-            .subscribeNext {
-                self.expBarFront.animateBarProgress(toPercentage: $0)
+            .subscribeOn(MainScheduler.sharedInstance)
+            .map { return $0 / 100}
+            .subscribeNext { percentage in
+                self.expBarFront.animateBarProgress(toPercentage: percentage)
             }
             .addDisposableTo(disposeBag)
         
         // TODO: Binding with sprite
         
         viewModel.cash
+            .observeOn(MainScheduler.sharedInstance)
             .bindTo(energyLabel.rx_text)
             .addDisposableTo(disposeBag)
         

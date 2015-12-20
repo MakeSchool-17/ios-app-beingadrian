@@ -13,50 +13,28 @@ import RxSwift
 
 class DashboardViewModel {
     
-    var disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
     
     // MARK: - Properties
     
-    var creatureName: Variable<String>
-    var creatureLevel: Variable<String>
-    var creatureExpPercentage: Variable<Float>
-    var creatureHpPercentage: Variable<Float>
-    var creatureSprite: Variable<SKSpriteNode>
-    var cash: Variable<String>
+    var creatureName: Variable<String> = Variable("")
+    var creatureLevel: Variable<String> = Variable("")
+    var creatureExpPercentage: Variable<Float> = Variable(0)
+    var creatureHpPercentage: Variable<Float> = Variable(0)
+    var creatureSprite: Variable<SKSpriteNode> = Variable(SKSpriteNode())
+    var cash: Variable<String> = Variable("")
     
     // MARK: - Initialization
     
     init(creature: Creature, user: User) {
         
-        func getPercentageFrom(a: Float, dividedBy b: Float) -> Variable<Float> {
-            let percentage = round(a / b * 100)
-            return Variable(percentage)
-        }
-        
-        self.creatureName = Variable(creature.name.value)
-        self.creatureLevel = Variable(String(creature.level.value))
-        
-        self.creatureExpPercentage = getPercentageFrom(
-            creature.exp.value, dividedBy: creature.expMax.value)
-        self.creatureHpPercentage = getPercentageFrom(
-            creature.hp.value, dividedBy: creature.hpMax.value)
-        
-        // TODO: Improve cash access code
-        let cashString = String(user.cash.value)
-        self.cash = Variable(cashString)
-        
-        // TODO: Finalize imageName code
-        let imageName = creature.family.value.description
-        self.creatureSprite = Variable(SKSpriteNode(imageNamed: imageName))
-        
-        // Bind creature and user to model view
-        bindCreatureToViewModel(creature)
+        bindCreatureToViewModel(creature, currentUser: user)
         
     }
     
     // MARK: - Model binding
     
-    func bindCreatureToViewModel(creature: Creature) {
+    private func bindCreatureToViewModel(creature: Creature, currentUser: User) {
         
         creature.name
             .subscribeNext { name in
@@ -70,7 +48,7 @@ class DashboardViewModel {
             }
             .addDisposableTo(disposeBag)
 
-        _ = combineLatest(creature.exp, creature.expMax) {
+        combineLatest(creature.exp, creature.expMax) {
                 round($0 / $1 * 100)
             }
             .subscribeNext {
@@ -78,15 +56,13 @@ class DashboardViewModel {
             }
             .addDisposableTo(disposeBag)
 
-        _ = combineLatest(creature.hp, creature.hpMax) {
+        combineLatest(creature.hp, creature.hpMax) {
                 round($0 / $1 * 100)
             }
             .subscribeNext {
                 self.creatureHpPercentage.value = $0
             }
             .addDisposableTo(disposeBag)
-
-        guard let currentUser = FirebaseHelper.currentUser else { return }
         
         currentUser.cash
             .subscribeNext {

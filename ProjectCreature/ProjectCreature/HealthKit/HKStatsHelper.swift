@@ -5,65 +5,36 @@
 //  Created by Adrian Wisaksana on 12/17/15.
 //  Copyright © 2015 BeingAdrian. All rights reserved.
 //
+//
 
 import Foundation
+import RxSwift
 
 
 class HKStatsHelper {
     
-    let healthHelper = HKHelper()
+    private let healthHelper = HKHelper()
     
     // MARK: - Properties 
     
     
     
-    // MARK: - Date methods 
+    // MARK: - Stats methods
     
-    func getWeekdayFromDate(fromDate date: NSDate) -> Int? {
+    func getStepsForToday() -> Observable<Double> {
         
-        guard let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian) else { return nil }
-        calendar.locale = NSLocale.currentLocale()
-        
-        let weekdayComponent = calendar.components(.Weekday, fromDate: date)
-        
-        let weekday = weekdayComponent.weekday
-        
-        return weekday
+        return healthHelper.queryTotalStepCount(
+            fromDate: NSDate().startDay,
+            toDate: NSDate())
         
     }
     
-    func getDayFromWeekday(fromDate date: NSDate, weekday: Int) -> NSDate? {
+    func getDistanceForToday() -> Observable<Double> {
         
-        guard let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian) else { return nil }
-        calendar.locale = NSLocale.currentLocale()
-        
-        let dateComponent = calendar.components([.Year, .Month, .WeekOfMonth, .Hour, .Minute, .Second], fromDate: date)
-        
-        dateComponent.weekday = weekday
-        dateComponent.hour = 0
-        dateComponent.minute = 0
-        dateComponent.second = 0
-    
-        let date = calendar.dateFromComponents(dateComponent)
-        
-        return date
+        return healthHelper.queryTotalDistanceOnFoot(
+            fromDate: NSDate().startDay,
+            toDate: NSDate())
         
     }
-
-    func getLocalTimeString(fromDate date: NSDate) -> String {
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        dateFormatter.locale = NSLocale.currentLocale()
-        
-        let localDateString = dateFormatter.stringFromDate(date)
-        
-        
-        return localDateString
-        
-    }
-    
-
     
 }

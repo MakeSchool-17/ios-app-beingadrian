@@ -12,6 +12,9 @@
 import SpriteKit
 
 
+/**
+ An animatable circular progress bar.
+ */
 class CircleProgressBar: SKShapeNode {
     
     // MARK: - Properties
@@ -54,14 +57,19 @@ class CircleProgressBar: SKShapeNode {
     
     func createBezierPath(radius: CGFloat, progress: CGFloat) -> UIBezierPath {
         
-        let startAngle = CGFloat(0)
+        let startAngle: CGFloat = 0
         
         // inverse progress
         let inverseProgress = 1 - progress
         
         let endAngle: CGFloat
-        if (inverseProgress == 0) { endAngle = CGFloat(M_PI) * 2 }
-        else { endAngle = (CGFloat(M_PI) * 2 * inverseProgress) }
+        if (inverseProgress == 0) {
+            endAngle = CGFloat(M_PI) * 2
+        } else if (inverseProgress == 1) {
+            endAngle = 0
+        } else {
+            endAngle = (CGFloat(M_PI) * 2 * inverseProgress)
+        }
         
         let bezierPath = UIBezierPath(
             arcCenter: CGPointZero,
@@ -71,16 +79,23 @@ class CircleProgressBar: SKShapeNode {
             clockwise: false)
         
         return bezierPath
+        
     }
     
     // MARK: - Progress animations
     
-    func animateToProgress(duration: NSTimeInterval, progress: CGFloat) {
+    /**
+    Animates the circular progress bar to the designated progress value.
+    
+    - parameter duration: The duration of the animation.
+    - parameter progress: The value of the progress between 0.0 and 1.0
+     */
+    func animateToProgress(duration: NSTimeInterval, progress: Float) {
         
         let action = SKAction.customActionWithDuration(duration) {
             (node, elapsedTime) in
             
-            let progressFraction = progress * (elapsedTime / CGFloat(duration))
+            let progressFraction = CGFloat(progress) * (elapsedTime / CGFloat(duration))
             self.path = self.createBezierPath(self.radius, progress: progressFraction).CGPath
         }
         

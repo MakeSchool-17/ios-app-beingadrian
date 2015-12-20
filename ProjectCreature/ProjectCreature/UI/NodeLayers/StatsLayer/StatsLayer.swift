@@ -40,7 +40,7 @@ class StatsLayer: SKSpriteNode {
     
     var closeButton: SKSpriteNode!
     
-    var viewModel: StatsViewModel?
+    weak var viewModel: StatsViewModel?
     
     // MARK: - Base methods
     
@@ -71,34 +71,52 @@ class StatsLayer: SKSpriteNode {
         guard let viewModel = viewModel else { return }
         
         viewModel.distance
-            .map { (distance) -> String in
-                return String(distance)
+            .subscribeOn(MainScheduler.sharedInstance)
+            .map { return $0 / 1000 }
+            .subscribeNext { distance in
+                self.distanceValueLabel.animateToValueFromZero(
+                    distance,
+                    duration: 1,
+                    rounded: false)
             }
-            .bindTo(self.distanceValueLabel.rx_text)
             .addDisposableTo(disposeBag)
         
+        distanceValueLabel.rx_observeWeakly(String.self, "text")
+            .subscribeNext { (_: String?) in
+                self.distanceUnitLabel.position.x = self.distanceValueLabel.frame.width + 3
+            }
+            .addDisposableTo(disposeBag)
+
         viewModel.progress
-            .map { progress in
-                let progressFraction = CGFloat(progress) / 100
-                self.circleFront.animateToProgress(1.0, progress: progressFraction)
-                let roundedProgress = Int(round(progress))
-                return String(roundedProgress) + "%"
+            .subscribeOn(MainScheduler.sharedInstance)
+            .subscribeNext { progress in
+                self.circleFront.animateToProgress(1.0, progress: progress / 100)
+                self.progressValueLabel.animateToValueFromZero(
+                    progress,
+                    duration: 1,
+                    rounded: true,
+                    addString: "%")
             }
-            .bindTo(self.progressValueLabel.rx_text)
             .addDisposableTo(disposeBag)
-        
+
         viewModel.totalSteps
-            .map { totalSteps in
-                return String(totalSteps)
+            .subscribeOn(MainScheduler.sharedInstance)
+            .map { return Float($0) }
+            .subscribeNext { totalSteps in
+                self.totalStepsValueLabel.animateToValueFromZero(
+                    totalSteps,
+                    duration: 1,
+                    rounded: true)
             }
-            .bindTo(self.totalStepsValueLabel.rx_text)
             .addDisposableTo(disposeBag)
         
         viewModel.date
+            .observeOn(MainScheduler.sharedInstance)
             .bindTo(self.dateLabel.rx_text)
             .addDisposableTo(disposeBag)
-        
+
         viewModel.pointerIndex
+            .subscribeOn(MainScheduler.sharedInstance)
             .subscribeNext { index in
                 let bar = self.histogramBarsFront[index-1]
                 self.histogramPointer.animateToBar(bar)
@@ -120,8 +138,10 @@ class StatsLayer: SKSpriteNode {
             self.transitionOut {
                 guard let dashboardScene = self.parent as? DashboardScene else { return }
                 dashboardScene.transitionIn {
-                    dashboardScene.userInteractionEnabled = true
+                    self.viewModel?.disposeBag = DisposeBag()
+                    self.disposeBag = DisposeBag()
                     self.removeFromParent()
+                    dashboardScene.userInteractionEnabled = true
                 }
             }
         }

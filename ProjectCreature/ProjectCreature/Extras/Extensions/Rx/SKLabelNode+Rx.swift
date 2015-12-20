@@ -21,7 +21,7 @@ extension SKLabelNode {
             case .Next(let value):
                 self?.text = value
             case .Error(let error):
-                print("Error binding to SKLabelNode: \(error)")
+                print("> Error binding to SKLabelNode: \(error)")
                 break
             case .Completed:
                 break

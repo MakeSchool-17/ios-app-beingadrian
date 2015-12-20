@@ -75,7 +75,7 @@ extension StatsLayer {
             fontSize: 16,
             horizontalAlign: .Left,
             verticalAlign: .Baseline)
-        distanceUnitLabel.position.x = distanceValueLabel.frame.maxX + 3
+        distanceUnitLabel.position.x = distanceValueLabel.frame.width + 3
         distanceUnitLabel.position.y = 0
         distanceValueLabel.addChild(distanceUnitLabel)
         

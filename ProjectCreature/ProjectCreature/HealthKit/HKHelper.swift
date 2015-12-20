@@ -72,15 +72,7 @@ class HKHelper {
         
     }
     
-    // MARK: - Pre-methods 
-    
-    private func createPredicate(fromDate date: NSDate) -> NSPredicate {
-        
-        let predicate = HKQuery.predicateForSamplesWithStartDate(date, endDate: NSDate(), options: .None)
-        
-        return predicate
-        
-    }
+    // MARK: - Pre-methods
     
     private func createPredicate(from startDate: NSDate, to endDate: NSDate) -> NSPredicate {
         
@@ -88,6 +80,25 @@ class HKHelper {
         
         return predicate
 
+    }
+    
+    private func getDeviceSource(fromResult result: HKStatistics) -> HKSource? {
+        
+        let deviceName = UIDevice.currentDevice().name
+        
+        guard let sources = result.sources else {
+            return nil
+        }
+        
+        let sourcesFiltered = sources.filter { $0.name == deviceName }
+        
+        if (sourcesFiltered.count != 0) {
+            let deviceSource = sourcesFiltered[0]
+            return deviceSource
+        } else {
+            return nil
+        }
+        
     }
     
     private func createStatisticsQuery(forQuantityType quantityType: HKQuantityType, predicate: NSPredicate, unit: HKUnit) -> Observable<Double> {
@@ -131,25 +142,6 @@ class HKHelper {
             healthStore.executeQuery(query)
             
             return NopDisposable.instance
-        }
-        
-    }
-    
-    private func getDeviceSource(fromResult result: HKStatistics) -> HKSource? {
-        
-        let deviceName = UIDevice.currentDevice().name
-        
-        guard let sources = result.sources else {
-            return nil
-        }
-        
-        let sourcesFiltered = sources.filter { $0.name == deviceName }
-        
-        if (sourcesFiltered.count != 0) {
-            let deviceSource = sourcesFiltered[0]
-            return deviceSource
-        } else {
-            return nil
         }
         
     }

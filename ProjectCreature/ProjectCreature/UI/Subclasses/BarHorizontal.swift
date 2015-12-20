@@ -22,21 +22,29 @@ class BarHorizontal: SKSpriteNode {
     }
     
     /**
-        Changes bar progress by changing the front bar horizontal position
-    */
+     Changes bar progress by changing the front bar horizontal position.
+        
+     - parameter percentage: The progress percentage.
+     */
     func changeBarProgress(byPercentage percentage: Double) {
         
-        self.position.x = (-self.size.width / 2) + self.size.width * CGFloat(percentage / 100)
+        self.position.x = (-self.size.halfWidth) + self.size.width * CGFloat(percentage / 100)
         
     }
     
+    
+    /**
+     Animates the horizontal bar to the designated progress value.
+     
+     - parameter percentage: The designated progress percentage between 0.0 to 1.0.
+     */
     func animateBarProgress(toPercentage percentage: Float) {
         
-        let width = self.size.width
-        let targetPositionX = (-width / 2) + width * CGFloat(percentage / 100)
+        let targetPositionX = (-self.size.halfWidth) + self.size.width * CGFloat(percentage)
         
         let action = SKAction.moveToX(targetPositionX, duration: 0.5)
         action.timingMode = .EaseOut
+        
         self.runAction(action)
         
     }
