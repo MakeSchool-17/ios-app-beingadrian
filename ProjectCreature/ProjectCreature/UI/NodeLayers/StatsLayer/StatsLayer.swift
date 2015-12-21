@@ -14,7 +14,11 @@ class StatsLayer: SKSpriteNode {
     
     private var disposeBag = DisposeBag()
     
+    let gameManager: GameManager
+    
     // MARK: - UI Properties
+    
+    var viewModel: StatsViewModel?
     
     var statisticsTitleLabel: SKLabelNode!
     
@@ -40,11 +44,11 @@ class StatsLayer: SKSpriteNode {
     
     var closeButton: SKSpriteNode!
     
-    weak var viewModel: StatsViewModel?
-    
     // MARK: - Base methods
     
-    init(size: CGSize) {
+    init(size: CGSize, gameManager: GameManager) {
+        
+        self.gameManager = gameManager
         
         let texture = SKTexture(imageNamed: "Background")
         super.init(texture: texture, color: UIColor(), size: size)
@@ -56,86 +60,48 @@ class StatsLayer: SKSpriteNode {
         
         setupUI()
         
-        self.viewModel = StatsViewModel()
+        self.viewModel = StatsViewModel(statsStore: self.gameManager.statsStore)
         
-        bindUI()
+        udpateUI()
         
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         fatalError("> init(coder:) has not been implemented")
     }
     
-    func bindUI() {
+    func udpateUI() {
         
         guard let viewModel = self.viewModel else { return }
         
-        viewModel.distance
-            .delaySubscription(1.0, MainScheduler.sharedInstance)
-            .subscribeOn(MainScheduler.sharedInstance)
-            .map { return $0 / 1000 }
-            .subscribeNext { distance in
-                self.distanceValueLabel.animateToValueFromZero(
-                    distance,
-                    duration: 1,
-                    rounded: false)
-            }
-            .addDisposableTo(disposeBag)
+        distanceValueLabel.animateToValueFromZero(
+            viewModel.distance,
+            duration: 1,
+            rounded: false)
         
-        distanceValueLabel.rx_observeWeakly(String.self, "text")
-            .subscribeNext { (_: String?) in
-                self.distanceUnitLabel.position.x = self.distanceValueLabel.frame.width + 3
-            }
-            .addDisposableTo(disposeBag)
-
-        viewModel.progress
-            .delaySubscription(1.0, MainScheduler.sharedInstance)
-            .subscribeOn(MainScheduler.sharedInstance)
-            .subscribeNext { progress in
-                self.circleFront.animateToProgress(1.0, progress: progress / 100)
-                self.progressValueLabel.animateToValueFromZero(
-                    progress,
-                    duration: 1,
-                    rounded: true,
-                    addString: "%")
-            }
-            .addDisposableTo(disposeBag)
-
-        viewModel.totalSteps
-            .delaySubscription(1.0, MainScheduler.sharedInstance)
-            .subscribeOn(MainScheduler.sharedInstance)
-            .map { return Float($0) }
-            .subscribeNext { totalSteps in
-                self.totalStepsValueLabel.animateToValueFromZero(
-                    totalSteps,
-                    duration: 1,
-                    rounded: true)
-            }
-            .addDisposableTo(disposeBag)
+        let currentWeekday = NSDate().weekday
         
-        viewModel.date
-            .observeOn(MainScheduler.sharedInstance)
-            .bindTo(self.dateLabel.rx_text)
-            .addDisposableTo(disposeBag)
-
-        viewModel.pointerIndex
-            .subscribeOn(MainScheduler.sharedInstance)
-            .subscribeNext { index in
-                let bar = self.histogramBarsFront[index-1]
-                self.histogramPointer.animateToBar(bar)
-            }
-            .addDisposableTo(disposeBag)
+        guard let progressToday = viewModel.weekProgresss[currentWeekday] else { return }
+        progressValueLabel.animateToValueFromZero(
+            progressToday * 100,
+            duration: 1,
+            rounded: true,
+            addString: "%")
         
-        for i in 0...(histogramBarsFront.count-1) {
-            
-            viewModel.weekProgresses[i]
-                .delaySubscription(1.0, MainScheduler.sharedInstance)
-                .subscribeOn(MainScheduler.sharedInstance)
-                .subscribeNext { progress in
-                    self.histogramBarsFront[i].animateBarProgress(toPercentage: progress)
-                }
-                .addDisposableTo(disposeBag)
-            
+        totalStepsValueLabel.animateToValueFromZero(
+            viewModel.totalSteps,
+            duration: 1,
+            rounded: true)
+        
+        dateLabel.text = viewModel.date
+        
+        circleFront.animateToProgress(1, progress: progressToday)
+        
+        let bar = histogramBarsFront[currentWeekday-1]
+        histogramPointer.animateToBar(bar)
+        
+        for (weekday, progress) in viewModel.weekProgresss {
+            histogramBarsFront[weekday-1].animateBarProgress(toPercentage: progress)
         }
         
     }

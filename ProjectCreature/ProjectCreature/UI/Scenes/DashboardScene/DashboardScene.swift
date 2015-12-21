@@ -18,7 +18,11 @@ class DashboardScene: SKScene {
     
     let firebaseHelper = FirebaseHelper()
     
+    let gameManager: GameManager
+    
     // MARK: - UI Properties
+    
+    weak var viewModel: DashboardViewModel?
     
     var background: SKSpriteNode!
     var statsButton: SKButtonSprite!
@@ -46,19 +50,32 @@ class DashboardScene: SKScene {
     var energyLabel: SKLabelNode!
     var energyIcon: SKSpriteNode!
     
-    var gameManager: GameManager?
+    // MARK: - Init setup
     
-    weak var viewModel: DashboardViewModel?
-    
-    // MARK: - Base methods
+    init(size: CGSize, gameManager: GameManager) {
+        
+        self.gameManager = gameManager
+        super.init(size: size)
+        
+        self.viewModel = DashboardViewModel(
+            creature: gameManager.creature,
+            user: gameManager.user)
+        
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("> init(coder:) has not been implemented")
+    }
+
+    // MARK: - Did move to view
     
     override func didMoveToView(view: SKView) {
         
         setup()
         
-        transitionIn {}
+        bindUI()
         
-        Test().simulate(self)
+        transitionIn {}
         
     }
     
@@ -142,7 +159,9 @@ class DashboardScene: SKScene {
         self.userInteractionEnabled = false
         
         self.transitionOut {
-            let statsLayer = StatsLayer(size: self.frame.size)
+            let statsLayer = StatsLayer(
+                size: self.frame.size,
+                gameManager: self.gameManager)
             self.addChild(statsLayer)
             statsLayer.transitionIn {
                 // enable user interaction once transition is complete

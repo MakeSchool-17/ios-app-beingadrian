@@ -14,86 +14,52 @@ class StatsViewModel {
     
     var disposeBag = DisposeBag()
     
-    // TODO: Stats is leaking memory
-    private let stats = HKStatsHelper()
+    let statsStore: HKStatsStore
     
     // MARK: - Properties
     
-    var distance: Variable<Float> = Variable(0)
-    var progress: Variable<Float> = Variable(0)
+    var distance: Float = 0
     
-    var totalSteps: Variable<Int> = Variable(0)
-    var date: Variable<String> = Variable("")
+    var totalSteps: Float = 0
+    var date: String = ""
     
-    var sundayProgress: Variable<Float> = Variable(0)
-    var mondayProgress: Variable<Float> = Variable(0)
-    var tuesdayProgress: Variable<Float> = Variable(0)
-    var wednesdayProgress: Variable<Float> = Variable(0)
-    var thursdayProgress: Variable<Float> = Variable(0)
-    var fridayProgress: Variable<Float> = Variable(0)
-    var saturdayProgress: Variable<Float> = Variable(0)
+    var weekProgresss = Dictionary<Int, Float>()
     
-    var weekProgresses: [Variable<Float>]
-    
-    var pointerIndex: Variable<Int> = Variable(0)
+    var pointerIndex: Int = 0
     
     // MARK: - Initialization
     
-    init() {
+    init(statsStore: HKStatsStore) {
         
-        self.weekProgresses = [sundayProgress, mondayProgress, tuesdayProgress, wednesdayProgress, thursdayProgress, fridayProgress, saturdayProgress]
+        self.statsStore = statsStore
         
-        // temporary value
-        self.progress.value = 75
-        
-        bindDataToUI()
-        
-    }
-    
-    // MARK: - Model binding
-    
-    private func bindDataToUI() {
-        
-        self.pointerIndex.value = NSDate().weekday
-        
-        stats.getStepsForToday()
-            .subscribe(
-                onNext: { (steps) -> Void in
-                    let stepsString = Int(round(steps))
-                    self.totalSteps.value = stepsString
-                },
-                onError: { (error) -> Void in
-                    print("> Error getting steps: \(error)")
-                },
-                onCompleted: {}, onDisposed: {})
+        statsStore.distanceTravelledToday
+            .map { return $0 / 1000 }
+            .subscribeNext { distance in
+                self.distance = distance
+            }
             .addDisposableTo(disposeBag)
         
-        stats.getDistanceForToday()
-            .subscribe(
-                onNext: { (distance) -> Void in
-                    self.distance.value = Float(distance)
-                },
-                onError: { (error) -> Void in
-                    print("> Error getting distance: \(error)")
-                },
-                onCompleted: {}, onDisposed: {})
+        statsStore.totalStepsToday
+            .map { return Float($0) }
+            .subscribeNext { steps in
+                self.totalSteps = steps
+            }
             .addDisposableTo(disposeBag)
         
-        self.date.value = NSDate().localTimestamp
+        self.date = NSDate().localTimestamp
         
-        for i in 0...(weekProgresses.count-1) {
-            
-            let dayProgress = weekProgresses[i]
-            
-            stats.getStepsForWeekday(i+1)
-                .map { return Float($0) / 10000 }
-                .subscribeNext { progress in
-                    dayProgress.value = progress
+        let currentWeekday = NSDate().weekday
+        
+        self.pointerIndex = currentWeekday
+        
+        statsStore.weekStore
+            .subscribeNext { weekStore in
+                for (weekday, progress) in weekStore {
+                    self.weekProgresss[weekday] = progress
                 }
-                .addDisposableTo(disposeBag)
-            
-        }
-        
+            }
+            .addDisposableTo(disposeBag)
         
     }
     

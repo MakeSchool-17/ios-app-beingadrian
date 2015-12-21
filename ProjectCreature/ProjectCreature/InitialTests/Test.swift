@@ -38,20 +38,4 @@ class Test {
         
     }
     
-    func simulate(scene: DashboardScene) {
-        
-        guard let testCreature = createTestCreature() else { return }
-        let testUser = createTestUser()
-        
-        FirebaseHelper.currentUser = testUser
-        
-        guard let currentTestUser = FirebaseHelper.currentUser else { return }
-        
-        scene.gameManager = GameManager(creature: testCreature)
-        scene.viewModel = DashboardViewModel(creature: testCreature, user: currentTestUser)
-        
-        scene.bindUI()
-        
-    }
-    
 }

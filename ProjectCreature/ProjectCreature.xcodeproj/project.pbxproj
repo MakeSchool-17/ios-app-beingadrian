@@ -20,7 +20,7 @@
 		335557091C1BA00A0027FAE4 /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335557081C1BA00A0027FAE4 /* NavigationButton.swift */; };
 		3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */; };
 		3366C5A81C2337C7001AF86E /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5A71C2337C7001AF86E /* Test.swift */; };
-		3366C5AA1C2373D9001AF86E /* HKStatsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5A91C2373D9001AF86E /* HKStatsHelper.swift */; };
+		3366C5AA1C2373D9001AF86E /* HKStatsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5A91C2373D9001AF86E /* HKStatsStore.swift */; };
 		3366C5AC1C2390FA001AF86E /* HistogramPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5AB1C2390FA001AF86E /* HistogramPointer.swift */; };
 		3366C5AF1C23D686001AF86E /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5AE1C23D686001AF86E /* NSDate+Extension.swift */; };
 		3366C5C41C24B38A001AF86E /* NSNumberFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5B81C24B38A001AF86E /* NSNumberFormatter+Extension.swift */; };
@@ -120,7 +120,7 @@
 		335557081C1BA00A0027FAE4 /* NavigationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
 		3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
 		3366C5A71C2337C7001AF86E /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
-		3366C5A91C2373D9001AF86E /* HKStatsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKStatsHelper.swift; sourceTree = "<group>"; };
+		3366C5A91C2373D9001AF86E /* HKStatsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKStatsStore.swift; sourceTree = "<group>"; };
 		3366C5AB1C2390FA001AF86E /* HistogramPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistogramPointer.swift; sourceTree = "<group>"; };
 		3366C5AE1C23D686001AF86E /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
 		3366C5B81C24B38A001AF86E /* NSNumberFormatter+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumberFormatter+Extension.swift"; sourceTree = "<group>"; };
@@ -213,7 +213,7 @@
 			children = (
 				3366C5AD1C23D67A001AF86E /* Extensions */,
 				3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */,
-				3366C5A91C2373D9001AF86E /* HKStatsHelper.swift */,
+				3366C5A91C2373D9001AF86E /* HKStatsStore.swift */,
 			);
 			path = HealthKit;
 			sourceTree = "<group>";
@@ -686,7 +686,7 @@
 				3366C5C61C24B38A001AF86E /* SKLabelNode+Extension.swift in Sources */,
 				337847751C1F556A00B3722D /* Firebase+Rx.swift in Sources */,
 				330F6B4D1C151557004CCAED /* StatsViewModel.swift in Sources */,
-				3366C5AA1C2373D9001AF86E /* HKStatsHelper.swift in Sources */,
+				3366C5AA1C2373D9001AF86E /* HKStatsStore.swift in Sources */,
 				333532731C165176003145AA /* MenuLayer.swift in Sources */,
 				3366C5AC1C2390FA001AF86E /* HistogramPointer.swift in Sources */,
 				339874281BFFFE7200F47B2B /* GameManager.swift in Sources */,

@@ -11,13 +11,23 @@ import RxSwift
 
 
 class GameManager {
+
+    let statsStore: HKStatsStore
     
+    // MARK: - Properties
+    
+    var user: User
     var creature: Creature
     
-    init(creature: Creature) {
+    // MARK: - Initialization
+
+    init(user: User, creature: Creature, statsStore: HKStatsStore) {
+
+        self.statsStore = statsStore
         
+        self.user = user
         self.creature = creature
-        
+
     }
     
 }

@@ -113,7 +113,7 @@ extension StatsLayer {
         totalStepsTitleLabel.position.y = 20
         stepCircleGroup.addChild(totalStepsTitleLabel)
         
-        totalStepsValueLabel = createLabelNode("10,000",
+        totalStepsValueLabel = createLabelNode("0",
             fontSize: 42,
             horizontalAlign: .Center,
             verticalAlign: .Baseline)

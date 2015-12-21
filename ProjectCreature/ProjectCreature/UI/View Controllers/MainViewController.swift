@@ -13,7 +13,7 @@ import RxSwift
 
 class MainViewController: UIViewController {
 
-    var disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
 
     // MARK: - Base methods
     
@@ -22,7 +22,20 @@ class MainViewController: UIViewController {
         
         guard let view = view as? SKView else { return }
         
-        let scene = DashboardScene(size: CGSize(width: 320, height: 568))
+        // simulate creature and user
+        guard let testCreature = Test().createTestCreature() else { return }
+        let testUser = Test().createTestUser()
+        
+        let gameManager = GameManager(
+            user: testUser,
+            creature: testCreature,
+            statsStore: HKStatsStore())
+        
+        let sceneSize = CGSize(width: 320, height: 568)
+        
+        let scene = DashboardScene(
+            size: sceneSize,
+            gameManager: gameManager)
         scene.scaleMode = .Fill
         
         view.presentScene(scene)
