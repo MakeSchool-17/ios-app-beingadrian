@@ -16,18 +16,25 @@ class MenuLayer: SKSpriteNode {
     
     var menuGroup: SKSpriteNode!
     
-    var trophyIcon: SKSpriteNode!
+    var awardsButton: SKButtonSprite!
+    var awardsIcon: SKSpriteNode!
     var awardsLabel: SKLabelNode!
+    
+    var leaderboardButton: SKButtonSprite!
     var leaderboardIcon: SKSpriteNode!
     var leaderboardLabel: SKLabelNode!
+    
+    var storeButton: SKButtonSprite!
     var storeIcon: SKSpriteNode!
     var storeLabel: SKLabelNode!
+    
+    var settingsButton: SKSpriteNode!
     var settingsIcon: SKSpriteNode!
     var settingsLabel: SKLabelNode!
     
     // MARK: - Base methods
     
-    init(size: CGSize, scene: SKScene) {
+    init(size: CGSize) {
         
         let color = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
         super.init(texture: nil, color: color, size: size)
@@ -40,8 +47,8 @@ class MenuLayer: SKSpriteNode {
     
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init(coder aDecoder: NSCoder) {
+        fatalError("> init(coder:) has not been implemented")
     }
     
     // MARK: - Touch handling
@@ -51,17 +58,27 @@ class MenuLayer: SKSpriteNode {
         guard let touch = touches.first else { return }
         let touchLocation = touch.locationInNode(self)
         
-        let _ = self.nodeAtPoint(touchLocation)
+        let touchedNode = self.nodeAtPoint(touchLocation)
         
-        transitionOut()
-        
+        if touchedNode.isEqualToNode(awardsButton) {
+            print("> Awards")
+        } else if touchedNode.isEqualToNode(leaderboardButton) {
+            print("> Leaderboard")
+        } else if touchedNode.isEqualToNode(storeButton) {
+            print("> Store")
+        } else if touchedNode.isEqualToNode(settingsButton) {
+            print("> Settings")
+        } else {
+            transitionOut()
+        }
+
     }
     
     // MARK: - Transitions 
     
     func transitionIn() {
         
-        let fadeInAction = SKAction.fadeInWithDuration(0.35)
+        let fadeInAction = SKAction.fadeInWithDuration(0.15)
         fadeInAction.timingMode = .EaseOut
         
         self.menuGroup.setScale(0)

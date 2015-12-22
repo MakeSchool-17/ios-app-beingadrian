@@ -9,8 +9,4 @@
 import SpriteKit
 
 
-class SKButtonSprite: SKSpriteNode {
-
-    
-    
-}
+class SKButtonSprite: SKSpriteNode {}

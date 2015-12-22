@@ -14,15 +14,15 @@ import Firebase
 
 class DashboardScene: SKScene {
     
-    private var disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
     
-    let firebaseHelper = FirebaseHelper()
+    private let firebaseHelper = FirebaseHelper()
     
-    let gameManager: GameManager
+    private let gameManager: GameManager
     
     // MARK: - UI Properties
     
-    weak var viewModel: DashboardViewModel?
+    private let viewModel: DashboardViewModel
     
     var background: SKSpriteNode!
     var statsButton: SKButtonSprite!
@@ -55,11 +55,12 @@ class DashboardScene: SKScene {
     init(size: CGSize, gameManager: GameManager) {
         
         self.gameManager = gameManager
-        super.init(size: size)
         
         self.viewModel = DashboardViewModel(
             creature: gameManager.creature,
             user: gameManager.user)
+        
+        super.init(size: size)
         
     }
 
@@ -75,11 +76,13 @@ class DashboardScene: SKScene {
         
         bindUI()
         
+        gameManager.statsStore.reloadData()
+        
         transitionIn {}
         
     }
     
-    func setup() {
+    private func setup() {
         
         setupUI()
     
@@ -89,9 +92,7 @@ class DashboardScene: SKScene {
     
     // MARK: - UI Binding
     
-    func bindUI() {
-        
-        guard let viewModel = viewModel else { return }
+    private func bindUI() {
         
         viewModel.creatureName
             .subscribeOn(MainScheduler.sharedInstance)
@@ -120,7 +121,7 @@ class DashboardScene: SKScene {
         
         viewModel.creatureExpPercentage
             .subscribeOn(MainScheduler.sharedInstance)
-            .map { return $0 / 100}
+            .map { return $0 / 100 }
             .subscribeNext { percentage in
                 self.expBarFront.animateBarProgress(toPercentage: percentage)
             }
@@ -154,7 +155,7 @@ class DashboardScene: SKScene {
     
     // MARK: - Segues
     
-    func pushStatsLayer() {
+    private func pushStatsLayer() {
         
         self.userInteractionEnabled = false
         
@@ -171,12 +172,14 @@ class DashboardScene: SKScene {
         
     }
     
-    func pushMenuLayer() {
+    private func pushMenuLayer() {
         
-        let menuLayer = MenuLayer(size: self.frame.size, scene: self)
+        let menuLayer = MenuLayer(size: self.frame.size)
         self.addChild(menuLayer)
         menuLayer.transitionIn()
         
     }
     
 }
+
+extension DashboardScene: RxCompliant {}

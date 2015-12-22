@@ -64,3 +64,5 @@ class StatsViewModel {
     }
     
 }
+
+extension StatsViewModel: RxCompliant {}

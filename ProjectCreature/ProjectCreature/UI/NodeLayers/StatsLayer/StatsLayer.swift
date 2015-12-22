@@ -12,13 +12,13 @@ import RxSwift
 
 class StatsLayer: SKSpriteNode {
     
-    private var disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
     
-    let gameManager: GameManager
+    private let gameManager: GameManager
     
     // MARK: - UI Properties
     
-    var viewModel: StatsViewModel?
+    private let viewModel: StatsViewModel
     
     var statisticsTitleLabel: SKLabelNode!
     
@@ -50,6 +50,8 @@ class StatsLayer: SKSpriteNode {
         
         self.gameManager = gameManager
         
+        self.viewModel = StatsViewModel(statsStore: self.gameManager.statsStore)
+        
         let texture = SKTexture(imageNamed: "Background")
         super.init(texture: texture, color: UIColor(), size: size)
         
@@ -60,8 +62,6 @@ class StatsLayer: SKSpriteNode {
         
         setupUI()
         
-        self.viewModel = StatsViewModel(statsStore: self.gameManager.statsStore)
-        
         udpateUI()
         
     }
@@ -70,9 +70,7 @@ class StatsLayer: SKSpriteNode {
         fatalError("> init(coder:) has not been implemented")
     }
     
-    func udpateUI() {
-        
-        guard let viewModel = self.viewModel else { return }
+    private func udpateUI() {
         
         distanceValueLabel.animateToValueFromZero(
             viewModel.distance,
@@ -119,8 +117,8 @@ class StatsLayer: SKSpriteNode {
             self.transitionOut {
                 guard let dashboardScene = self.parent as? DashboardScene else { return }
                 dashboardScene.transitionIn {
-                    self.viewModel?.disposeBag = DisposeBag()
-                    self.disposeBag = DisposeBag()
+                    self.viewModel.cleanDisposeBag()
+                    self.cleanDisposeBag()
                     self.removeFromParent()
                     dashboardScene.userInteractionEnabled = true
                 }
@@ -153,7 +151,7 @@ class StatsLayer: SKSpriteNode {
         
     }
     
-    func transitionOut(completion: TransitionCallback) {
+    private func transitionOut(completion: TransitionCallback) {
         
         // disable user interaction to avoid touch conflicts
         self.userInteractionEnabled = false
@@ -165,3 +163,5 @@ class StatsLayer: SKSpriteNode {
     }
 
 }
+
+extension StatsLayer: RxCompliant {}

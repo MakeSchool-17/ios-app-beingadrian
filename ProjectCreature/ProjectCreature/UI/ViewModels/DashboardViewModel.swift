@@ -13,7 +13,7 @@ import RxSwift
 
 class DashboardViewModel {
     
-    private var disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
     
     // MARK: - Properties
     
@@ -73,3 +73,5 @@ class DashboardViewModel {
     }
 
 }
+
+extension DashboardViewModel: RxCompliant {}

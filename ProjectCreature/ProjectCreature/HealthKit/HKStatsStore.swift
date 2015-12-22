@@ -27,7 +27,7 @@ class HKStatsStore {
     
     /** 
     Distance travelled today in Meters.
-    */
+     */
     var distanceTravelledToday: Variable<Float> = Variable(0)
     var totalStepsToday: Variable<Double> = Variable(0)
     
@@ -43,9 +43,15 @@ class HKStatsStore {
     
     init() {
         
+        reloadData()
+        
+    }
+    
+    func reloadData() {
+        
         let currentWeekday = NSDate().weekday
         
-        self.getDistanceForToday()
+        getDistanceForToday()
             .map { return Float($0) }
             .subscribeNext { distance in
                 self.distanceTravelledToday.value = distance
@@ -54,7 +60,7 @@ class HKStatsStore {
         
         for weekday in 1...7 {
             
-            self.getStepsForWeekday(weekday)
+            getStepsForWeekday(weekday)
                 .map { return Float($0) }
                 .subscribeNext { steps in
                     // hardcode goal of 10000 at the moment
@@ -64,17 +70,17 @@ class HKStatsStore {
             
         }
         
-        self.getStepsForWeekday(currentWeekday)
+        getStepsForWeekday(currentWeekday)
             .subscribeNext { steps in
                 self.totalStepsToday.value = steps
             }
             .addDisposableTo(disposeBag)
-
+        
     }
     
     // MARK: - Stats methods
     
-    func getDistanceForToday() -> Observable<Double> {
+    private func getDistanceForToday() -> Observable<Double> {
         
         return healthHelper.queryTotalDistanceOnFoot(
             fromDate: NSDate().startDay,
@@ -82,7 +88,7 @@ class HKStatsStore {
         
     }
     
-    func getStepsForWeekday(weekday: Int) -> Observable<Double> {
+    private func getStepsForWeekday(weekday: Int) -> Observable<Double> {
 
         guard let day = NSDate().getDateFromWeekday(weekday) else {
             return failWith(StatsError.ErrorGettingDate) }

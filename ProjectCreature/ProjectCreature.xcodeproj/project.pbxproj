@@ -7,10 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		330034501C28D60700C7CFFF /* LeaderboardLayerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3300344F1C28D60700C7CFFF /* LeaderboardLayerUI.swift */; };
+		330034531C28DAAD00C7CFFF /* StoreLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330034521C28DAAD00C7CFFF /* StoreLayer.swift */; };
+		330034551C28DB1600C7CFFF /* StoreLayerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330034541C28DB1600C7CFFF /* StoreLayerUI.swift */; };
+		330034581C28DB9700C7CFFF /* SettingsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330034571C28DB9700C7CFFF /* SettingsLayer.swift */; };
+		3300345A1C28DC0200C7CFFF /* SettingsLayerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330034591C28DC0200C7CFFF /* SettingsLayerUI.swift */; };
 		3309FB4D1BF7F64300BE0310 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3309FB4C1BF7F64300BE0310 /* HealthKit.framework */; };
 		3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */; };
-		330F6B4B1C150BA2004CCAED /* CreatureOwnerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F6B4A1C150BA2004CCAED /* CreatureOwnerProtocol.swift */; };
 		330F6B4D1C151557004CCAED /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F6B4C1C151557004CCAED /* StatsViewModel.swift */; };
+		331822281C28C9A60094245D /* AwardsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331822271C28C9A60094245D /* AwardsLayer.swift */; };
+		3318222A1C28CB2A0094245D /* AwardsLayerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331822291C28CB2A0094245D /* AwardsLayerUI.swift */; };
+		3318222D1C28CBD60094245D /* LeaderboardLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318222C1C28CBD60094245D /* LeaderboardLayer.swift */; };
+		3318222F1C28CCA10094245D /* RxCompliant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318222E1C28CCA10094245D /* RxCompliant.swift */; };
 		331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331E66D21BF6AEDB003AB81D /* MainViewController.swift */; };
 		3335326E1C164F6B003145AA /* StatsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335326D1C164F6B003145AA /* StatsLayer.swift */; };
 		333532701C164FC9003145AA /* StatsLayerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335326F1C164FC9003145AA /* StatsLayerUI.swift */; };
@@ -27,7 +35,6 @@
 		3366C5C51C24B38A001AF86E /* SKLabelNode+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5BA1C24B38A001AF86E /* SKLabelNode+Rx.swift */; };
 		3366C5C61C24B38A001AF86E /* SKLabelNode+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5BC1C24B38A001AF86E /* SKLabelNode+Extension.swift */; };
 		3366C5C71C24B38A001AF86E /* SKNode+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5BD1C24B38A001AF86E /* SKNode+Extension.swift */; };
-		3366C5C81C24B38A001AF86E /* SKScene+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5BE1C24B38A001AF86E /* SKScene+Extension.swift */; };
 		3366C5C91C24B38A001AF86E /* SpriteKit+Spring+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5BF1C24B38A001AF86E /* SpriteKit+Spring+Extension.swift */; };
 		3366C5CA1C24B38A001AF86E /* CGFrame+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5C11C24B38A001AF86E /* CGFrame+Extension.swift */; };
 		3366C5CB1C24B38A001AF86E /* CGSize+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5C21C24B38A001AF86E /* CGSize+Extension.swift */; };
@@ -106,11 +113,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3300344F1C28D60700C7CFFF /* LeaderboardLayerUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardLayerUI.swift; sourceTree = "<group>"; };
+		330034521C28DAAD00C7CFFF /* StoreLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreLayer.swift; sourceTree = "<group>"; };
+		330034541C28DB1600C7CFFF /* StoreLayerUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreLayerUI.swift; sourceTree = "<group>"; };
+		330034571C28DB9700C7CFFF /* SettingsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLayer.swift; sourceTree = "<group>"; };
+		330034591C28DC0200C7CFFF /* SettingsLayerUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLayerUI.swift; sourceTree = "<group>"; };
 		3309FB4C1BF7F64300BE0310 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		3309FB4E1BF7F64300BE0310 /* ProjectCreature.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ProjectCreature.entitlements; sourceTree = "<group>"; };
 		3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKHelper.swift; sourceTree = "<group>"; };
-		330F6B4A1C150BA2004CCAED /* CreatureOwnerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureOwnerProtocol.swift; sourceTree = "<group>"; };
 		330F6B4C1C151557004CCAED /* StatsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
+		331822271C28C9A60094245D /* AwardsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwardsLayer.swift; sourceTree = "<group>"; };
+		331822291C28CB2A0094245D /* AwardsLayerUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwardsLayerUI.swift; sourceTree = "<group>"; };
+		3318222C1C28CBD60094245D /* LeaderboardLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardLayer.swift; sourceTree = "<group>"; };
+		3318222E1C28CCA10094245D /* RxCompliant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCompliant.swift; sourceTree = "<group>"; };
 		331E66D21BF6AEDB003AB81D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3335326D1C164F6B003145AA /* StatsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsLayer.swift; sourceTree = "<group>"; };
 		3335326F1C164FC9003145AA /* StatsLayerUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsLayerUI.swift; sourceTree = "<group>"; };
@@ -127,7 +142,6 @@
 		3366C5BA1C24B38A001AF86E /* SKLabelNode+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKLabelNode+Rx.swift"; sourceTree = "<group>"; };
 		3366C5BC1C24B38A001AF86E /* SKLabelNode+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKLabelNode+Extension.swift"; sourceTree = "<group>"; };
 		3366C5BD1C24B38A001AF86E /* SKNode+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKNode+Extension.swift"; sourceTree = "<group>"; };
-		3366C5BE1C24B38A001AF86E /* SKScene+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKScene+Extension.swift"; sourceTree = "<group>"; };
 		3366C5BF1C24B38A001AF86E /* SpriteKit+Spring+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SpriteKit+Spring+Extension.swift"; sourceTree = "<group>"; };
 		3366C5C11C24B38A001AF86E /* CGFrame+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFrame+Extension.swift"; sourceTree = "<group>"; };
 		3366C5C21C24B38A001AF86E /* CGSize+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Extension.swift"; sourceTree = "<group>"; };
@@ -208,6 +222,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		330034511C28DA9D00C7CFFF /* StoreLayer */ = {
+			isa = PBXGroup;
+			children = (
+				330034521C28DAAD00C7CFFF /* StoreLayer.swift */,
+				330034541C28DB1600C7CFFF /* StoreLayerUI.swift */,
+			);
+			path = StoreLayer;
+			sourceTree = "<group>";
+		};
+		330034561C28DB5A00C7CFFF /* SettingsLayer */ = {
+			isa = PBXGroup;
+			children = (
+				330034571C28DB9700C7CFFF /* SettingsLayer.swift */,
+				330034591C28DC0200C7CFFF /* SettingsLayerUI.swift */,
+			);
+			path = SettingsLayer;
+			sourceTree = "<group>";
+		};
+		331822261C28C9680094245D /* AwardsLayer */ = {
+			isa = PBXGroup;
+			children = (
+				331822271C28C9A60094245D /* AwardsLayer.swift */,
+				331822291C28CB2A0094245D /* AwardsLayerUI.swift */,
+			);
+			path = AwardsLayer;
+			sourceTree = "<group>";
+		};
+		3318222B1C28CBC30094245D /* LeaderboardLayer */ = {
+			isa = PBXGroup;
+			children = (
+				3318222C1C28CBD60094245D /* LeaderboardLayer.swift */,
+				3300344F1C28D60700C7CFFF /* LeaderboardLayerUI.swift */,
+			);
+			path = LeaderboardLayer;
+			sourceTree = "<group>";
+		};
 		331E66C71BF6A6B4003AB81D /* HealthKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,7 +271,11 @@
 		333532651C160273003145AA /* NodeLayers */ = {
 			isa = PBXGroup;
 			children = (
+				330034561C28DB5A00C7CFFF /* SettingsLayer */,
+				330034511C28DA9D00C7CFFF /* StoreLayer */,
 				333532711C165165003145AA /* MenuLayer */,
+				3318222B1C28CBC30094245D /* LeaderboardLayer */,
+				331822261C28C9680094245D /* AwardsLayer */,
 				3335326C1C164F6B003145AA /* StatsLayer */,
 			);
 			path = NodeLayers;
@@ -285,6 +339,7 @@
 		3366C5B61C24B31F001AF86E /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				3318222E1C28CCA10094245D /* RxCompliant.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -310,7 +365,6 @@
 			children = (
 				3366C5BC1C24B38A001AF86E /* SKLabelNode+Extension.swift */,
 				3366C5BD1C24B38A001AF86E /* SKNode+Extension.swift */,
-				3366C5BE1C24B38A001AF86E /* SKScene+Extension.swift */,
 				3366C5BF1C24B38A001AF86E /* SpriteKit+Spring+Extension.swift */,
 			);
 			path = SpriteKit;
@@ -496,7 +550,6 @@
 			isa = PBXGroup;
 			children = (
 				33BBFD671C121F8300E76511 /* DashboardScene */,
-				330F6B4A1C150BA2004CCAED /* CreatureOwnerProtocol.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -662,12 +715,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				330034501C28D60700C7CFFF /* LeaderboardLayerUI.swift in Sources */,
 				3366C5C91C24B38A001AF86E /* SpriteKit+Spring+Extension.swift in Sources */,
+				330034551C28DB1600C7CFFF /* StoreLayerUI.swift in Sources */,
 				337847671C1F3D3600B3722D /* FirebaseHelper.swift in Sources */,
 				337847621C1E826500B3722D /* Creature.swift in Sources */,
 				3378475E1C1E054700B3722D /* SKButtonSprite.swift in Sources */,
 				3366C5CA1C24B38A001AF86E /* CGFrame+Extension.swift in Sources */,
+				3318222F1C28CCA10094245D /* RxCompliant.swift in Sources */,
 				33BBFD7B1C121F8300E76511 /* DashboardSceneUI.swift in Sources */,
+				3300345A1C28DC0200C7CFFF /* SettingsLayerUI.swift in Sources */,
 				33BBFD7F1C121F8300E76511 /* BarHorizontal.swift in Sources */,
 				33AC1D031C266F170066FCB3 /* BarVertical.swift in Sources */,
 				3366C5A81C2337C7001AF86E /* Test.swift in Sources */,
@@ -675,7 +732,8 @@
 				3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */,
 				337847641C1EA1F100B3722D /* User.swift in Sources */,
 				338368DB1BF67852006407FF /* AppDelegate.swift in Sources */,
-				3366C5C81C24B38A001AF86E /* SKScene+Extension.swift in Sources */,
+				330034531C28DAAD00C7CFFF /* StoreLayer.swift in Sources */,
+				3318222D1C28CBD60094245D /* LeaderboardLayer.swift in Sources */,
 				33BBFD7A1C121F8300E76511 /* DashboardScene.swift in Sources */,
 				3366C5CB1C24B38A001AF86E /* CGSize+Extension.swift in Sources */,
 				333532771C169158003145AA /* DashboardSceneAnimations.swift in Sources */,
@@ -684,17 +742,19 @@
 				333532751C1651D4003145AA /* MenuLayerUI.swift in Sources */,
 				33BBFD601C121E9900E76511 /* DashboardViewModel.swift in Sources */,
 				3366C5C61C24B38A001AF86E /* SKLabelNode+Extension.swift in Sources */,
+				3318222A1C28CB2A0094245D /* AwardsLayerUI.swift in Sources */,
 				337847751C1F556A00B3722D /* Firebase+Rx.swift in Sources */,
 				330F6B4D1C151557004CCAED /* StatsViewModel.swift in Sources */,
 				3366C5AA1C2373D9001AF86E /* HKStatsStore.swift in Sources */,
 				333532731C165176003145AA /* MenuLayer.swift in Sources */,
 				3366C5AC1C2390FA001AF86E /* HistogramPointer.swift in Sources */,
+				330034581C28DB9700C7CFFF /* SettingsLayer.swift in Sources */,
 				339874281BFFFE7200F47B2B /* GameManager.swift in Sources */,
 				337847831C22202E00B3722D /* CreatureJsonModel.swift in Sources */,
 				3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */,
 				3366C5C41C24B38A001AF86E /* NSNumberFormatter+Extension.swift in Sources */,
 				335557091C1BA00A0027FAE4 /* NavigationButton.swift in Sources */,
-				330F6B4B1C150BA2004CCAED /* CreatureOwnerProtocol.swift in Sources */,
+				331822281C28C9A60094245D /* AwardsLayer.swift in Sources */,
 				3366C5CC1C24B38A001AF86E /* UIColor+Extension.swift in Sources */,
 				3335326E1C164F6B003145AA /* StatsLayer.swift in Sources */,
 				3366C5C71C24B38A001AF86E /* SKNode+Extension.swift in Sources */,
