@@ -31,11 +31,7 @@ class Creature {
     enum Family: String {
         case Dog = "dog"
         case Cat = "cat"
-        case Panda = "panda"
-        
-        var description: String {
-            return ""
-        }
+        case Pando = "pando"
     }
     
     // MARK: - Initialization

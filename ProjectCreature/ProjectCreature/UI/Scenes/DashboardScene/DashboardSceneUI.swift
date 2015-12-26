@@ -14,7 +14,7 @@ extension DashboardScene {
     
     func setupUI() {
         
-        background = SKSpriteNode(imageNamed: "Background")
+        let background = SKSpriteNode(imageNamed: "Background")
         self.addChild(background)
         background.anchorPoint = CGPointZero
         background.position = CGPointZero
@@ -81,7 +81,7 @@ extension DashboardScene {
         
         // MARK: Health bar
         
-        hpBarBack = SKSpriteNode(imageNamed: "Health bar - back")
+        let hpBarBack = SKSpriteNode(imageNamed: "Health bar - back")
         dashboard.addChild(hpBarBack)
         hpBarBack.anchorPoint = CGPoint(x: 0, y: 1)
         hpBarBack.position.x = 80
@@ -90,7 +90,7 @@ extension DashboardScene {
         let hpBarMask = SKSpriteNode(imageNamed: "Health bar - back")
         hpBarMask.position.x = hpBarBack.size.halfWidth
         hpBarMask.position.y = -(hpBarBack.size.halfHeight)
-        hpBarCrop = SKCropNode()
+        let hpBarCrop = SKCropNode()
         hpBarFront = BarHorizontal(imageNamed: "Health bar - front")
         hpBarFront.position.x = hpBarFront.size.halfWidth - hpBarFront.size.width
         hpBarFront.position.y = -(hpBarBack.size.halfHeight)
@@ -98,7 +98,7 @@ extension DashboardScene {
         hpBarCrop.maskNode = hpBarMask
         hpBarBack.addChild(hpBarCrop)
         
-        hpLabel = SKLabelNode(text: "HP")
+        let hpLabel = SKLabelNode(text: "HP")
         hpBarBack.addChild(hpLabel)
         hpLabel.fontName = "Avenir-MediumOblique"
         hpLabel.fontSize = 16
@@ -120,7 +120,7 @@ extension DashboardScene {
         
         // MARK: Exp bar
         
-        expBarBack = SKSpriteNode(imageNamed: "Exp bar - back")
+        let expBarBack = SKSpriteNode(imageNamed: "Exp bar - back")
         dashboard.addChild(expBarBack)
         expBarBack.anchorPoint = CGPoint(x: 0, y: 1)
         expBarBack.position.x = 70
@@ -129,7 +129,7 @@ extension DashboardScene {
         let expBarMask = SKSpriteNode(imageNamed: "Exp bar - back")
         expBarMask.position.x = expBarBack.size.halfWidth
         expBarMask.position.y = -(expBarBack.size.halfHeight)
-        expBarCrop = SKCropNode()
+        let expBarCrop = SKCropNode()
         expBarFront = BarHorizontal(imageNamed: "Exp bar - front")
         expBarFront.position.x = expBarFront.size.halfWidth - expBarFront.size.width
         expBarFront.position.y = -(expBarBack.size.halfHeight)

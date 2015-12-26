@@ -133,6 +133,7 @@ class StatsLayer: SKSpriteNode {
     
     func transitionIn(completion: TransitionCallback) {
         
+        self.setScale(0)
         self.stepCircleGroup.setScale(0)
         let scaleAction = SKAction.scaleTo(1,
             duration: 1,
@@ -141,10 +142,11 @@ class StatsLayer: SKSpriteNode {
             initialSpringVelocity: 0)
         
         let fadeInAction = SKAction.fadeInWithDuration(0.35)
+        let actionGroup = SKAction.group([fadeInAction, scaleAction])
         
         let transitionAction = SKAction.runBlock {
             self.stepCircleGroup.runAction(scaleAction)
-            self.runAction(fadeInAction)
+            self.runAction(actionGroup)
         }
         
         self.runAction(transitionAction, completion: completion)
@@ -156,9 +158,11 @@ class StatsLayer: SKSpriteNode {
         // disable user interaction to avoid touch conflicts
         self.userInteractionEnabled = false
         
+        let scaleDownAction = SKAction.scaleTo(0, duration: 0.25)
         let fadeOutAction = SKAction.fadeOutWithDuration(0.15)
+        let actionGroup = SKAction.group([scaleDownAction, fadeOutAction])
         
-        self.runAction(fadeOutAction, completion: completion)
+        self.runAction(actionGroup, completion: completion)
         
     }
 

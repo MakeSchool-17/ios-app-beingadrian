@@ -24,7 +24,6 @@ class DashboardScene: SKScene {
     
     private let viewModel: DashboardViewModel
     
-    var background: SKSpriteNode!
     var statsButton: SKButtonSprite!
     var menuButton: SKButtonSprite!
     
@@ -35,20 +34,17 @@ class DashboardScene: SKScene {
     var lvLabel: SKLabelNode!
     var creatureLevelLabel: SKLabelNode!
     
-    var hpBarBack: SKSpriteNode!
     var hpBarFront: BarHorizontal!
-    var hpBarCrop: SKCropNode!
-    var hpLabel: SKLabelNode!
     var hpPercentageLabel: SKLabelNode!
     
-    var expBarBack: SKSpriteNode!
     var expBarFront: BarHorizontal!
-    var expBarCrop: SKCropNode!
     var expLabel: SKLabelNode!
     
     var energyGroup: SKNode!
     var energyLabel: SKLabelNode!
     var energyIcon: SKSpriteNode!
+    
+    var creature: PandoModel!
     
     // MARK: - Init setup
     
@@ -79,6 +75,11 @@ class DashboardScene: SKScene {
         gameManager.statsStore.reloadData()
         
         transitionIn {}
+        
+        let pando = PandoModel()
+        pando.position.x = frame.halfWidth
+        pando.position.y = frame.halfHeight - 100
+        self.addChild(pando)
         
     }
     

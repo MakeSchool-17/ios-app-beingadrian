@@ -20,6 +20,11 @@
 		3318222D1C28CBD60094245D /* LeaderboardLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318222C1C28CBD60094245D /* LeaderboardLayer.swift */; };
 		3318222F1C28CCA10094245D /* RxCompliant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318222E1C28CCA10094245D /* RxCompliant.swift */; };
 		331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331E66D21BF6AEDB003AB81D /* MainViewController.swift */; };
+		332482761C2E520800C4655E /* ActionFactory.sks in Resources */ = {isa = PBXBuildFile; fileRef = 332482721C2E520800C4655E /* ActionFactory.sks */; };
+		332482771C2E520800C4655E /* TestScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 332482731C2E520800C4655E /* TestScene.sks */; };
+		332482781C2E520800C4655E /* Pando.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332482751C2E520800C4655E /* Pando.swift */; };
+		3324827A1C2E533700C4655E /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332482791C2E533700C4655E /* ActionManager.swift */; };
+		3324827C1C2E55BB00C4655E /* SKAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3324827B1C2E55BB00C4655E /* SKAction+Extension.swift */; };
 		3335326E1C164F6B003145AA /* StatsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335326D1C164F6B003145AA /* StatsLayer.swift */; };
 		333532701C164FC9003145AA /* StatsLayerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335326F1C164FC9003145AA /* StatsLayerUI.swift */; };
 		333532731C165176003145AA /* MenuLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333532721C165176003145AA /* MenuLayer.swift */; };
@@ -127,6 +132,11 @@
 		3318222C1C28CBD60094245D /* LeaderboardLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardLayer.swift; sourceTree = "<group>"; };
 		3318222E1C28CCA10094245D /* RxCompliant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCompliant.swift; sourceTree = "<group>"; };
 		331E66D21BF6AEDB003AB81D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		332482721C2E520800C4655E /* ActionFactory.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ActionFactory.sks; sourceTree = "<group>"; };
+		332482731C2E520800C4655E /* TestScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TestScene.sks; sourceTree = "<group>"; };
+		332482751C2E520800C4655E /* Pando.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pando.swift; sourceTree = "<group>"; };
+		332482791C2E533700C4655E /* ActionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionManager.swift; sourceTree = "<group>"; };
+		3324827B1C2E55BB00C4655E /* SKAction+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKAction+Extension.swift"; sourceTree = "<group>"; };
 		3335326D1C164F6B003145AA /* StatsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsLayer.swift; sourceTree = "<group>"; };
 		3335326F1C164FC9003145AA /* StatsLayerUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsLayerUI.swift; sourceTree = "<group>"; };
 		333532721C165176003145AA /* MenuLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuLayer.swift; sourceTree = "<group>"; };
@@ -268,6 +278,33 @@
 			path = HealthKit;
 			sourceTree = "<group>";
 		};
+		332482701C2E520800C4655E /* CreatureModels */ = {
+			isa = PBXGroup;
+			children = (
+				332482711C2E520800C4655E /* Animations */,
+				332482741C2E520800C4655E /* Pando */,
+			);
+			path = CreatureModels;
+			sourceTree = "<group>";
+		};
+		332482711C2E520800C4655E /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				332482721C2E520800C4655E /* ActionFactory.sks */,
+				332482731C2E520800C4655E /* TestScene.sks */,
+				332482791C2E533700C4655E /* ActionManager.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
+		332482741C2E520800C4655E /* Pando */ = {
+			isa = PBXGroup;
+			children = (
+				332482751C2E520800C4655E /* Pando.swift */,
+			);
+			path = Pando;
+			sourceTree = "<group>";
+		};
 		333532651C160273003145AA /* NodeLayers */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,6 +403,7 @@
 				3366C5BC1C24B38A001AF86E /* SKLabelNode+Extension.swift */,
 				3366C5BD1C24B38A001AF86E /* SKNode+Extension.swift */,
 				3366C5BF1C24B38A001AF86E /* SpriteKit+Spring+Extension.swift */,
+				3324827B1C2E55BB00C4655E /* SKAction+Extension.swift */,
 			);
 			path = SpriteKit;
 			sourceTree = "<group>";
@@ -424,6 +462,7 @@
 			children = (
 				3309FB4E1BF7F64300BE0310 /* ProjectCreature.entitlements */,
 				3383692C1BF69FE6006407FF /* UI */,
+				332482701C2E520800C4655E /* CreatureModels */,
 				339874261BFFFE5E00F47B2B /* Game */,
 				33BBFD611C121EB600E76511 /* DataModels */,
 				337847651C1F3D2400B3722D /* Firebase */,
@@ -690,6 +729,8 @@
 			files = (
 				338368E91BF67852006407FF /* LaunchScreen.storyboard in Resources */,
 				338368E61BF67852006407FF /* Assets.xcassets in Resources */,
+				332482761C2E520800C4655E /* ActionFactory.sks in Resources */,
+				332482771C2E520800C4655E /* TestScene.sks in Resources */,
 				338368E41BF67852006407FF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -719,8 +760,10 @@
 				3366C5C91C24B38A001AF86E /* SpriteKit+Spring+Extension.swift in Sources */,
 				330034551C28DB1600C7CFFF /* StoreLayerUI.swift in Sources */,
 				337847671C1F3D3600B3722D /* FirebaseHelper.swift in Sources */,
+				332482781C2E520800C4655E /* Pando.swift in Sources */,
 				337847621C1E826500B3722D /* Creature.swift in Sources */,
 				3378475E1C1E054700B3722D /* SKButtonSprite.swift in Sources */,
+				3324827C1C2E55BB00C4655E /* SKAction+Extension.swift in Sources */,
 				3366C5CA1C24B38A001AF86E /* CGFrame+Extension.swift in Sources */,
 				3318222F1C28CCA10094245D /* RxCompliant.swift in Sources */,
 				33BBFD7B1C121F8300E76511 /* DashboardSceneUI.swift in Sources */,
@@ -728,6 +771,7 @@
 				33BBFD7F1C121F8300E76511 /* BarHorizontal.swift in Sources */,
 				33AC1D031C266F170066FCB3 /* BarVertical.swift in Sources */,
 				3366C5A81C2337C7001AF86E /* Test.swift in Sources */,
+				3324827A1C2E533700C4655E /* ActionManager.swift in Sources */,
 				3366C5C51C24B38A001AF86E /* SKLabelNode+Rx.swift in Sources */,
 				3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */,
 				337847641C1EA1F100B3722D /* User.swift in Sources */,

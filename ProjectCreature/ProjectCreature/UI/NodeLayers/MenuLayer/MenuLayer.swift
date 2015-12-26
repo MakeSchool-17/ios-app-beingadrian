@@ -36,7 +36,7 @@ class MenuLayer: SKSpriteNode {
     
     init(size: CGSize) {
         
-        let color = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.9)
+        let color = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.99)
         super.init(texture: nil, color: color, size: size)
         
         self.userInteractionEnabled = true
