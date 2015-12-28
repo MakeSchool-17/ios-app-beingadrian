@@ -22,7 +22,6 @@
 		331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331E66D21BF6AEDB003AB81D /* MainViewController.swift */; };
 		332482761C2E520800C4655E /* ActionFactory.sks in Resources */ = {isa = PBXBuildFile; fileRef = 332482721C2E520800C4655E /* ActionFactory.sks */; };
 		332482771C2E520800C4655E /* TestScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 332482731C2E520800C4655E /* TestScene.sks */; };
-		332482781C2E520800C4655E /* Pando.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332482751C2E520800C4655E /* Pando.swift */; };
 		3324827A1C2E533700C4655E /* ActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332482791C2E533700C4655E /* ActionManager.swift */; };
 		3324827C1C2E55BB00C4655E /* SKAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3324827B1C2E55BB00C4655E /* SKAction+Extension.swift */; };
 		3335326E1C164F6B003145AA /* StatsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335326D1C164F6B003145AA /* StatsLayer.swift */; };
@@ -69,6 +68,9 @@
 		338368F41BF67852006407FF /* ProjectCreatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338368F31BF67852006407FF /* ProjectCreatureTests.swift */; };
 		338368FF1BF67852006407FF /* ProjectCreatureUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338368FE1BF67852006407FF /* ProjectCreatureUITests.swift */; };
 		339874281BFFFE7200F47B2B /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339874271BFFFE7200F47B2B /* GameManager.swift */; };
+		3399142F1C30C07F00268C2A /* PandoStateFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3399142E1C30C07F00268C2A /* PandoStateFunctions.swift */; };
+		339914311C310D8500268C2A /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339914301C310D8500268C2A /* Double+Extension.swift */; };
+		339914331C310DE800268C2A /* Float+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339914321C310DE800268C2A /* Float+Extension.swift */; };
 		339DA2CB1C0F6E430025F064 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C81C0F6E430025F064 /* RxSwift.framework */; };
 		339DA2CC1C0F6E8B0025F064 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C61C0F6E430025F064 /* RxBlocking.framework */; };
 		339DA2CD1C0F6E8B0025F064 /* RxBlocking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C61C0F6E430025F064 /* RxBlocking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -76,6 +78,10 @@
 		339DA2CF1C0F6E8B0025F064 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C71C0F6E430025F064 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		339DA2D11C0F6E8B0025F064 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C81C0F6E430025F064 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		33AC1D031C266F170066FCB3 /* BarVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AC1D021C266F170066FCB3 /* BarVertical.swift */; };
+		33B990751C2F4DD200D6CA10 /* PandoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B990731C2F4DD200D6CA10 /* PandoModel.swift */; };
+		33B990771C2F4E0A00D6CA10 /* CreatureHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B990761C2F4E0A00D6CA10 /* CreatureHead.swift */; };
+		33B990791C2F544800D6CA10 /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B990781C2F544800D6CA10 /* CGPoint+Extension.swift */; };
+		33B9907B1C2F5C9400D6CA10 /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9907A1C2F5C9400D6CA10 /* CGFloat+Extension.swift */; };
 		33BBFD601C121E9900E76511 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD5E1C121E9900E76511 /* DashboardViewModel.swift */; };
 		33BBFD7A1C121F8300E76511 /* DashboardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD6C1C121F8300E76511 /* DashboardScene.swift */; };
 		33BBFD7B1C121F8300E76511 /* DashboardSceneUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD6D1C121F8300E76511 /* DashboardSceneUI.swift */; };
@@ -134,7 +140,6 @@
 		331E66D21BF6AEDB003AB81D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		332482721C2E520800C4655E /* ActionFactory.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ActionFactory.sks; sourceTree = "<group>"; };
 		332482731C2E520800C4655E /* TestScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TestScene.sks; sourceTree = "<group>"; };
-		332482751C2E520800C4655E /* Pando.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pando.swift; sourceTree = "<group>"; };
 		332482791C2E533700C4655E /* ActionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionManager.swift; sourceTree = "<group>"; };
 		3324827B1C2E55BB00C4655E /* SKAction+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKAction+Extension.swift"; sourceTree = "<group>"; };
 		3335326D1C164F6B003145AA /* StatsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsLayer.swift; sourceTree = "<group>"; };
@@ -184,10 +189,17 @@
 		338369001BF67852006407FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		338369181BF68F46006407FF /* ProjectCreature-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProjectCreature-Bridging-Header.h"; sourceTree = "<group>"; };
 		339874271BFFFE7200F47B2B /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		3399142E1C30C07F00268C2A /* PandoStateFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PandoStateFunctions.swift; sourceTree = "<group>"; };
+		339914301C310D8500268C2A /* Double+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
+		339914321C310DE800268C2A /* Float+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Float+Extension.swift"; sourceTree = "<group>"; };
 		339DA2C61C0F6E430025F064 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = SOURCE_ROOT; };
 		339DA2C71C0F6E430025F064 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = SOURCE_ROOT; };
 		339DA2C81C0F6E430025F064 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = SOURCE_ROOT; };
 		33AC1D021C266F170066FCB3 /* BarVertical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarVertical.swift; sourceTree = "<group>"; };
+		33B990731C2F4DD200D6CA10 /* PandoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PandoModel.swift; sourceTree = "<group>"; };
+		33B990761C2F4E0A00D6CA10 /* CreatureHead.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatureHead.swift; sourceTree = "<group>"; };
+		33B990781C2F544800D6CA10 /* CGPoint+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
+		33B9907A1C2F5C9400D6CA10 /* CGFloat+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
 		33BBFD5E1C121E9900E76511 /* DashboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		33BBFD6C1C121F8300E76511 /* DashboardScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardScene.swift; sourceTree = "<group>"; };
 		33BBFD6D1C121F8300E76511 /* DashboardSceneUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardSceneUI.swift; sourceTree = "<group>"; };
@@ -281,8 +293,9 @@
 		332482701C2E520800C4655E /* CreatureModels */ = {
 			isa = PBXGroup;
 			children = (
+				33B990711C2F4DD200D6CA10 /* Creatures */,
+				33B990741C2F4DD200D6CA10 /* Head */,
 				332482711C2E520800C4655E /* Animations */,
-				332482741C2E520800C4655E /* Pando */,
 			);
 			path = CreatureModels;
 			sourceTree = "<group>";
@@ -295,14 +308,6 @@
 				332482791C2E533700C4655E /* ActionManager.swift */,
 			);
 			path = Animations;
-			sourceTree = "<group>";
-		};
-		332482741C2E520800C4655E /* Pando */ = {
-			isa = PBXGroup;
-			children = (
-				332482751C2E520800C4655E /* Pando.swift */,
-			);
-			path = Pando;
 			sourceTree = "<group>";
 		};
 		333532651C160273003145AA /* NodeLayers */ = {
@@ -414,6 +419,7 @@
 				3366C5C11C24B38A001AF86E /* CGFrame+Extension.swift */,
 				3366C5C21C24B38A001AF86E /* CGSize+Extension.swift */,
 				3366C5C31C24B38A001AF86E /* UIColor+Extension.swift */,
+				33B990781C2F544800D6CA10 /* CGPoint+Extension.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -556,8 +562,36 @@
 		33AC1CFF1C24D95D0066FCB3 /* Numbers */ = {
 			isa = PBXGroup;
 			children = (
+				33B9907A1C2F5C9400D6CA10 /* CGFloat+Extension.swift */,
+				339914301C310D8500268C2A /* Double+Extension.swift */,
+				339914321C310DE800268C2A /* Float+Extension.swift */,
 			);
 			path = Numbers;
+			sourceTree = "<group>";
+		};
+		33B990711C2F4DD200D6CA10 /* Creatures */ = {
+			isa = PBXGroup;
+			children = (
+				33B990721C2F4DD200D6CA10 /* Pando */,
+			);
+			path = Creatures;
+			sourceTree = "<group>";
+		};
+		33B990721C2F4DD200D6CA10 /* Pando */ = {
+			isa = PBXGroup;
+			children = (
+				33B990731C2F4DD200D6CA10 /* PandoModel.swift */,
+				3399142E1C30C07F00268C2A /* PandoStateFunctions.swift */,
+			);
+			path = Pando;
+			sourceTree = "<group>";
+		};
+		33B990741C2F4DD200D6CA10 /* Head */ = {
+			isa = PBXGroup;
+			children = (
+				33B990761C2F4E0A00D6CA10 /* CreatureHead.swift */,
+			);
+			path = Head;
 			sourceTree = "<group>";
 		};
 		33BBFD5D1C121E9900E76511 /* ViewModels */ = {
@@ -760,20 +794,23 @@
 				3366C5C91C24B38A001AF86E /* SpriteKit+Spring+Extension.swift in Sources */,
 				330034551C28DB1600C7CFFF /* StoreLayerUI.swift in Sources */,
 				337847671C1F3D3600B3722D /* FirebaseHelper.swift in Sources */,
-				332482781C2E520800C4655E /* Pando.swift in Sources */,
+				3399142F1C30C07F00268C2A /* PandoStateFunctions.swift in Sources */,
 				337847621C1E826500B3722D /* Creature.swift in Sources */,
 				3378475E1C1E054700B3722D /* SKButtonSprite.swift in Sources */,
 				3324827C1C2E55BB00C4655E /* SKAction+Extension.swift in Sources */,
 				3366C5CA1C24B38A001AF86E /* CGFrame+Extension.swift in Sources */,
+				33B990751C2F4DD200D6CA10 /* PandoModel.swift in Sources */,
 				3318222F1C28CCA10094245D /* RxCompliant.swift in Sources */,
 				33BBFD7B1C121F8300E76511 /* DashboardSceneUI.swift in Sources */,
 				3300345A1C28DC0200C7CFFF /* SettingsLayerUI.swift in Sources */,
 				33BBFD7F1C121F8300E76511 /* BarHorizontal.swift in Sources */,
 				33AC1D031C266F170066FCB3 /* BarVertical.swift in Sources */,
 				3366C5A81C2337C7001AF86E /* Test.swift in Sources */,
+				339914331C310DE800268C2A /* Float+Extension.swift in Sources */,
 				3324827A1C2E533700C4655E /* ActionManager.swift in Sources */,
 				3366C5C51C24B38A001AF86E /* SKLabelNode+Rx.swift in Sources */,
 				3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */,
+				33B990791C2F544800D6CA10 /* CGPoint+Extension.swift in Sources */,
 				337847641C1EA1F100B3722D /* User.swift in Sources */,
 				338368DB1BF67852006407FF /* AppDelegate.swift in Sources */,
 				330034531C28DAAD00C7CFFF /* StoreLayer.swift in Sources */,
@@ -792,15 +829,18 @@
 				3366C5AA1C2373D9001AF86E /* HKStatsStore.swift in Sources */,
 				333532731C165176003145AA /* MenuLayer.swift in Sources */,
 				3366C5AC1C2390FA001AF86E /* HistogramPointer.swift in Sources */,
+				33B990771C2F4E0A00D6CA10 /* CreatureHead.swift in Sources */,
 				330034581C28DB9700C7CFFF /* SettingsLayer.swift in Sources */,
 				339874281BFFFE7200F47B2B /* GameManager.swift in Sources */,
 				337847831C22202E00B3722D /* CreatureJsonModel.swift in Sources */,
+				33B9907B1C2F5C9400D6CA10 /* CGFloat+Extension.swift in Sources */,
 				3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */,
 				3366C5C41C24B38A001AF86E /* NSNumberFormatter+Extension.swift in Sources */,
 				335557091C1BA00A0027FAE4 /* NavigationButton.swift in Sources */,
 				331822281C28C9A60094245D /* AwardsLayer.swift in Sources */,
 				3366C5CC1C24B38A001AF86E /* UIColor+Extension.swift in Sources */,
 				3335326E1C164F6B003145AA /* StatsLayer.swift in Sources */,
+				339914311C310D8500268C2A /* Double+Extension.swift in Sources */,
 				3366C5C71C24B38A001AF86E /* SKNode+Extension.swift in Sources */,
 				331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */,
 				3366C5AF1C23D686001AF86E /* NSDate+Extension.swift in Sources */,

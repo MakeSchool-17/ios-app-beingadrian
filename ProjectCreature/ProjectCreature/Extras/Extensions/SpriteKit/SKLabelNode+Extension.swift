@@ -11,18 +11,27 @@ import SpriteKit
 
 extension SKLabelNode {
 
-    func animateToValueFromZero(
+    /**
+     * Animates by counting to the value from zero.
+     *
+     * - parameter value: The value to count to.
+     * - parameter duration: The duration of the animation.
+     * - parameter rounded: Whether the displayed value will be a whole integer or contains decimal points.
+     * - parameter addString: Any additional strings that can be appended to the number string.
+     */
+    func animateToValue(
         value: Float,
+        fromValue initialValue: Float,
         duration: NSTimeInterval,
         rounded: Bool,
         addString additionalString: String = "") {
         
         let countAction = SKAction.customActionWithDuration(duration) {
-            (node, elapsedTime) in
+            (_, elapsedTime) in
             
             let timeFraction = Float(elapsedTime) / Float(duration)
             
-            var displayValue = Float(round(value * timeFraction * 10) / 10)
+            var displayValue = initialValue + Float(round(value * timeFraction * 10) / 10)
             
             if rounded {
                 displayValue = round(displayValue)

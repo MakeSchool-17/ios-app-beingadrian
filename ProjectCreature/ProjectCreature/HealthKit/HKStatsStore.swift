@@ -25,17 +25,17 @@ class HKStatsStore {
     
     // MARK: - Properties
     
-    /** 
-    Distance travelled today in Meters.
+    /**
+     * Distance travelled today in Meters.
      */
     var distanceTravelledToday: Variable<Float> = Variable(0)
     var totalStepsToday: Variable<Double> = Variable(0)
     
-    /** 
-    Stores the progress associated with each weekday.
-     
-    - key: Weekday as an `Int`
-    - value: Progress between 0.0 and 1.0
+    /**
+     * Stores the progress associated with each weekday.
+     *
+     * - key: Weekday as an `Int`
+     * - value: Progress between 0.0 and 1.0
      */
     var weekStore = Variable(Dictionary<Int, Float>())
     

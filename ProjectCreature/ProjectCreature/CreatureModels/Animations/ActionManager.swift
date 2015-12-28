@@ -27,7 +27,6 @@ class ActionManager {
         return actionSequence.repeatForever
     }
     
-    
     // hands
     var handLeftMoveNormal: SKAction {
         return SKAction(named: "LeftHand-Move-Normal")!.repeatForever

@@ -72,22 +72,25 @@ class StatsLayer: SKSpriteNode {
     
     private func udpateUI() {
         
-        distanceValueLabel.animateToValueFromZero(
+        distanceValueLabel.animateToValue(
             viewModel.distance,
+            fromValue: 0,
             duration: 1,
             rounded: false)
         
         let currentWeekday = NSDate().weekday
         
         guard let progressToday = viewModel.weekProgresss[currentWeekday] else { return }
-        progressValueLabel.animateToValueFromZero(
+        progressValueLabel.animateToValue(
             progressToday * 100,
+            fromValue: 0,
             duration: 1,
             rounded: true,
             addString: "%")
         
-        totalStepsValueLabel.animateToValueFromZero(
+        totalStepsValueLabel.animateToValue(
             viewModel.totalSteps,
+            fromValue: 0,
             duration: 1,
             rounded: true)
         

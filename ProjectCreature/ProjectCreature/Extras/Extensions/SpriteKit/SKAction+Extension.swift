@@ -11,6 +11,9 @@ import SpriteKit
 
 extension SKAction {
     
+    /**
+     * Convenience property that returns the action repeated forever.
+     */
     var repeatForever: SKAction {
         return SKAction.repeatActionForever(self)
     }

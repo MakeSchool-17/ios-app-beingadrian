@@ -21,7 +21,7 @@ class DashboardViewModel {
     var creatureLevel: Variable<String> = Variable("")
     var creatureExpPercentage: Variable<Float> = Variable(0)
     var creatureHpPercentage: Variable<Float> = Variable(0)
-    var creatureSprite: Variable<SKSpriteNode> = Variable(SKSpriteNode())
+    var creatureModel: Variable<PandoModel> = Variable(PandoModel())
     var cash: Variable<String> = Variable("")
     
     // MARK: - Initialization
@@ -61,6 +61,12 @@ class DashboardViewModel {
             }
             .subscribeNext {
                 self.creatureHpPercentage.value = $0
+            }
+            .addDisposableTo(disposeBag)
+        
+        creature.family
+            .subscribeNext { family in
+                self.creatureModel.value = family.model
             }
             .addDisposableTo(disposeBag)
         

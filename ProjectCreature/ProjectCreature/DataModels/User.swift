@@ -25,7 +25,7 @@ class User {
     var uid: String
     
     /**
-    Initializes the class from scratch.
+     * Initializes the class from scratch.
      */
     init(email: String, username: String, uid: String) {
         
@@ -38,8 +38,8 @@ class User {
         
     }
     
-    /** 
-    Initializes the class from a Firebase data model.
+    /**
+     * Initializes the class from a Firebase data model.
      */
     init(uid: String, model: UserJsonModel) {
         
@@ -55,7 +55,7 @@ class User {
     }
     
     /**
-    Binds the `cash` property with its corresponding property on Firebase.
+     * Binds the `cash` property with its corresponding property on Firebase.
      */
     func bindToFirebase() {
         

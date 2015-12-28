@@ -32,12 +32,16 @@ class Creature {
         case Dog = "dog"
         case Cat = "cat"
         case Pando = "pando"
+        
+        var model: PandoModel {
+            return PandoModel()
+        }
     }
     
     // MARK: - Initialization
     
     /**
-    Initializes the class from scratch.
+     * Initializes the class from scratch.
      */
     init(name: String, family: Family, owner: User) {
         
@@ -58,7 +62,7 @@ class Creature {
     }
     
     /**
-     Initializes the class from a Firebase data model.
+     * Initializes the class from a Firebase data model.
      */
     init(id: String, model: CreatureJsonModel) {
         
@@ -77,7 +81,7 @@ class Creature {
     }
     
     /**
-     Binds each of `Creature` property to Firebase.
+     * Binds each of `Creature` property to Firebase.
      */
     func bindToFirebase() {
         

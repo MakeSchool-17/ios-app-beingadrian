@@ -9,7 +9,6 @@
 import SpriteKit
 import RxSwift
 import RxCocoa
-import Firebase
 
 
 class DashboardScene: SKScene {
@@ -44,7 +43,7 @@ class DashboardScene: SKScene {
     var energyLabel: SKLabelNode!
     var energyIcon: SKSpriteNode!
     
-    var creature: PandoModel!
+    var creatureModel: PandoModel!
     
     // MARK: - Init setup
     
@@ -63,7 +62,7 @@ class DashboardScene: SKScene {
     required init(coder aDecoder: NSCoder) {
         fatalError("> init(coder:) has not been implemented")
     }
-
+    
     // MARK: - Did move to view
     
     override func didMoveToView(view: SKView) {
@@ -74,12 +73,9 @@ class DashboardScene: SKScene {
         
         gameManager.statsStore.reloadData()
         
-        transitionIn {}
-        
-        let pando = PandoModel()
-        pando.position.x = frame.halfWidth
-        pando.position.y = frame.halfHeight - 100
-        self.addChild(pando)
+        transitionIn {
+            self.bindPetting()
+        }
         
     }
     
@@ -91,7 +87,7 @@ class DashboardScene: SKScene {
         
     }
     
-    // MARK: - UI Binding
+    // MARK: - Binding
     
     private func bindUI() {
         
@@ -112,8 +108,9 @@ class DashboardScene: SKScene {
             .subscribeOn(MainScheduler.sharedInstance)
             .subscribeNext { percentage in
                 self.hpBarFront.animateBarProgress(toPercentage: percentage / 100)
-                self.hpPercentageLabel.animateToValueFromZero(
+                self.hpPercentageLabel.animateToValue(
                     percentage,
+                    fromValue: 0,
                     duration: 0.5,
                     rounded: true,
                     addString: "%")
@@ -128,11 +125,36 @@ class DashboardScene: SKScene {
             }
             .addDisposableTo(disposeBag)
         
-        // TODO: Binding with sprite
+        viewModel.creatureModel
+            .subscribeOn(MainScheduler.sharedInstance)
+            .subscribeNext { model in
+                self.creatureModel = model
+                self.creatureModel.position.x = self.frame.halfWidth
+                self.creatureModel.position.y = self.frame.halfHeight - 100
+                self.addChild(self.creatureModel)
+            }
+            .addDisposableTo(disposeBag)
         
         viewModel.cash
             .observeOn(MainScheduler.sharedInstance)
             .bindTo(energyLabel.rx_text)
+            .addDisposableTo(disposeBag)
+        
+    }
+    
+    private func bindPetting() {
+        
+
+        let maxHpValue = Int(gameManager.creature.hpMax.value)
+        
+        creatureModel.head.pettingCount
+            .subscribeNext { count in
+                if (count != 0) {
+                    let currentHpValue = self.gameManager.creature.hp.value
+                    let newValue = (currentHpValue + 5).clamped(0...maxHpValue)
+                    self.gameManager.creature.hp.value = newValue
+                }
+            }
             .addDisposableTo(disposeBag)
         
     }

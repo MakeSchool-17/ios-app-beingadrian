@@ -12,6 +12,8 @@ import RxSwift
 
 class GameManager {
 
+    var disposeBag = DisposeBag()
+    
     let statsStore: HKStatsStore
     
     // MARK: - Properties
@@ -27,7 +29,14 @@ class GameManager {
         
         self.user = user
         self.creature = creature
+        
+        observe()
 
+    }
+    
+    private func observe() {
+        
+        
     }
     
 }
