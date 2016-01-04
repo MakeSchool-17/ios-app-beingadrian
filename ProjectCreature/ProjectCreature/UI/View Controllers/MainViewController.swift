@@ -14,6 +14,8 @@ import RxSwift
 class MainViewController: UIViewController {
 
     private var disposeBag = DisposeBag()
+    
+    var gameManager: GameManager!
 
     // MARK: - Base methods
     
@@ -26,19 +28,23 @@ class MainViewController: UIViewController {
         guard let testCreature = Test().createTestCreature() else { return }
         let testUser = Test().createTestUser()
         
-        let gameManager = GameManager(
+        self.gameManager = GameManager(
             user: testUser,
             creature: testCreature,
             statsStore: HKStatsStore())
         
-        let sceneSize = CGSize(width: 320, height: 568)
+        let scene = DashboardScene()
+        scene.gameManager = gameManager
+        scene.viewModel = DashboardViewModel(creature: gameManager.creature, user: gameManager.user)
         
-        let scene = DashboardScene(
-            size: sceneSize,
-            gameManager: gameManager)
         scene.scaleMode = .Fill
         
         view.presentScene(scene)
+        
+        // testing purposes 
+        view.showsFPS = true
+        view.showsDrawCount = true
+        view.showsQuadCount = true
 
     }
     
@@ -53,6 +59,16 @@ class MainViewController: UIViewController {
         
     }
     
-    override func prefersStatusBarHidden() -> Bool { return true }
+    // MARK: - Prepare for segue 
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if let awardsViewController = segue.destinationViewController as? AwardsViewController {
+            
+            awardsViewController.gameManager = self.gameManager
+            
+        }
+        
+    }
 
 }

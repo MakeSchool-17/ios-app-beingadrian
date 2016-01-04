@@ -63,7 +63,7 @@ class StatsLayer: SKSpriteNode {
         setupUI()
         
         udpateUI()
-        
+
     }
 
     required init(coder aDecoder: NSCoder) {

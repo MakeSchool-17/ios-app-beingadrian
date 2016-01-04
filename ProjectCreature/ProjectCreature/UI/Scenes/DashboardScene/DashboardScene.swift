@@ -17,11 +17,11 @@ class DashboardScene: SKScene {
     
     private let firebaseHelper = FirebaseHelper()
     
-    private let gameManager: GameManager
+    var gameManager: GameManager!
     
     // MARK: - UI Properties
     
-    private let viewModel: DashboardViewModel
+    var viewModel: DashboardViewModel!
     
     var statsButton: SKButtonSprite!
     var menuButton: SKButtonSprite!
@@ -45,24 +45,6 @@ class DashboardScene: SKScene {
     
     var creatureModel: PandoModel!
     
-    // MARK: - Init setup
-    
-    init(size: CGSize, gameManager: GameManager) {
-        
-        self.gameManager = gameManager
-        
-        self.viewModel = DashboardViewModel(
-            creature: gameManager.creature,
-            user: gameManager.user)
-        
-        super.init(size: size)
-        
-    }
-
-    required init(coder aDecoder: NSCoder) {
-        fatalError("> init(coder:) has not been implemented")
-    }
-    
     // MARK: - Did move to view
     
     override func didMoveToView(view: SKView) {
@@ -74,12 +56,14 @@ class DashboardScene: SKScene {
         gameManager.statsStore.reloadData()
         
         transitionIn {
-            self.bindPetting()
+            self.observePetting()
         }
         
     }
     
     private func setup() {
+        
+        self.size = CGSize(width: 320, height: 568)
         
         setupUI()
     
@@ -130,7 +114,7 @@ class DashboardScene: SKScene {
             .subscribeNext { model in
                 self.creatureModel = model
                 self.creatureModel.position.x = self.frame.halfWidth
-                self.creatureModel.position.y = self.frame.halfHeight - 100
+                self.creatureModel.position.y = self.frame.halfHeight - 105
                 self.addChild(self.creatureModel)
             }
             .addDisposableTo(disposeBag)
@@ -142,9 +126,8 @@ class DashboardScene: SKScene {
         
     }
     
-    private func bindPetting() {
+    private func observePetting() {
         
-
         let maxHpValue = Int(gameManager.creature.hpMax.value)
         
         creatureModel.head.pettingCount
@@ -176,7 +159,7 @@ class DashboardScene: SKScene {
         
     }
     
-    // MARK: - Segues
+    // MARK: - Navigation
     
     private func pushStatsLayer() {
         

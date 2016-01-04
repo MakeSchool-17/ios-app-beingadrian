@@ -61,7 +61,7 @@ class MenuLayer: SKSpriteNode {
         let touchedNode = self.nodeAtPoint(touchLocation)
         
         if touchedNode.isEqualToNode(awardsButton) {
-            print("> Awards")
+            presentAwardsScene()
         } else if touchedNode.isEqualToNode(leaderboardButton) {
             print("> Leaderboard")
         } else if touchedNode.isEqualToNode(storeButton) {
@@ -97,7 +97,7 @@ class MenuLayer: SKSpriteNode {
         
     }
 
-    func transitionOut() {
+    private func transitionOut() {
         
         let fadeOutAction = SKAction.fadeOutWithDuration(0.13)
         fadeOutAction.timingMode = .EaseOut
@@ -113,6 +113,17 @@ class MenuLayer: SKSpriteNode {
         }
         
         self.runAction(actionBlock)
+        
+    }
+    
+    // MARK: - Scene destinations
+    
+    private func presentAwardsScene() {
+        
+        guard let scene = self.scene as? DashboardScene else { return }
+        guard let view = scene.view else { return }
+        
+        view.window?.rootViewController?.performSegueWithIdentifier("awardsSegue", sender: self)
         
     }
     

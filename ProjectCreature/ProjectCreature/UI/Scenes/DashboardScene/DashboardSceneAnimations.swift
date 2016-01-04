@@ -25,7 +25,7 @@ extension DashboardScene {
         energyGroup.position.y = -200
         
         let dashboardAction = createMoveActionCustomEaseOut(
-            finalPositionY: self.frame.maxY - 25)
+            finalPositionY: self.frame.maxY - 30)
         let statsButtonAction = createMoveActionCustomEaseOut(
             finalPositionY: 15 + statsButton.size.halfHeight)
         let menuButtonAction = createMoveActionCustomEaseOut(

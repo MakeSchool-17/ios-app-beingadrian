@@ -44,6 +44,10 @@ class CreatureHead: SKSpriteNode {
         
         let touchLocation = touch.locationInNode(self)
         
+        if (touchLocation.y > self.frame.height) {
+            recover()
+        }
+        
         if (touchLocation.y < firstTouchLocation.y) {
             let distance = firstTouchLocation.distanceTo(touchLocation)
             let sensitivity = 200
@@ -56,15 +60,13 @@ class CreatureHead: SKSpriteNode {
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
-        let recoverAction = SKAction.scaleYTo(1, duration: 0.5)
-        recoverAction.timingMode = .EaseOut
+        recover()
         
-        self.runAction(recoverAction, withKey: "springBackAction")
+    }
+    
+    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
         
-        resetTimer()
-        
-        // reset petting count
-        pettingCount.value = 0
+        recover()
         
     }
 
@@ -85,6 +87,22 @@ class CreatureHead: SKSpriteNode {
         self.yScale = initialScale * scale
         
     }
+    
+    private func recover() {
+        
+        let recoverAction = SKAction.scaleYTo(1, duration: 0.5)
+        recoverAction.timingMode = .EaseOut
+        
+        self.runAction(recoverAction, withKey: "springBackAction")
+        
+        resetTimer()
+        
+        // reset petting count
+        pettingCount.value = 0
+        
+    }
+    
+    // MARK: - Timer
     
     private func time() {
         

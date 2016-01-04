@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -19,10 +20,92 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <segue destination="UZY-Iz-yzZ" kind="presentation" identifier="awardsSegue" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="GWn-La-g3W"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3X-zj-dZZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="149" y="290"/>
         </scene>
+        <!--Awards View Controller-->
+        <scene sceneID="JQu-Xd-N9P">
+            <objects>
+                <viewController id="UZY-Iz-yzZ" customClass="AwardsViewController" customModule="ProjectCreature" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oau-5c-lfL"/>
+                        <viewControllerLayoutGuide type="bottom" id="GkQ-1G-zs5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fi4-PA-a1V" customClass="AwardsMainView" customModule="ProjectCreature" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="pIq-ZK-nCs">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBr-7m-Ret" userLabel="Exit button">
+                                <rect key="frame" x="261" y="509" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="1K2-HK-Kkq"/>
+                                    <constraint firstAttribute="height" constant="44" id="p1J-Qg-B54"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="Close button"/>
+                                <connections>
+                                    <action selector="onExitButtonTap:" destination="UZY-Iz-yzZ" eventType="touchUpInside" id="0Lu-Nt-x2y"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/awards" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Vn-Gk-9lo">
+                                <rect key="frame" x="126.5" y="25" width="67" height="25"/>
+                                <fontDescription key="fontDescription" name="Avenir-HeavyOblique" family="Avenir" pointSize="18"/>
+                                <color key="textColor" red="0.55294117647058827" green="0.55686274509803924" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fdh-F9-BXH">
+                                <rect key="frame" x="0.0" y="60" width="320" height="441"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GkQ-1G-zs5" firstAttribute="top" secondItem="hBr-7m-Ret" secondAttribute="bottom" constant="15" id="3sK-SK-WUv"/>
+                            <constraint firstItem="5Vn-Gk-9lo" firstAttribute="centerX" secondItem="fi4-PA-a1V" secondAttribute="centerX" id="4FS-8N-wmP"/>
+                            <constraint firstAttribute="trailing" secondItem="pIq-ZK-nCs" secondAttribute="trailing" id="5wf-1l-gEh"/>
+                            <constraint firstItem="fdh-F9-BXH" firstAttribute="top" secondItem="fi4-PA-a1V" secondAttribute="top" constant="50" id="FHv-YT-tJN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hBr-7m-Ret" secondAttribute="trailing" constant="15" id="Fy1-Ej-BxP"/>
+                            <constraint firstItem="fdh-F9-BXH" firstAttribute="leading" secondItem="fi4-PA-a1V" secondAttribute="leading" id="GGE-CN-9yi"/>
+                            <constraint firstAttribute="trailing" secondItem="fdh-F9-BXH" secondAttribute="trailing" id="HKY-Te-M7r"/>
+                            <constraint firstAttribute="trailing" secondItem="hBr-7m-Ret" secondAttribute="trailing" constant="15" id="RiS-mm-mpJ"/>
+                            <constraint firstItem="fdh-F9-BXH" firstAttribute="top" secondItem="5Vn-Gk-9lo" secondAttribute="bottom" constant="10" id="U1x-N8-QJz"/>
+                            <constraint firstItem="GkQ-1G-zs5" firstAttribute="top" secondItem="fdh-F9-BXH" secondAttribute="bottom" constant="67" id="Zmb-w6-53g"/>
+                            <constraint firstItem="5Vn-Gk-9lo" firstAttribute="top" secondItem="oau-5c-lfL" secondAttribute="bottom" constant="5" id="dex-Wi-pJe"/>
+                            <constraint firstItem="GkQ-1G-zs5" firstAttribute="top" secondItem="hBr-7m-Ret" secondAttribute="bottom" constant="15" id="p9k-NM-R1W"/>
+                            <constraint firstItem="pIq-ZK-nCs" firstAttribute="leading" secondItem="fi4-PA-a1V" secondAttribute="leading" id="qfe-nQ-mfV"/>
+                            <constraint firstItem="pIq-ZK-nCs" firstAttribute="top" secondItem="fi4-PA-a1V" secondAttribute="top" id="vhR-8V-5kL"/>
+                            <constraint firstItem="GkQ-1G-zs5" firstAttribute="top" secondItem="pIq-ZK-nCs" secondAttribute="bottom" id="yz1-TO-zD4"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="FHv-YT-tJN"/>
+                                <exclude reference="3sK-SK-WUv"/>
+                                <exclude reference="Fy1-Ej-BxP"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <outlet property="tableView" destination="fdh-F9-BXH" id="ook-nZ-z6W"/>
+                        </connections>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="mainView" destination="fi4-PA-a1V" id="nSA-9R-tom"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7W2-qX-teU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="644" y="290"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="Background" width="320" height="568"/>
+        <image name="Close button" width="44" height="44"/>
+    </resources>
 </document>

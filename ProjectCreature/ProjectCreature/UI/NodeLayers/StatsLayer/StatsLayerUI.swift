@@ -47,7 +47,7 @@ extension StatsLayer {
             fontSize: 18,
             fontName: "Avenir-HeavyOblique")
         statisticsTitleLabel.position.x = self.size.halfWidth
-        statisticsTitleLabel.position.y = self.size.height - 40
+        statisticsTitleLabel.position.y = self.size.height - 45
         self.addChild(statisticsTitleLabel)
         
         // MARK: Distance

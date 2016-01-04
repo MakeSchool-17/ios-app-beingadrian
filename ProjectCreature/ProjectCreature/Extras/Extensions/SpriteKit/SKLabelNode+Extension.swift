@@ -33,17 +33,24 @@ extension SKLabelNode {
             
             var displayValue = initialValue + Float(round(value * timeFraction * 10) / 10)
             
+            var text: String
+            
             if rounded {
                 displayValue = round(displayValue)
+                
+                let formatter = NSNumberFormatter()
+                formatter.numberStyle = .DecimalStyle
+                guard let stringValue = formatter.stringFromNumber(displayValue) else {
+                    return
+                }
+                
+                text = stringValue + additionalString
+            } else {
+                text = String(displayValue) + additionalString
             }
             
-            let formatter = NSNumberFormatter()
-            formatter.numberStyle = .DecimalStyle
-            guard let stringValue = formatter.stringFromNumber(displayValue) else {
-                return
-            }
+            self.text = text
             
-            self.text  = String(stringValue) + additionalString
         }
         
         countAction.timingMode = .EaseInEaseOut

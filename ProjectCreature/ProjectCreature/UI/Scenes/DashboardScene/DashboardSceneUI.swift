@@ -43,7 +43,7 @@ extension DashboardScene {
         self.addChild(dashboard)
         dashboard.anchorPoint = CGPoint(x: 0, y: 1)
         dashboard.setHorizontalPosition(22, fromMargin: .LeftMargin)
-        dashboard.setVerticalPosition(25, fromMargin: .TopMargin)
+        dashboard.setVerticalPosition(30, fromMargin: .TopMargin)
         
         circleFrame = SKSpriteNode(imageNamed: "Circle frame")
         dashboard.addChild(circleFrame)

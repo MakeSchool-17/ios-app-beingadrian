@@ -28,8 +28,8 @@ class HKStatsStore {
     /**
      * Distance travelled today in Meters.
      */
-    var distanceTravelledToday: Variable<Float> = Variable(0)
-    var totalStepsToday: Variable<Double> = Variable(0)
+    var distanceTravelledToday: Variable<Float> = Variable(0.0)
+    var totalStepsToday: Variable<Double> = Variable(0.0)
     
     /**
      * Stores the progress associated with each weekday.
