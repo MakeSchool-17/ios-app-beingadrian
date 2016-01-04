@@ -63,9 +63,9 @@ class MainViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if let awardsViewController = segue.destinationViewController as? AwardsViewController {
+        if let viewController = segue.destinationViewController as? GameManagerHolder {
             
-            awardsViewController.gameManager = self.gameManager
+            viewController.gameManager = self.gameManager
             
         }
         

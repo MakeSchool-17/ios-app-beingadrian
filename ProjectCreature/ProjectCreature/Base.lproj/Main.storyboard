@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -22,6 +23,9 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <segue destination="UZY-Iz-yzZ" kind="presentation" identifier="awardsSegue" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="GWn-La-g3W"/>
+                        <segue destination="eEb-eU-GAJ" kind="presentation" identifier="storeSegue" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="GW1-jY-lel"/>
+                        <segue destination="TMN-WZ-5M6" kind="presentation" identifier="leaderboardSegue" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="vDB-SC-B5v"/>
+                        <segue destination="vXv-jD-34n" kind="presentation" identifier="settingsSegue" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="syt-nu-FjB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f3X-zj-dZZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -49,7 +53,13 @@
                                     <constraint firstAttribute="width" constant="44" id="1K2-HK-Kkq"/>
                                     <constraint firstAttribute="height" constant="44" id="p1J-Qg-B54"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="Close button"/>
+                                <state key="normal" image="Close button"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1K2-HK-Kkq"/>
+                                        <exclude reference="p1J-Qg-B54"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="onExitButtonTap:" destination="UZY-Iz-yzZ" eventType="touchUpInside" id="0Lu-Nt-x2y"/>
                                 </connections>
@@ -70,6 +80,7 @@
                             <constraint firstItem="GkQ-1G-zs5" firstAttribute="top" secondItem="hBr-7m-Ret" secondAttribute="bottom" constant="15" id="3sK-SK-WUv"/>
                             <constraint firstItem="5Vn-Gk-9lo" firstAttribute="centerX" secondItem="fi4-PA-a1V" secondAttribute="centerX" id="4FS-8N-wmP"/>
                             <constraint firstAttribute="trailing" secondItem="pIq-ZK-nCs" secondAttribute="trailing" id="5wf-1l-gEh"/>
+                            <constraint firstItem="hBr-7m-Ret" firstAttribute="width" secondItem="pIq-ZK-nCs" secondAttribute="height" multiplier="11:142" id="8ek-hP-btX"/>
                             <constraint firstItem="fdh-F9-BXH" firstAttribute="top" secondItem="fi4-PA-a1V" secondAttribute="top" constant="50" id="FHv-YT-tJN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hBr-7m-Ret" secondAttribute="trailing" constant="15" id="Fy1-Ej-BxP"/>
                             <constraint firstItem="fdh-F9-BXH" firstAttribute="leading" secondItem="fi4-PA-a1V" secondAttribute="leading" id="GGE-CN-9yi"/>
@@ -101,7 +112,172 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7W2-qX-teU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="644" y="290"/>
+            <point key="canvasLocation" x="671" y="-14"/>
+        </scene>
+        <!--Store View Controller-->
+        <scene sceneID="C1M-5K-KcZ">
+            <objects>
+                <viewController id="eEb-eU-GAJ" customClass="StoreViewController" customModule="ProjectCreature" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RGk-QT-TXM"/>
+                        <viewControllerLayoutGuide type="bottom" id="maj-Wp-a3x"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Nef-DQ-ljl" customClass="StoreMainView" customModule="ProjectCreature" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="ccr-Ry-NeG">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRj-gt-en6" userLabel="Exit button">
+                                <rect key="frame" x="261" y="509" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="5AB-rv-C1L"/>
+                                    <constraint firstAttribute="height" constant="44" id="SRb-fy-e3J"/>
+                                    <constraint firstAttribute="width" secondItem="dRj-gt-en6" secondAttribute="height" multiplier="1:1" id="hZg-op-Jvb"/>
+                                </constraints>
+                                <state key="normal" image="Close button"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="5AB-rv-C1L"/>
+                                        <exclude reference="SRb-fy-e3J"/>
+                                        <exclude reference="hZg-op-Jvb"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="onExitButtonTap:" destination="eEb-eU-GAJ" eventType="touchUpInside" id="BA2-3a-ivM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ccr-Ry-NeG" firstAttribute="leading" secondItem="Nef-DQ-ljl" secondAttribute="leading" id="BAy-Lh-aGi"/>
+                            <constraint firstItem="maj-Wp-a3x" firstAttribute="top" secondItem="ccr-Ry-NeG" secondAttribute="bottom" id="IOq-vP-cf8"/>
+                            <constraint firstAttribute="trailing" secondItem="dRj-gt-en6" secondAttribute="trailing" constant="15" id="MZS-pJ-lgD"/>
+                            <constraint firstItem="maj-Wp-a3x" firstAttribute="top" secondItem="dRj-gt-en6" secondAttribute="bottom" constant="15" id="QK0-aq-eNr"/>
+                            <constraint firstItem="ccr-Ry-NeG" firstAttribute="top" secondItem="Nef-DQ-ljl" secondAttribute="top" id="WwA-6u-hfI"/>
+                            <constraint firstItem="dRj-gt-en6" firstAttribute="width" secondItem="ccr-Ry-NeG" secondAttribute="height" multiplier="11:142" id="XGr-Q7-0zC"/>
+                            <constraint firstAttribute="trailing" secondItem="ccr-Ry-NeG" secondAttribute="trailing" id="vUH-lz-gJy"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="mainView" destination="Nef-DQ-ljl" id="2rz-k8-em0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8uA-SM-2e5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="671" y="632"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="uwZ-QT-ovG">
+            <objects>
+                <viewController id="vXv-jD-34n" customClass="SettingsViewController" customModule="ProjectCreature" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4AQ-2g-gKh"/>
+                        <viewControllerLayoutGuide type="bottom" id="GbY-JC-MbZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zKD-eb-Rw8" customClass="SettingsMainView" customModule="ProjectCreature" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="dqa-yK-Iwl">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CAp-68-C1e" userLabel="Exit button">
+                                <rect key="frame" x="261" y="509" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Rnp-by-p77"/>
+                                    <constraint firstAttribute="width" constant="44" id="TV1-JY-k14"/>
+                                    <constraint firstAttribute="width" secondItem="CAp-68-C1e" secondAttribute="height" multiplier="1:1" id="UJW-2s-p0Y"/>
+                                </constraints>
+                                <state key="normal" image="Close button"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Rnp-by-p77"/>
+                                        <exclude reference="TV1-JY-k14"/>
+                                        <exclude reference="UJW-2s-p0Y"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="onExitButtonTap:" destination="vXv-jD-34n" eventType="touchUpInside" id="egl-w4-3rw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GbY-JC-MbZ" firstAttribute="top" secondItem="dqa-yK-Iwl" secondAttribute="bottom" id="6qJ-cc-mZm"/>
+                            <constraint firstItem="dqa-yK-Iwl" firstAttribute="leading" secondItem="zKD-eb-Rw8" secondAttribute="leading" id="CJi-n8-m2M"/>
+                            <constraint firstItem="CAp-68-C1e" firstAttribute="width" secondItem="dqa-yK-Iwl" secondAttribute="height" multiplier="11:142" id="OAU-zm-tFf"/>
+                            <constraint firstAttribute="trailing" secondItem="dqa-yK-Iwl" secondAttribute="trailing" id="S0X-Kx-BUg"/>
+                            <constraint firstItem="GbY-JC-MbZ" firstAttribute="top" secondItem="CAp-68-C1e" secondAttribute="bottom" constant="15" id="U7T-7x-aoK"/>
+                            <constraint firstItem="dqa-yK-Iwl" firstAttribute="top" secondItem="zKD-eb-Rw8" secondAttribute="top" id="nRO-gZ-sDP"/>
+                            <constraint firstAttribute="trailing" secondItem="CAp-68-C1e" secondAttribute="trailing" constant="15" id="phG-Ff-XHH"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="mainView" destination="zKD-eb-Rw8" id="Xzb-JK-0Tw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O8G-si-h4h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1101" y="632"/>
+        </scene>
+        <!--Leaderboard View Controller-->
+        <scene sceneID="chb-1a-mb9">
+            <objects>
+                <viewController id="TMN-WZ-5M6" customClass="LeaderboardViewController" customModule="ProjectCreature" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ija-LJ-uzU"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xuz-d4-rIY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hsg-rx-K5D" customClass="LeaderboardMainView" customModule="ProjectCreature" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="Xzd-mE-s9u">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OuW-Y2-iRd" userLabel="Exit button">
+                                <rect key="frame" x="261" y="509" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="Nr1-1h-syM"/>
+                                    <constraint firstAttribute="height" constant="44" id="Xda-pp-d8z"/>
+                                    <constraint firstAttribute="width" secondItem="OuW-Y2-iRd" secondAttribute="height" multiplier="1:1" id="rHj-O3-ji6"/>
+                                </constraints>
+                                <state key="normal" image="Close button"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Xda-pp-d8z"/>
+                                        <exclude reference="Nr1-1h-syM"/>
+                                        <exclude reference="rHj-O3-ji6"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="onExitButtonTap:" destination="TMN-WZ-5M6" eventType="touchUpInside" id="jU8-6G-nKn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Xzd-mE-s9u" firstAttribute="leading" secondItem="hsg-rx-K5D" secondAttribute="leading" id="1Aq-xN-Erw"/>
+                            <constraint firstItem="OuW-Y2-iRd" firstAttribute="width" secondItem="Xzd-mE-s9u" secondAttribute="height" multiplier="11:142" id="1hB-bq-leK"/>
+                            <constraint firstItem="Xzd-mE-s9u" firstAttribute="top" secondItem="hsg-rx-K5D" secondAttribute="top" id="1yl-Ms-Fc8"/>
+                            <constraint firstItem="Xuz-d4-rIY" firstAttribute="top" secondItem="OuW-Y2-iRd" secondAttribute="bottom" constant="15" id="2Qo-Oe-KJk"/>
+                            <constraint firstAttribute="trailing" secondItem="OuW-Y2-iRd" secondAttribute="trailing" constant="15" id="5fb-VX-l6Y"/>
+                            <constraint firstAttribute="trailing" secondItem="Xzd-mE-s9u" secondAttribute="trailing" id="jVe-fs-zLC"/>
+                            <constraint firstItem="Xuz-d4-rIY" firstAttribute="top" secondItem="Xzd-mE-s9u" secondAttribute="bottom" id="x5R-Aj-5Y4"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="mainView" destination="hsg-rx-K5D" id="Ogm-hN-YQG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I1J-XP-0Dy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1101" y="-14"/>
         </scene>
     </scenes>
     <resources>

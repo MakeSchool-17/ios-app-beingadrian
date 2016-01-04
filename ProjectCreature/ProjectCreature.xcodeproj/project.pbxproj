@@ -45,6 +45,13 @@
 		3366C5CA1C24B38A001AF86E /* CGFrame+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5C11C24B38A001AF86E /* CGFrame+Extension.swift */; };
 		3366C5CB1C24B38A001AF86E /* CGSize+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5C21C24B38A001AF86E /* CGSize+Extension.swift */; };
 		3366C5CC1C24B38A001AF86E /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5C31C24B38A001AF86E /* UIColor+Extension.swift */; };
+		337199BF1C3B1DD6008108B6 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337199BE1C3B1DD6008108B6 /* LeaderboardViewController.swift */; };
+		337199C11C3B1DEC008108B6 /* LeaderboardMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337199C01C3B1DEC008108B6 /* LeaderboardMainView.swift */; };
+		337199C31C3B1E09008108B6 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337199C21C3B1E09008108B6 /* StoreViewController.swift */; };
+		337199C51C3B1E11008108B6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337199C41C3B1E11008108B6 /* SettingsViewController.swift */; };
+		337199C71C3B1E20008108B6 /* SettingsMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337199C61C3B1E20008108B6 /* SettingsMainView.swift */; };
+		337199C91C3B1E2A008108B6 /* StoreMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337199C81C3B1E2A008108B6 /* StoreMainView.swift */; };
+		337199CC1C3B2307008108B6 /* GameManagerHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337199CB1C3B2307008108B6 /* GameManagerHolder.swift */; };
 		3378475E1C1E054700B3722D /* SKButtonSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3378475D1C1E054700B3722D /* SKButtonSprite.swift */; };
 		337847601C1E5EAE00B3722D /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3378475F1C1E5EAE00B3722D /* Firebase.framework */; };
 		337847621C1E826500B3722D /* Creature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337847611C1E826500B3722D /* Creature.swift */; };
@@ -167,6 +174,13 @@
 		3366C5C11C24B38A001AF86E /* CGFrame+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFrame+Extension.swift"; sourceTree = "<group>"; };
 		3366C5C21C24B38A001AF86E /* CGSize+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Extension.swift"; sourceTree = "<group>"; };
 		3366C5C31C24B38A001AF86E /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		337199BE1C3B1DD6008108B6 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
+		337199C01C3B1DEC008108B6 /* LeaderboardMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardMainView.swift; sourceTree = "<group>"; };
+		337199C21C3B1E09008108B6 /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
+		337199C41C3B1E11008108B6 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		337199C61C3B1E20008108B6 /* SettingsMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMainView.swift; sourceTree = "<group>"; };
+		337199C81C3B1E2A008108B6 /* StoreMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreMainView.swift; sourceTree = "<group>"; };
+		337199CB1C3B2307008108B6 /* GameManagerHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManagerHolder.swift; sourceTree = "<group>"; };
 		3378475D1C1E054700B3722D /* SKButtonSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKButtonSprite.swift; sourceTree = "<group>"; };
 		3378475F1C1E5EAE00B3722D /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		337847611C1E826500B3722D /* Creature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Creature.swift; sourceTree = "<group>"; };
@@ -362,6 +376,7 @@
 		3346CAE31C37123400921A4B /* Leaderboard Screen */ = {
 			isa = PBXGroup;
 			children = (
+				337199C01C3B1DEC008108B6 /* LeaderboardMainView.swift */,
 			);
 			path = "Leaderboard Screen";
 			sourceTree = "<group>";
@@ -369,6 +384,7 @@
 		3346CAE41C37123400921A4B /* Settings Screen */ = {
 			isa = PBXGroup;
 			children = (
+				337199C61C3B1E20008108B6 /* SettingsMainView.swift */,
 			);
 			path = "Settings Screen";
 			sourceTree = "<group>";
@@ -376,6 +392,7 @@
 		3346CAE51C37123400921A4B /* Store Screen */ = {
 			isa = PBXGroup;
 			children = (
+				337199C81C3B1E2A008108B6 /* StoreMainView.swift */,
 			);
 			path = "Store Screen";
 			sourceTree = "<group>";
@@ -461,6 +478,14 @@
 				33B990781C2F544800D6CA10 /* CGPoint+Extension.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		337199CA1C3B22B6008108B6 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				337199CB1C3B2307008108B6 /* GameManagerHolder.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		337847651C1F3D2400B3722D /* Firebase */ = {
@@ -585,8 +610,12 @@
 		3383692D1BF69FE6006407FF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				337199CA1C3B22B6008108B6 /* Protocols */,
 				331E66D21BF6AEDB003AB81D /* MainViewController.swift */,
 				330C80ED1C33164700ADF713 /* AwardsViewController.swift */,
+				337199BE1C3B1DD6008108B6 /* LeaderboardViewController.swift */,
+				337199C21C3B1E09008108B6 /* StoreViewController.swift */,
+				337199C41C3B1E11008108B6 /* SettingsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -840,6 +869,7 @@
 				3366C5C91C24B38A001AF86E /* SpriteKit+Spring+Extension.swift in Sources */,
 				330034551C28DB1600C7CFFF /* StoreLayerUI.swift in Sources */,
 				337847671C1F3D3600B3722D /* FirebaseHelper.swift in Sources */,
+				337199CC1C3B2307008108B6 /* GameManagerHolder.swift in Sources */,
 				3399142F1C30C07F00268C2A /* PandoStateFunctions.swift in Sources */,
 				337847621C1E826500B3722D /* Creature.swift in Sources */,
 				3378475E1C1E054700B3722D /* SKButtonSprite.swift in Sources */,
@@ -855,18 +885,22 @@
 				339914331C310DE800268C2A /* Float+Extension.swift in Sources */,
 				3324827A1C2E533700C4655E /* ActionManager.swift in Sources */,
 				3366C5C51C24B38A001AF86E /* SKLabelNode+Rx.swift in Sources */,
+				337199C31C3B1E09008108B6 /* StoreViewController.swift in Sources */,
 				338326A11C38651B00D21CAC /* AwardCell.swift in Sources */,
 				3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */,
 				33B990791C2F544800D6CA10 /* CGPoint+Extension.swift in Sources */,
 				337847641C1EA1F100B3722D /* User.swift in Sources */,
+				337199BF1C3B1DD6008108B6 /* LeaderboardViewController.swift in Sources */,
 				338368DB1BF67852006407FF /* AppDelegate.swift in Sources */,
 				330034531C28DAAD00C7CFFF /* StoreLayer.swift in Sources */,
+				337199C51C3B1E11008108B6 /* SettingsViewController.swift in Sources */,
 				3318222D1C28CBD60094245D /* LeaderboardLayer.swift in Sources */,
 				33BBFD7A1C121F8300E76511 /* DashboardScene.swift in Sources */,
 				3366C5CB1C24B38A001AF86E /* CGSize+Extension.swift in Sources */,
 				333532771C169158003145AA /* DashboardSceneAnimations.swift in Sources */,
 				337847781C1F6B4000B3722D /* UserJsonModel.swift in Sources */,
 				333532701C164FC9003145AA /* StatsLayerUI.swift in Sources */,
+				337199C11C3B1DEC008108B6 /* LeaderboardMainView.swift in Sources */,
 				333532751C1651D4003145AA /* MenuLayerUI.swift in Sources */,
 				33BBFD601C121E9900E76511 /* DashboardViewModel.swift in Sources */,
 				3366C5C61C24B38A001AF86E /* SKLabelNode+Extension.swift in Sources */,
@@ -877,6 +911,8 @@
 				333532731C165176003145AA /* MenuLayer.swift in Sources */,
 				3366C5AC1C2390FA001AF86E /* HistogramPointer.swift in Sources */,
 				33B990771C2F4E0A00D6CA10 /* CreatureHead.swift in Sources */,
+				337199C91C3B1E2A008108B6 /* StoreMainView.swift in Sources */,
+				337199C71C3B1E20008108B6 /* SettingsMainView.swift in Sources */,
 				330034581C28DB9700C7CFFF /* SettingsLayer.swift in Sources */,
 				339874281BFFFE7200F47B2B /* GameManager.swift in Sources */,
 				337847831C22202E00B3722D /* CreatureJsonModel.swift in Sources */,

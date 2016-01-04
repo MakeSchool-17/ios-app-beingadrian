@@ -13,7 +13,7 @@ class AwardsViewController: UIViewController {
     
     // MARK: - Properties
     
-    weak var gameManager: GameManager!
+    weak var gameManager: GameManager?
     
     // MARK: - UI Properties
     
@@ -45,6 +45,8 @@ class AwardsViewController: UIViewController {
     }
 
 }
+
+extension AwardsViewController: GameManagerHolder {}
 
 extension AwardsViewController: UITableViewDelegate {
     

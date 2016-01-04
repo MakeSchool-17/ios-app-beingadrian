@@ -61,13 +61,13 @@ class MenuLayer: SKSpriteNode {
         let touchedNode = self.nodeAtPoint(touchLocation)
         
         if touchedNode.isEqualToNode(awardsButton) {
-            presentAwardsScene()
+            presentScreen(.Awards)
         } else if touchedNode.isEqualToNode(leaderboardButton) {
-            print("> Leaderboard")
+            presentScreen(.Leaderboard)
         } else if touchedNode.isEqualToNode(storeButton) {
-            print("> Store")
+            presentScreen(.Store)
         } else if touchedNode.isEqualToNode(settingsButton) {
-            print("> Settings")
+            presentScreen(.Settings)
         } else {
             transitionOut()
         }
@@ -118,12 +118,20 @@ class MenuLayer: SKSpriteNode {
     
     // MARK: - Scene destinations
     
-    private func presentAwardsScene() {
+    private enum MenuScreen: String {
+        case Awards = "awards"
+        case Leaderboard = "leaderboard"
+        case Store = "store"
+        case Settings = "settings"
+        
+    }
+    
+    private func presentScreen(screen: MenuScreen) {
         
         guard let scene = self.scene as? DashboardScene else { return }
         guard let view = scene.view else { return }
         
-        view.window?.rootViewController?.performSegueWithIdentifier("awardsSegue", sender: self)
+        view.window?.rootViewController?.performSegueWithIdentifier(screen.rawValue + "Segue", sender: self)
         
     }
     
