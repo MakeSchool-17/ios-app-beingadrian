@@ -23,7 +23,7 @@ class StatsViewModel {
     var totalSteps: Float = 0
     var date: String = ""
     
-    var weekProgresss = Dictionary<Int, Float>()
+    var weekProgress = Dictionary<Int, Float>()
     
     var pointerIndex: Int = 0
     
@@ -56,7 +56,7 @@ class StatsViewModel {
         statsStore.weekStore
             .subscribeNext { weekStore in
                 for (weekday, progress) in weekStore {
-                    self.weekProgresss[weekday] = progress
+                    self.weekProgress[weekday] = progress
                 }
             }
             .addDisposableTo(disposeBag)

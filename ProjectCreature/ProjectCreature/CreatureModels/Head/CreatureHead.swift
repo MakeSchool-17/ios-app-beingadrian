@@ -14,10 +14,37 @@ class CreatureHead: SKSpriteNode {
     
     // MARK: - Properties
     
+    /**
+     * An observable that emmits every time the creature is being pet.
+     */
     var pettingCount: Variable<Int> = Variable(0)
     
     private var firstTouchLocation: CGPoint?
     private var initialScaleY: CGFloat?
+    
+    /**
+     * A Boolean to store the state whether the touch stops moving or not, used to prevent petting bugs.
+     */
+    private var touchIsMoving = false {
+        didSet {
+            resetTouchIsMovingAfterDelay()
+        }
+    }
+    
+    private var timer: SKTimer = SKTimer()
+    
+    // MARK: - Initialization 
+    
+    init(imageNamed: String) {
+        let texture = SKTexture(imageNamed: imageNamed)
+        super.init(texture: texture, color: UIColor(), size: texture.size())
+        
+        self.timer.delegate = self
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("> init(coder:) has not been implemented")
+    }
     
     // MARK: - Touch handling
     
@@ -30,9 +57,7 @@ class CreatureHead: SKSpriteNode {
         
         self.firstTouchLocation = touch.locationInNode(self)
         self.initialScaleY = self.yScale
-        
-        time()
-        
+
     }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -44,17 +69,26 @@ class CreatureHead: SKSpriteNode {
         
         let touchLocation = touch.locationInNode(self)
         
+        // if the touch goes above the head, recover the head
         if (touchLocation.y > self.frame.height) {
             recover()
         }
         
-        if (touchLocation.y < firstTouchLocation.y) {
-            let distance = firstTouchLocation.distanceTo(touchLocation)
-            let sensitivity = 200
-            let fraction = distance / CGFloat(sensitivity)
-            
-            squeeze(fraction, initialScale: initialScaleY)
+        // allow timer only when the touch is moving and when no timer is currently running
+        if (touchIsMoving && !timer.isTiming) {
+            timer.start()
         }
+        
+        // allow squeezing only when touch location is below the initial touch location
+        guard (touchLocation.y < firstTouchLocation.y) else { return }
+        
+        touchIsMoving = true
+        
+        let distance = firstTouchLocation.distanceTo(touchLocation)
+        let sensitivity = 200
+        let fraction = distance / CGFloat(sensitivity)
+        
+        squeeze(fraction, initialScale: initialScaleY)
     
     }
     
@@ -69,6 +103,25 @@ class CreatureHead: SKSpriteNode {
         recover()
         
     }
+    
+    private func resetTouchIsMovingAfterDelay() {
+        
+        // remove any initial countdown actions
+        self.removeActionForKey("resetTouchIsMoving")
+        
+        let delay = SKAction.waitForDuration(0.5)
+        
+        let resetTouchIsMoving = SKAction.runBlock {
+            self.touchIsMoving = false
+            self.timer.reset()
+        }
+        
+        let sequence = SKAction.sequence([delay, resetTouchIsMoving])
+        self.runAction(sequence, withKey: "resetTouchIsMoving")
+        
+    }
+    
+    // MARK: - Head animation function
 
     /**
      * Squeezes the head by changing the yScale value using the Sigmoid function.
@@ -88,6 +141,9 @@ class CreatureHead: SKSpriteNode {
         
     }
     
+    /**
+     * Recovers the head to its original size by changing its Y-scale back to `1`.
+     */
     private func recover() {
         
         let recoverAction = SKAction.scaleYTo(1, duration: 0.5)
@@ -95,35 +151,23 @@ class CreatureHead: SKSpriteNode {
         
         self.runAction(recoverAction, withKey: "springBackAction")
         
-        resetTimer()
-        
-        // reset petting count
-        pettingCount.value = 0
-        
     }
     
-    // MARK: - Timer
-    
-    private func time() {
-        
-        let delay = SKAction.waitForDuration(1)
-        
-        let timerAction = SKAction.runBlock {
-            self.pettingCount.value++
-            self.time()
-        }
-        
-        let actionSequence = SKAction.sequence([delay, timerAction])
-        
-        self.runAction(actionSequence, withKey: "timerAction")
-        
-    }
-    
-    private func resetTimer() {
-        
-        self.removeActionForKey("timerAction")
-        pettingCount.value = 0
+}
 
+extension CreatureHead: SKTimerDelegate {
+    
+    func secondHasPassed(seconds: NSTimeInterval) {
+        
+        guard seconds != 0 else { return }
+        self.pettingCount.value += 1
+        
+    }
+    
+    func timerIsReset() {
+        
+        pettingCount.value = 0
+        
     }
     
 }

@@ -14,7 +14,7 @@ class StatsLayer: SKSpriteNode {
     
     var disposeBag = DisposeBag()
     
-    private let gameManager: GameManager
+    private weak var gameManager: GameManager?
     
     // MARK: - UI Properties
     
@@ -50,7 +50,7 @@ class StatsLayer: SKSpriteNode {
         
         self.gameManager = gameManager
         
-        self.viewModel = StatsViewModel(statsStore: self.gameManager.statsStore)
+        self.viewModel = StatsViewModel(statsStore: gameManager.statsStore)
         
         let texture = SKTexture(imageNamed: "Background")
         super.init(texture: texture, color: UIColor(), size: size)
@@ -72,15 +72,28 @@ class StatsLayer: SKSpriteNode {
     
     private func udpateUI() {
         
+        let currentWeekday = NSDate().weekday
+        
+        dateLabel.text = viewModel.date
+        
+        let bar = histogramBarsFront[currentWeekday-1]
+        histogramPointer.animateToBar(bar)
+        
+        for (weekday, progress) in viewModel.weekProgress {
+            histogramBarsFront[weekday-1].animateBarProgress(toPercentage: progress)
+        }
+        
         distanceValueLabel.animateToValue(
             viewModel.distance,
             fromValue: 0,
             duration: 1,
             rounded: false)
         
-        let currentWeekday = NSDate().weekday
-        
-        guard let progressToday = viewModel.weekProgresss[currentWeekday] else { return }
+        guard let progressToday = viewModel.weekProgress[currentWeekday] else {
+            // TODO: error accessing progress for current day
+            return
+        }
+            
         progressValueLabel.animateToValue(
             progressToday * 100,
             fromValue: 0,
@@ -94,16 +107,8 @@ class StatsLayer: SKSpriteNode {
             duration: 1,
             rounded: true)
         
-        dateLabel.text = viewModel.date
-        
         circleFront.animateToProgress(1, progress: progressToday)
-        
-        let bar = histogramBarsFront[currentWeekday-1]
-        histogramPointer.animateToBar(bar)
-        
-        for (weekday, progress) in viewModel.weekProgresss {
-            histogramBarsFront[weekday-1].animateBarProgress(toPercentage: progress)
-        }
+
         
     }
     

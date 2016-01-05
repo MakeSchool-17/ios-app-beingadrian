@@ -14,6 +14,7 @@
 		3300345A1C28DC0200C7CFFF /* SettingsLayerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330034591C28DC0200C7CFFF /* SettingsLayerUI.swift */; };
 		3309FB4D1BF7F64300BE0310 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3309FB4C1BF7F64300BE0310 /* HealthKit.framework */; };
 		3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */; };
+		330B40FB1C3B3ECE00D44558 /* SKTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330B40FA1C3B3ECE00D44558 /* SKTimer.swift */; };
 		330C80EE1C33164700ADF713 /* AwardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330C80ED1C33164700ADF713 /* AwardsViewController.swift */; };
 		330F6B4D1C151557004CCAED /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F6B4C1C151557004CCAED /* StatsViewModel.swift */; };
 		331822281C28C9A60094245D /* AwardsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331822271C28C9A60094245D /* AwardsLayer.swift */; };
@@ -143,6 +144,7 @@
 		3309FB4C1BF7F64300BE0310 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		3309FB4E1BF7F64300BE0310 /* ProjectCreature.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ProjectCreature.entitlements; sourceTree = "<group>"; };
 		3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKHelper.swift; sourceTree = "<group>"; };
+		330B40FA1C3B3ECE00D44558 /* SKTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTimer.swift; sourceTree = "<group>"; };
 		330C80ED1C33164700ADF713 /* AwardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwardsViewController.swift; sourceTree = "<group>"; };
 		330F6B4C1C151557004CCAED /* StatsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
 		331822271C28C9A60094245D /* AwardsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwardsLayer.swift; sourceTree = "<group>"; };
@@ -284,6 +286,14 @@
 			path = SettingsLayer;
 			sourceTree = "<group>";
 		};
+		330B40F91C3B3EC300D44558 /* Custom Objects */ = {
+			isa = PBXGroup;
+			children = (
+				330B40FA1C3B3ECE00D44558 /* SKTimer.swift */,
+			);
+			path = "Custom Objects";
+			sourceTree = "<group>";
+		};
 		331822261C28C9680094245D /* AwardsLayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,6 +426,7 @@
 		3366C5B41C24B31F001AF86E /* Extras */ = {
 			isa = PBXGroup;
 			children = (
+				330B40F91C3B3EC300D44558 /* Custom Objects */,
 				3366C5B51C24B31F001AF86E /* Extensions */,
 				3366C5B61C24B31F001AF86E /* Protocols */,
 			);
@@ -880,6 +891,7 @@
 				33BBFD7B1C121F8300E76511 /* DashboardSceneUI.swift in Sources */,
 				3300345A1C28DC0200C7CFFF /* SettingsLayerUI.swift in Sources */,
 				33BBFD7F1C121F8300E76511 /* BarHorizontal.swift in Sources */,
+				330B40FB1C3B3ECE00D44558 /* SKTimer.swift in Sources */,
 				33AC1D031C266F170066FCB3 /* BarVertical.swift in Sources */,
 				3366C5A81C2337C7001AF86E /* Test.swift in Sources */,
 				339914331C310DE800268C2A /* Float+Extension.swift in Sources */,

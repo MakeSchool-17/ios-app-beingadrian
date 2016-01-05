@@ -17,7 +17,7 @@ class DashboardScene: SKScene {
     
     private let firebaseHelper = FirebaseHelper()
     
-    var gameManager: GameManager!
+    weak var gameManager: GameManager!
     
     // MARK: - UI Properties
     
@@ -128,14 +128,16 @@ class DashboardScene: SKScene {
     
     private func observePetting() {
         
+        guard let gameManager = self.gameManager else { return }
+        
         let maxHpValue = Int(gameManager.creature.hpMax.value)
         
         creatureModel.head.pettingCount
             .subscribeNext { count in
                 if (count != 0) {
-                    let currentHpValue = self.gameManager.creature.hp.value
+                    let currentHpValue = gameManager.creature.hp.value
                     let newValue = (currentHpValue + 5).clamped(0...maxHpValue)
-                    self.gameManager.creature.hp.value = newValue
+                    gameManager.creature.hp.value = newValue
                 }
             }
             .addDisposableTo(disposeBag)
@@ -165,10 +167,12 @@ class DashboardScene: SKScene {
         
         self.userInteractionEnabled = false
         
+        guard let gameManager = self.gameManager else { return }
+        
         self.transitionOut {
             let statsLayer = StatsLayer(
                 size: self.frame.size,
-                gameManager: self.gameManager)
+                gameManager: gameManager)
             self.addChild(statsLayer)
             statsLayer.transitionIn {
                 // enable user interaction once transition is complete
