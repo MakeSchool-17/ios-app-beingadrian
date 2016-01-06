@@ -46,9 +46,12 @@ struct StatsStore {
             .flatMap { distanceToday -> Observable<Double> in
                 self.distanceTravelledToday.value = distanceToday
                 return self.getStepsForWeekday(currentWeekday)
-            }.flatMap { stepsToday -> Observable<Void> in
+            }.flatMap { stepsToday -> Observable<[Int: Double]> in
                 self.totalStepsToday.value = stepsToday
                 return self.getWeekProgress()
+            }.flatMap { weekProgress -> Observable<Void> in
+                self.weekProgress.value = weekProgress
+                return empty()
             }
 
     }
@@ -78,64 +81,76 @@ struct StatsStore {
         
     }
     
-    private func getWeekProgress() -> Observable<Void> {
+    private func getWeekProgress() -> Observable<[Int: Double]> {
         
         var weekProgress: [Int: Double] = [:]
         
-        return self.getStepsForWeekday(1)
-            .flatMap { sun -> Observable<Double> in
-                weekProgress[1] = sun / 10_000
-                return self.getStepsForWeekday(2)
-                    .catchError { error in
-                        print("> Error: \(error)")
-                        self.weekProgress.value = weekProgress
-                        return empty()
+        return create { observer in
+            
+            self.getStepsForWeekday(1)
+                .flatMap { sun -> Observable<Double> in
+                    weekProgress[1] = sun / 10_000
+                    return self.getStepsForWeekday(2)
+                        .catchError { error in
+                            print("> Error: \(error)")
+                            observer.onNext(weekProgress)
+                            observer.onCompleted()
+                            return empty()
                     }
-            }.flatMap { mon -> Observable<Double> in
-                weekProgress[2] = mon / 10_000
-                return self.getStepsForWeekday(3)
-                    .catchError { error in
-                        print("> Error: \(error)")
-                        self.weekProgress.value = weekProgress
-                        return empty()
+                }.flatMap { mon -> Observable<Double> in
+                    weekProgress[2] = mon / 10_000
+                    return self.getStepsForWeekday(3)
+                        .catchError { error in
+                            print("> Error: \(error)")
+                            observer.onNext(weekProgress)
+                            observer.onCompleted()
+                            return empty()
                     }
-            }.flatMap { tue -> Observable<Double> in
-                weekProgress[3] = tue / 10_000
-                return self.getStepsForWeekday(4)
-                    .catchError { error in
-                        print("> Error: \(error)")
-                        self.weekProgress.value = weekProgress
-                        return empty()
+                }.flatMap { tue -> Observable<Double> in
+                    weekProgress[3] = tue / 10_000
+                    return self.getStepsForWeekday(4)
+                        .catchError { error in
+                            print("> Error: \(error)")
+                            observer.onNext(weekProgress)
+                            observer.onCompleted()
+                            return empty()
                     }
-            }.flatMap { wed -> Observable<Double> in
-                weekProgress[4] = wed / 10_000
-                return self.getStepsForWeekday(5)
-                    .catchError { error in
-                        print("> Error: \(error)")
-                        self.weekProgress.value = weekProgress
-                        return empty()
+                }.flatMap { wed -> Observable<Double> in
+                    weekProgress[4] = wed / 10_000
+                    return self.getStepsForWeekday(5)
+                        .catchError { error in
+                            print("> Error: \(error)")
+                            observer.onNext(weekProgress)
+                            observer.onCompleted()
+                            return empty()
                     }
-            }.flatMap { thu -> Observable<Double> in
-                weekProgress[5] = thu / 10_000
-                return self.getStepsForWeekday(6)
-                    .catchError { error in
-                        print("> Error: \(error)")
-                        self.weekProgress.value = weekProgress
-                        return empty()
+                }.flatMap { thu -> Observable<Double> in
+                    weekProgress[5] = thu / 10_000
+                    return self.getStepsForWeekday(6)
+                        .catchError { error in
+                            observer.onNext(weekProgress)
+                            observer.onCompleted()
+                            return empty()
                     }
-            }.flatMap { fri -> Observable<Double> in
-                weekProgress[6] = fri / 10_000
-                return self.getStepsForWeekday(7)
-                    .catchError { error in
-                        print("> Error: \(error)")
-                        self.weekProgress.value = weekProgress
-                        return empty()
+                }.flatMap { fri -> Observable<Double> in
+                    weekProgress[6] = fri / 10_000
+                    return self.getStepsForWeekday(7)
+                        .catchError { error in
+                            print("> Error: \(error)")
+                            observer.onNext(weekProgress)
+                            observer.onCompleted()
+                            return empty()
                     }
-            }.flatMap { sat -> Observable<Void> in
-                weekProgress[7] = sat / 10_000
-                self.weekProgress.value = weekProgress
-                return empty()
-            }
+                }.subscribeNext { sat in
+                    weekProgress[7] = sat / 10_000
+                    observer.onNext(weekProgress)
+                    observer.onCompleted()
+                }.addDisposableTo(self.disposeBag)
+            
+            return NopDisposable.instance
+        }
+        
+
         
     }
     
