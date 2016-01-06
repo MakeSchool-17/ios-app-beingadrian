@@ -10,7 +10,7 @@
         <!--Main View Controller-->
         <scene sceneID="oW0-dD-lu1">
             <objects>
-                <viewController id="9BU-g5-Ymf" customClass="MainViewController" customModule="ProjectCreature" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainViewController" id="9BU-g5-Ymf" customClass="MainViewController" customModule="ProjectCreature" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mBI-QW-PRU"/>
                         <viewControllerLayoutGuide type="bottom" id="lJJ-Zp-9vx"/>
@@ -249,8 +249,8 @@
                                 <state key="normal" image="Close button"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="Xda-pp-d8z"/>
                                         <exclude reference="Nr1-1h-syM"/>
+                                        <exclude reference="Xda-pp-d8z"/>
                                         <exclude reference="rHj-O3-ji6"/>
                                     </mask>
                                 </variation>

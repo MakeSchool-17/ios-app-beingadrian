@@ -50,7 +50,7 @@ class StatsLayer: SKSpriteNode {
         
         self.gameManager = gameManager
         
-        self.viewModel = StatsViewModel(statsStore: gameManager.statsStore)
+        self.viewModel = StatsViewModel(gameManager: gameManager)
         
         let texture = SKTexture(imageNamed: "Background")
         super.init(texture: texture, color: UIColor(), size: size)
@@ -72,15 +72,13 @@ class StatsLayer: SKSpriteNode {
     
     private func udpateUI() {
         
-        let currentWeekday = NSDate().weekday
-        
         dateLabel.text = viewModel.date
         
-        let bar = histogramBarsFront[currentWeekday-1]
+        let bar = histogramBarsFront[viewModel.currentWeekday-1]
         histogramPointer.animateToBar(bar)
         
         for (weekday, progress) in viewModel.weekProgress {
-            histogramBarsFront[weekday-1].animateBarProgress(toPercentage: progress)
+            histogramBarsFront[weekday-1].animateBarProgress(toPercentage: Float(progress))
         }
         
         distanceValueLabel.animateToValue(
@@ -89,25 +87,25 @@ class StatsLayer: SKSpriteNode {
             duration: 1,
             rounded: false)
         
-        guard let progressToday = viewModel.weekProgress[currentWeekday] else {
-            // TODO: error accessing progress for current day
-            return
-        }
-            
-        progressValueLabel.animateToValue(
-            progressToday * 100,
-            fromValue: 0,
-            duration: 1,
-            rounded: true,
-            addString: "%")
-        
         totalStepsValueLabel.animateToValue(
             viewModel.totalSteps,
             fromValue: 0,
             duration: 1,
             rounded: true)
         
-        circleFront.animateToProgress(1, progress: progressToday)
+        guard let progressToday = viewModel.weekProgress[viewModel.currentWeekday] else {
+            // TODO: error accessing progress for current day
+            return
+        }
+            
+        progressValueLabel.animateToValue(
+            Float(progressToday) * 100,
+            fromValue: 0,
+            duration: 1,
+            rounded: true,
+            addString: "%")
+        
+        circleFront.animateToProgress(1, progress: Float(progressToday))
 
         
     }

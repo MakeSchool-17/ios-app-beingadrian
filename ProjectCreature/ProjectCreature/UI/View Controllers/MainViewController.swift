@@ -15,7 +15,9 @@ class MainViewController: UIViewController {
 
     private var disposeBag = DisposeBag()
     
-    var gameManager: GameManager!
+    // MARK: - Properties
+    
+    var gameManager: GameManager?
 
     // MARK: - Base methods
     
@@ -28,10 +30,12 @@ class MainViewController: UIViewController {
         guard let testCreature = Test().createTestCreature() else { return }
         let testUser = Test().createTestUser()
         
+        // gameManager creation
         self.gameManager = GameManager(
             user: testUser,
-            creature: testCreature,
-            statsStore: HKStatsStore())
+            creature: testCreature)
+        
+        guard let gameManager = self.gameManager else { return }
         
         let scene = DashboardScene()
         scene.gameManager = gameManager
@@ -41,7 +45,7 @@ class MainViewController: UIViewController {
         
         view.presentScene(scene)
         
-        // testing purposes 
+        // testing purposes
         view.showsFPS = true
         view.showsDrawCount = true
         view.showsQuadCount = true
@@ -50,11 +54,16 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         
-        // healthKit permission
         HKHelper().requestHealthKitAuthorization()
-            .subscribeNext { success in
-                print("> Request HealthKit authorization: \(success)")
-            }
+            .subscribe(
+                onNext: { (success) -> Void in
+                    print("> HealthKit authorization: \(success)")
+                },
+                onError: { (error) -> Void in
+                    print("> Error authorizing HealthKit: \(error)")
+                },
+                onCompleted: nil,
+                onDisposed: nil)
             .addDisposableTo(disposeBag)
         
     }

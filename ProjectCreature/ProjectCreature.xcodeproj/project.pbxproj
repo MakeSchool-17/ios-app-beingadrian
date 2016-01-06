@@ -35,7 +35,7 @@
 		335557091C1BA00A0027FAE4 /* NavigationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335557081C1BA00A0027FAE4 /* NavigationButton.swift */; };
 		3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */; };
 		3366C5A81C2337C7001AF86E /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5A71C2337C7001AF86E /* Test.swift */; };
-		3366C5AA1C2373D9001AF86E /* HKStatsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5A91C2373D9001AF86E /* HKStatsStore.swift */; };
+		3366C5AA1C2373D9001AF86E /* StatsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5A91C2373D9001AF86E /* StatsStore.swift */; };
 		3366C5AC1C2390FA001AF86E /* HistogramPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5AB1C2390FA001AF86E /* HistogramPointer.swift */; };
 		3366C5AF1C23D686001AF86E /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5AE1C23D686001AF86E /* NSDate+Extension.swift */; };
 		3366C5C41C24B38A001AF86E /* NSNumberFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5B81C24B38A001AF86E /* NSNumberFormatter+Extension.swift */; };
@@ -79,6 +79,7 @@
 		338368E91BF67852006407FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 338368E71BF67852006407FF /* LaunchScreen.storyboard */; };
 		338368F41BF67852006407FF /* ProjectCreatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338368F31BF67852006407FF /* ProjectCreatureTests.swift */; };
 		338368FF1BF67852006407FF /* ProjectCreatureUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338368FE1BF67852006407FF /* ProjectCreatureUITests.swift */; };
+		3389EEC41C3C442800EA08FC /* LoadingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3389EEC31C3C442800EA08FC /* LoadingLayer.swift */; };
 		339874281BFFFE7200F47B2B /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339874271BFFFE7200F47B2B /* GameManager.swift */; };
 		3399142F1C30C07F00268C2A /* PandoStateFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3399142E1C30C07F00268C2A /* PandoStateFunctions.swift */; };
 		339914311C310D8500268C2A /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339914301C310D8500268C2A /* Double+Extension.swift */; };
@@ -165,7 +166,7 @@
 		335557081C1BA00A0027FAE4 /* NavigationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationButton.swift; sourceTree = "<group>"; };
 		3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
 		3366C5A71C2337C7001AF86E /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
-		3366C5A91C2373D9001AF86E /* HKStatsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKStatsStore.swift; sourceTree = "<group>"; };
+		3366C5A91C2373D9001AF86E /* StatsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsStore.swift; sourceTree = "<group>"; };
 		3366C5AB1C2390FA001AF86E /* HistogramPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistogramPointer.swift; sourceTree = "<group>"; };
 		3366C5AE1C23D686001AF86E /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
 		3366C5B81C24B38A001AF86E /* NSNumberFormatter+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNumberFormatter+Extension.swift"; sourceTree = "<group>"; };
@@ -212,6 +213,7 @@
 		338368FE1BF67852006407FF /* ProjectCreatureUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreatureUITests.swift; sourceTree = "<group>"; };
 		338369001BF67852006407FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		338369181BF68F46006407FF /* ProjectCreature-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProjectCreature-Bridging-Header.h"; sourceTree = "<group>"; };
+		3389EEC31C3C442800EA08FC /* LoadingLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingLayer.swift; sourceTree = "<group>"; };
 		339874271BFFFE7200F47B2B /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		3399142E1C30C07F00268C2A /* PandoStateFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PandoStateFunctions.swift; sourceTree = "<group>"; };
 		339914301C310D8500268C2A /* Double+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
@@ -317,7 +319,7 @@
 			children = (
 				3366C5AD1C23D67A001AF86E /* Extensions */,
 				3309FB4F1BF7F72C00BE0310 /* HKHelper.swift */,
-				3366C5A91C2373D9001AF86E /* HKStatsStore.swift */,
+				3366C5A91C2373D9001AF86E /* StatsStore.swift */,
 			);
 			path = HealthKit;
 			sourceTree = "<group>";
@@ -345,6 +347,7 @@
 		333532651C160273003145AA /* NodeLayers */ = {
 			isa = PBXGroup;
 			children = (
+				3389EEC21C3C440F00EA08FC /* LoadingLayer */,
 				330034561C28DB5A00C7CFFF /* SettingsLayer */,
 				330034511C28DA9D00C7CFFF /* StoreLayer */,
 				333532711C165165003145AA /* MenuLayer */,
@@ -631,6 +634,14 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		3389EEC21C3C440F00EA08FC /* LoadingLayer */ = {
+			isa = PBXGroup;
+			children = (
+				3389EEC31C3C442800EA08FC /* LoadingLayer.swift */,
+			);
+			path = LoadingLayer;
+			sourceTree = "<group>";
+		};
 		339874261BFFFE5E00F47B2B /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -905,6 +916,7 @@
 				337199BF1C3B1DD6008108B6 /* LeaderboardViewController.swift in Sources */,
 				338368DB1BF67852006407FF /* AppDelegate.swift in Sources */,
 				330034531C28DAAD00C7CFFF /* StoreLayer.swift in Sources */,
+				3389EEC41C3C442800EA08FC /* LoadingLayer.swift in Sources */,
 				337199C51C3B1E11008108B6 /* SettingsViewController.swift in Sources */,
 				3318222D1C28CBD60094245D /* LeaderboardLayer.swift in Sources */,
 				33BBFD7A1C121F8300E76511 /* DashboardScene.swift in Sources */,
@@ -919,7 +931,7 @@
 				3318222A1C28CB2A0094245D /* AwardsLayerUI.swift in Sources */,
 				337847751C1F556A00B3722D /* Firebase+Rx.swift in Sources */,
 				330F6B4D1C151557004CCAED /* StatsViewModel.swift in Sources */,
-				3366C5AA1C2373D9001AF86E /* HKStatsStore.swift in Sources */,
+				3366C5AA1C2373D9001AF86E /* StatsStore.swift in Sources */,
 				333532731C165176003145AA /* MenuLayer.swift in Sources */,
 				3366C5AC1C2390FA001AF86E /* HistogramPointer.swift in Sources */,
 				33B990771C2F4E0A00D6CA10 /* CreatureHead.swift in Sources */,

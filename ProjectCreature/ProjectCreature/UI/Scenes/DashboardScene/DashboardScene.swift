@@ -54,6 +54,20 @@ class DashboardScene: SKScene {
         bindUI()
         
         gameManager.statsStore.reloadData()
+            .subscribe(
+                onNext: { () -> Void in
+                    
+                },
+                onError: { (error) -> Void in
+                    print("> Error reloading stats data: \(error)")
+                },
+                onCompleted: {
+                    print("> Completed")
+                    guard let loadingScreen = self.childNodeWithName("loadingLayer") as? LoadingLayer else { return }
+                    loadingScreen.transitionOut()
+                },
+                onDisposed: nil)
+            .addDisposableTo(disposeBag)
         
         transitionIn {
             self.observePetting()
@@ -68,6 +82,12 @@ class DashboardScene: SKScene {
         setupUI()
     
         self.userInteractionEnabled = true
+        
+        // show loading screen
+        let loadingLayer = LoadingLayer(size: self.size)
+        loadingLayer.name = "loadingLayer"
+        loadingLayer.zPosition = 100
+        self.addChild(loadingLayer)
         
     }
     

@@ -14,7 +14,7 @@ class GameManager {
 
     var disposeBag = DisposeBag()
     
-    let statsStore: HKStatsStore
+    let statsStore: StatsStore
     
     // MARK: - Properties
     
@@ -23,9 +23,9 @@ class GameManager {
     
     // MARK: - Initialization
 
-    init(user: User, creature: Creature, statsStore: HKStatsStore) {
+    init(user: User, creature: Creature) {
 
-        self.statsStore = statsStore
+        self.statsStore = StatsStore()
         
         self.user = user
         self.creature = creature

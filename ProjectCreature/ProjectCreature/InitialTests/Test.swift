@@ -33,7 +33,10 @@ class Test {
     
     func createTestUser() -> User {
         
-        let testUser = User(email: "test@test.com", username: "tester", uid: "174d86e2-ec1c-462a-89c8-4f4a4146e51c")
+        let testUser = User(
+            email: "test@test.com",
+            username: "tester",
+            uid: "174d86e2-ec1c-462a-89c8-4f4a4146e51c")
         return testUser
         
     }
