@@ -1,5 +1,5 @@
 //
-//  CreatureJsonModel.swift
+//  PetJsonModel.swift
 //  ProjectCreature
 //
 //  Created by Adrian Wisaksana on 12/16/15.
@@ -9,7 +9,7 @@
 import Gloss
 
 
-struct CreatureJsonModel: Glossy {
+struct PetJsonModel: Glossy {
     
     var name: String
     var level: Int
@@ -17,19 +17,19 @@ struct CreatureJsonModel: Glossy {
     var expMax: Float
     var hp: Float
     var hpMax: Float
-    var family: Creature.Family
+    var family: Pet.Family
     var ownerUID: String
     
-    init(creature: Creature) {
+    init(pet: Pet) {
         
-        self.name = creature.name.value
-        self.level = creature.level.value
-        self.exp = creature.exp.value
-        self.expMax = creature.expMax.value
-        self.hp = creature.hp.value
-        self.hpMax = creature.hpMax.value
-        self.family = creature.family.value
-        self.ownerUID = creature.ownerUID.value
+        self.name = pet.name.value
+        self.level = pet.level.value
+        self.exp = pet.exp.value
+        self.expMax = pet.expMax.value
+        self.hp = pet.hp.value
+        self.hpMax = pet.hpMax.value
+        self.family = pet.family.value
+        self.ownerUID = pet.ownerUID.value
         
     }
     
@@ -41,7 +41,7 @@ struct CreatureJsonModel: Glossy {
         guard let expMax: Float = "expMax" <~~ json else { return nil }
         guard let hp: Float = "hp" <~~ json else { return nil }
         guard let hpMax: Float = "hpMax" <~~ json else { return nil }
-        guard let family: Creature.Family = "family" <~~ json else { return nil }
+        guard let family: Pet.Family = "family" <~~ json else { return nil }
         guard let ownerUID: String = "ownerUID" <~~ json else { return nil }
         
         self.name = name

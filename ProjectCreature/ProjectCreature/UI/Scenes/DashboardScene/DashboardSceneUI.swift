@@ -14,6 +14,8 @@ extension DashboardScene {
     
     func setupUI() {
         
+        self.size = CGSize(width: 320, height: 568)
+        
         let background = SKSpriteNode(imageNamed: "Background")
         self.addChild(background)
         background.anchorPoint = CGPointZero
@@ -52,32 +54,32 @@ extension DashboardScene {
         
         let greyColor = UIColor.rgbaColor(r: 127, g: 127, b: 127, a: 1)
         
-        creatureNameLabel = SKLabelNode(text: "Bob")
-        dashboard.addChild(creatureNameLabel)
-        creatureNameLabel.fontName = "Avenir-HeavyOblique"
-        creatureNameLabel.fontSize = 18
-        creatureNameLabel.fontColor = greyColor
-        creatureNameLabel.horizontalAlignmentMode = .Left
-        creatureNameLabel.position.x = 83
-        creatureNameLabel.position.y = -21
+        petNameLabel = SKLabelNode(text: "Bob")
+        dashboard.addChild(petNameLabel)
+        petNameLabel.fontName = "Avenir-HeavyOblique"
+        petNameLabel.fontSize = 18
+        petNameLabel.fontColor = greyColor
+        petNameLabel.horizontalAlignmentMode = .Left
+        petNameLabel.position.x = 83
+        petNameLabel.position.y = -21
         
         lvLabel = SKLabelNode(text: "Lv.")
-        creatureNameLabel.addChild(lvLabel)
+        petNameLabel.addChild(lvLabel)
         lvLabel.fontName = "Avenir-HeavyOblique"
         lvLabel.fontSize = 12
         lvLabel.fontColor = greyColor
         lvLabel.horizontalAlignmentMode = .Left
-        lvLabel.position.x = creatureNameLabel.frame.width + 7
+        lvLabel.position.x = petNameLabel.frame.width + 7
         lvLabel.position.y = 0
         
-        creatureLevelLabel = SKLabelNode(text: "0")
-        lvLabel.addChild(creatureLevelLabel)
-        creatureLevelLabel.fontName = "Avenir-HeavyOblique"
-        creatureLevelLabel.fontSize = 18
-        creatureLevelLabel.fontColor = greyColor
-        creatureLevelLabel.horizontalAlignmentMode = .Left
-        creatureLevelLabel.position.x = lvLabel.frame.width + 1
-        creatureLevelLabel.position.y = 0
+        petLevelLabel = SKLabelNode(text: "0")
+        lvLabel.addChild(petLevelLabel)
+        petLevelLabel.fontName = "Avenir-HeavyOblique"
+        petLevelLabel.fontSize = 18
+        petLevelLabel.fontColor = greyColor
+        petLevelLabel.horizontalAlignmentMode = .Left
+        petLevelLabel.position.x = lvLabel.frame.width + 1
+        petLevelLabel.position.y = 0
         
         // MARK: Health bar
         
@@ -175,8 +177,8 @@ extension DashboardScene {
     
     func readjustLevelLabelXPosition() {
 
-        lvLabel.position.x = creatureNameLabel.frame.width + 7
-        creatureLevelLabel.position.x = lvLabel.frame.width + 1
+        lvLabel.position.x = petNameLabel.frame.width + 7
+        petLevelLabel.position.x = lvLabel.frame.width + 1
         
     }
     

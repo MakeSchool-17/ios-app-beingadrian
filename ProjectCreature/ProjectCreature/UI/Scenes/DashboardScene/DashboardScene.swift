@@ -23,15 +23,17 @@ class DashboardScene: SKScene {
     
     var viewModel: DashboardViewModel!
     
+    var loadingLayer: LoadingLayer!
+    
     var statsButton: SKButtonSprite!
     var menuButton: SKButtonSprite!
     
     var dashboard: SKSpriteNode!
     var circleFrame: SKSpriteNode!
     
-    var creatureNameLabel: SKLabelNode!
+    var petNameLabel: SKLabelNode!
     var lvLabel: SKLabelNode!
-    var creatureLevelLabel: SKLabelNode!
+    var petLevelLabel: SKLabelNode!
     
     var hpBarFront: BarHorizontal!
     var hpPercentageLabel: SKLabelNode!
@@ -43,7 +45,7 @@ class DashboardScene: SKScene {
     var energyLabel: SKLabelNode!
     var energyIcon: SKSpriteNode!
     
-    var creatureModel: PandoModel!
+    var petSprite: PetSprite!
     
     // MARK: - Did move to view
     
@@ -51,23 +53,7 @@ class DashboardScene: SKScene {
         
         setup()
         
-        bindUI()
-        
-        gameManager.statsStore.reloadData()
-            .subscribe(
-                onNext: { () -> Void in
-                    
-                },
-                onError: { (error) -> Void in
-                    print("> Error reloading stats data: \(error)")
-                },
-                onCompleted: {
-                    print("> Completed")
-                    guard let loadingScreen = self.childNodeWithName("loadingLayer") as? LoadingLayer else { return }
-                    loadingScreen.transitionOut()
-                },
-                onDisposed: nil)
-            .addDisposableTo(disposeBag)
+        reloadData()
         
         transitionIn {
             self.observePetting()
@@ -77,17 +63,53 @@ class DashboardScene: SKScene {
     
     private func setup() {
         
-        self.size = CGSize(width: 320, height: 568)
-        
         setupUI()
+        
+        bindUI()
     
         self.userInteractionEnabled = true
         
-        // show loading screen
-        let loadingLayer = LoadingLayer(size: self.size)
-        loadingLayer.name = "loadingLayer"
+        showLoadingScreen()
+        
+        // TODO: Food implementation
+        let simplePie = Food(name: "Simple pie", hpValue: 20)
+        let simplePieSprite = FoodSprite(food: simplePie)
+        simplePieSprite.position = CGPoint(x: frame.midX, y: frame.minY + 100)
+        self.addChild(simplePieSprite)
+        
+        // TODO: Observe food isTapped
+        simplePieSprite.isTapped
+            .subscribeNext { isTapped in
+                if isTapped {
+                     self.gameManager.consumeFood(simplePieSprite.food)
+                }
+            }.addDisposableTo(disposeBag)
+        
+    }
+    
+    private func showLoadingScreen() {
+        
+        self.loadingLayer = LoadingLayer(size: self.size)
         loadingLayer.zPosition = 100
         self.addChild(loadingLayer)
+        
+    }
+    
+    private func reloadData() {
+        
+        gameManager.statsStore.reloadData()
+            .subscribe(
+                onNext: nil,
+                onError: { (error) -> Void in
+                    print("> Error reloading stats data: \(error)")
+                    self.loadingLayer.didFinishLoading()
+                },
+                onCompleted: {
+                    print("> Completed reloading HK data")
+                    self.loadingLayer.didFinishLoading()
+                },
+                onDisposed: nil)
+            .addDisposableTo(disposeBag)
         
     }
     
@@ -95,20 +117,20 @@ class DashboardScene: SKScene {
     
     private func bindUI() {
         
-        viewModel.creatureName
+        viewModel.petName
             .subscribeOn(MainScheduler.sharedInstance)
             .subscribeNext { name in
-                self.creatureNameLabel.text = name
+                self.petNameLabel.text = name
                 self.readjustLevelLabelXPosition()
             }
             .addDisposableTo(disposeBag)
         
-        viewModel.creatureLevel
+        viewModel.petLevel
             .observeOn(MainScheduler.sharedInstance)
-            .bindTo(creatureLevelLabel.rx_text)
+            .bindTo(petLevelLabel.rx_text)
             .addDisposableTo(disposeBag)
         
-        viewModel.creatureHpPercentage
+        viewModel.petHpPercentage
             .subscribeOn(MainScheduler.sharedInstance)
             .subscribeNext { percentage in
                 self.hpBarFront.animateBarProgress(toPercentage: percentage / 100)
@@ -121,7 +143,7 @@ class DashboardScene: SKScene {
             }
             .addDisposableTo(disposeBag)
         
-        viewModel.creatureExpPercentage
+        viewModel.petExpPercentage
             .subscribeOn(MainScheduler.sharedInstance)
             .map { return $0 / 100 }
             .subscribeNext { percentage in
@@ -129,13 +151,13 @@ class DashboardScene: SKScene {
             }
             .addDisposableTo(disposeBag)
         
-        viewModel.creatureModel
+        viewModel.petSprite
             .subscribeOn(MainScheduler.sharedInstance)
             .subscribeNext { model in
-                self.creatureModel = model
-                self.creatureModel.position.x = self.frame.halfWidth
-                self.creatureModel.position.y = self.frame.halfHeight - 105
-                self.addChild(self.creatureModel)
+                self.petSprite = model
+                self.petSprite.position.x = self.frame.halfWidth
+                self.petSprite.position.y = self.frame.halfHeight - 105
+                self.addChild(self.petSprite)
             }
             .addDisposableTo(disposeBag)
         
@@ -150,14 +172,24 @@ class DashboardScene: SKScene {
         
         guard let gameManager = self.gameManager else { return }
         
-        let maxHpValue = Int(gameManager.creature.hpMax.value)
+        let maxHpValue = Int(gameManager.pet.hpMax.value)
         
-        creatureModel.head.pettingCount
+        petSprite.head.pettingCount
             .subscribeNext { count in
-                if (count != 0) {
-                    let currentHpValue = gameManager.creature.hp.value
+
+                let limitIsReached = gameManager.checkPettingLimitIsReached()
+                
+                if (count != 0 && !limitIsReached) {
+                    
+                    let head = self.petSprite.head
+                    if !head.isSmiling {
+                        head.smileTemporarily()
+                    }
+                    
+                    let currentHpValue = gameManager.pet.hp.value
                     let newValue = (currentHpValue + 5).clamped(0...maxHpValue)
-                    gameManager.creature.hp.value = newValue
+                    gameManager.pet.hp.value = newValue
+                    gameManager.pettingCount.value += 1
                 }
             }
             .addDisposableTo(disposeBag)

@@ -25,12 +25,8 @@ class FirebaseHelper {
         return rootRef.childByAppendingPath("users")
     }
     
-    var creaturesRef: Firebase {
-        return rootRef.childByAppendingPath("creatures")
-    }
-    
-    var connectedRef: Firebase {
-        return rootRef.childByAppendingPath(".info/connected")
+    var petsRef: Firebase {
+        return rootRef.childByAppendingPath("pets")
     }
     
     // MARK: - Properties
@@ -184,21 +180,21 @@ class FirebaseHelper {
     
     // MARK: - Creature methods
     
-    func createCreature(fromCreature creature: Creature) {
+    func createPet(fromPet pet: Pet) {
         
-        let creatureJson = CreatureJsonModel(creature: creature).toJSON()
+        let petJson = PetJsonModel(pet: pet).toJSON()
 
-        creaturesRef
-            .childByAppendingPath(String(creature.id.value))
-            .setValue(creatureJson)
+        petsRef
+            .childByAppendingPath(String(pet.id.value))
+            .setValue(petJson)
         
     }
     
-    func fetchCreature(fromUser user: User) -> Observable<Creature> {
+    func fetchPet(fromUser user: User) -> Observable<Pet> {
         
         return create { observer in
             
-            self.creaturesRef
+            self.petsRef
                 .queryOrderedByChild("ownerUID")
                 .queryEqualToValue(user.uid)
                 .observeSingleEventOfType(.Value, withBlock: {
@@ -209,15 +205,15 @@ class FirebaseHelper {
                         return
                     }
                     
-                    guard let creatureJsonModel = CreatureJsonModel(json: jsonModel) else {
+                    guard let petJsonModel = PetJsonModel(json: jsonModel) else {
                         observer.onError(FirebaseError.UnexpectedError(
-                            message: "Error creating CreatureJsonModel")
+                            message: "Error creating PetJsonModel")
                         )
                         return
                     }
                     
-                    let creature = Creature(id: id, model: creatureJsonModel)
-                    observer.onNext(creature)
+                    let pet = Pet(id: id, model: petJsonModel)
+                    observer.onNext(pet)
                     observer.onCompleted()
                     }, withCancelBlock: { error in
                         print("> Error accessing data snapshot: \(error)")

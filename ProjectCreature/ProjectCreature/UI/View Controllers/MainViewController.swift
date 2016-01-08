@@ -26,29 +26,30 @@ class MainViewController: UIViewController {
         
         guard let view = view as? SKView else { return }
         
-        // simulate creature and user
-        guard let testCreature = Test().createTestCreature() else { return }
+        // simulate pet and user
+        guard let testPet = Test().createTestPet() else { return }
         let testUser = Test().createTestUser()
         
         // gameManager creation
         self.gameManager = GameManager(
             user: testUser,
-            creature: testCreature)
+            pet: testPet)
         
         guard let gameManager = self.gameManager else { return }
         
         let scene = DashboardScene()
         scene.gameManager = gameManager
-        scene.viewModel = DashboardViewModel(creature: gameManager.creature, user: gameManager.user)
+        scene.viewModel = DashboardViewModel(pet: gameManager.pet, user: gameManager.user)
         
         scene.scaleMode = .Fill
         
         view.presentScene(scene)
         
         // testing purposes
-        view.showsFPS = true
-        view.showsDrawCount = true
-        view.showsQuadCount = true
+        let isTesting = false
+        view.showsFPS = isTesting
+        view.showsDrawCount = isTesting
+        view.showsQuadCount = isTesting
 
     }
     

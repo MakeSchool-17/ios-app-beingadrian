@@ -16,8 +16,6 @@ class StatsLayer: SKSpriteNode {
     
     private weak var gameManager: GameManager?
     
-    // MARK: - UI Properties
-    
     private let viewModel: StatsViewModel
     
     var statisticsTitleLabel: SKLabelNode!

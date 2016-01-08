@@ -10,13 +10,15 @@ import SpriteKit
 import RxSwift
 
 
-class PandoModel: SKSpriteNode {
+class PetSprite: SKSpriteNode {
 
     private var disposeBag = DisposeBag()
     
     var action = ActionManager()
     
     // MARK: - Properties
+    
+    var family: Creature.Family
     
     enum State: String {
         case Neutral = "Neutral"
@@ -42,7 +44,7 @@ class PandoModel: SKSpriteNode {
     
     // MARK: - Initialization
     
-    init() {
+    init(familyName: String) {
         super.init(texture: nil, color: UIColor(), size: CGSizeZero)
 
         bodySetup()
@@ -115,5 +117,17 @@ class PandoModel: SKSpriteNode {
     required init?(coder aDecoder: NSCoder) {
         fatalError("> init(coder:) has not been implemented")
     }
+    
+    // MARK: - State functions 
+    
+    func neutral() {}
+    
+    func happy() {}
+    
+    func sad() {}
+    
+    func asleep() {}
+    
+    func fainted() {}
 
 }

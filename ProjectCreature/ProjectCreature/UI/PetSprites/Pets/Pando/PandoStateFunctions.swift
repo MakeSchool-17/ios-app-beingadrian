@@ -9,54 +9,57 @@
 import SpriteKit
 
 
-extension PandoModel {
+extension PandoSprite {
     
     // MARK: - State functions
     
-    func neutral() {
+    override func neutral() {
         
         head.texture = createHeadTexture(forState: .Neutral)
         
-        let eyes = SKSpriteNode()
-        eyes.position.y = 60
+        head.eyes = SKSpriteNode()
         
-        let leftEye = SKSpriteNode(imageNamed: "Eye-Neutral")
-        leftEye.position.x = -67
-        eyes.addChild(leftEye)
-        
-        let rightEye = SKSpriteNode(imageNamed: "Eye-Neutral")
-        rightEye.position.x = 67
-        eyes.addChild(rightEye)
-        
-        head.addChild(eyes)
-        
+        if let eyes = head.eyes {
+            eyes.position.y = 60
+            
+            let leftEye = SKSpriteNode(imageNamed: "Pando - EyeNeutral")
+            leftEye.position.x = -67
+            eyes.addChild(leftEye)
+            
+            let rightEye = SKSpriteNode(imageNamed: "Pando - EyeNeutral")
+            rightEye.position.x = 67
+            eyes.addChild(rightEye)
+            
+            head.addChild(eyes)
+            eyes.runAction(action.blink)
+        }
+
         head.runAction(action.breatheNormal)
-        eyes.runAction(action.blink)
         body.runAction(action.breatheNormal)
         leftHand.runAction(action.handLeftMoveNormal)
         rightHand.runAction(action.handRightMoveNormal)
         
     }
     
-    func happy() {
+    override func happy() {
         
         head.texture = createHeadTexture(forState: .Happy)
         
     }
     
-    func sad() {
+    override func sad() {
         
         head.texture = createHeadTexture(forState: .Sad)
         
     }
     
-    func asleep() {
+    override func asleep() {
         
         head.texture = createHeadTexture(forState: .Asleep)
         
     }
     
-    func fainted() {
+    override func fainted() {
         
         head.texture = createHeadTexture(forState: .Fainted)
         
@@ -64,9 +67,9 @@ extension PandoModel {
     
     // MARK: - Helper functions
     
-    private func createHeadTexture(forState state: State) -> SKTexture {
+    func createHeadTexture(forState state: State) -> SKTexture {
         
-        return SKTexture(imageNamed: "Head-" + state.rawValue)
+        return SKTexture(imageNamed: familyName + " - Head" + state.rawValue.capitalizedString)
         
     }
     

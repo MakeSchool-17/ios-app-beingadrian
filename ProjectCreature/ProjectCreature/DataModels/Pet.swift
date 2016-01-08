@@ -1,5 +1,5 @@
 //
-//  Creature.swift
+//  Pet.swift
 //  ProjectCreature
 //
 //  Created by Adrian Wisaksana on 12/13/15.
@@ -10,7 +10,7 @@ import RxSwift
 import Firebase
 
 
-class Creature {
+class Pet {
     
     var disposeBag = DisposeBag()
     
@@ -33,8 +33,12 @@ class Creature {
         case Cat = "cat"
         case Pando = "pando"
         
-        var model: PandoModel {
-            return PandoModel()
+        var sprite: PetSprite {
+            switch self {
+            case .Dog:      return PandoSprite()
+            case .Cat:      return PandoSprite()
+            case .Pando:    return PandoSprite()   
+            }
         }
     }
     
@@ -54,7 +58,7 @@ class Creature {
         self.family = Variable(family)
         self.ownerUID = Variable(owner.uid)
         
-        let id = firebaseHelper.creaturesRef.childByAutoId().key
+        let id = firebaseHelper.petsRef.childByAutoId().key
         self.id = Variable(id)
         
         bindToFirebase()
@@ -64,9 +68,9 @@ class Creature {
     /**
      * Initializes the class from a Firebase data model.
      */
-    init(id: String, model: CreatureJsonModel) {
+    init(id: String, model: PetJsonModel) {
         
-        print("> Initializing Creature from a Firebase data model")
+        print("> Initializing Pet from a Firebase data model")
         
         self.name = Variable(model.name)
         self.level = Variable(model.level)
@@ -81,11 +85,11 @@ class Creature {
     }
     
     /**
-     * Binds each of `Creature` property to Firebase.
+     * Binds each of `Pet` property to Firebase.
      */
     func bindToFirebase() {
         
-        let ref = firebaseHelper.creaturesRef.childByAppendingPath(id.value)
+        let ref = firebaseHelper.petsRef.childByAppendingPath(id.value)
         
         name
             .subscribeNext { name in

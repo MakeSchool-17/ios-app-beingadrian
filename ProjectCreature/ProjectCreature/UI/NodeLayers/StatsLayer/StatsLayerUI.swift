@@ -136,7 +136,7 @@ extension StatsLayer {
         let greyColor = UIColor.rgbaColor(r: 216, g: 216, b: 216, a: 1)
         let tealColor = UIColor.rgbaColor(r: 71, g: 216, b: 178, a: 1)
         
-        // circle back
+        // static circle back
         circleBack = CircleProgressBar(
             radius: radius,
             width: width,

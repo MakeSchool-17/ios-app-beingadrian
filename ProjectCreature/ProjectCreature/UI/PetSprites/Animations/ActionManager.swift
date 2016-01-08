@@ -18,8 +18,8 @@ class ActionManager {
     
     // eyes (optional)
     var blink: SKAction {
-        let hide = SKAction.hide()
-        let show = SKAction.unhide()
+        let hide = SKAction.fadeAlphaTo(0, duration: 0)
+        let show = SKAction.fadeAlphaTo(1, duration: 0)
         let shortDelay = SKAction.waitForDuration(0.25)
         let randomDelay = SKAction.waitForDuration(4, withRange: 7)
         let actionSequence = SKAction.sequence(

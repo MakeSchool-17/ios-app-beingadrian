@@ -43,9 +43,15 @@ struct StatsStore {
         let currentWeekday = NSDate().weekday
             
         return self.getDistanceForToday()
+            .catchError { error in
+                return just(0.0)
+            }
             .flatMap { distanceToday -> Observable<Double> in
                 self.distanceTravelledToday.value = distanceToday
                 return self.getStepsForWeekday(currentWeekday)
+                    .catchError { error in
+                        return just(0.0)
+                    }
             }.flatMap { stepsToday -> Observable<[Int: Double]> in
                 self.totalStepsToday.value = stepsToday
                 return self.getWeekProgress()
@@ -92,7 +98,6 @@ struct StatsStore {
                     weekProgress[1] = sun / 10_000
                     return self.getStepsForWeekday(2)
                         .catchError { error in
-                            print("> Error: \(error)")
                             observer.onNext(weekProgress)
                             observer.onCompleted()
                             return empty()
@@ -101,7 +106,6 @@ struct StatsStore {
                     weekProgress[2] = mon / 10_000
                     return self.getStepsForWeekday(3)
                         .catchError { error in
-                            print("> Error: \(error)")
                             observer.onNext(weekProgress)
                             observer.onCompleted()
                             return empty()
@@ -110,7 +114,6 @@ struct StatsStore {
                     weekProgress[3] = tue / 10_000
                     return self.getStepsForWeekday(4)
                         .catchError { error in
-                            print("> Error: \(error)")
                             observer.onNext(weekProgress)
                             observer.onCompleted()
                             return empty()
@@ -119,7 +122,6 @@ struct StatsStore {
                     weekProgress[4] = wed / 10_000
                     return self.getStepsForWeekday(5)
                         .catchError { error in
-                            print("> Error: \(error)")
                             observer.onNext(weekProgress)
                             observer.onCompleted()
                             return empty()
@@ -136,7 +138,6 @@ struct StatsStore {
                     weekProgress[6] = fri / 10_000
                     return self.getStepsForWeekday(7)
                         .catchError { error in
-                            print("> Error: \(error)")
                             observer.onNext(weekProgress)
                             observer.onCompleted()
                             return empty()
@@ -149,8 +150,6 @@ struct StatsStore {
             
             return NopDisposable.instance
         }
-        
-
         
     }
     

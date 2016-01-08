@@ -1,5 +1,5 @@
 //
-//  CreatureHead.swift
+//  PetHead.swift
 //  ProjectCreature
 //
 //  Created by Adrian Wisaksana on 12/26/15.
@@ -10,12 +10,18 @@ import SpriteKit
 import RxSwift
 
 
-class CreatureHead: SKSpriteNode {
+class PetHead: SKSpriteNode {
+    
+    // MARK: - UI Properties
+    
+    var eyes: SKSpriteNode?
     
     // MARK: - Properties
     
+    private var familyName: String!
+    
     /**
-     * An observable that emmits every time the creature is being pet.
+     * An observable that emmits every time the pet is being pet.
      */
     var pettingCount: Variable<Int> = Variable(0)
     
@@ -27,19 +33,26 @@ class CreatureHead: SKSpriteNode {
      */
     private var touchIsMoving = false {
         didSet {
+            guard touchIsMoving else { return }
             resetTouchIsMovingAfterDelay()
         }
     }
     
     private var timer: SKTimer = SKTimer()
     
+    var isSmiling = false
+    
     // MARK: - Initialization 
     
-    init(imageNamed: String) {
-        let texture = SKTexture(imageNamed: imageNamed)
+    init(familyName: String) {
+        
+        let texture = SKTexture(imageNamed: familyName + " - HeadNeutral")
         super.init(texture: texture, color: UIColor(), size: texture.size())
         
+        self.familyName = familyName
+        
         self.timer.delegate = self
+        
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -73,7 +86,7 @@ class CreatureHead: SKSpriteNode {
         if (touchLocation.y > self.frame.height) {
             recover()
         }
-        
+
         // allow timer only when the touch is moving and when no timer is currently running
         if (touchIsMoving && !timer.isTiming) {
             timer.start()
@@ -141,12 +154,33 @@ class CreatureHead: SKSpriteNode {
         
     }
     
+    func smileTemporarily() {
+        
+        self.texture = SKTexture(imageNamed: "Pando - HeadHappy")
+        
+        isSmiling = true
+        if let eyes = self.eyes { eyes.hidden = true }
+        
+        let delayAction = SKAction.waitForDuration(1)
+        
+        let returnToNeutralAction = SKAction.runBlock {
+            self.texture = SKTexture(imageNamed: "Pando - HeadNeutral")
+            self.isSmiling = false
+            if let eyes = self.eyes { eyes.hidden = false }
+        }
+        
+        let sequence = SKAction.sequence([delayAction, returnToNeutralAction])
+        
+        self.runAction(sequence)
+        
+    }
+    
     /**
      * Recovers the head to its original size by changing its Y-scale back to `1`.
      */
     private func recover() {
         
-        let recoverAction = SKAction.scaleYTo(1, duration: 0.5)
+        let recoverAction = SKAction.scaleYTo(1, duration: 0.333)
         recoverAction.timingMode = .EaseOut
         
         self.runAction(recoverAction, withKey: "springBackAction")
@@ -155,11 +189,11 @@ class CreatureHead: SKSpriteNode {
     
 }
 
-extension CreatureHead: SKTimerDelegate {
+extension PetHead: SKTimerDelegate {
     
     func secondHasPassed(seconds: NSTimeInterval) {
         
-        guard seconds != 0 else { return }
+        guard (seconds != 0) else { return }
         self.pettingCount.value += 1
         
     }
