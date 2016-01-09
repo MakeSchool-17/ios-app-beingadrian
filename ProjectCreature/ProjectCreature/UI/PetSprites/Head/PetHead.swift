@@ -156,20 +156,22 @@ class PetHead: SKSpriteNode {
     
     func smileTemporarily() {
         
-        self.texture = SKTexture(imageNamed: "Pando - HeadHappy")
+        let initialTexture = self.texture
+        
+        self.texture = SKTexture(imageNamed: "\(familyName) - HeadHappy")
         
         isSmiling = true
         if let eyes = self.eyes { eyes.hidden = true }
         
         let delayAction = SKAction.waitForDuration(1)
         
-        let returnToNeutralAction = SKAction.runBlock {
-            self.texture = SKTexture(imageNamed: "Pando - HeadNeutral")
+        let returnToInitialState = SKAction.runBlock {
+            self.texture = initialTexture
             self.isSmiling = false
             if let eyes = self.eyes { eyes.hidden = false }
         }
         
-        let sequence = SKAction.sequence([delayAction, returnToNeutralAction])
+        let sequence = SKAction.sequence([delayAction, returnToInitialState])
         
         self.runAction(sequence)
         

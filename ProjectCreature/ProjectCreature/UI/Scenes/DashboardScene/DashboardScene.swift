@@ -10,12 +10,12 @@ import SpriteKit
 import RxSwift
 import RxCocoa
 
-
+/**
+ * The main scene of the app. The DashboardScene manages any reactive UI changes as well as UI input.
+ */
 class DashboardScene: SKScene {
     
     var disposeBag = DisposeBag()
-    
-    private let firebaseHelper = FirebaseHelper()
     
     weak var gameManager: GameManager!
     
@@ -72,7 +72,7 @@ class DashboardScene: SKScene {
         showLoadingScreen()
         
         // TODO: Food implementation
-        let simplePie = Food(name: "Simple pie", hpValue: 20)
+        let simplePie = Food(name: "Simple pie", hpValue: 70)
         let simplePieSprite = FoodSprite(food: simplePie)
         simplePieSprite.position = CGPoint(x: frame.midX, y: frame.minY + 100)
         self.addChild(simplePieSprite)
@@ -95,9 +95,13 @@ class DashboardScene: SKScene {
         
     }
     
+    /**
+     * Reloads the data of the `gameManager`'s `statsStore`. Error handling also occurs in this function.
+     */
     private func reloadData() {
         
         gameManager.statsStore.reloadData()
+            .subscribeOn(MainScheduler.sharedInstance)
             .subscribe(
                 onNext: nil,
                 onError: { (error) -> Void in
@@ -115,6 +119,9 @@ class DashboardScene: SKScene {
     
     // MARK: - Binding
     
+    /**
+     * Binds the UI with the viewModel data.
+     */
     private func bindUI() {
         
         viewModel.petName
@@ -168,28 +175,33 @@ class DashboardScene: SKScene {
         
     }
     
+    /**
+     * Bridges communication between the petting action and data changes with the pet object.
+     */
     private func observePetting() {
         
         guard let gameManager = self.gameManager else { return }
+        guard let petSprite = self.petSprite else { return }
         
         let maxHpValue = Int(gameManager.pet.hpMax.value)
         
         petSprite.head.pettingCount
+            .subscribeOn(MainScheduler.sharedInstance)
             .subscribeNext { count in
-
+                
                 let limitIsReached = gameManager.checkPettingLimitIsReached()
                 
                 if (count != 0 && !limitIsReached) {
-                    
-                    let head = self.petSprite.head
-                    if !head.isSmiling {
-                        head.smileTemporarily()
-                    }
                     
                     let currentHpValue = gameManager.pet.hp.value
                     let newValue = (currentHpValue + 5).clamped(0...maxHpValue)
                     gameManager.pet.hp.value = newValue
                     gameManager.pettingCount.value += 1
+                    
+                    let head = petSprite.head
+                    if (!head.isSmiling && self.petSprite.state.value != .Sad) {
+                        self.petSprite.smileTemporarily()
+                    }
                 }
             }
             .addDisposableTo(disposeBag)

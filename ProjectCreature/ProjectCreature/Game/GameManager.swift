@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import SpriteKit
 
 
 class GameManager {
@@ -21,7 +22,6 @@ class GameManager {
     var user: User
     var pet: Pet
     
-    // petting
     private var pettingLimitIsReached = false
     private var lastLimitReachedDate = NSDate()
     var pettingCount = Variable(0)
@@ -34,13 +34,23 @@ class GameManager {
         
         self.user = user
         self.pet = pet
+
+        makeObservations()
+        
+    }
+    
+    private func makeObservations() {
         
         observePetting()
-
+        observePetHappiness()
+        
     }
     
     // MARK: - Petting
     
+    /**
+     * Observes the `pettingCount` to perform petting logic when the pet is being pet.
+     */
     private func observePetting() {
         
         pettingCount
@@ -55,7 +65,9 @@ class GameManager {
         
     }
     
-    
+    /** 
+     * Checks if the petting limit is reached.
+     */
     func checkPettingLimitIsReached() -> Bool {
         
         let delay: NSTimeInterval = 60 * 60
@@ -67,7 +79,38 @@ class GameManager {
         }
         
         return pettingLimitIsReached
-
+        
+    }
+    
+    // MARK: - State changes
+    
+    /**
+     * Observes the pet's happiness so that the pet's `state` changes depending on its happiness percentage.
+     */
+    private func observePetHappiness() {
+        
+        combineLatest(pet.hp, pet.hpMax) {
+            return $0 / $1
+        }.subscribeNext { fraction in
+            let percentage = fraction * 100
+            switch percentage {
+            case 0:
+                print("> Pet is fainted")
+                self.pet.sprite.value.state.value = .Fainted
+                break
+            case 0..<60:
+                print("> Pet is sad")
+                self.pet.sprite.value.state.value = .Sad
+                break
+            case 60...100:
+                print("> Pet is neutral")
+                self.pet.sprite.value.state.value = .Neutral
+                break
+            default:
+                break
+            }
+        }.addDisposableTo(disposeBag)
+        
     }
     
     // MARK: - Food

@@ -8,15 +8,17 @@
 
 import SpriteKit
 
-
+/**
+ * Manages all the pet actions (animations).
+ */
 class ActionManager {
     
-    // general
+    // MARK: - General
     var breatheNormal: SKAction {
         return SKAction(named: "Breathe-Normal")!.repeatForever
     }
     
-    // eyes (optional)
+    // MARK: - Eyes
     var blink: SKAction {
         let hide = SKAction.fadeAlphaTo(0, duration: 0)
         let show = SKAction.fadeAlphaTo(1, duration: 0)
@@ -27,7 +29,7 @@ class ActionManager {
         return actionSequence.repeatForever
     }
     
-    // hands
+    // MARK: - Hands
     var handLeftMoveNormal: SKAction {
         return SKAction(named: "LeftHand-Move-Normal")!.repeatForever
     }

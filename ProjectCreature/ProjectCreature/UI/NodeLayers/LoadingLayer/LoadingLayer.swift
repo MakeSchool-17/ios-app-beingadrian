@@ -11,6 +11,8 @@ import SpriteKit
 
 class LoadingLayer: SKSpriteNode {
     
+    // MARK: - UI Properties
+    
     var textLogo: SKSpriteNode!
     var circleProgress: CircleProgressBar!
     
@@ -52,6 +54,9 @@ class LoadingLayer: SKSpriteNode {
     
     // MARK: - Did finish loading
     
+    /**
+     * Function containing exit transition actions. Called when `reloadData()` is complete.
+     */
     func didFinishLoading() {
         
         let duration: NSTimeInterval = 1

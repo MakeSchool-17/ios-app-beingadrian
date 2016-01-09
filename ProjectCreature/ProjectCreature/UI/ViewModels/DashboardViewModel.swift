@@ -21,12 +21,15 @@ class DashboardViewModel {
     var petLevel: Variable<String> = Variable("")
     var petExpPercentage: Variable<Float> = Variable(0)
     var petHpPercentage: Variable<Float> = Variable(0)
-    var petSprite: Variable<PetSprite> = Variable(PandoSprite())
+    var petSprite: Variable<PetSprite>
     var cash: Variable<String> = Variable("")
     
     // MARK: - Initialization
     
     init(pet: Pet, user: User) {
+        
+        // set initial petSprite
+        self.petSprite = Variable(pet.sprite.value)
         
         bindPetToViewModel(pet, currentUser: user)
         
@@ -64,9 +67,9 @@ class DashboardViewModel {
             }
             .addDisposableTo(disposeBag)
         
-        pet.family
-            .subscribeNext { family in
-                self.petSprite.value = family.sprite
+        pet.sprite
+            .subscribeNext { sprite in
+                self.petSprite.value = sprite
             }
             .addDisposableTo(disposeBag)
         

@@ -8,15 +8,19 @@
 
 import SpriteKit
 
+
 class HistogramPointer: SKSpriteNode {
 
+    /**
+     * Animates the pointer to a given bar.
+     */
     func animateToBar(bar: SKSpriteNode) {
         
-        let barMidPos = bar.position.x + bar.size.halfWidth
+        let barMidPosition = bar.position.x + bar.size.halfWidth
         
         let duration: NSTimeInterval = 1.0
         
-        let moveAction = SKAction.moveToX(barMidPos, duration: duration)
+        let moveAction = SKAction.moveToX(barMidPosition, duration: duration)
         
         func cubicEaseOut(t: Float) -> Float {
             return 1 - pow(1 - t / Float(duration), 5)
@@ -27,6 +31,5 @@ class HistogramPointer: SKSpriteNode {
         self.runAction(moveAction)
         
     }
-    
     
 }

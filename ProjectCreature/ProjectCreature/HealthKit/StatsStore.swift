@@ -94,6 +94,11 @@ struct StatsStore {
         return create { observer in
             
             self.getStepsForWeekday(1)
+                .catchError { error in
+                    observer.onNext(weekProgress)
+                    observer.onCompleted()
+                    return empty()
+                }
                 .flatMap { sun -> Observable<Double> in
                     weekProgress[1] = sun / 10_000
                     return self.getStepsForWeekday(2)

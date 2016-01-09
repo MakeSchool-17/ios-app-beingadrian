@@ -12,22 +12,32 @@ import Gloss
 
 struct UserJsonModel: Glossy {
     
+    // MARK: - Propertiesƒ
+    
     var email: String
     var username: String
     var cash: Int
     
-    // TODO: Provider
+    // MARK: - Initiliaztion
     
+    /**
+    * Initializes a user with an email and username
+    */
     init(email: String, username: String) {
         
         self.email = email
         self.username = username
         self.cash = 0
+        
+        // TODO: Provider
 
     }
     
     // MARK: - Deserialization
     
+    /** 
+     * Initializes with a Firebase JSON.
+     */
     init?(json: JSON) {
         
         guard let email: String = "email" <~~ json else { return nil }
@@ -39,6 +49,8 @@ struct UserJsonModel: Glossy {
         self.cash = cash
         
     }
+    
+    // MARK: - Jsonification
     
     func toJSON() -> JSON? {
         

@@ -16,6 +16,8 @@ class StatsLayer: SKSpriteNode {
     
     private weak var gameManager: GameManager?
     
+    // MARK: - UI Properties
+    
     private let viewModel: StatsViewModel
     
     var statisticsTitleLabel: SKLabelNode!
@@ -92,7 +94,6 @@ class StatsLayer: SKSpriteNode {
             rounded: true)
         
         guard let progressToday = viewModel.weekProgress[viewModel.currentWeekday] else {
-            // TODO: error accessing progress for current day
             return
         }
             

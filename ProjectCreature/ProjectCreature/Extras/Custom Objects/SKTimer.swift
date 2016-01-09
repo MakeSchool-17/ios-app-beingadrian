@@ -10,7 +10,6 @@ import Foundation
 import SpriteKit
 import RxSwift
 
-
 /** 
  * Delegate protocol to allow an SKNode to access the function calls of the timer.
  */

@@ -27,13 +27,13 @@ class HKHelper {
     
     // MARK: - Properties
     
-    private let healthStore: HKHealthStore? = {
+    private var healthStore: HKHealthStore? {
         if HKHealthStore.isHealthDataAvailable() {
             return HKHealthStore()
         } else {
             return nil
         }
-    }()
+    }
 
     // MARK: - Types to read
     
@@ -73,7 +73,7 @@ class HKHelper {
     }
     
     // MARK: - Pre-methods
-    
+
     private func createPredicate(from startDate: NSDate, to endDate: NSDate) -> NSPredicate {
         
         let predicate = HKQuery.predicateForSamplesWithStartDate(startDate, endDate: endDate, options: .None)

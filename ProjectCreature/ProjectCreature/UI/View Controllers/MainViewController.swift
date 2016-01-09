@@ -46,7 +46,7 @@ class MainViewController: UIViewController {
         view.presentScene(scene)
         
         // testing purposes
-        let isTesting = false
+        let isTesting = true
         view.showsFPS = isTesting
         view.showsDrawCount = isTesting
         view.showsQuadCount = isTesting
@@ -56,6 +56,7 @@ class MainViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         
         HKHelper().requestHealthKitAuthorization()
+            .subscribeOn(MainScheduler.sharedInstance)
             .subscribe(
                 onNext: { (success) -> Void in
                     print("> HealthKit authorization: \(success)")

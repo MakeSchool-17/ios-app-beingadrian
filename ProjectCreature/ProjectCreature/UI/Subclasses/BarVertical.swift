@@ -8,7 +8,9 @@
 
 import SpriteKit
 
-
+/**
+ * An animatable vertical bar.
+ */
 class BarVertical: SKSpriteNode {
 
     /**

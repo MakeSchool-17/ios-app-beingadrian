@@ -11,6 +11,8 @@ import Gloss
 
 struct PetJsonModel: Glossy {
     
+    // MARK: - Properties
+    
     var name: String
     var level: Int
     var exp: Float
@@ -19,6 +21,8 @@ struct PetJsonModel: Glossy {
     var hpMax: Float
     var family: Pet.Family
     var ownerUID: String
+    
+    // MARK: - Initialization
     
     init(pet: Pet) {
         
@@ -33,6 +37,9 @@ struct PetJsonModel: Glossy {
         
     }
     
+    /**
+     * Initializes with a Firebase JSON.
+     */
     init?(json: JSON) {
         
         guard let name: String = "name" <~~ json else { return nil }
@@ -54,6 +61,8 @@ struct PetJsonModel: Glossy {
         self.ownerUID = ownerUID
         
     }
+    
+    // MARK: - Jsonification
     
     func toJSON() -> JSON? {
         

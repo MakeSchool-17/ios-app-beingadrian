@@ -28,6 +28,18 @@ class Pet {
     var ownerUID: Variable<String>
     var id: Variable<String>
     
+    /**
+     * The pet's corresponding sprite. It's not stored on Firebase and it's dynamically initialized from the Pet's `family` property.
+     */
+    var sprite: Variable<PetSprite>
+    
+    /**
+     * An enum containing all the Pet family types. Each case has a `sprite` property that returns the family's corresponding sprite.
+     * Families:
+     *  - Dog
+     *  - Cat
+     *  - Pando
+     */
     enum Family: String {
         case Dog = "dog"
         case Cat = "cat"
@@ -57,6 +69,7 @@ class Pet {
         self.hpMax = Variable(10)
         self.family = Variable(family)
         self.ownerUID = Variable(owner.uid)
+        self.sprite = Variable(family.sprite)
         
         let id = firebaseHelper.petsRef.childByAutoId().key
         self.id = Variable(id)
@@ -80,6 +93,7 @@ class Pet {
         self.hpMax = Variable(model.hpMax)
         self.family = Variable(model.family)
         self.ownerUID = Variable(model.ownerUID)
+        self.sprite = Variable(model.family.sprite)
         self.id = Variable(id)
         
     }

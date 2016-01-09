@@ -8,6 +8,9 @@
 
 import SpriteKit
 
+/**
+ * An animatable horizontal bar.
+ */
 class BarHorizontal: SKSpriteNode {
     
     /**

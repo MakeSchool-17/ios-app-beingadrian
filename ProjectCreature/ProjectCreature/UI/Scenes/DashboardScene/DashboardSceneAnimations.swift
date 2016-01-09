@@ -68,7 +68,7 @@ extension DashboardScene {
     
     // MARK: - Spring action
     
-    func createMoveActionCustomEaseOut(finalPositionY y: CGFloat) -> SKAction {
+    private func createMoveActionCustomEaseOut(finalPositionY y: CGFloat) -> SKAction {
         
         let duration: Double = 0.7
         let actionEaseOut = SKAction.moveToY(y, duration: duration)
@@ -83,7 +83,7 @@ extension DashboardScene {
         
     }
     
-    func createMoveActionEaseIn(finalPositionY y: CGFloat) -> SKAction {
+    private func createMoveActionEaseIn(finalPositionY y: CGFloat) -> SKAction {
         
         let actionEaseIn = SKAction.moveToY(y, duration: 0.3)
         actionEaseIn.timingMode = .EaseIn

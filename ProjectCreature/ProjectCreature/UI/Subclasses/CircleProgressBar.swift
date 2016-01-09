@@ -29,11 +29,10 @@ class CircleProgressBar: SKShapeNode {
 
     var progress: CGFloat = 0
     
-    // MARK: - Main methods
+    // MARK: - Initialization
     
     init(radius: CGFloat, width: CGFloat, color: UIColor) {
         
-        // property initialization
         self.radius = radius
         self.width = width
         self.color = color
