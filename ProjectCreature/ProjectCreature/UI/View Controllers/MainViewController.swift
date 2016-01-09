@@ -24,6 +24,27 @@ class MainViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
+        HKHelper().requestHealthKitAuthorization()
+            .subscribe(
+                onNext: { (success) -> Void in
+                    if success {
+                        print("> Successfully authorized HealthKit")
+                        self.presentInitialScene()
+                    } else {
+                        print("> Failed to authorize HealthKit")
+                    }
+                },
+                onError: { (error) -> Void in
+                    print("> Error authorizing HealthKit: \(error)")
+                },
+                onCompleted: nil,
+                onDisposed: nil)
+            .addDisposableTo(disposeBag)
+
+    }
+    
+    private func presentInitialScene() {
+    
         guard let view = view as? SKView else { return }
         
         // simulate pet and user
@@ -41,6 +62,7 @@ class MainViewController: UIViewController {
         scene.gameManager = gameManager
         scene.viewModel = DashboardViewModel(pet: gameManager.pet, user: gameManager.user)
         
+        scene.size = CGSize(width: 320, height: 568)
         scene.scaleMode = .Fill
         
         view.presentScene(scene)
@@ -50,24 +72,7 @@ class MainViewController: UIViewController {
         view.showsFPS = isTesting
         view.showsDrawCount = isTesting
         view.showsQuadCount = isTesting
-
-    }
     
-    override func viewDidAppear(animated: Bool) {
-        
-        HKHelper().requestHealthKitAuthorization()
-            .subscribeOn(MainScheduler.sharedInstance)
-            .subscribe(
-                onNext: { (success) -> Void in
-                    print("> HealthKit authorization: \(success)")
-                },
-                onError: { (error) -> Void in
-                    print("> Error authorizing HealthKit: \(error)")
-                },
-                onCompleted: nil,
-                onDisposed: nil)
-            .addDisposableTo(disposeBag)
-        
     }
     
     // MARK: - Prepare for segue 

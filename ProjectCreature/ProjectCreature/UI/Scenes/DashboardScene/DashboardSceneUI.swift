@@ -14,8 +14,6 @@ extension DashboardScene {
     
     func setupUI() {
         
-        self.size = CGSize(width: 320, height: 568)
-        
         let background = SKSpriteNode(imageNamed: "Background")
         self.addChild(background)
         background.anchorPoint = CGPointZero

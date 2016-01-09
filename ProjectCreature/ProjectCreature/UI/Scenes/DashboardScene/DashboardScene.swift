@@ -51,13 +51,17 @@ class DashboardScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         
+        showLoadingScreen()
+        
         setup()
         
         reloadData()
+
+        observePetting()
         
-        transitionIn {
-            self.observePetting()
-        }
+//        transitionIn {
+//            self.observePetting()
+//        }
         
     }
     
@@ -68,8 +72,6 @@ class DashboardScene: SKScene {
         bindUI()
     
         self.userInteractionEnabled = true
-        
-        showLoadingScreen()
         
         // TODO: Food implementation
         let simplePie = Food(name: "Simple pie", hpValue: 70)
@@ -92,6 +94,7 @@ class DashboardScene: SKScene {
         self.loadingLayer = LoadingLayer(size: self.size)
         loadingLayer.zPosition = 100
         self.addChild(loadingLayer)
+        loadingLayer.transitionIn()
         
     }
     
@@ -107,10 +110,13 @@ class DashboardScene: SKScene {
                 onError: { (error) -> Void in
                     print("> Error reloading stats data: \(error)")
                     self.loadingLayer.didFinishLoading()
+                    self.transitionIn {}
+
                 },
                 onCompleted: {
                     print("> Completed reloading HK data")
                     self.loadingLayer.didFinishLoading()
+                    self.transitionIn {}
                 },
                 onDisposed: nil)
             .addDisposableTo(disposeBag)

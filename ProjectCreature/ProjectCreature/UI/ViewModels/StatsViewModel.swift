@@ -28,7 +28,7 @@ class StatsViewModel {
     // MARK: - Initialization
     
     init(gameManager: GameManager) {
-        
+         
         gameManager.statsStore.distanceTravelledToday
             .map { return Float($0 / 1000) }
             .subscribeNext { distance in

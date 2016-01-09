@@ -44,6 +44,7 @@ struct StatsStore {
             
         return self.getDistanceForToday()
             .catchError { error in
+                print("> Error getting distance for today: \(error)")
                 return just(0.0)
             }
             .flatMap { distanceToday -> Observable<Double> in

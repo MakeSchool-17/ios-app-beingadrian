@@ -63,6 +63,10 @@ class HKHelper {
             healthStore.requestAuthorizationToShareTypes(nil, readTypes: dataTypesToRead) {
                 (success, error) in
                 
+                if let error = error {
+                    observer.onError(error)
+                }
+                
                 observer.onNext(success)
                 observer.onCompleted()
             }

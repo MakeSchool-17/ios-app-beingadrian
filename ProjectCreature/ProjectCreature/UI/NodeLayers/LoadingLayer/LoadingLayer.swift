@@ -81,11 +81,21 @@ class LoadingLayer: SKSpriteNode {
             self.textLogo.runAction(groupAction)
             
             self.transitionOut()
+
         }
         
     }
     
     // MARK: - Transitions
+    
+    func transitionIn() {
+        
+        let fadeInAction = SKAction.fadeInWithDuration(0.42)
+        fadeInAction.timingMode = .EaseOut
+        
+        self.runAction(fadeInAction)
+        
+    }
     
     private func transitionOut() {
         
