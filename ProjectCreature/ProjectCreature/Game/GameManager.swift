@@ -11,7 +11,7 @@ import RxSwift
 import SpriteKit
 
 
-class GameManager {
+final class GameManager {
 
     private var disposeBag = DisposeBag()
     
@@ -22,6 +22,11 @@ class GameManager {
     var user: User
     var pet: Pet
     
+    // level property
+    var petLeveledUp = PublishSubject<Int>()
+    var expDifference: Float = 0
+    
+    // petting properties
     private var pettingLimitIsReached = false
     private var lastLimitReachedDate = NSDate()
     var pettingCount = Variable(0)
@@ -43,6 +48,52 @@ class GameManager {
         
         observePetting()
         observePetHappiness()
+        observePetExp()
+        
+    }
+    
+    // MARK: - Level and experience points
+    
+    private func observePetExp() {
+
+        pet.exp
+            .delaySubscription(0.5, MainScheduler.sharedInstance)
+            .subscribeNext { exp in
+                
+                let percentage = exp / self.pet.expMax.value * 100
+                
+                if (percentage >= 100) {
+                    let difference = percentage - 100
+                    self.expDifference = difference
+                    print("> Game manager - Exp percentage difference: \(difference)")
+                    self.levelUpPet()
+                }
+                
+            }.addDisposableTo(disposeBag)
+        
+    }
+    
+    private func levelUpPet() {
+
+        pet.level.value += 1
+        
+        petLeveledUp.onNext(self.pet.level.value)
+        
+    }
+    
+    /**
+     * Resets the pet's `exp` property and sets its `expMax` to the next value.
+     * 
+     * Called after the user exits the didLevelUp pop-up screen.
+     */
+    func resetPetExp() {
+        
+        pet.exp.value = 0
+        pet.expMax.value = 100 // TODO: Replace expMax with next value
+        
+        // TODO: Set next hp depending on level
+        pet.hpMax.value = 100
+        pet.hp.value = pet.hpMax.value
         
     }
     
@@ -50,17 +101,27 @@ class GameManager {
     
     /**
      * Observes the `pettingCount` to perform petting logic when the pet is being pet.
+     * Petting gives the pet 10 exp points and 5% of HP. A pet can only be petted three
+     * times every hour.
      */
     private func observePetting() {
         
         pettingCount
+            .filter { return $0 > 0 }
             .subscribeNext { count in
-                if (count == 3) {
+                
+                guard (count != 4) else {
                     // limit is reached
                     self.pettingCount.value = 0
                     self.lastLimitReachedDate = NSDate()
                     self.pettingLimitIsReached = true
+                    return
                 }
+
+                let maxHp = Int(self.pet.hpMax.value)
+                let newHpValue = self.pet.hp.value + 5
+                self.pet.hp.value = newHpValue.clamped(0...maxHp)
+                self.pet.exp.value += 11
             }.addDisposableTo(disposeBag)
         
     }
@@ -85,7 +146,8 @@ class GameManager {
     // MARK: - State changes
     
     /**
-     * Observes the pet's happiness so that the pet's `state` changes depending on its happiness percentage.
+     * Observes the pet's happiness so that the pet's `state` changes depending on its
+     * happiness percentage.
      */
     private func observePetHappiness() {
         
@@ -93,23 +155,27 @@ class GameManager {
             return $0 / $1
         }.subscribeNext { fraction in
             let percentage = fraction * 100
-            switch percentage {
-            case 0:
-                print("> Pet is fainted")
-                self.pet.sprite.value.state.value = .Fainted
-                break
-            case 0..<60:
-                print("> Pet is sad")
-                self.pet.sprite.value.state.value = .Sad
-                break
-            case 60...100:
-                print("> Pet is neutral")
-                self.pet.sprite.value.state.value = .Neutral
-                break
-            default:
-                break
-            }
+            print("> Pet HP: \(percentage)")
+            self.pet.sprite.value.state.value = self.switchPetState(percentage)
+            print("> Pet is \(self.pet.sprite.value.state.value)")
         }.addDisposableTo(disposeBag)
+        
+    }
+    
+    private func switchPetState(percentage: Float) -> PetSprite.State {
+        
+        switch percentage {
+        case 0:
+            return .Fainted
+        case 0..<60:
+            return .Sad
+        case 60...100:
+            return .Neutral
+        default:
+            break
+        }
+        
+        return .Neutral
         
     }
     
@@ -117,7 +183,9 @@ class GameManager {
     
     func consumeFood(food: Food) {
         
-        pet.hp.value += Float(food.hpValue)
+        let maxHp = Int(self.pet.hpMax.value)
+        let newValue = pet.hp.value + Float(food.hpValue)
+        pet.hp.value = newValue.clamped(0...maxHp)
         
     }
     

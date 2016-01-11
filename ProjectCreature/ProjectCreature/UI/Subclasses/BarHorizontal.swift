@@ -14,13 +14,17 @@ import SpriteKit
 class BarHorizontal: SKSpriteNode {
     
     /**
-     Animates the horizontal bar to the designated progress value.
-     
-     - parameter percentage: The designated progress percentage between 0.0 to 1.0.
+     * Animates the horizontal bar to the designated progress value.
+     *
+     * - parameter percentage: The designated progress percentage between 0.0 to 1.0.
      */
     func animateBarProgress(toPercentage percentage: Float) {
         
-        let targetPositionX = (-self.size.halfWidth) + self.size.width * CGFloat(percentage)
+        let percentageClamped = (percentage * 100).clamped(0...100)
+        
+        let percentageClampedDivided = CGFloat(percentageClamped / 100)
+        
+        let targetPositionX = (-self.size.halfWidth) + self.size.width * percentageClampedDivided
         
         let action = SKAction.moveToX(targetPositionX, duration: 0.5)
         action.timingMode = .EaseOut

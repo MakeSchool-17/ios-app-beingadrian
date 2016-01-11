@@ -56,12 +56,6 @@ class DashboardScene: SKScene {
         setup()
         
         reloadData()
-
-        observePetting()
-        
-//        transitionIn {
-//            self.observePetting()
-//        }
         
     }
     
@@ -74,7 +68,7 @@ class DashboardScene: SKScene {
         self.userInteractionEnabled = true
         
         // TODO: Food implementation
-        let simplePie = Food(name: "Simple pie", hpValue: 70)
+        let simplePie = Food(name: "Simple pie", hpValue: 90)
         let simplePieSprite = FoodSprite(food: simplePie)
         simplePieSprite.position = CGPoint(x: frame.midX, y: frame.minY + 100)
         self.addChild(simplePieSprite)
@@ -88,6 +82,8 @@ class DashboardScene: SKScene {
             }.addDisposableTo(disposeBag)
         
     }
+    
+    // MARK: - Loading screen
     
     private func showLoadingScreen() {
         
@@ -110,13 +106,16 @@ class DashboardScene: SKScene {
                 onError: { (error) -> Void in
                     print("> Error reloading stats data: \(error)")
                     self.loadingLayer.didFinishLoading()
-                    self.transitionIn {}
-
+                    self.transitionIn {
+                        self.makeObservations()
+                    }
                 },
                 onCompleted: {
                     print("> Completed reloading HK data")
                     self.loadingLayer.didFinishLoading()
-                    self.transitionIn {}
+                    self.transitionIn {
+                        self.makeObservations()
+                    }
                 },
                 onDisposed: nil)
             .addDisposableTo(disposeBag)
@@ -181,6 +180,13 @@ class DashboardScene: SKScene {
         
     }
     
+    private func makeObservations() {
+        
+        observePetting()
+        observePetLevelUp()
+        
+    }
+    
     /**
      * Bridges communication between the petting action and data changes with the pet object.
      */
@@ -189,19 +195,14 @@ class DashboardScene: SKScene {
         guard let gameManager = self.gameManager else { return }
         guard let petSprite = self.petSprite else { return }
         
-        let maxHpValue = Int(gameManager.pet.hpMax.value)
-        
-        petSprite.head.pettingCount
+        petSprite.head.isBeingPet
             .subscribeOn(MainScheduler.sharedInstance)
             .subscribeNext { count in
                 
                 let limitIsReached = gameManager.checkPettingLimitIsReached()
                 
-                if (count != 0 && !limitIsReached) {
+                if !limitIsReached {
                     
-                    let currentHpValue = gameManager.pet.hp.value
-                    let newValue = (currentHpValue + 5).clamped(0...maxHpValue)
-                    gameManager.pet.hp.value = newValue
                     gameManager.pettingCount.value += 1
                     
                     let head = petSprite.head
@@ -211,6 +212,19 @@ class DashboardScene: SKScene {
                 }
             }
             .addDisposableTo(disposeBag)
+        
+    }
+    
+    /**
+     * Creates an observer for `gameManager`'s `petLeveledUp` property that is triggered
+     * when the pet has leveled up.
+     */
+    private func observePetLevelUp() {
+        
+        gameManager.petLeveledUp
+            .subscribeNext { newLevel in
+                print("> Dashboard - Pet did level up: \(newLevel)")
+            }.addDisposableTo(disposeBag)
         
     }
     

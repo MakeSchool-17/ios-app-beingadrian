@@ -33,8 +33,7 @@ class Pet {
      */
     var sprite: Variable<PetSprite>
     
-    /**
-     * An enum containing all the Pet family types. Each case has a `sprite` property that returns the family's corresponding sprite.
+    /**layer     * An enum containing all the Pet family types. Each case has a `sprite` property that returns the family's corresponding sprite.
      * Families:
      *  - Dog
      *  - Cat

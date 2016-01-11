@@ -52,15 +52,15 @@ class DashboardViewModel {
             .addDisposableTo(disposeBag)
 
         combineLatest(pet.exp, pet.expMax) {
-                round($0 / $1 * 100)
+                return round($0 / $1 * 100)
             }
-            .subscribeNext {
-                self.petExpPercentage.value = $0
-            }
-            .addDisposableTo(disposeBag)
-
+            .subscribeNext { percentage in
+                print("> Dashboard view model - exp percentage: \(percentage)")
+                self.petExpPercentage.value = percentage
+            }.addDisposableTo(disposeBag)
+        
         combineLatest(pet.hp, pet.hpMax) {
-                round($0 / $1 * 100)
+                return round($0 / $1 * 100)
             }
             .subscribeNext {
                 self.petHpPercentage.value = $0

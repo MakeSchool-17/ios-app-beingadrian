@@ -23,7 +23,7 @@ class PetHead: SKSpriteNode {
     /**
      * An observable that emmits every time the pet is being pet.
      */
-    var pettingCount: Variable<Int> = Variable(0)
+    var isBeingPet = PublishSubject<Void>()
     
     private var firstTouchLocation: CGPoint?
     private var initialScaleY: CGFloat?
@@ -196,13 +196,13 @@ extension PetHead: SKTimerDelegate {
     func secondHasPassed(seconds: NSTimeInterval) {
         
         guard (seconds != 0) else { return }
-        self.pettingCount.value += 1
+        isBeingPet.onNext()
         
     }
     
     func timerIsReset() {
         
-        pettingCount.value = 0
+        
         
     }
     
