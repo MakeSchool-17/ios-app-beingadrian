@@ -10,7 +10,11 @@ import Foundation
 import RxSwift
 import SpriteKit
 
-
+/**
+ * The GameManager class manages the game logic of the application. Most of its
+ * functionality are reactive to changes in the data models e.g. `Pet` and `User`
+ * and data changes due to the user interaction on scene layer.
+ */
 final class GameManager {
 
     private var disposeBag = DisposeBag()
@@ -54,6 +58,9 @@ final class GameManager {
     
     // MARK: - Level and experience points
     
+    /** 
+     * Observes the pet's exp for any level ups.
+     */
     private func observePetExp() {
 
         pet.exp
@@ -73,6 +80,10 @@ final class GameManager {
         
     }
     
+    /**
+     * Increments the pet's `level` by `1` and emmits the new level value through
+     * the `petLeveledUp` subject.
+     */
     private func levelUpPet() {
 
         pet.level.value += 1
@@ -162,9 +173,12 @@ final class GameManager {
         
     }
     
-    private func switchPetState(percentage: Float) -> PetSprite.State {
+    /**
+     * Switches the pet's `state` depending on the pet's HP percentage
+     */
+    private func switchPetState(hpPercentage: Float) -> PetSprite.State {
         
-        switch percentage {
+        switch hpPercentage {
         case 0:
             return .Fainted
         case 0..<60:

@@ -51,7 +51,7 @@ class DashboardScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         
-        showLoadingScreen()
+        pushLoadingScreen()
         
         setup()
         
@@ -83,19 +83,11 @@ class DashboardScene: SKScene {
         
     }
     
-    // MARK: - Loading screen
-    
-    private func showLoadingScreen() {
-        
-        self.loadingLayer = LoadingLayer(size: self.size)
-        loadingLayer.zPosition = 100
-        self.addChild(loadingLayer)
-        loadingLayer.transitionIn()
-        
-    }
+    // MARK: - Data reloading
     
     /**
-     * Reloads the data of the `gameManager`'s `statsStore`. Error handling also occurs in this function.
+     * Reloads the data of the `gameManager`'s `statsStore`. 
+     * Error handling also occurs in this function.
      */
     private func reloadData() {
         
@@ -108,6 +100,7 @@ class DashboardScene: SKScene {
                     self.loadingLayer.didFinishLoading()
                     self.transitionIn {
                         self.makeObservations()
+                        self.checkForNewSteps()
                     }
                 },
                 onCompleted: {
@@ -115,10 +108,30 @@ class DashboardScene: SKScene {
                     self.loadingLayer.didFinishLoading()
                     self.transitionIn {
                         self.makeObservations()
+                        self.checkForNewSteps()
                     }
                 },
                 onDisposed: nil)
             .addDisposableTo(disposeBag)
+        
+    }
+    
+    // MARK: - New steps pop-up
+    
+    /**
+     * Checks the gameManager's statsStore for its `newSteps` property.
+     *
+     * If there are new steps, the NewStepsPopUp layer will be pushed onto the screen.
+     */
+    private func checkForNewSteps() {
+        
+        let newSteps = gameManager.statsStore.newSteps
+        
+        print("> Dashboard - newSteps: \(newSteps)")
+        
+        guard (newSteps != 0) else { return }
+        
+        pushNewStepsPopUp(newSteps)
         
     }
     
@@ -246,6 +259,21 @@ class DashboardScene: SKScene {
     }
     
     // MARK: - Navigation
+    
+    private func pushLoadingScreen() {
+        
+        self.loadingLayer = LoadingLayer(size: self.size)
+        loadingLayer.zPosition = 100
+        self.addChild(loadingLayer)
+        loadingLayer.transitionIn()
+        
+    }
+    
+    private func pushNewStepsPopUp(newSteps: Double) {
+        
+        // insert cod ehere
+        
+    }
     
     private func pushStatsLayer() {
         

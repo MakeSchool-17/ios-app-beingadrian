@@ -32,10 +32,12 @@ class MainViewController: UIViewController {
                         self.presentInitialScene()
                     } else {
                         print("> Failed to authorize HealthKit")
+                        self.presentInitialScene()
                     }
                 },
                 onError: { (error) -> Void in
                     print("> Error authorizing HealthKit: \(error)")
+                    self.presentInitialScene()
                 },
                 onCompleted: nil,
                 onDisposed: nil)

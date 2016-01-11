@@ -48,7 +48,7 @@ class PetSprite: SKSpriteNode {
     
     // MARK: - Initialization
     
-    init() {
+    required init() {
         
         super.init(texture: nil, color: UIColor(), size: CGSizeZero)
         

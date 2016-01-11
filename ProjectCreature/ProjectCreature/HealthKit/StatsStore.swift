@@ -11,7 +11,7 @@ import Foundation
 import RxSwift
 
 
-struct StatsStore {
+class StatsStore {
     
     private var disposeBag = DisposeBag()
     
@@ -24,6 +24,9 @@ struct StatsStore {
     }
     
     // MARK: - Properties
+    
+    var lastReloadDate: NSDate?
+    var newSteps: Double = 0
     
     /**
      * Distance travelled today in Meters.
@@ -38,16 +41,25 @@ struct StatsStore {
     
     // MARK: - Data reloading
     
+    /** 
+     * Reloads the stats store's property values.
+     */
     func reloadData() -> Observable<Void> {
             
         let currentWeekday = NSDate().weekday
-            
-        return self.getDistanceForToday()
+        
+        return getNewSteps()
             .catchError { error in
-                print("> Error getting distance for today: \(error)")
+                print("> Error getting new steps: \(error)")
                 return just(0.0)
-            }
-            .flatMap { distanceToday -> Observable<Double> in
+            }.flatMap { newSteps -> Observable<Double> in
+                self.newSteps = newSteps
+                return self.getDistanceForToday()
+                    .catchError { error in
+                        print("> Error getting distance for today: \(error)")
+                        return just(0.0)
+                    }
+            }.flatMap { distanceToday -> Observable<Double> in
                 self.distanceTravelledToday.value = distanceToday
                 return self.getStepsForWeekday(currentWeekday)
                     .catchError { error in
@@ -58,6 +70,7 @@ struct StatsStore {
                 return self.getWeekProgress()
             }.flatMap { weekProgress -> Observable<Void> in
                 self.weekProgress.value = weekProgress
+                self.lastReloadDate = NSDate()
                 return empty()
             }
 
@@ -69,6 +82,18 @@ struct StatsStore {
         
         return healthHelper.queryTotalDistanceOnFoot(
             fromDate: NSDate().startDay,
+            toDate: NSDate())
+        
+    }
+    
+    private func getNewSteps() -> Observable<Double> {
+        
+        guard let lastReloadDate = self.lastReloadDate else {
+            return just(0.0)
+        }
+        
+        return healthHelper.queryTotalStepCount(
+            fromDate: lastReloadDate,
             toDate: NSDate())
         
     }

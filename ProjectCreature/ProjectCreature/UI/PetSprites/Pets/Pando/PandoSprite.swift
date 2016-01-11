@@ -14,7 +14,7 @@ class PandoSprite: PetSprite {
 
     // MARK: - Initialization
     
-    override init() {
+    required init() {
         super.init()
         
         self.familyName = "Pando"

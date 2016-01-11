@@ -1044,7 +1044,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beingadrian.ProjectCreature;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e43548a9-698a-4640-9fe7-f185bd248c21";
 				SWIFT_OBJC_BRIDGING_HEADER = "ProjectCreature/Bridging/ProjectCreature-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1067,7 +1067,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beingadrian.ProjectCreature;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "e43548a9-698a-4640-9fe7-f185bd248c21";
 				SWIFT_OBJC_BRIDGING_HEADER = "ProjectCreature/Bridging/ProjectCreature-Bridging-Header.h";
 			};
 			name = Release;
