@@ -95,6 +95,8 @@ class Pet {
         self.sprite = Variable(model.family.sprite)
         self.id = Variable(id)
         
+//        bindToFirebase()
+        
     }
     
     /**

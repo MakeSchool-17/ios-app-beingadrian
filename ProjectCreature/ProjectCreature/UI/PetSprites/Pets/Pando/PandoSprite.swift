@@ -73,6 +73,9 @@ class PandoSprite: PetSprite {
         body.addChild(legs)
         self.addChild(body)
         
+        let feedingAreaPosition = CGPoint(x: head.position.x, y: head.position.y + 30)
+        createFeedingAreaWithPosition(feedingAreaPosition)
+        
     }
     
     // MARK: - State observation

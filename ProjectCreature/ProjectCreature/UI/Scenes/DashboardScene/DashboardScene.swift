@@ -11,7 +11,8 @@ import RxSwift
 import RxCocoa
 
 /**
- * The main scene of the app. The DashboardScene manages any reactive UI changes as well as UI input.
+ * The main scene of the app. The DashboardScene manages any 
+ * reactive UI changes as well as UI input.
  */
 class DashboardScene: SKScene {
     
@@ -41,11 +42,12 @@ class DashboardScene: SKScene {
     var expBarFront: BarHorizontal!
     var expLabel: SKLabelNode!
     
-    var energyGroup: SKNode!
-    var energyLabel: SKLabelNode!
-    var energyIcon: SKSpriteNode!
+    var chargeGroup: SKNode!
+    var chargeLabel: SKLabelNode!
+    var chargeIcon: SKSpriteNode!
     
     var petSprite: PetSprite!
+    var foodSprite: FoodSprite?
     
     // MARK: - Did move to view
     
@@ -67,19 +69,12 @@ class DashboardScene: SKScene {
     
         self.userInteractionEnabled = true
         
-        // TODO: Food implementation
         let simplePie = Food(name: "Simple pie", hpValue: 90)
-        let simplePieSprite = FoodSprite(food: simplePie)
-        simplePieSprite.position = CGPoint(x: frame.midX, y: frame.minY + 100)
-        self.addChild(simplePieSprite)
+        insertFood(simplePie)
         
-        // TODO: Observe food isTapped
-        simplePieSprite.isTapped
-            .subscribeNext { isTapped in
-                if isTapped {
-                     self.gameManager.consumeFood(simplePieSprite.food)
-                }
-            }.addDisposableTo(disposeBag)
+        let progressReportPopUp = ProgressReportPopUp(
+            size: self.size, newSteps: 400, petName: "Pando")
+        self.addChild(progressReportPopUp)
         
     }
     
@@ -133,9 +128,11 @@ class DashboardScene: SKScene {
         
         pushNewStepsPopUp(newSteps)
         
+        gameManager.user.charge.value += Int(newSteps)
+        
     }
     
-    // MARK: - Binding
+    // MARK: - Binding and general observations
     
     /**
      * Binds the UI with the viewModel data.
@@ -187,8 +184,11 @@ class DashboardScene: SKScene {
             .addDisposableTo(disposeBag)
         
         viewModel.cash
-            .observeOn(MainScheduler.sharedInstance)
-            .bindTo(energyLabel.rx_text)
+            .subscribeOn(MainScheduler.sharedInstance)
+            .subscribeNext { cashString in
+                self.chargeLabel.text = cashString
+                self.chargeIcon.position.x = self.chargeLabel.frame.minX - 7
+            }
             .addDisposableTo(disposeBag)
         
     }
@@ -220,7 +220,7 @@ class DashboardScene: SKScene {
                     
                     let head = petSprite.head
                     if (!head.isSmiling && self.petSprite.state.value != .Sad) {
-                        self.petSprite.smileTemporarily()
+                        self.petSprite.smileForDuration(1)
                     }
                 }
             }
@@ -241,6 +241,47 @@ class DashboardScene: SKScene {
         
     }
     
+    // MARK: - Food
+    
+    private func insertFood(food: Food) {
+        
+        let foodSprite = FoodSprite(food: food)
+        foodSprite.position = CGPoint(x: frame.midX, y: frame.minY + 100)
+        foodSprite.initialPosition = foodSprite.position
+        foodSprite.zPosition = 5
+        self.addChild(foodSprite)
+        
+        observeFoodSprite(foodSprite)
+        
+    }
+    
+    /**
+     * Executes a series of animations for food consumption.
+     * Also calls the `consumeFood` method on the gameManager.
+     */
+    private func consumeFoodSprite(foodSprite: FoodSprite) {
+        
+        petSprite.smileForDuration(2.0)
+        foodSprite.performEatenAction {
+            self.gameManager.consumeFood(foodSprite.food)
+        }
+        
+    }
+    
+    private func observeFoodSprite(foodSprite: FoodSprite) {
+        
+        foodSprite.onTouchRelease
+            .subscribeNext { releasePosition in
+                let point = self.convertPoint(releasePosition, toNode: self.petSprite.head)
+                if self.petSprite.feedingArea.containsPoint(point) {
+                    self.consumeFoodSprite(foodSprite)
+                } else {
+                    foodSprite.returnToOriginalPosition()
+                }
+            }.addDisposableTo(disposeBag)
+        
+    }
+    
     // MARK: - Touch handling
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -255,7 +296,7 @@ class DashboardScene: SKScene {
         } else if touchedNode.isEqualToNode(menuButton) {
             pushMenuLayer()
         }
-        
+    
     }
     
     // MARK: - Navigation
@@ -271,7 +312,7 @@ class DashboardScene: SKScene {
     
     private func pushNewStepsPopUp(newSteps: Double) {
         
-        // insert cod ehere
+        // insert code here
         
     }
     

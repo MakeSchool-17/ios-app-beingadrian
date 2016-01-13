@@ -14,11 +14,11 @@ class Test {
     func createTestPet() -> Pet? {
         
         let json = [
-            "name": "Bob",
+            "name": "Pando",
             "level": 1,
             "exp": 30,
             "expMax": 60,
-            "hp": 0,
+            "hp": 5,
             "hpMax": 100,
             "family": "pando",
             "ownerUID": "174d86e2-ec1c-462a-89c8-4f4a4146e51c"
@@ -29,6 +29,7 @@ class Test {
         let testPet = Pet(id: "-K5hF9edT-9NWKyMi-MI", model: jsonModel)
         
         return testPet
+        
     }
     
     func createTestUser() -> User {
@@ -36,7 +37,7 @@ class Test {
         let testUser = User(
             email: "test@test.com",
             username: "tester",
-            uid: "174d86e2-ec1c-462a-89c8-4f4a4146e51c")
+            uid: "d4331a6c-7ae5-4b62-86dc-cf01283ae933")
         return testUser
         
     }

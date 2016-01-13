@@ -16,7 +16,8 @@ class FoodSprite: SKSpriteNode {
     
     var food: Food
     
-    var isTapped = PublishSubject<Bool>()
+    var initialPosition: CGPoint?
+    var onTouchRelease = PublishSubject<CGPoint>()
     
     // MARK: - Initialization
     
@@ -37,15 +38,51 @@ class FoodSprite: SKSpriteNode {
     
     // MARK: - Touch handling
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
-        self.performTappedAction()
+        guard let parent = self.parent else{ return }
+        guard let touchPosition = touches.first?.locationInNode(parent) else { return }
+
+        self.position = touchPosition
+        
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        guard let parent = self.parent else { return }
+        guard let touchPosition = touches.first?.locationInNode(parent) else { return }
+        
+        onTouchRelease.onNext(touchPosition)
+        
+    }
+    
+    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+        
+        guard let initialPosition = self.initialPosition else { return }
+        
+        // returns the food sprite's position to its initial position
+        self.position = initialPosition
+        
+    }
+    
+    func returnToOriginalPosition() {
+        
+        guard let initialPosition = self.initialPosition else { return }
+        
+        let duration: NSTimeInterval = 0.7
+        let returnAction = SKAction.moveTo(initialPosition, duration: duration)
+        returnAction.timingFunction = { t in
+            // cubic ease out
+            return 1 - pow(1 - t / Float(duration), 5)
+        }
+        
+        self.runAction(returnAction)
         
     }
     
     // MARK: - Animations
     
-    private func performTappedAction() {
+    func performEatenAction(completion: () -> Void) {
         
         let scaleUpAction = SKAction.scaleTo(1.5, duration: 0.10)
         scaleUpAction.timingMode = .EaseOut
@@ -56,8 +93,8 @@ class FoodSprite: SKSpriteNode {
         let sequence = SKAction.sequence([scaleUpAction, scaleDownAction])
         
         self.runAction(sequence) {
-            self.isTapped.onNext(true)
             self.removeFromParent()
+            completion()
         }
         
     }

@@ -19,7 +19,7 @@ class FirebaseHelper {
     
     // MARK: - References
     
-    var rootRef = Firebase(url: "https://creature.firebaseio.com")
+    var rootRef = Firebase(url: "https://lazypets.firebaseio.com")
     
     var usersRef: Firebase {
         return rootRef.childByAppendingPath("users")

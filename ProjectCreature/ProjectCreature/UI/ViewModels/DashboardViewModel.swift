@@ -73,9 +73,15 @@ class DashboardViewModel {
             }
             .addDisposableTo(disposeBag)
         
-        currentUser.cash
+        currentUser.charge
+            .map { cash in
+                let formattedNumber = NSNumberFormatter()
+                formattedNumber.numberStyle = .DecimalStyle
+                guard let cashString = formattedNumber.stringFromNumber(cash) else { return "" }
+                return cashString
+            }
             .subscribeNext {
-                self.cash.value = String($0)
+                self.cash.value = $0
             }
             .addDisposableTo(disposeBag)
         

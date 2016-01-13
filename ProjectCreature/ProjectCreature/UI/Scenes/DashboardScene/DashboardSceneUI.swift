@@ -149,27 +149,27 @@ extension DashboardScene {
         
         // MARK: Energy
         
-        energyGroup = SKSpriteNode()
-        self.addChild(energyGroup)
-        energyGroup.setHorizontalPosition(.Center,
-            byValue: -energyGroup.frame.halfWidth)
-        energyGroup.setVerticalPosition(35 - energyGroup.frame.halfHeight,
+        chargeGroup = SKSpriteNode()
+        self.addChild(chargeGroup)
+        chargeGroup.setHorizontalPosition(.Center,
+            byValue: -chargeGroup.frame.halfWidth)
+        chargeGroup.setVerticalPosition(35 - chargeGroup.frame.halfHeight,
             fromMargin: .BottomMargin)
         
-        energyLabel = SKLabelNode(text: "0")
-        energyGroup.addChild(energyLabel)
-        energyLabel.fontName = "Avenir-Light"
-        energyLabel.fontSize = 16
-        energyLabel.fontColor = greyColor
-        energyLabel.horizontalAlignmentMode = .Center
-        energyLabel.verticalAlignmentMode = .Center
-        energyLabel.position.x = 0
-        energyLabel.position.y = 0
+        chargeLabel = SKLabelNode(text: "0")
+        chargeGroup.addChild(chargeLabel)
+        chargeLabel.fontName = "Avenir-Light"
+        chargeLabel.fontSize = 16
+        chargeLabel.fontColor = greyColor
+        chargeLabel.horizontalAlignmentMode = .Center
+        chargeLabel.verticalAlignmentMode = .Center
+        chargeLabel.position.x = 0
+        chargeLabel.position.y = 0
         
-        energyIcon = SKSpriteNode(imageNamed: "Energy icon")
-        energyGroup.addChild(energyIcon)
-        energyIcon.position.x = energyLabel.frame.minX - 7
-        energyIcon.position.y = 1
+        chargeIcon = SKSpriteNode(imageNamed: "Energy icon")
+        chargeGroup.addChild(chargeIcon)
+        chargeIcon.position.x = chargeLabel.frame.minX - 7
+        chargeIcon.position.y = 1
         
     }
     

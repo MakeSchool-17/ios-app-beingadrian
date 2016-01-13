@@ -30,6 +30,9 @@ class PetSprite: SKSpriteNode {
         case Fainted = "fainted"
     }
 
+    /**
+     * An observable variable that represents the pet's mood and living state.
+     */
     var state: Variable<State> = Variable(.Neutral)
     
     // MARK: - Body Properties
@@ -37,6 +40,7 @@ class PetSprite: SKSpriteNode {
     var isBreathing: Bool = false
     
     var head: PetHead!
+    var feedingArea: SKShapeNode!
     
     var body: SKSpriteNode!
     
@@ -65,7 +69,8 @@ class PetSprite: SKSpriteNode {
     // MARK: - State observation
     
     /**
-     * Observes the pet's `state` property and performs visual changes depending on the given state.
+     * Observes the pet's `state` property and performs visual changes 
+     * depending on the given state.
      */
     func observeState() {
         
@@ -88,38 +93,52 @@ class PetSprite: SKSpriteNode {
     
     }
     
-    func returnSelf() -> PetSprite {
-        
-        return self
-        
-    }
-    
     // MARK: - Smiling
     
     /**
-     * Changes the state of the pet temporarily to `.Happy`.
+     * Changes the head texture of the pet temporarily to happy. 
+     * 
+     * - parameter duration: The duration for how long the smile will last.
      */
-    func smileTemporarily() {
+    func smileForDuration(duration: NSTimeInterval) {
         
-        let initialState = self.state.value
-
-        self.state.value = .Happy
+        self.head.texture = createHeadTexture(forState: .Happy)
+        self.head.eyes?.hidden = true
         
         head.isSmiling = true
         
-        let delayAction = SKAction.waitForDuration(1)
+        let delayAction = SKAction.waitForDuration(duration)
         
         let returnToInitialState = SKAction.runBlock {
             self.head.isSmiling = false
-            
-            // disallow smiling when fainted
-            guard (initialState != .Fainted) else { return }
-            self.state.value = initialState
+
+            self.head.texture = self.createHeadTexture(
+                forState: self.state.value)
+            self.head.eyes?.hidden = false
         }
         
         let sequence = SKAction.sequence([delayAction, returnToInitialState])
         
         head.runAction(sequence)
+        
+    }
+    
+    // MARK: - Feeding
+    
+    /**
+     * Creates a feeding area.
+     *
+     * - parameter position: The position in which the feeding
+     *                       area is going to be placed.
+     */
+    func createFeedingAreaWithPosition(position: CGPoint) {
+        
+        self.feedingArea = SKShapeNode(circleOfRadius: 60)
+        feedingArea.zPosition = 51
+        feedingArea.position = position
+        feedingArea.hidden = true
+        
+        self.addChild(feedingArea)
         
     }
     

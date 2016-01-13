@@ -21,7 +21,7 @@ class User {
     
     var email: String
     var username: String
-    var cash: Variable<Int>
+    var charge: Variable<Int>
     var uid: String
     
     /**
@@ -31,10 +31,10 @@ class User {
         
         self.email = email
         self.username = username
-        self.cash = Variable(0)
+        self.charge = Variable(0)
         self.uid = uid
         
-        bindToFirebase()
+//        bindToFirebase()
         
     }
     
@@ -47,10 +47,10 @@ class User {
         
         self.email = model.email
         self.username = model.username
-        self.cash = Variable(model.cash)
+        self.charge = Variable(model.cash)
         self.uid = uid
         
-        bindToFirebase()
+//        bindToFirebase()
         
     }
     
@@ -61,7 +61,7 @@ class User {
         
         let ref = firebaseHelper.usersRef.childByAppendingPath(uid)
         
-        cash
+        charge
             .subscribeNext { cash in
                 ref.updateChildValues(["cash": cash])
             }

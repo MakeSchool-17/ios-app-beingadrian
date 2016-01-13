@@ -88,6 +88,15 @@ class StatsStore {
     
     private func getNewSteps() -> Observable<Double> {
         
+        // TODO: Test with yesterday
+        let now = NSDate()
+        let time: NSTimeInterval = -(60 * 60 * 5)
+        let yesterday = now.dateByAddingTimeInterval(time)
+        
+        if (lastReloadDate == nil) {
+            lastReloadDate = yesterday
+        }
+        
         guard let lastReloadDate = self.lastReloadDate else {
             return just(0.0)
         }
