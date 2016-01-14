@@ -9,7 +9,7 @@
 import SpriteKit
 
 
-class PopUp: SKSpriteNode {
+class PopUpLayer: SKSpriteNode {
     
     // MARK: - Initialization
     

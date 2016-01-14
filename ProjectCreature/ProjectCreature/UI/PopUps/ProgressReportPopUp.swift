@@ -9,7 +9,7 @@
 import SpriteKit
 
 
-class ProgressReportPopUp: PopUp {
+class ProgressReportPopUp: PopUpLayer {
 
     // MARK: - UI Properties
     
@@ -19,12 +19,12 @@ class ProgressReportPopUp: PopUp {
     
     // MARK: - Initialization
     
-    override init(size: CGSize, newSteps: Double, petName: String) {
+    override init(size: CGSize, newSteps: Int, petName: String) {
         super.init(size: size, newSteps: newSteps, petName: petName)
         
         setupUI()
         
-        earningLabel.text = "You've earned 542 charges!"
+        earningLabel.text = "You've earned \(newSteps) charges!"
         
         self.userInteractionEnabled = true
         
@@ -33,7 +33,7 @@ class ProgressReportPopUp: PopUp {
     override func setupUI() {
         
         // roundedRect
-        self.roundedRect = createRoundedRectangle(230, height: 120)
+        self.roundedRect = createRoundedRectangle(230, height: 117)
         roundedRect.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
 
         // progress report label
@@ -53,9 +53,37 @@ class ProgressReportPopUp: PopUp {
             r: 88, g: 88, b: 88, a: 1)
         earningLabel.position = CGPoint(x: 0, y: 0)
         
+        // charge bar
+        let chargeBarGroup = SKSpriteNode()
+        chargeBarGroup.position = CGPoint(x: 5, y: 0)
+
+        let chargeBarBack = SKSpriteNode(imageNamed: "Charge bar - back")
+        chargeBarBack.position = CGPoint(x: 0, y: -25)
+        
+        let chargeBarMask = SKSpriteNode(imageNamed: "Charge bar - back")
+        chargeBarMask.position.x = chargeBarBack.size.halfWidth
+        chargeBarMask.position.y = -(chargeBarBack.size.halfHeight)
+        
+        let chargeBarCrop = SKCropNode()
+        chargeBarCrop.maskNode = chargeBarMask
+        chargeBarCrop.position.x = -chargeBarMask.frame.halfWidth
+        chargeBarCrop.position.y = chargeBarMask.frame.halfHeight
+        
+        chargeBar = BarHorizontal(imageNamed: "Charge bar - front")
+        chargeBar.anchorPoint = CGPoint(x: 0, y: 1)
+        
+        chargeBarCrop.addChild(chargeBar)
+        chargeBarBack.addChild(chargeBarCrop)
+        chargeBarGroup.addChild(chargeBarBack)
+        
+        let chargeIcon = SKSpriteNode(imageNamed: "Energy icon")
+        chargeIcon.position.x = chargeBarBack.frame.minX - 10
+        chargeBarBack.addChild(chargeIcon)
+        
         self.addChild(roundedRect)
         roundedRect.addChild(progressReportLabel)
         roundedRect.addChild(earningLabel)
+        roundedRect.addChild(chargeBarGroup)
         
     }
 
@@ -74,6 +102,19 @@ class ProgressReportPopUp: PopUp {
         if !touchedNode.isEqualToNode(roundedRect) {
             self.transitionOut()
         }
+        
+    }
+    
+    // MARK: - Bar
+    
+    private func animateBar() {
+        
+        chargeBar.xScale = 0
+        
+        let scaleAction = SKAction.scaleXTo(1, duration: 1)
+        scaleAction.timingMode = .EaseOut
+        
+        chargeBar.runAction(scaleAction)
         
     }
     
@@ -98,6 +139,7 @@ class ProgressReportPopUp: PopUp {
         let transitionInAction = SKAction.runBlock {
             self.runAction(fadeInAction)
             self.roundedRect.runAction(popInAction)
+            self.animateBar()
         }
         
         self.runAction(transitionInAction)

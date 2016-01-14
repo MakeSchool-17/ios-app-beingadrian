@@ -131,7 +131,7 @@ extension DashboardScene {
         expBarMask.position.y = -(expBarBack.size.halfHeight)
         let expBarCrop = SKCropNode()
         expBarFront = BarHorizontal(imageNamed: "Exp bar - front")
-        expBarFront.position.x = expBarFront.size.halfWidth - expBarFront.size.width
+        expBarFront.position.x = -expBarFront.size.halfWidth // - expBarFront.size.width
         expBarFront.position.y = -(expBarBack.size.halfHeight)
         expBarCrop.addChild(expBarFront)
         expBarCrop.maskNode = expBarMask

@@ -72,10 +72,6 @@ class DashboardScene: SKScene {
         let simplePie = Food(name: "Simple pie", hpValue: 90)
         insertFood(simplePie)
         
-        let progressReportPopUp = ProgressReportPopUp(
-            size: self.size, newSteps: 400, petName: "Pando")
-        self.addChild(progressReportPopUp)
-        
     }
     
     // MARK: - Data reloading
@@ -114,9 +110,11 @@ class DashboardScene: SKScene {
     // MARK: - New steps pop-up
     
     /**
-     * Checks the gameManager's statsStore for its `newSteps` property.
+     * Checks the gameManager's statsStore for its `newSteps` 
+     * property.
      *
-     * If there are new steps, the NewStepsPopUp layer will be pushed onto the screen.
+     * If there are new steps, the NewStepsPopUp layer will be pushed 
+     * onto the screen.
      */
     private func checkForNewSteps() {
         
@@ -126,7 +124,7 @@ class DashboardScene: SKScene {
         
         guard (newSteps != 0) else { return }
         
-        pushNewStepsPopUp(newSteps)
+//        pushNewStepsPopUp(newSteps)
         
         gameManager.user.charge.value += Int(newSteps)
         
@@ -201,7 +199,8 @@ class DashboardScene: SKScene {
     }
     
     /**
-     * Bridges communication between the petting action and data changes with the pet object.
+     * Bridges communication between the petting action and data 
+     * changes with the pet object.
      */
     private func observePetting() {
         
@@ -229,7 +228,8 @@ class DashboardScene: SKScene {
     }
     
     /**
-     * Creates an observer for `gameManager`'s `petLeveledUp` property that is triggered
+     * Creates an observer for `gameManager`'s `petLeveledUp` 
+     * property that is triggered
      * when the pet has leveled up.
      */
     private func observePetLevelUp() {
@@ -295,6 +295,9 @@ class DashboardScene: SKScene {
             pushStatsLayer()
         } else if touchedNode.isEqualToNode(menuButton) {
             pushMenuLayer()
+        } else if touchedNode.isEqualToNode(chargeLabel) {
+            let newSteps = Int(gameManager.statsStore.newSteps)
+            pushNewStepsPopUp(newSteps)
         }
     
     }
@@ -310,9 +313,11 @@ class DashboardScene: SKScene {
         
     }
     
-    private func pushNewStepsPopUp(newSteps: Double) {
+    private func pushNewStepsPopUp(newSteps: Int) {
         
-        // insert code here
+        let reportPopUp = ProgressReportPopUp(size: self.size, newSteps: newSteps, petName: "Pando")
+        self.addChild(reportPopUp)
+        reportPopUp.transitionIn()
         
     }
     
