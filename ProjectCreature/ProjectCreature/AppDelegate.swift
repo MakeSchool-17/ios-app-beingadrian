@@ -39,6 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         didEnterBackground = true
         
+        guard let mainViewController = window?.rootViewController as? MainViewController else { return }
+        guard let gameManager = mainViewController.gameManager else { return }
+        
+        NSKeyedArchiver.archiveRootObject(gameManager, toFile: "archive")
+        
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -52,6 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             didEnterBackground = false
             // show loading screen every time app is active
             guard let mainViewController = window?.rootViewController as? MainViewController else { return }
+            guard let gameManager = NSKeyedUnarchiver.unarchiveObjectWithFile("archive") as? GameManager else { return }
+            mainViewController.gameManager = gameManager
             mainViewController.viewWillLayoutSubviews()
         }
         

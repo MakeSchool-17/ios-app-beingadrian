@@ -43,20 +43,20 @@ class FirebaseHelper {
     // MARK: - JSON parsing
     
     /**
-     Converts a snapshot value to return a tuple of the key and JSON mode.
-     Returns nil if casting fails.
-     
-     - parameter value: AnyObject The snapshot value e.g. `snapshot.value`.
-     - returns: A tuple of the key (which is usually the ID) and the JSON model.
-     
-     JSON structure:
-     
-         { "id" = {
-             "email" = ""
-             "username" = ""
-             "cash" = ""
-             }
-         }
+     * Converts a snapshot value to return a tuple of the key and JSON mode.
+     * Returns nil if casting fails.
+     *
+     * - parameter value: AnyObject The snapshot value e.g. `snapshot.value`.
+     * - returns: A tuple of the key (which is usually the ID) and the JSON model.
+     *
+     * JSON structure:
+     *
+     *    { "id" = {
+     *        "email" = ""
+     *        "username" = ""
+     *        "cash" = ""
+     *        }
+     *    }
      */
     func parseSnapshotValue(value: AnyObject) -> (String, JSON)? {
         
@@ -71,10 +71,10 @@ class FirebaseHelper {
     // MARK: - User authentication
     
     /** 
-    Signs the new user up through the following process:
-    1. Creates the user on Firebase
-    2. Logs in the new user through password authentication 
-    3. Creates user json tree if previous steps are successful
+     * Signs the new user up through the following process:
+     * 1. Creates the user on Firebase
+     * 2. Logs in the new user through password authentication
+     * 3. Creates user json tree if previous steps are successful
      */
     func signupUser(username username: String, email: String, password: String) -> Observable<User> {
         

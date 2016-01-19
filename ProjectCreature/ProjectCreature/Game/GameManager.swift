@@ -15,13 +15,13 @@ import SpriteKit
  * functionality are reactive to changes in the data models e.g. `Pet` and `User`
  * and data changes due to the user interaction on scene layer.
  */
-final class GameManager {
+final class GameManager: NSObject, NSCoding {
 
     private var disposeBag = DisposeBag()
     
     // MARK: - Properties
     
-    let statsStore: StatsStore
+    var statsStore: StatsStore
     
     var user: User
     var pet: Pet
@@ -43,6 +43,8 @@ final class GameManager {
         
         self.user = user
         self.pet = pet
+        
+        super.init()
 
         makeObservations()
         
@@ -53,6 +55,41 @@ final class GameManager {
         observePetting()
         observePetHappiness()
         observePetExp()
+        
+    }
+    
+    // MARK: - NSCoding
+    
+    required convenience init?(coder decoder: NSCoder) {
+        
+        guard let user = decoder.decodeObjectForKey("user") as? User,
+            let pet = decoder.decodeObjectForKey("pet") as? Pet,
+            let statsStore = decoder.decodeObjectForKey("statsStore") as? StatsStore,
+            let pettingLimitIsReached = decoder.decodeObjectForKey("pettingLimitIsReached") as? Bool,
+            let lastLimitReachedDate = decoder.decodeObjectForKey("lastLimitReachedDate") as? NSDate,
+            let pettingCount = decoder.decodeObjectForKey("pettingCount") as? Variable<Int>
+            else { return nil }
+        
+        self.init(
+            user: user,
+            pet: pet
+        )
+        
+        self.statsStore = statsStore
+        self.pettingLimitIsReached = pettingLimitIsReached
+        self.lastLimitReachedDate = lastLimitReachedDate
+        self.pettingCount = Variable(pettingCount.value)
+        
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        
+        aCoder.encodeObject(self.user, forKey: "user")
+        aCoder.encodeObject(self.pet, forKey: "pet")
+        aCoder.encodeObject(self.statsStore, forKey: "statsStore")
+        aCoder.encodeObject(self.pettingLimitIsReached, forKey: "pettingLimitIsReached")
+        aCoder.encodeObject(self.lastLimitReachedDate, forKey: "lastLimitReachedDate")
+        aCoder.encodeObject(self.pettingCount, forKey: "pettingCount")
         
     }
     

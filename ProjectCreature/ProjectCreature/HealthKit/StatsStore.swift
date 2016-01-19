@@ -25,7 +25,12 @@ class StatsStore {
     
     // MARK: - Properties
     
-    var lastReloadDate: NSDate?
+    var lastReloadDate: NSDate? {
+        didSet {
+            guard let lastReloadDate = lastReloadDate else { return }
+            NSUserDefaults.standardUserDefaults().setObject(lastReloadDate, forKey: "lastReloadDate")
+        }
+    }
     var newSteps: Double = 0
     
     /**
@@ -39,10 +44,22 @@ class StatsStore {
      */
     var weekProgress = Variable(Dictionary<Int, Double>())
     
+    // MARK: - Initialization
+    
+    init() {
+        
+        guard let date = NSUserDefaults.standardUserDefaults().objectForKey("lastReloadDate") as? NSDate else { return }
+        print("> Date loaded from local presistence: \(date)")
+        self.lastReloadDate = date
+        
+    }
+    
     // MARK: - Data reloading
     
-    /** 
+    /**
      * Reloads the stats store's property values.
+     * 
+     * Sets the `lastReloadDate` property to a new `NSDate`.
      */
     func reloadData() -> Observable<Void> {
             
@@ -88,13 +105,11 @@ class StatsStore {
     
     private func getNewSteps() -> Observable<Double> {
         
-        // TODO: Test with yesterday
-        let now = NSDate()
-        let time: NSTimeInterval = -(60 * 60 * 5)
-        let yesterday = now.dateByAddingTimeInterval(time)
+        let past: NSTimeInterval = -60 * 60 * 2
+        let newDate = NSDate().dateByAddingTimeInterval(past)
         
-        if (lastReloadDate == nil) {
-            lastReloadDate = yesterday
+        if lastReloadDate == nil {
+            lastReloadDate = newDate
         }
         
         guard let lastReloadDate = self.lastReloadDate else {
@@ -141,7 +156,7 @@ class StatsStore {
                             observer.onNext(weekProgress)
                             observer.onCompleted()
                             return empty()
-                    }
+                        }
                 }.flatMap { mon -> Observable<Double> in
                     weekProgress[2] = mon / 10_000
                     return self.getStepsForWeekday(3)
@@ -149,7 +164,7 @@ class StatsStore {
                             observer.onNext(weekProgress)
                             observer.onCompleted()
                             return empty()
-                    }
+                        }
                 }.flatMap { tue -> Observable<Double> in
                     weekProgress[3] = tue / 10_000
                     return self.getStepsForWeekday(4)
@@ -157,7 +172,7 @@ class StatsStore {
                             observer.onNext(weekProgress)
                             observer.onCompleted()
                             return empty()
-                    }
+                        }
                 }.flatMap { wed -> Observable<Double> in
                     weekProgress[4] = wed / 10_000
                     return self.getStepsForWeekday(5)
@@ -165,7 +180,7 @@ class StatsStore {
                             observer.onNext(weekProgress)
                             observer.onCompleted()
                             return empty()
-                    }
+                        }
                 }.flatMap { thu -> Observable<Double> in
                     weekProgress[5] = thu / 10_000
                     return self.getStepsForWeekday(6)
@@ -173,7 +188,7 @@ class StatsStore {
                             observer.onNext(weekProgress)
                             observer.onCompleted()
                             return empty()
-                    }
+                        }
                 }.flatMap { fri -> Observable<Double> in
                     weekProgress[6] = fri / 10_000
                     return self.getStepsForWeekday(7)
@@ -181,7 +196,7 @@ class StatsStore {
                             observer.onNext(weekProgress)
                             observer.onCompleted()
                             return empty()
-                    }
+                        }
                 }.subscribeNext { sat in
                     weekProgress[7] = sat / 10_000
                     observer.onNext(weekProgress)

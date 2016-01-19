@@ -18,7 +18,7 @@ class DashboardScene: SKScene {
     
     var disposeBag = DisposeBag()
     
-    weak var gameManager: GameManager!
+    var gameManager: GameManager!
     
     // MARK: - UI Properties
     
@@ -57,7 +57,19 @@ class DashboardScene: SKScene {
         
         setup()
         
-        reloadData()
+        performInitialCheck()
+            .subscribeOn(MainScheduler.sharedInstance)
+            .subscribe(
+                onNext: nil,
+                onError: { (error) -> Void in
+                    print("> Failed performing initial check: \(error)")
+                },
+                onCompleted: {
+                    print("> Completed performing initial check")
+                    self.didFinishPerformingInitialCheck()
+                },
+                onDisposed: nil)
+            .addDisposableTo(disposeBag)
         
     }
     
@@ -74,43 +86,44 @@ class DashboardScene: SKScene {
         
     }
     
-    // MARK: - Data reloading
+    // MARK: - Initial checks
     
     /**
      * Reloads the data of the `gameManager`'s `statsStore`. 
      * Error handling also occurs in this function.
      */
-    private func reloadData() {
+    private func performInitialCheck() -> Observable<Void> {
         
-        gameManager.statsStore.reloadData()
-            .subscribeOn(MainScheduler.sharedInstance)
-            .subscribe(
-                onNext: nil,
-                onError: { (error) -> Void in
-                    print("> Error reloading stats data: \(error)")
-                    self.loadingLayer.didFinishLoading()
-                    self.transitionIn {
-                        self.makeObservations()
-                        self.checkForNewSteps()
-                    }
-                },
-                onCompleted: {
-                    print("> Completed reloading HK data")
-                    self.loadingLayer.didFinishLoading()
-                    self.transitionIn {
-                        self.makeObservations()
-                        self.checkForNewSteps()
-                    }
-                },
-                onDisposed: nil)
-            .addDisposableTo(disposeBag)
+        return HKHelper().requestHealthKitAuthorization()
+            .flatMap { success -> Observable<Void> in
+                if success {
+                    print("> Successfully authorized HealthKit")
+                    return self.gameManager.statsStore.reloadData()
+                } else {
+                    print("> Failed to authorize HealthKit")
+                    return empty()
+                }
+            }
+        
+    }
+    
+    /**
+     * Performs a series of actions upon the completion of `reloadData`.
+     */
+    private func didFinishPerformingInitialCheck() {
+
+        self.loadingLayer.didFinishLoading()
+        self.transitionIn {
+            self.makeObservations()
+            self.checkForNewSteps()
+        }
         
     }
     
     // MARK: - New steps pop-up
     
     /**
-     * Checks the gameManager's statsStore for its `newSteps` 
+     * Checks the gameManager's statsStore for its `newSteps`
      * property.
      *
      * If there are new steps, the NewStepsPopUp layer will be pushed 
@@ -118,15 +131,22 @@ class DashboardScene: SKScene {
      */
     private func checkForNewSteps() {
         
-        let newSteps = gameManager.statsStore.newSteps
+        let newSteps = Int(gameManager.statsStore.newSteps)
         
         print("> Dashboard - newSteps: \(newSteps)")
         
         guard (newSteps != 0) else { return }
         
-//        pushNewStepsPopUp(newSteps)
+        let delayAction = SKAction.waitForDuration(1.2)
         
-        gameManager.user.charge.value += Int(newSteps)
+        let actionBlock = SKAction.runBlock {
+            self.pushNewStepsPopUp(newSteps)
+            self.gameManager.user.charge.value += newSteps
+        }
+        
+        let actionSequence = SKAction.sequence([delayAction, actionBlock])
+
+        self.runAction(actionSequence)
         
     }
     
@@ -171,6 +191,14 @@ class DashboardScene: SKScene {
             }
             .addDisposableTo(disposeBag)
         
+        viewModel.cash
+            .subscribeOn(MainScheduler.sharedInstance)
+            .subscribeNext { cashString in
+                self.chargeLabel.text = cashString
+                self.chargeIcon.position.x = self.chargeLabel.frame.minX - 7
+            }
+            .addDisposableTo(disposeBag)
+        
         viewModel.petSprite
             .subscribeOn(MainScheduler.sharedInstance)
             .subscribeNext { model in
@@ -178,14 +206,6 @@ class DashboardScene: SKScene {
                 self.petSprite.position.x = self.frame.halfWidth
                 self.petSprite.position.y = self.frame.halfHeight - 105
                 self.addChild(self.petSprite)
-            }
-            .addDisposableTo(disposeBag)
-        
-        viewModel.cash
-            .subscribeOn(MainScheduler.sharedInstance)
-            .subscribeNext { cashString in
-                self.chargeLabel.text = cashString
-                self.chargeIcon.position.x = self.chargeLabel.frame.minX - 7
             }
             .addDisposableTo(disposeBag)
         
@@ -295,9 +315,6 @@ class DashboardScene: SKScene {
             pushStatsLayer()
         } else if touchedNode.isEqualToNode(menuButton) {
             pushMenuLayer()
-        } else if touchedNode.isEqualToNode(chargeLabel) {
-            let newSteps = Int(gameManager.statsStore.newSteps)
-            pushNewStepsPopUp(newSteps)
         }
     
     }

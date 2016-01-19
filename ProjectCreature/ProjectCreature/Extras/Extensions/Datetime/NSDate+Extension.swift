@@ -43,6 +43,9 @@ extension NSDate {
         
     }
     
+    /**
+     * A string of the `NSDate`'s timestamp in the local timezone
+     */
     var localTimestamp: String {
         
         let dateFormatter = NSDateFormatter()

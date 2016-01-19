@@ -24,24 +24,7 @@ class MainViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        HKHelper().requestHealthKitAuthorization()
-            .subscribe(
-                onNext: { (success) -> Void in
-                    if success {
-                        print("> Successfully authorized HealthKit")
-                        self.presentInitialScene()
-                    } else {
-                        print("> Failed to authorize HealthKit")
-                        self.presentInitialScene()
-                    }
-                },
-                onError: { (error) -> Void in
-                    print("> Error authorizing HealthKit: \(error)")
-                    self.presentInitialScene()
-                },
-                onCompleted: nil,
-                onDisposed: nil)
-            .addDisposableTo(disposeBag)
+        presentInitialScene()
 
     }
     
@@ -52,6 +35,8 @@ class MainViewController: UIViewController {
         // simulate pet and user
         guard let testPet = Test().createTestPet() else { return }
         let testUser = Test().createTestUser()
+        
+        
         
         // gameManager creation
         self.gameManager = GameManager(
