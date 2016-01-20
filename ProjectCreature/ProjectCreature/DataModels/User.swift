@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import Firebase
+import RealmSwift
 
 
 class User {
@@ -22,6 +23,7 @@ class User {
     var email: String
     var username: String
     var charge: Variable<Int>
+
     var uid: String
     
     /**
