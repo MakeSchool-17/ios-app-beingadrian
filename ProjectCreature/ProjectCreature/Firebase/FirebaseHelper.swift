@@ -116,7 +116,7 @@ class FirebaseHelper {
     
     func fetchUserData(byUID uid: String) -> Observable<User> {
         
-        return create { observer in
+        return Observable.create { observer in
             
             self.usersRef
                 .childByAppendingPath(uid)
@@ -148,7 +148,7 @@ class FirebaseHelper {
     
     func fetchUserData(byUsername username: String) -> Observable<User> {
         
-        return create { observer in
+        return Observable.create { observer in
             
             self.usersRef
                 .queryOrderedByChild("username")
@@ -192,7 +192,7 @@ class FirebaseHelper {
     
     func fetchPet(fromUser user: User) -> Observable<Pet> {
         
-        return create { observer in
+        return Observable.create { observer in
             
             self.petsRef
                 .queryOrderedByChild("ownerUID")

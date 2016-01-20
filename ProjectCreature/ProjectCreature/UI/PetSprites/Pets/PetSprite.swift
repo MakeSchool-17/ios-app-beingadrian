@@ -75,6 +75,7 @@ class PetSprite: SKSpriteNode {
     func observeState() {
         
         state
+            .asObservable()
             .subscribeNext { state in
                 switch state {
                 case .Neutral:

@@ -30,6 +30,7 @@ class StatsViewModel {
     init(gameManager: GameManager) {
          
         gameManager.statsStore.distanceTravelledToday
+            .asObservable()
             .map { return Float($0 / 1000) }
             .subscribeNext { distance in
                 self.distance = distance
@@ -37,6 +38,7 @@ class StatsViewModel {
             .addDisposableTo(disposeBag)
         
         gameManager.statsStore.totalStepsToday
+            .asObservable()
             .map { return Float($0) }
             .subscribeNext { steps in
                 self.totalSteps = steps
@@ -48,6 +50,7 @@ class StatsViewModel {
         self.currentWeekday = NSDate().weekday
         
         gameManager.statsStore.weekProgress
+            .asObservable()
             .subscribeNext { weekProgress in
                 self.weekProgress = weekProgress
             }

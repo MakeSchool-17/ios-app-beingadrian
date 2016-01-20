@@ -58,7 +58,7 @@ class DashboardScene: SKScene {
         setup()
         
         performCheck()
-            .subscribeOn(MainScheduler.sharedInstance)
+            .subscribeOn(MainScheduler.instance)
             .subscribe(
                 onNext: nil,
                 onError: { (error) -> Void in
@@ -98,7 +98,7 @@ class DashboardScene: SKScene {
         pushLoadingScreen()
         
         performCheck()
-            .subscribeOn(MainScheduler.sharedInstance)
+            .subscribeOn(MainScheduler.instance)
             .subscribe(
                 onNext: nil,
                 onError: { (error) -> Void in
@@ -126,7 +126,7 @@ class DashboardScene: SKScene {
                     return self.gameManager.statsStore.reloadData()
                 } else {
                     print("> Failed to authorize HealthKit")
-                    return empty()
+                    return Observable.empty()
                 }
             }
         
@@ -184,7 +184,8 @@ class DashboardScene: SKScene {
     private func bindUI() {
         
         viewModel.petName
-            .subscribeOn(MainScheduler.sharedInstance)
+            .asObservable()
+            .subscribeOn(MainScheduler.instance)
             .subscribeNext { name in
                 self.petNameLabel.text = name
                 self.readjustLevelLabelXPosition()
@@ -192,12 +193,14 @@ class DashboardScene: SKScene {
             .addDisposableTo(disposeBag)
         
         viewModel.petLevel
-            .observeOn(MainScheduler.sharedInstance)
+            .asObservable()
+            .observeOn(MainScheduler.instance)
             .bindTo(petLevelLabel.rx_text)
             .addDisposableTo(disposeBag)
         
         viewModel.petHpPercentage
-            .subscribeOn(MainScheduler.sharedInstance)
+            .asObservable()
+            .subscribeOn(MainScheduler.instance)
             .subscribeNext { percentage in
                 self.hpBarFront.animateBarProgress(toPercentage: percentage / 100)
                 self.hpPercentageLabel.animateToValue(
@@ -210,7 +213,8 @@ class DashboardScene: SKScene {
             .addDisposableTo(disposeBag)
         
         viewModel.petExpPercentage
-            .subscribeOn(MainScheduler.sharedInstance)
+            .asObservable()
+            .subscribeOn(MainScheduler.instance)
             .map { return $0 / 100 }
             .subscribeNext { percentage in
                 self.expBarFront.animateBarProgress(toPercentage: percentage)
@@ -218,7 +222,8 @@ class DashboardScene: SKScene {
             .addDisposableTo(disposeBag)
         
         viewModel.cash
-            .subscribeOn(MainScheduler.sharedInstance)
+            .asObservable()
+            .subscribeOn(MainScheduler.instance)
             .subscribeNext { cashString in
                 self.chargeLabel.text = cashString
                 self.chargeIcon.position.x = self.chargeLabel.frame.minX - 7
@@ -226,7 +231,8 @@ class DashboardScene: SKScene {
             .addDisposableTo(disposeBag)
         
         viewModel.petSprite
-            .subscribeOn(MainScheduler.sharedInstance)
+            .asObservable()
+            .subscribeOn(MainScheduler.instance)
             .subscribeNext { model in
                 self.petSprite = model
                 self.petSprite.position.x = self.frame.halfWidth
@@ -254,7 +260,7 @@ class DashboardScene: SKScene {
         guard let petSprite = self.petSprite else { return }
         
         petSprite.head.isBeingPet
-            .subscribeOn(MainScheduler.sharedInstance)
+            .subscribeOn(MainScheduler.instance)
             .subscribeNext { count in
                 
                 let limitIsReached = gameManager.checkPettingLimitIsReached()

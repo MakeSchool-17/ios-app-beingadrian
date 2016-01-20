@@ -11,9 +11,10 @@ import RxSwift
 import SpriteKit
 
 /**
- * The GameManager class manages the game logic of the application. Most of its
- * functionality are reactive to changes in the data models e.g. `Pet` and `User`
- * and data changes due to the user interaction on scene layer.
+ * The GameManager class manages the game logic of the application. 
+ * Most of its functionality are reactive to changes in the data models
+ * e.g. `Pet` and `User` and data changes due to the 
+ * user interaction on scene layer.
  */
 final class GameManager {
 
@@ -28,7 +29,7 @@ final class GameManager {
     var user: User
     var pet: Pet
     
-    // level property
+    // level properties
     var petLeveledUp = PublishSubject<Int>()
     var expDifference: Float = 0
     
@@ -66,7 +67,8 @@ final class GameManager {
     private func observePetExp() {
 
         pet.exp
-            .delaySubscription(0.5, MainScheduler.sharedInstance)
+            .asObservable()
+            .delaySubscription(0.5, scheduler: MainScheduler.instance)
             .subscribeNext { exp in
                 
                 let percentage = exp / self.pet.expMax.value * 100
@@ -120,6 +122,7 @@ final class GameManager {
     private func observePetting() {
         
         pettingCount
+            .asObservable()
             .filter { return $0 > 0 }
             .subscribeNext { count in
                 
@@ -164,7 +167,7 @@ final class GameManager {
      */
     private func observePetHappiness() {
         
-        combineLatest(pet.hp, pet.hpMax) {
+        Observable.combineLatest(pet.hp.asObservable(), pet.hpMax.asObservable()) {
             return $0 / $1
         }.subscribeNext { fraction in
             let percentage = fraction * 100

@@ -40,18 +40,20 @@ class DashboardViewModel {
     private func bindPetToViewModel(pet: Pet, currentUser: User) {
         
         pet.name
+            .asObservable()
             .subscribeNext { name in
                 self.petName.value = name
             }
             .addDisposableTo(disposeBag)
 
         pet.level
+            .asObservable()
             .subscribeNext {
                 self.petLevel.value = String($0)
             }
             .addDisposableTo(disposeBag)
 
-        combineLatest(pet.exp, pet.expMax) {
+        Observable.combineLatest(pet.exp.asObservable(), pet.expMax.asObservable()) {
                 return round($0 / $1 * 100)
             }
             .subscribeNext { percentage in
@@ -59,7 +61,7 @@ class DashboardViewModel {
                 self.petExpPercentage.value = percentage
             }.addDisposableTo(disposeBag)
         
-        combineLatest(pet.hp, pet.hpMax) {
+        Observable.combineLatest(pet.hp.asObservable(), pet.hpMax.asObservable()) {
                 return round($0 / $1 * 100)
             }
             .subscribeNext {
@@ -68,12 +70,14 @@ class DashboardViewModel {
             .addDisposableTo(disposeBag)
         
         pet.sprite
+            .asObservable()
             .subscribeNext { sprite in
                 self.petSprite.value = sprite
             }
             .addDisposableTo(disposeBag)
         
         currentUser.charge
+            .asObservable()
             .map { cash in
                 let formattedNumber = NSNumberFormatter()
                 formattedNumber.numberStyle = .DecimalStyle
