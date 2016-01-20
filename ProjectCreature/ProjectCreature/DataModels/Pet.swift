@@ -29,15 +29,18 @@ class Pet {
     var id: Variable<String>
     
     /**
-     * The pet's corresponding sprite. It's not stored on Firebase and it's dynamically initialized from the Pet's `family` property.
+     * The pet's corresponding sprite. It's not stored on Firebase and 
+     * it's dynamically initialized from the Pet's `family` property.
      */
     var sprite: Variable<PetSprite>
     
-    /**layer     * An enum containing all the Pet family types. Each case has a `sprite` property that returns the family's corresponding sprite.
+    /**
+     * An enum containing all the Pet family types. Each case has a
+     * `sprite` property that returns the family's corresponding sprite.
      * Families:
-     *  - Dog
-     *  - Cat
-     *  - Pando
+     * - Dog
+     * - Cat
+     * - Pando
      */
     enum Family: String {
         case Dog = "dog"
@@ -78,7 +81,7 @@ class Pet {
     }
     
     /**
-     * Initializes the class from a Firebase data model.
+     * Initializes the class from a Firebase JSON data model.
      */
     init(id: String, model: PetJsonModel) {
         
