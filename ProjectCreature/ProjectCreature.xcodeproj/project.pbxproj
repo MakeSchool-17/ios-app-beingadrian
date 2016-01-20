@@ -22,6 +22,9 @@
 		3318222F1C28CCA10094245D /* RxCompliant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318222E1C28CCA10094245D /* RxCompliant.swift */; };
 		331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331E66D21BF6AEDB003AB81D /* MainViewController.swift */; };
 		3324827C1C2E55BB00C4655E /* SKAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3324827B1C2E55BB00C4655E /* SKAction+Extension.swift */; };
+		3324EA8A1C4EFD57000D7A21 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3324EA891C4EFD57000D7A21 /* RxCocoa.framework */; };
+		3324EA8B1C4EFD5C000D7A21 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3324EA891C4EFD57000D7A21 /* RxCocoa.framework */; };
+		3324EA8C1C4EFD5C000D7A21 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3324EA891C4EFD57000D7A21 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3335326E1C164F6B003145AA /* StatsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335326D1C164F6B003145AA /* StatsLayer.swift */; };
 		333532701C164FC9003145AA /* StatsLayerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335326F1C164FC9003145AA /* StatsLayerUI.swift */; };
 		333532731C165176003145AA /* MenuLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333532721C165176003145AA /* MenuLayer.swift */; };
@@ -82,8 +85,6 @@
 		339DA2CB1C0F6E430025F064 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C81C0F6E430025F064 /* RxSwift.framework */; };
 		339DA2CC1C0F6E8B0025F064 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C61C0F6E430025F064 /* RxBlocking.framework */; };
 		339DA2CD1C0F6E8B0025F064 /* RxBlocking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C61C0F6E430025F064 /* RxBlocking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		339DA2CE1C0F6E8B0025F064 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C71C0F6E430025F064 /* RxCocoa.framework */; };
-		339DA2CF1C0F6E8B0025F064 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C71C0F6E430025F064 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		339DA2D11C0F6E8B0025F064 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C81C0F6E430025F064 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		33AC1D031C266F170066FCB3 /* BarVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AC1D021C266F170066FCB3 /* BarVertical.swift */; };
 		33B990791C2F544800D6CA10 /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B990781C2F544800D6CA10 /* CGPoint+Extension.swift */; };
@@ -120,7 +121,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				339DA2CF1C0F6E8B0025F064 /* RxCocoa.framework in Embed Frameworks */,
+				3324EA8C1C4EFD5C000D7A21 /* RxCocoa.framework in Embed Frameworks */,
 				339DA2CD1C0F6E8B0025F064 /* RxBlocking.framework in Embed Frameworks */,
 				339DA2D11C0F6E8B0025F064 /* RxSwift.framework in Embed Frameworks */,
 				3378477C1C1F6D4200B3722D /* Gloss.framework in Embed Frameworks */,
@@ -147,6 +148,7 @@
 		3318222E1C28CCA10094245D /* RxCompliant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCompliant.swift; sourceTree = "<group>"; };
 		331E66D21BF6AEDB003AB81D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3324827B1C2E55BB00C4655E /* SKAction+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKAction+Extension.swift"; sourceTree = "<group>"; };
+		3324EA891C4EFD57000D7A21 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = SOURCE_ROOT; };
 		3335326D1C164F6B003145AA /* StatsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsLayer.swift; sourceTree = "<group>"; };
 		3335326F1C164FC9003145AA /* StatsLayerUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsLayerUI.swift; sourceTree = "<group>"; };
 		333532721C165176003145AA /* MenuLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuLayer.swift; sourceTree = "<group>"; };
@@ -228,7 +230,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3324EA8A1C4EFD57000D7A21 /* RxCocoa.framework in Frameworks */,
 				337847731C1F40A000B3722D /* SystemConfiguration.framework in Frameworks */,
+				3324EA8B1C4EFD5C000D7A21 /* RxCocoa.framework in Frameworks */,
 				337847711C1F409400B3722D /* Security.framework in Frameworks */,
 				3378476F1C1F408D00B3722D /* CFNetwork.framework in Frameworks */,
 				3378476D1C1F408700B3722D /* libc++.tbd in Frameworks */,
@@ -236,7 +240,6 @@
 				3378476B1C1F407F00B3722D /* libicucore.tbd in Frameworks */,
 				337847601C1E5EAE00B3722D /* Firebase.framework in Frameworks */,
 				339DA2CB1C0F6E430025F064 /* RxSwift.framework in Frameworks */,
-				339DA2CE1C0F6E8B0025F064 /* RxCocoa.framework in Frameworks */,
 				339DA2CC1C0F6E8B0025F064 /* RxBlocking.framework in Frameworks */,
 				3309FB4D1BF7F64300BE0310 /* HealthKit.framework in Frameworks */,
 				3378477A1C1F6D3200B3722D /* Gloss.framework in Frameworks */,
@@ -580,6 +583,7 @@
 		338369191BF69042006407FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3324EA891C4EFD57000D7A21 /* RxCocoa.framework */,
 				337847791C1F6D3200B3722D /* Gloss.framework */,
 				3378476C1C1F408700B3722D /* libc++.tbd */,
 				3378476A1C1F407F00B3722D /* libicucore.tbd */,
@@ -1124,6 +1128,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beingadrian.ProjectCreatureUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REEXPORTED_FRAMEWORK_NAMES = "";
 				TEST_TARGET_NAME = ProjectCreature;
 				USES_XCTRUNNER = YES;
 			};
@@ -1136,6 +1141,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.beingadrian.ProjectCreatureUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REEXPORTED_FRAMEWORK_NAMES = "";
 				TEST_TARGET_NAME = ProjectCreature;
 				USES_XCTRUNNER = YES;
 			};

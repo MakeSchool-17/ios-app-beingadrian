@@ -15,9 +15,11 @@ import SpriteKit
  * functionality are reactive to changes in the data models e.g. `Pet` and `User`
  * and data changes due to the user interaction on scene layer.
  */
-final class GameManager: NSObject, NSCoding {
+final class GameManager {
 
     private var disposeBag = DisposeBag()
+    
+    private let firebase = FirebaseHelper()
     
     // MARK: - Properties
     
@@ -43,8 +45,6 @@ final class GameManager: NSObject, NSCoding {
         
         self.user = user
         self.pet = pet
-        
-        super.init()
 
         makeObservations()
         
@@ -57,42 +57,7 @@ final class GameManager: NSObject, NSCoding {
         observePetExp()
         
     }
-    
-    // MARK: - NSCoding
-    
-    required convenience init?(coder decoder: NSCoder) {
-        
-        guard let user = decoder.decodeObjectForKey("user") as? User,
-            let pet = decoder.decodeObjectForKey("pet") as? Pet,
-            let statsStore = decoder.decodeObjectForKey("statsStore") as? StatsStore,
-            let pettingLimitIsReached = decoder.decodeObjectForKey("pettingLimitIsReached") as? Bool,
-            let lastLimitReachedDate = decoder.decodeObjectForKey("lastLimitReachedDate") as? NSDate,
-            let pettingCount = decoder.decodeObjectForKey("pettingCount") as? Variable<Int>
-            else { return nil }
-        
-        self.init(
-            user: user,
-            pet: pet
-        )
-        
-        self.statsStore = statsStore
-        self.pettingLimitIsReached = pettingLimitIsReached
-        self.lastLimitReachedDate = lastLimitReachedDate
-        self.pettingCount = Variable(pettingCount.value)
-        
-    }
-    
-    func encodeWithCoder(aCoder: NSCoder) {
-        
-        aCoder.encodeObject(self.user, forKey: "user")
-        aCoder.encodeObject(self.pet, forKey: "pet")
-        aCoder.encodeObject(self.statsStore, forKey: "statsStore")
-        aCoder.encodeObject(self.pettingLimitIsReached, forKey: "pettingLimitIsReached")
-        aCoder.encodeObject(self.lastLimitReachedDate, forKey: "lastLimitReachedDate")
-        aCoder.encodeObject(self.pettingCount, forKey: "pettingCount")
-        
-    }
-    
+
     // MARK: - Level and experience points
     
     /** 
@@ -237,6 +202,16 @@ final class GameManager: NSObject, NSCoding {
         let maxHp = Int(self.pet.hpMax.value)
         let newValue = pet.hp.value + Float(food.hpValue)
         pet.hp.value = newValue.clamped(0...maxHp)
+        
+    }
+    
+    // MARK: - Bind to Firebase
+    
+    private func bindToFirebase() {
+        
+
+        
+        
         
     }
     

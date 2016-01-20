@@ -36,8 +36,6 @@ class MainViewController: UIViewController {
         guard let testPet = Test().createTestPet() else { return }
         let testUser = Test().createTestUser()
         
-        
-        
         // gameManager creation
         self.gameManager = GameManager(
             user: testUser,

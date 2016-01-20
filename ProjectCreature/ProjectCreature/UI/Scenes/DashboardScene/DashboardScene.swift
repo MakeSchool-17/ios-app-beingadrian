@@ -57,7 +57,7 @@ class DashboardScene: SKScene {
         
         setup()
         
-        performInitialCheck()
+        performCheck()
             .subscribeOn(MainScheduler.sharedInstance)
             .subscribe(
                 onNext: nil,
@@ -86,13 +86,38 @@ class DashboardScene: SKScene {
         
     }
     
-    // MARK: - Initial checks
+    // MARK: - Checks
+    
+    /**
+     * A method called when the application becomes active again.
+     * The main purpose of the method is to reload data and perform
+     * checks. The method is called from the AppDelegate.
+     */
+    func didBecomeActive() {
+        
+        pushLoadingScreen()
+        
+        performCheck()
+            .subscribeOn(MainScheduler.sharedInstance)
+            .subscribe(
+                onNext: nil,
+                onError: { (error) -> Void in
+                    print("> Failed performing check: \(error)")
+                },
+                onCompleted: {
+                    print("> Completed performing check")
+                    self.loadingLayer.didFinishLoading()
+                },
+                onDisposed: nil)
+            .addDisposableTo(disposeBag)
+        
+    }
     
     /**
      * Reloads the data of the `gameManager`'s `statsStore`. 
      * Error handling also occurs in this function.
      */
-    private func performInitialCheck() -> Observable<Void> {
+    private func performCheck() -> Observable<Void> {
         
         return HKHelper().requestHealthKitAuthorization()
             .flatMap { success -> Observable<Void> in
@@ -108,7 +133,8 @@ class DashboardScene: SKScene {
     }
     
     /**
-     * Performs a series of actions upon the completion of `reloadData`.
+     * Performs a series of actions upon the successful completion 
+     * of `performCheck`.
      */
     private func didFinishPerformingInitialCheck() {
 
@@ -321,7 +347,7 @@ class DashboardScene: SKScene {
     
     // MARK: - Navigation
     
-    private func pushLoadingScreen() {
+    func pushLoadingScreen() {
         
         self.loadingLayer = LoadingLayer(size: self.size)
         loadingLayer.zPosition = 100

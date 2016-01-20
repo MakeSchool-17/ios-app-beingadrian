@@ -10,7 +10,7 @@ import RxSwift
 import Firebase
 
 
-class Pet: NSObject {
+class Pet {
     
     var disposeBag = DisposeBag()
     
@@ -73,8 +73,6 @@ class Pet: NSObject {
         let id = firebaseHelper.petsRef.childByAutoId().key
         self.id = Variable(id)
         
-        super.init()
-        
         bindToFirebase()
         
     }
@@ -96,8 +94,6 @@ class Pet: NSObject {
         self.ownerUID = Variable(model.ownerUID)
         self.sprite = Variable(model.family.sprite)
         self.id = Variable(id)
-        
-        super.init()
         
         bindToFirebase()
         

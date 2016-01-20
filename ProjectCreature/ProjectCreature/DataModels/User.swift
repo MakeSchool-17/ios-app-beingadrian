@@ -11,7 +11,7 @@ import RxSwift
 import Firebase
 
 
-class User: NSObject {
+class User {
     
     var disposeBag = DisposeBag()
     
@@ -34,8 +34,6 @@ class User: NSObject {
         self.charge = Variable(0)
         self.uid = uid
         
-        super.init()
-        
         bindToFirebase()
         
     }
@@ -51,8 +49,6 @@ class User: NSObject {
         self.username = model.username
         self.charge = Variable(model.cash)
         self.uid = uid
-        
-        super.init()
         
         bindToFirebase()
         

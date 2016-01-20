@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import Firebase
+import SpriteKit
 
 
 @UIApplicationMain
@@ -39,11 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         didEnterBackground = true
         
-        guard let mainViewController = window?.rootViewController as? MainViewController else { return }
-        guard let gameManager = mainViewController.gameManager else { return }
-        
-        NSKeyedArchiver.archiveRootObject(gameManager, toFile: "archive")
-        
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -52,16 +48,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-
-        if didEnterBackground {
-            didEnterBackground = false
-            // show loading screen every time app is active
-            guard let mainViewController = window?.rootViewController as? MainViewController else { return }
-            guard let gameManager = NSKeyedUnarchiver.unarchiveObjectWithFile("archive") as? GameManager else { return }
-            mainViewController.gameManager = gameManager
-            mainViewController.viewWillLayoutSubviews()
-        }
         
+        if didEnterBackground {
+            guard let mainViewController = window?.rootViewController as? MainViewController else { return }
+            guard let view = mainViewController.view as? SKView else { return }
+            guard let scene = view.scene as? DashboardScene else { return }
+            scene.didBecomeActive()
+            didEnterBackground = false
+        }
+  
     }
 
     func applicationWillTerminate(application: UIApplication) {
