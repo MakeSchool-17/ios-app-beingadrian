@@ -69,13 +69,15 @@ class DashboardViewModel {
             }
             .addDisposableTo(disposeBag)
         
-        pet.sprite.asObservable()
+        pet.sprite
+            .asObservable()
             .subscribeNext { sprite in
                 self.petSprite.value = sprite
             }
             .addDisposableTo(disposeBag)
         
-        currentUser.charge.asObservable()
+        currentUser.charge
+            .asObservable()
             .map { cash in
                 let formattedNumber = NSNumberFormatter()
                 formattedNumber.numberStyle = .DecimalStyle
