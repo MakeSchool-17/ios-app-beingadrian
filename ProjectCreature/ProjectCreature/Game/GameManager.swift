@@ -11,9 +11,10 @@ import RxSwift
 import SpriteKit
 
 /**
- * The GameManager class manages the game logic of the application. Most of its
- * functionality are reactive to changes in the data models e.g. `Pet` and `User`
- * and data changes due to the user interaction on scene layer.
+ * The GameManager class manages the game logic of the application. 
+ * Most of its functionality are reactive to changes in the data models
+ * e.g. `Pet` and `User` and data changes due to the 
+ * user interaction on scene layer.
  */
 final class GameManager {
 
@@ -28,7 +29,7 @@ final class GameManager {
     var user: User
     var pet: Pet
     
-    // level property
+    // level properties
     var petLeveledUp = PublishSubject<Int>()
     var expDifference: Float = 0
     
