@@ -66,7 +66,8 @@ final class GameManager {
     private func observePetExp() {
 
         pet.exp
-            .delaySubscription(0.5, MainScheduler.sharedInstance)
+            .asObservable()
+            .delaySubscription(0.5, scheduler: MainScheduler.instance)
             .subscribeNext { exp in
                 
                 let percentage = exp / self.pet.expMax.value * 100
@@ -120,6 +121,7 @@ final class GameManager {
     private func observePetting() {
         
         pettingCount
+            .asObservable()
             .filter { return $0 > 0 }
             .subscribeNext { count in
                 
@@ -164,7 +166,7 @@ final class GameManager {
      */
     private func observePetHappiness() {
         
-        combineLatest(pet.hp, pet.hpMax) {
+        Observable.combineLatest(pet.hp.asObservable(), pet.hpMax.asObservable()) {
             return $0 / $1
         }.subscribeNext { fraction in
             let percentage = fraction * 100

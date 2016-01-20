@@ -83,6 +83,7 @@ class PandoSprite: PetSprite {
     override func observeState() {
         
         state
+            .asObservable()
             .subscribeNext { state in
                 switch state {
                 case .Neutral:

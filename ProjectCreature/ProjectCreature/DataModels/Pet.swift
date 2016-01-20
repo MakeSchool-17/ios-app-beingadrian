@@ -110,48 +110,56 @@ class Pet {
         let ref = firebaseHelper.petsRef.childByAppendingPath(id.value)
         
         name
+            .asObservable()
             .subscribeNext { name in
                 ref.updateChildValues(["name": name])
             }
             .addDisposableTo(disposeBag)
         
         level
+            .asObservable()
             .subscribeNext { level in
                 ref.updateChildValues(["level": level])
             }
             .addDisposableTo(disposeBag)
         
         exp
+            .asObservable()
             .subscribeNext { exp in
                 ref.updateChildValues(["exp": exp])
             }
             .addDisposableTo(disposeBag)
         
         expMax
+            .asObservable()
             .subscribeNext { expMax in
                 ref.updateChildValues(["expMax": expMax])
             }
             .addDisposableTo(disposeBag)
         
         hp
+            .asObservable()
             .subscribeNext { hp in
                 ref.updateChildValues(["hp": hp])
             }
             .addDisposableTo(disposeBag)
         
         hpMax
+            .asObservable()
             .subscribeNext { hpMax in
                 ref.updateChildValues(["hpMax": hpMax])
             }
             .addDisposableTo(disposeBag)
         
         family
+            .asObservable()
             .subscribeNext { family in
                 ref.updateChildValues(["family": family.rawValue])
             }
             .addDisposableTo(disposeBag)
         
         ownerUID
+            .asObservable()
             .subscribeNext { ownerUID in
                 ref.updateChildValues(["ownerUID": ownerUID])
             }

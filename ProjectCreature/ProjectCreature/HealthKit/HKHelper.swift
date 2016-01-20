@@ -50,16 +50,16 @@ class HKHelper {
     func requestHealthKitAuthorization() -> Observable<Bool> {
         
         guard let stepsType = self.stepsType, distanceOnFootType = self.distanceOnFootType else {
-            return failWith(HKErrorType.TypeNotAvailable)
+            return Observable.error(HKErrorType.TypeNotAvailable)
         }
         
         let dataTypesToRead = Set<HKQuantityType>(arrayLiteral: stepsType, distanceOnFootType)
         
         guard let healthStore = self.healthStore else {
-            return failWith(HKErrorType.NoHealthStore)
+            return Observable.error(HKErrorType.NoHealthStore)
         }
         
-        return create { observer in
+        return Observable.create { observer in
             healthStore.requestAuthorizationToShareTypes(nil, readTypes: dataTypesToRead) {
                 (success, error) in
                 
@@ -108,10 +108,10 @@ class HKHelper {
     private func createStatisticsQuery(forQuantityType quantityType: HKQuantityType, predicate: NSPredicate, unit: HKUnit) -> Observable<Double> {
         
         guard let healthStore = self.healthStore else {
-            return failWith(HKErrorType.NoHealthStore)
+            return Observable.error(HKErrorType.NoHealthStore)
         }
         
-        return create { observer in
+        return Observable.create { observer in
             let queryOptions: HKStatisticsOptions = [.CumulativeSum, .SeparateBySource]
             
             let query = HKStatisticsQuery(quantityType: quantityType, quantitySamplePredicate: predicate, options: queryOptions) {
@@ -157,7 +157,7 @@ class HKHelper {
         let predicate = createPredicate(from: startDate, to: endDate)
         
         guard let stepsType = stepsType else {
-            return failWith(HKErrorType.TypeNotAvailable)
+            return Observable.error(HKErrorType.TypeNotAvailable)
         }
         
         return createStatisticsQuery(forQuantityType: stepsType, predicate: predicate, unit: HKUnit.countUnit())
@@ -169,7 +169,7 @@ class HKHelper {
         let predicate = createPredicate(from: startDate, to: endDate)
         
         guard let distanceOnFootType = distanceOnFootType else {
-            return failWith(HKErrorType.TypeNotAvailable)
+            return Observable.error(HKErrorType.TypeNotAvailable)
         }
         
         return createStatisticsQuery(forQuantityType: distanceOnFootType, predicate: predicate, unit: HKUnit.meterUnit())

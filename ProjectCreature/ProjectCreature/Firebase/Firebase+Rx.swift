@@ -19,7 +19,7 @@ extension Firebase {
     
     func rx_createUser(email: String, password: String) -> Observable<FirebaseResult> {
         
-        return create { observer in
+        return Observable.create { observer in
             
             self.createUser(email, password: password) {
                 (error: NSError!, result: [NSObject: AnyObject]!) in
@@ -38,7 +38,7 @@ extension Firebase {
     
     func rx_authUser(email: String, password: String) -> Observable<FAuthData> {
         
-        return create { observer in
+        return Observable.create { observer in
             
             self.authUser(email, password: password) {
                 (error, authData) in
@@ -60,7 +60,7 @@ extension Firebase {
     
     func rx_setValue(value: AnyObject!) -> Observable<Firebase> {
         
-        return create { observer in
+        return Observable.create { observer in
            
             self.setValue(value) {
                 (error, firebaseRef) in

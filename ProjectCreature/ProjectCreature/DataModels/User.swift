@@ -62,6 +62,7 @@ class User {
         let ref = firebaseHelper.usersRef.childByAppendingPath(uid)
         
         charge
+            .asObservable()
             .subscribeNext { cash in
                 ref.updateChildValues(["cash": cash])
             }
