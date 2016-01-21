@@ -29,18 +29,9 @@ class MainViewController: UIViewController {
     }
     
     private func presentInitialScene() {
-    
-        guard let view = view as? SKView else { return }
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        
-        let petData = defaults.objectForKey("PetArchive") as? NSData
-        let userData = defaults.objectForKey("UserArchive") as? NSData
-        
-        if let petData = petData, userData = userData {
-            let pet = NSKeyedUnarchiver.unarchiveObjectWithData(petData) as! Pet
-            let user = NSKeyedUnarchiver.unarchiveObjectWithData(userData) as! User
-            self.gameManager = GameManager(user: user, pet: pet)
+        if let gameManager = loadDataFromLocal() {
+            self.gameManager = gameManager
         } else {
             // simulate pet and user
             guard let testPet = Test().createTestPet() else { return }
@@ -49,6 +40,40 @@ class MainViewController: UIViewController {
         }
         
         guard let gameManager = self.gameManager else { return }
+        
+        presentScene(withGameManager: gameManager)
+    
+    }
+    
+    /**
+     * Tries to load data from local presistence. 
+     * If there is no data stored locally, the method returns nil. 
+     *
+     * - returns: An optional tuple of User and Pet.
+     */
+    private func loadDataFromLocal() -> GameManager? {
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        let gameManagerData = defaults.objectForKey("GameManagerArchive") as? NSData
+        
+        if let gameManagerData = gameManagerData {
+            let gameManager = NSKeyedUnarchiver.unarchiveObjectWithData(gameManagerData) as! GameManager
+            return gameManager
+        }
+        
+        return nil
+        
+    }
+    
+    /**
+     * Presents the SKScene. 
+     *
+     * - parameter gameManager: An instance of a `GameManager`.
+     */
+    private func presentScene(withGameManager gameManager: GameManager) {
+        
+        guard let view = self.view as? SKView else { return }
         
         let scene = DashboardScene()
         scene.gameManager = gameManager
@@ -64,7 +89,7 @@ class MainViewController: UIViewController {
         view.showsFPS = isTesting
         view.showsDrawCount = isTesting
         view.showsQuadCount = isTesting
-    
+        
     }
     
     // MARK: - Prepare for segue 

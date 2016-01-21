@@ -37,12 +37,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let gameManager = mainViewController.gameManager else { return }
         
         let defaults = NSUserDefaults.standardUserDefaults()
+
+        let gameManagerData = NSKeyedArchiver.archivedDataWithRootObject(gameManager)
+        defaults.setObject(gameManagerData, forKey: "GameManagerArchive")
         
-        let userData = NSKeyedArchiver.archivedDataWithRootObject(gameManager.user)
-        defaults.setObject(userData, forKey: "UserArchive")
-        
-        let petData = NSKeyedArchiver.archivedDataWithRootObject(gameManager.pet)
-        defaults.setObject(petData, forKey: "PetArchive")
+//        let userData = NSKeyedArchiver.archivedDataWithRootObject(gameManager.user)
+//        defaults.setObject(userData, forKey: "UserArchive")
+//        
+//        let petData = NSKeyedArchiver.archivedDataWithRootObject(gameManager.pet)
+//        defaults.setObject(petData, forKey: "PetArchive")
         
         print("> Hit application will terminate")
     }

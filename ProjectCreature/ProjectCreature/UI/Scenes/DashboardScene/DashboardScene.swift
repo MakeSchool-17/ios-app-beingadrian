@@ -12,7 +12,7 @@ import RxCocoa
 
 /**
  * The main scene of the app. The DashboardScene manages any 
- * reactive UI changes as well as UI input.
+     * reactive UI changes as well as UI input.
  */
 class DashboardScene: SKScene {
     

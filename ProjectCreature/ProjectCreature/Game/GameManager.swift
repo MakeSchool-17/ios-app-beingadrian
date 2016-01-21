@@ -16,7 +16,7 @@ import SpriteKit
  * e.g. `Pet` and `User` and data changes due to the 
  * user interaction on scene layer.
  */
-final class GameManager {
+final class GameManager: NSObject, NSCoding {
 
     private var disposeBag = DisposeBag()
     
@@ -47,6 +47,8 @@ final class GameManager {
         self.user = user
         self.pet = pet
 
+        super.init()
+        
         makeObservations()
         
     }
@@ -56,6 +58,41 @@ final class GameManager {
         observePetting()
         observePetHappiness()
         observePetExp()
+        
+    }
+    
+    // MARK: - NSCoding
+    
+    required convenience init?(coder decoder: NSCoder) {
+        
+        guard
+            let statsStore = decoder.decodeObjectForKey("GMStatsStore") as? StatsStore,
+            let user = decoder.decodeObjectForKey("GMUser") as? User,
+            let pet = decoder.decodeObjectForKey("GMPet") as? Pet,
+            let pettingLimitIsReached = decoder.decodeObjectForKey("GMPettingLimitIsReached") as? Bool,
+            let lastLimitReachedDate = decoder.decodeObjectForKey("GMLastLimitReachedDate") as? NSDate,
+            let pettingCountValue = decoder.decodeObjectForKey("GMPettingCountValue") as? Int
+        else {
+            return nil
+        }
+        
+        self.init(user: user, pet: pet)
+        
+        self.statsStore = statsStore
+        self.pettingLimitIsReached = pettingLimitIsReached
+        self.lastLimitReachedDate = lastLimitReachedDate
+        self.pettingCount.value = pettingCountValue
+        
+    }
+    
+    func encodeWithCoder(coder: NSCoder) {
+        
+        coder.encodeObject(self.statsStore, forKey: "GMStatsStore")
+        coder.encodeObject(self.user, forKey: "GMUser")
+        coder.encodeObject(self.pet, forKey: "GMPet")
+        coder.encodeObject(self.pettingLimitIsReached, forKey: "GMPettingLimitIsReached")
+        coder.encodeObject(self.lastLimitReachedDate, forKey: "GMLastLimitReachedDate")
+        coder.encodeObject(self.pettingCount.value, forKey: "GMPettingCountValue")
         
     }
 
@@ -205,16 +242,6 @@ final class GameManager {
         let maxHp = Int(self.pet.hpMax.value)
         let newValue = pet.hp.value + Float(food.hpValue)
         pet.hp.value = newValue.clamped(0...maxHp)
-        
-    }
-    
-    // MARK: - Bind to Firebase
-    
-    private func bindToFirebase() {
-        
-
-        
-        
         
     }
     

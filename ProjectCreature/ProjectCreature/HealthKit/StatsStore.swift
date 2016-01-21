@@ -11,7 +11,7 @@ import Foundation
 import RxSwift
 
 
-class StatsStore {
+class StatsStore: NSObject, NSCoding {
     
     private var disposeBag = DisposeBag()
     
@@ -25,14 +25,7 @@ class StatsStore {
     
     // MARK: - Properties
     
-    var lastReloadDate: NSDate? {
-        didSet {
-            guard let lastReloadDate = lastReloadDate else { return }
-            NSUserDefaults
-                .standardUserDefaults()
-                .setObject(lastReloadDate, forKey: "lastReloadDate")
-        }
-    }
+    var lastReloadDate: NSDate?
     var newSteps: Double = 0
     
     /**
@@ -45,14 +38,37 @@ class StatsStore {
      * An observable dictionary containing the week progresses between `0.0` and `1.0`.
      */
     var weekProgress = Variable(Dictionary<Int, Double>())
+
+    // MARK: - NSCoding
     
-    // MARK: - Initialization
-    
-    init() {
+    required convenience init?(coder decoder: NSCoder) {
         
-        guard let date = NSUserDefaults.standardUserDefaults().objectForKey("lastReloadDate") as? NSDate else { return }
-        print("> Date loaded from local presistence: \(date)")
-        self.lastReloadDate = date
+        let lastReloadDate = decoder.decodeObjectForKey("SSLastReloadDate") as? NSDate
+        
+        guard
+            let newSteps = decoder.decodeObjectForKey("SSNewSteps") as? Double,
+            let distanceTravelledTodayValue = decoder.decodeObjectForKey("SSDistanceTravelledTodayValue") as? Double,
+            let totalStepsTodayValue = decoder.decodeObjectForKey("SSTotalStepsTodayValue") as? Double,
+            let weekProgressValue = decoder.decodeObjectForKey("SSWeekProgressValue") as? Dictionary<Int, Double>
+        else { return nil }
+        
+        self.init()
+        
+        self.lastReloadDate = lastReloadDate
+        self.newSteps = newSteps
+        self.distanceTravelledToday.value = distanceTravelledTodayValue
+        self.totalStepsToday.value = totalStepsTodayValue
+        self.weekProgress.value = weekProgressValue
+        
+    }
+    
+    func encodeWithCoder(coder: NSCoder) {
+        
+        coder.encodeObject(self.lastReloadDate, forKey: "SSLastReloadDate")
+        coder.encodeObject(self.newSteps, forKey: "SSNewSteps")
+        coder.encodeObject(self.distanceTravelledToday.value, forKey: "SSDistanceTravelledTodayValue")
+        coder.encodeObject(self.totalStepsToday.value, forKey: "SSTotalStepsTodayValue")
+        coder.encodeObject(self.weekProgress.value, forKey: "SSWeekProgressValue")
         
     }
     
