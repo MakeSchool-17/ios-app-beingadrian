@@ -32,14 +32,21 @@ class MainViewController: UIViewController {
     
         guard let view = view as? SKView else { return }
         
-        // simulate pet and user
-        guard let testPet = Test().createTestPet() else { return }
-        let testUser = Test().createTestUser()
+        let defaults = NSUserDefaults.standardUserDefaults()
         
-        // gameManager creation
-        self.gameManager = GameManager(
-            user: testUser,
-            pet: testPet)
+        let petData = defaults.objectForKey("PetArchive") as? NSData
+        let userData = defaults.objectForKey("UserArchive") as? NSData
+        
+        if let petData = petData, userData = userData {
+            let pet = NSKeyedUnarchiver.unarchiveObjectWithData(petData) as! Pet
+            let user = NSKeyedUnarchiver.unarchiveObjectWithData(userData) as! User
+            self.gameManager = GameManager(user: user, pet: pet)
+        } else {
+            // simulate pet and user
+            guard let testPet = Test().createTestPet() else { return }
+            let testUser = Test().createTestUser()
+            self.gameManager = GameManager(user: testUser, pet: testPet)
+        }
         
         guard let gameManager = self.gameManager else { return }
         

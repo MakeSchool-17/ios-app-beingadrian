@@ -28,7 +28,9 @@ class StatsStore {
     var lastReloadDate: NSDate? {
         didSet {
             guard let lastReloadDate = lastReloadDate else { return }
-            NSUserDefaults.standardUserDefaults().setObject(lastReloadDate, forKey: "lastReloadDate")
+            NSUserDefaults
+                .standardUserDefaults()
+                .setObject(lastReloadDate, forKey: "lastReloadDate")
         }
     }
     var newSteps: Double = 0

@@ -10,7 +10,7 @@ import RxSwift
 import Firebase
 
 
-class Pet {
+class Pet: NSObject, NSCoding {
     
     var disposeBag = DisposeBag()
     
@@ -61,7 +61,7 @@ class Pet {
     /**
      * Initializes the class from scratch.
      */
-    init(name: String, family: Family, owner: User) {
+    init(name: String, family: Family, ownerUID: String) {
         
         self.name = Variable(name)
         self.level = Variable(0)
@@ -70,11 +70,13 @@ class Pet {
         self.hp = Variable(0)
         self.hpMax = Variable(10)
         self.family = Variable(family)
-        self.ownerUID = Variable(owner.uid)
+        self.ownerUID = Variable(ownerUID)
         self.sprite = Variable(family.sprite)
         
         let id = firebaseHelper.petsRef.childByAutoId().key
         self.id = Variable(id)
+        
+        super.init()
         
         bindToFirebase()
         
@@ -98,7 +100,56 @@ class Pet {
         self.sprite = Variable(model.family.sprite)
         self.id = Variable(id)
         
+        super.init()
+        
         bindToFirebase()
+        
+    }
+    
+    // MARK: - NSCopying
+    
+    required convenience init?(coder decoder: NSCoder) {
+        
+        func decodeWithKey(key: String) -> AnyObject? {
+            return decoder.decodeObjectForKey(key)
+        }
+        
+        guard
+            let nameValue = decodeWithKey("PetNameValue") as? String,
+            let levelValue = decodeWithKey("PetLevelValue") as? Int,
+            let expValue = decodeWithKey("PetExpValue") as? Float,
+            let expMaxValue = decodeWithKey("PetExpMaxValue") as? Float,
+            let hpValue = decodeWithKey("PetHpValue") as? Float,
+            let hpMaxValue = decodeWithKey("PetHpMaxValue") as? Float,
+            let familyRawValue = decodeWithKey("PetFamilyRawValue") as? String,
+            let ownerUIDValue = decodeWithKey("PetOwnerUIDValue") as? String,
+            let idValue = decodeWithKey("PetIDValue") as? String
+        else { return nil }
+        
+        guard let family = Family(rawValue: familyRawValue) else { return nil }
+        
+        self.init(name: nameValue, family: family, ownerUID: ownerUIDValue)
+        
+        self.level.value = levelValue
+        self.exp.value = expValue
+        self.expMax.value = expMaxValue
+        self.hp.value = hpValue
+        self.hpMax.value = hpMaxValue
+        self.id.value = idValue
+        
+    }
+    
+    func encodeWithCoder(coder: NSCoder) {
+        
+        coder.encodeObject(self.name.value, forKey: "PetNameValue")
+        coder.encodeObject(self.level.value, forKey: "PetLevelValue")
+        coder.encodeObject(self.exp.value, forKey: "PetExpValue")
+        coder.encodeObject(self.expMax.value, forKey: "PetExpMaxValue")
+        coder.encodeObject(self.hp.value, forKey: "PetHpValue")
+        coder.encodeObject(self.hpMax.value, forKey: "PetHpMaxValue")
+        coder.encodeObject(self.family.value.rawValue, forKey: "PetFamilyRawValue")
+        coder.encodeObject(self.ownerUID.value, forKey: "PetOwnerUIDValue")
+        coder.encodeObject(self.id.value, forKey: "PetIDValue")
         
     }
     

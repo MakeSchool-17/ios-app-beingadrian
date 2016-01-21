@@ -12,7 +12,7 @@ import Firebase
 import RealmSwift
 
 
-class User {
+class User: NSObject, NSCoding {
     
     var disposeBag = DisposeBag()
     
@@ -36,6 +36,8 @@ class User {
         self.charge = Variable(0)
         self.uid = uid
         
+        super.init()
+        
         bindToFirebase()
         
     }
@@ -52,7 +54,35 @@ class User {
         self.charge = Variable(model.cash)
         self.uid = uid
         
+        super.init()
+        
         bindToFirebase()
+        
+    }
+    
+    // MARK: - NSCopying
+    
+    required convenience init?(coder decoder: NSCoder) {
+        
+        guard
+            let email = decoder.decodeObjectForKey("UserEmail") as? String,
+            let username = decoder.decodeObjectForKey("UserUsername") as? String,
+            let chargeValue = decoder.decodeObjectForKey("UserChargeValue") as? Int,
+            let uid = decoder.decodeObjectForKey("UserUID") as? String
+            else { return nil }
+        
+        self.init(email: email, username: username, uid: uid)
+        
+        self.charge.value = chargeValue
+        
+    }
+    
+    func encodeWithCoder(coder: NSCoder) {
+        
+        coder.encodeObject(self.email, forKey: "UserEmail")
+        coder.encodeObject(self.username, forKey: "UserUsername")
+        coder.encodeObject(self.charge.value, forKey: "UserChargeValue")
+        coder.encodeObject(self.uid, forKey: "UserUID")
         
     }
     
