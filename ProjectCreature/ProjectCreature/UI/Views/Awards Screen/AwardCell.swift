@@ -16,8 +16,9 @@ class AwardCell: UITableViewCell {
     @IBOutlet weak var awardNameLabel: UILabel!
     @IBOutlet weak var awardProgressLabel: UILabel!
     @IBOutlet weak var awardImageView: UIImageView!
-    
     @IBOutlet weak var awardDescriptionLabel: UILabel!
+    
+    var selectionStatus: Bool? = false
     
     // MARK: - Awake from nib
     
@@ -27,6 +28,5 @@ class AwardCell: UITableViewCell {
         self.clipsToBounds = true
         
     }
-    
     
 }

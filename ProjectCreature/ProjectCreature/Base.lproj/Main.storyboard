@@ -3,8 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -47,61 +45,56 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="pIq-ZK-nCs">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBr-7m-Ret" userLabel="Exit button">
-                                <rect key="frame" x="261" y="509" width="44" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="1K2-HK-Kkq"/>
-                                    <constraint firstAttribute="height" constant="44" id="p1J-Qg-B54"/>
-                                </constraints>
-                                <state key="normal" image="Close button"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="1K2-HK-Kkq"/>
-                                        <exclude reference="p1J-Qg-B54"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="onExitButtonTap:" destination="UZY-Iz-yzZ" eventType="touchUpInside" id="0Lu-Nt-x2y"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/awards" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Vn-Gk-9lo">
-                                <rect key="frame" x="127" y="25" width="67" height="25"/>
-                                <fontDescription key="fontDescription" name="Avenir-HeavyOblique" family="Avenir" pointSize="18"/>
-                                <color key="textColor" red="0.55294117647058827" green="0.55686274509803924" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fdh-F9-BXH">
-                                <rect key="frame" x="0.0" y="60" width="320" height="441"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fdh-F9-BXH">
+                                <rect key="frame" x="0.0" y="66" width="320" height="502"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1uT-mm-L2C">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="9F1-vk-S7h"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="66" id="HWl-o7-MTc"/>
+                                </constraints>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="Avenir-HeavyOblique" family="Avenir" pointSize="0.0"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Awards" id="TX5-bN-QlN">
+                                        <barButtonItem key="rightBarButtonItem" image="Close button" id="4jb-Sb-yfY">
+                                            <inset key="imageInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                            <color key="tintColor" red="0.54059868129999999" green="0.54059868129999999" blue="0.54059868129999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="onExitButtonTap:" destination="UZY-Iz-yzZ" id="TUQ-8M-UEr"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="GkQ-1G-zs5" firstAttribute="top" secondItem="hBr-7m-Ret" secondAttribute="bottom" constant="15" id="3sK-SK-WUv"/>
-                            <constraint firstItem="5Vn-Gk-9lo" firstAttribute="centerX" secondItem="fi4-PA-a1V" secondAttribute="centerX" id="4FS-8N-wmP"/>
                             <constraint firstAttribute="trailing" secondItem="pIq-ZK-nCs" secondAttribute="trailing" id="5wf-1l-gEh"/>
-                            <constraint firstItem="hBr-7m-Ret" firstAttribute="width" secondItem="pIq-ZK-nCs" secondAttribute="height" multiplier="11:142" id="8ek-hP-btX"/>
                             <constraint firstItem="fdh-F9-BXH" firstAttribute="top" secondItem="fi4-PA-a1V" secondAttribute="top" constant="50" id="FHv-YT-tJN"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hBr-7m-Ret" secondAttribute="trailing" constant="15" id="Fy1-Ej-BxP"/>
                             <constraint firstItem="fdh-F9-BXH" firstAttribute="leading" secondItem="fi4-PA-a1V" secondAttribute="leading" id="GGE-CN-9yi"/>
                             <constraint firstAttribute="trailing" secondItem="fdh-F9-BXH" secondAttribute="trailing" id="HKY-Te-M7r"/>
-                            <constraint firstAttribute="trailing" secondItem="hBr-7m-Ret" secondAttribute="trailing" constant="15" id="RiS-mm-mpJ"/>
-                            <constraint firstItem="fdh-F9-BXH" firstAttribute="top" secondItem="5Vn-Gk-9lo" secondAttribute="bottom" constant="10" id="U1x-N8-QJz"/>
+                            <constraint firstItem="fdh-F9-BXH" firstAttribute="top" secondItem="1uT-mm-L2C" secondAttribute="bottom" id="NSw-fw-KKx"/>
+                            <constraint firstItem="1uT-mm-L2C" firstAttribute="top" secondItem="fi4-PA-a1V" secondAttribute="top" id="Oh1-tq-MvO"/>
+                            <constraint firstAttribute="trailing" secondItem="1uT-mm-L2C" secondAttribute="trailing" id="WPf-Zx-wJo"/>
                             <constraint firstItem="GkQ-1G-zs5" firstAttribute="top" secondItem="fdh-F9-BXH" secondAttribute="bottom" constant="67" id="Zmb-w6-53g"/>
-                            <constraint firstItem="5Vn-Gk-9lo" firstAttribute="top" secondItem="oau-5c-lfL" secondAttribute="bottom" constant="5" id="dex-Wi-pJe"/>
-                            <constraint firstItem="GkQ-1G-zs5" firstAttribute="top" secondItem="hBr-7m-Ret" secondAttribute="bottom" constant="15" id="p9k-NM-R1W"/>
+                            <constraint firstItem="1uT-mm-L2C" firstAttribute="leading" secondItem="fi4-PA-a1V" secondAttribute="leading" id="pWp-iW-L2q"/>
                             <constraint firstItem="pIq-ZK-nCs" firstAttribute="leading" secondItem="fi4-PA-a1V" secondAttribute="leading" id="qfe-nQ-mfV"/>
+                            <constraint firstItem="GkQ-1G-zs5" firstAttribute="top" secondItem="fdh-F9-BXH" secondAttribute="bottom" id="vDd-Cz-J0d"/>
                             <constraint firstItem="pIq-ZK-nCs" firstAttribute="top" secondItem="fi4-PA-a1V" secondAttribute="top" id="vhR-8V-5kL"/>
                             <constraint firstItem="GkQ-1G-zs5" firstAttribute="top" secondItem="pIq-ZK-nCs" secondAttribute="bottom" id="yz1-TO-zD4"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="FHv-YT-tJN"/>
-                                <exclude reference="3sK-SK-WUv"/>
-                                <exclude reference="Fy1-Ej-BxP"/>
+                                <exclude reference="Zmb-w6-53g"/>
                             </mask>
                         </variation>
                         <connections>
+                            <outlet property="navigationBar" destination="1uT-mm-L2C" id="uKj-gw-Rwr"/>
                             <outlet property="tableView" destination="fdh-F9-BXH" id="ook-nZ-z6W"/>
                         </connections>
                     </view>
@@ -129,36 +122,50 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="ccr-Ry-NeG">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRj-gt-en6" userLabel="Exit button">
-                                <rect key="frame" x="261" y="509" width="44" height="44"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNt-8i-VME">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="5AB-rv-C1L"/>
-                                    <constraint firstAttribute="height" constant="44" id="SRb-fy-e3J"/>
-                                    <constraint firstAttribute="width" secondItem="dRj-gt-en6" secondAttribute="height" multiplier="1:1" id="hZg-op-Jvb"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="66" id="Ao3-Uv-96C"/>
+                                    <constraint firstAttribute="height" constant="66" id="c55-1N-tVT"/>
                                 </constraints>
-                                <state key="normal" image="Close button"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="5AB-rv-C1L"/>
-                                        <exclude reference="SRb-fy-e3J"/>
-                                        <exclude reference="hZg-op-Jvb"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="onExitButtonTap:" destination="eEb-eU-GAJ" eventType="touchUpInside" id="BA2-3a-ivM"/>
-                                </connections>
-                            </button>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="Avenir-HeavyOblique" family="Avenir" pointSize="0.0"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Store" id="lSA-mt-FNt">
+                                        <barButtonItem key="rightBarButtonItem" image="Close button" id="DeE-SP-fBH">
+                                            <inset key="imageInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                            <color key="tintColor" red="0.54059868129999999" green="0.54059868129999999" blue="0.54059868129999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="onExitButtonTap:" destination="eEb-eU-GAJ" id="afH-2W-sRU"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RTs-hD-3UW">
+                                <rect key="frame" x="0.0" y="66" width="320" height="502"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ccr-Ry-NeG" firstAttribute="leading" secondItem="Nef-DQ-ljl" secondAttribute="leading" id="BAy-Lh-aGi"/>
                             <constraint firstItem="maj-Wp-a3x" firstAttribute="top" secondItem="ccr-Ry-NeG" secondAttribute="bottom" id="IOq-vP-cf8"/>
-                            <constraint firstAttribute="trailing" secondItem="dRj-gt-en6" secondAttribute="trailing" constant="15" id="MZS-pJ-lgD"/>
-                            <constraint firstItem="maj-Wp-a3x" firstAttribute="top" secondItem="dRj-gt-en6" secondAttribute="bottom" constant="15" id="QK0-aq-eNr"/>
+                            <constraint firstItem="maj-Wp-a3x" firstAttribute="top" secondItem="RTs-hD-3UW" secondAttribute="bottom" id="Pif-vn-pWK"/>
+                            <constraint firstItem="RTs-hD-3UW" firstAttribute="leading" secondItem="Nef-DQ-ljl" secondAttribute="leading" id="SaR-I9-cjC"/>
+                            <constraint firstItem="cNt-8i-VME" firstAttribute="leading" secondItem="Nef-DQ-ljl" secondAttribute="leading" id="TOS-A0-4TF"/>
                             <constraint firstItem="ccr-Ry-NeG" firstAttribute="top" secondItem="Nef-DQ-ljl" secondAttribute="top" id="WwA-6u-hfI"/>
-                            <constraint firstItem="dRj-gt-en6" firstAttribute="width" secondItem="ccr-Ry-NeG" secondAttribute="height" multiplier="11:142" id="XGr-Q7-0zC"/>
+                            <constraint firstAttribute="trailing" secondItem="RTs-hD-3UW" secondAttribute="trailing" id="c1f-Ot-VE2"/>
+                            <constraint firstItem="RTs-hD-3UW" firstAttribute="top" secondItem="cNt-8i-VME" secondAttribute="bottom" id="e2d-sz-Gho"/>
+                            <constraint firstItem="cNt-8i-VME" firstAttribute="top" secondItem="Nef-DQ-ljl" secondAttribute="top" id="imu-LT-icN"/>
+                            <constraint firstAttribute="trailing" secondItem="cNt-8i-VME" secondAttribute="trailing" id="m0I-qy-zqL"/>
                             <constraint firstAttribute="trailing" secondItem="ccr-Ry-NeG" secondAttribute="trailing" id="vUH-lz-gJy"/>
                         </constraints>
+                        <connections>
+                            <outlet property="navigationBar" destination="cNt-8i-VME" id="czk-i9-puN"/>
+                            <outlet property="tableView" destination="RTs-hD-3UW" id="DSr-g0-XJW"/>
+                        </connections>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -172,7 +179,7 @@
         <!--Settings View Controller-->
         <scene sceneID="uwZ-QT-ovG">
             <objects>
-                <viewController id="vXv-jD-34n" customClass="SettingsViewController" customModule="ProjectCreature" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="vXv-jD-34n" customClass="SettingsViewController" customModule="ProjectCreature" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4AQ-2g-gKh"/>
                         <viewControllerLayoutGuide type="bottom" id="GbY-JC-MbZ"/>
@@ -184,42 +191,60 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="dqa-yK-Iwl">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CAp-68-C1e" userLabel="Exit button">
-                                <rect key="frame" x="261" y="509" width="44" height="44"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="9AH-CK-nEt">
+                                <rect key="frame" x="0.0" y="66" width="320" height="502"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <sections/>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wSg-bO-iOa">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Rnp-by-p77"/>
-                                    <constraint firstAttribute="width" constant="44" id="TV1-JY-k14"/>
-                                    <constraint firstAttribute="width" secondItem="CAp-68-C1e" secondAttribute="height" multiplier="1:1" id="UJW-2s-p0Y"/>
+                                    <constraint firstAttribute="height" constant="66" id="ER3-2Z-6YO"/>
                                 </constraints>
-                                <state key="normal" image="Close button"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Rnp-by-p77"/>
-                                        <exclude reference="TV1-JY-k14"/>
-                                        <exclude reference="UJW-2s-p0Y"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="onExitButtonTap:" destination="vXv-jD-34n" eventType="touchUpInside" id="egl-w4-3rw"/>
-                                </connections>
-                            </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sZX-DY-ynC">
-                                <rect key="frame" x="136" y="128" width="51" height="31"/>
-                                <color key="onTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="thumbTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </switch>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="Avenir-HeavyOblique" family="Avenir" pointSize="0.0"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Settings" id="g8u-JM-iQH">
+                                        <barButtonItem key="rightBarButtonItem" image="Close button" id="x02-bZ-d1M">
+                                            <inset key="imageInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                            <color key="tintColor" red="0.54059868129999999" green="0.54059868129999999" blue="0.54059868129999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="onExitButtonTap:" destination="vXv-jD-34n" id="jIE-r9-1aS"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="GbY-JC-MbZ" firstAttribute="top" secondItem="dqa-yK-Iwl" secondAttribute="bottom" id="6qJ-cc-mZm"/>
                             <constraint firstItem="dqa-yK-Iwl" firstAttribute="leading" secondItem="zKD-eb-Rw8" secondAttribute="leading" id="CJi-n8-m2M"/>
-                            <constraint firstItem="CAp-68-C1e" firstAttribute="width" secondItem="dqa-yK-Iwl" secondAttribute="height" multiplier="11:142" id="OAU-zm-tFf"/>
+                            <constraint firstItem="9AH-CK-nEt" firstAttribute="leading" secondItem="zKD-eb-Rw8" secondAttribute="leading" id="ErJ-Cf-SQK"/>
+                            <constraint firstItem="wSg-bO-iOa" firstAttribute="top" secondItem="zKD-eb-Rw8" secondAttribute="top" id="LHf-wa-pgY"/>
                             <constraint firstAttribute="trailing" secondItem="dqa-yK-Iwl" secondAttribute="trailing" id="S0X-Kx-BUg"/>
-                            <constraint firstItem="GbY-JC-MbZ" firstAttribute="top" secondItem="CAp-68-C1e" secondAttribute="bottom" constant="15" id="U7T-7x-aoK"/>
+                            <constraint firstItem="GbY-JC-MbZ" firstAttribute="top" secondItem="9AH-CK-nEt" secondAttribute="bottom" id="SdP-2h-lvy"/>
+                            <constraint firstItem="wSg-bO-iOa" firstAttribute="leading" secondItem="zKD-eb-Rw8" secondAttribute="leading" id="Yg2-9p-04J"/>
+                            <constraint firstItem="9AH-CK-nEt" firstAttribute="top" secondItem="wSg-bO-iOa" secondAttribute="bottom" id="eim-xx-Hns"/>
+                            <constraint firstItem="wSg-bO-iOa" firstAttribute="top" secondItem="4AQ-2g-gKh" secondAttribute="bottom" id="mmU-8M-pM4"/>
                             <constraint firstItem="dqa-yK-Iwl" firstAttribute="top" secondItem="zKD-eb-Rw8" secondAttribute="top" id="nRO-gZ-sDP"/>
-                            <constraint firstAttribute="trailing" secondItem="CAp-68-C1e" secondAttribute="trailing" constant="15" id="phG-Ff-XHH"/>
+                            <constraint firstAttribute="trailing" secondItem="9AH-CK-nEt" secondAttribute="trailing" id="tdZ-nk-4cg"/>
+                            <constraint firstItem="GbY-JC-MbZ" firstAttribute="top" secondItem="9AH-CK-nEt" secondAttribute="bottom" constant="15" id="xGI-bM-SBC"/>
+                            <constraint firstAttribute="trailing" secondItem="wSg-bO-iOa" secondAttribute="trailing" id="zQD-Es-dg7"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="mmU-8M-pM4"/>
+                                <exclude reference="xGI-bM-SBC"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <outlet property="navigationBar" destination="wSg-bO-iOa" id="Ckk-K4-bHg"/>
+                            <outlet property="tableView" destination="9AH-CK-nEt" id="QaE-ot-Zuf"/>
+                        </connections>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="mainView" destination="zKD-eb-Rw8" id="Xzb-JK-0Tw"/>
@@ -244,36 +269,41 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="Xzd-mE-s9u">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OuW-Y2-iRd" userLabel="Exit button">
-                                <rect key="frame" x="261" y="509" width="44" height="44"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BDx-al-76f">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="Nr1-1h-syM"/>
-                                    <constraint firstAttribute="height" constant="44" id="Xda-pp-d8z"/>
-                                    <constraint firstAttribute="width" secondItem="OuW-Y2-iRd" secondAttribute="height" multiplier="1:1" id="rHj-O3-ji6"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="66" id="ePA-Yh-P9D"/>
+                                    <constraint firstAttribute="height" constant="66" id="wpD-hY-Fe8"/>
                                 </constraints>
-                                <state key="normal" image="Close button"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Nr1-1h-syM"/>
-                                        <exclude reference="Xda-pp-d8z"/>
-                                        <exclude reference="rHj-O3-ji6"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="onExitButtonTap:" destination="TMN-WZ-5M6" eventType="touchUpInside" id="jU8-6G-nKn"/>
-                                </connections>
-                            </button>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="Avenir-HeavyOblique" family="Avenir" pointSize="0.0"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Leaderboard" id="jaU-3y-0OF">
+                                        <barButtonItem key="rightBarButtonItem" image="Close button" id="aRI-7x-iiM">
+                                            <inset key="imageInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                            <color key="tintColor" red="0.54059868129999999" green="0.54059868129999999" blue="0.54059868129999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="onExitButtonTap:" destination="TMN-WZ-5M6" id="g1U-fN-dHK"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Xzd-mE-s9u" firstAttribute="leading" secondItem="hsg-rx-K5D" secondAttribute="leading" id="1Aq-xN-Erw"/>
-                            <constraint firstItem="OuW-Y2-iRd" firstAttribute="width" secondItem="Xzd-mE-s9u" secondAttribute="height" multiplier="11:142" id="1hB-bq-leK"/>
                             <constraint firstItem="Xzd-mE-s9u" firstAttribute="top" secondItem="hsg-rx-K5D" secondAttribute="top" id="1yl-Ms-Fc8"/>
-                            <constraint firstItem="Xuz-d4-rIY" firstAttribute="top" secondItem="OuW-Y2-iRd" secondAttribute="bottom" constant="15" id="2Qo-Oe-KJk"/>
-                            <constraint firstAttribute="trailing" secondItem="OuW-Y2-iRd" secondAttribute="trailing" constant="15" id="5fb-VX-l6Y"/>
+                            <constraint firstItem="BDx-al-76f" firstAttribute="leading" secondItem="hsg-rx-K5D" secondAttribute="leading" id="6Yh-t4-9ih"/>
+                            <constraint firstItem="BDx-al-76f" firstAttribute="top" secondItem="hsg-rx-K5D" secondAttribute="top" id="B0P-3s-Cw6"/>
+                            <constraint firstAttribute="trailing" secondItem="BDx-al-76f" secondAttribute="trailing" id="TNO-3k-vJg"/>
                             <constraint firstAttribute="trailing" secondItem="Xzd-mE-s9u" secondAttribute="trailing" id="jVe-fs-zLC"/>
                             <constraint firstItem="Xuz-d4-rIY" firstAttribute="top" secondItem="Xzd-mE-s9u" secondAttribute="bottom" id="x5R-Aj-5Y4"/>
                         </constraints>
+                        <connections>
+                            <outlet property="navigationBar" destination="BDx-al-76f" id="VHA-cE-fgJ"/>
+                        </connections>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>

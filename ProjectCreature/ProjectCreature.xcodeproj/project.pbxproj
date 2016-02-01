@@ -30,6 +30,13 @@
 		333532731C165176003145AA /* MenuLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333532721C165176003145AA /* MenuLayer.swift */; };
 		333532751C1651D4003145AA /* MenuLayerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333532741C1651D4003145AA /* MenuLayerUI.swift */; };
 		333532771C169158003145AA /* DashboardSceneAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333532761C169158003145AA /* DashboardSceneAnimations.swift */; };
+		333C0A951C540A8C00A1C84F /* SwitchSettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 333C0A941C540A8C00A1C84F /* SwitchSettingsCell.xib */; };
+		333C0A971C540B6900A1C84F /* SwitchSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333C0A961C540B6900A1C84F /* SwitchSettingsCell.swift */; };
+		333C0A991C5419D900A1C84F /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333C0A981C5419D900A1C84F /* SettingsViewModel.swift */; };
+		333C0A9C1C541E5900A1C84F /* DetailSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333C0A9A1C541E5900A1C84F /* DetailSettingsCell.swift */; };
+		333C0A9D1C541E5900A1C84F /* DetailSettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 333C0A9B1C541E5900A1C84F /* DetailSettingsCell.xib */; };
+		333C0AA41C548F2D00A1C84F /* StoreItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 333C0AA21C548F2D00A1C84F /* StoreItemCell.xib */; };
+		333C0AA61C54A07C00A1C84F /* StoreItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333C0AA51C54A07C00A1C84F /* StoreItemCell.swift */; };
 		3346CAE71C37125C00921A4B /* AwardsMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3346CAE61C37125C00921A4B /* AwardsMainView.swift */; };
 		334A91211C44CF57009A324D /* ProgressReportPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A91201C44CF57009A324D /* ProgressReportPopUp.swift */; };
 		3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */; };
@@ -93,6 +100,9 @@
 		33BBFD7A1C121F8300E76511 /* DashboardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD6C1C121F8300E76511 /* DashboardScene.swift */; };
 		33BBFD7B1C121F8300E76511 /* DashboardSceneUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD6D1C121F8300E76511 /* DashboardSceneUI.swift */; };
 		33BBFD7F1C121F8300E76511 /* BarHorizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD731C121F8300E76511 /* BarHorizontal.swift */; };
+		33D307021C5F2B6D00607DDC /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D307011C5F2B6D00607DDC /* StoreViewModel.swift */; };
+		33D307041C5F2BEE00607DDC /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D307031C5F2BEE00607DDC /* StoreItem.swift */; };
+		33D307061C5F2D4100607DDC /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D307051C5F2D4100607DDC /* Achievement.swift */; };
 		33EF1AD11C477D5700FF1672 /* PopUpLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EF1AD01C477D5700FF1672 /* PopUpLayer.swift */; };
 		33FC7CB51C3E594700012283 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FC7CB41C3E594700012283 /* Food.swift */; };
 /* End PBXBuildFile section */
@@ -154,6 +164,13 @@
 		333532721C165176003145AA /* MenuLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuLayer.swift; sourceTree = "<group>"; };
 		333532741C1651D4003145AA /* MenuLayerUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuLayerUI.swift; sourceTree = "<group>"; };
 		333532761C169158003145AA /* DashboardSceneAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardSceneAnimations.swift; sourceTree = "<group>"; };
+		333C0A941C540A8C00A1C84F /* SwitchSettingsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchSettingsCell.xib; sourceTree = "<group>"; };
+		333C0A961C540B6900A1C84F /* SwitchSettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchSettingsCell.swift; sourceTree = "<group>"; };
+		333C0A981C5419D900A1C84F /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		333C0A9A1C541E5900A1C84F /* DetailSettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSettingsCell.swift; sourceTree = "<group>"; };
+		333C0A9B1C541E5900A1C84F /* DetailSettingsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailSettingsCell.xib; sourceTree = "<group>"; };
+		333C0AA21C548F2D00A1C84F /* StoreItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreItemCell.xib; sourceTree = "<group>"; };
+		333C0AA51C54A07C00A1C84F /* StoreItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreItemCell.swift; sourceTree = "<group>"; };
 		3346CAE61C37125C00921A4B /* AwardsMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwardsMainView.swift; sourceTree = "<group>"; };
 		334A91201C44CF57009A324D /* ProgressReportPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressReportPopUp.swift; sourceTree = "<group>"; };
 		3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
@@ -221,6 +238,9 @@
 		33BBFD6C1C121F8300E76511 /* DashboardScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardScene.swift; sourceTree = "<group>"; };
 		33BBFD6D1C121F8300E76511 /* DashboardSceneUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardSceneUI.swift; sourceTree = "<group>"; };
 		33BBFD731C121F8300E76511 /* BarHorizontal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarHorizontal.swift; sourceTree = "<group>"; };
+		33D307011C5F2B6D00607DDC /* StoreViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
+		33D307031C5F2BEE00607DDC /* StoreItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreItem.swift; sourceTree = "<group>"; };
+		33D307051C5F2D4100607DDC /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		33EF1AD01C477D5700FF1672 /* PopUpLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpLayer.swift; sourceTree = "<group>"; };
 		33FC7CB41C3E594700012283 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -278,8 +298,7 @@
 				3315D8581C3F7C0900878F7C /* Head */,
 				3315D85A1C3F7C0900878F7C /* Pets */,
 			);
-			name = PetSprites;
-			path = ../../PetSprites;
+			path = PetSprites;
 			sourceTree = "<group>";
 		};
 		3315D8541C3F7C0900878F7C /* Animations */ = {
@@ -363,6 +382,17 @@
 			path = MenuLayer;
 			sourceTree = "<group>";
 		};
+		333C0A931C540A7A00A1C84F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				333C0A941C540A8C00A1C84F /* SwitchSettingsCell.xib */,
+				333C0A9A1C541E5900A1C84F /* DetailSettingsCell.swift */,
+				333C0A9B1C541E5900A1C84F /* DetailSettingsCell.xib */,
+				333C0A961C540B6900A1C84F /* SwitchSettingsCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		3346CAE21C37123400921A4B /* Awards Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -384,6 +414,7 @@
 		3346CAE41C37123400921A4B /* Settings Screen */ = {
 			isa = PBXGroup;
 			children = (
+				333C0A931C540A7A00A1C84F /* Cells */,
 				337199C61C3B1E20008108B6 /* SettingsMainView.swift */,
 			);
 			path = "Settings Screen";
@@ -392,8 +423,9 @@
 		3346CAE51C37123400921A4B /* Store Screen */ = {
 			isa = PBXGroup;
 			children = (
-				3315D8531C3F7C0900878F7C /* PetSprites */,
 				337199C81C3B1E2A008108B6 /* StoreMainView.swift */,
+				333C0AA21C548F2D00A1C84F /* StoreItemCell.xib */,
+				333C0AA51C54A07C00A1C84F /* StoreItemCell.swift */,
 			);
 			path = "Store Screen";
 			sourceTree = "<group>";
@@ -608,6 +640,7 @@
 				33BBFD5D1C121E9900E76511 /* ViewModels */,
 				3383692D1BF69FE6006407FF /* View Controllers */,
 				33BBFD5F1C121E9900E76511 /* Views */,
+				3315D8531C3F7C0900878F7C /* PetSprites */,
 				3315D8661C3F975600878F7C /* FoodSprites */,
 				33BBFD721C121F8300E76511 /* Subclasses */,
 			);
@@ -658,6 +691,8 @@
 			children = (
 				33BBFD5E1C121E9900E76511 /* DashboardViewModel.swift */,
 				330F6B4C1C151557004CCAED /* StatsViewModel.swift */,
+				333C0A981C5419D900A1C84F /* SettingsViewModel.swift */,
+				33D307011C5F2B6D00607DDC /* StoreViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -679,6 +714,8 @@
 				337847611C1E826500B3722D /* Pet.swift */,
 				337847631C1EA1F100B3722D /* User.swift */,
 				33FC7CB41C3E594700012283 /* Food.swift */,
+				33D307031C5F2BEE00607DDC /* StoreItem.swift */,
+				33D307051C5F2D4100607DDC /* Achievement.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -825,7 +862,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3315D8611C3F7C0900878F7C /* TestScene.sks in Resources */,
+				333C0AA41C548F2D00A1C84F /* StoreItemCell.xib in Resources */,
 				338368E91BF67852006407FF /* LaunchScreen.storyboard in Resources */,
+				333C0A951C540A8C00A1C84F /* SwitchSettingsCell.xib in Resources */,
+				333C0A9D1C541E5900A1C84F /* DetailSettingsCell.xib in Resources */,
 				338368E61BF67852006407FF /* Assets.xcassets in Resources */,
 				338326A21C38651B00D21CAC /* AwardCell.xib in Resources */,
 				3315D85F1C3F7C0900878F7C /* ActionFactory.sks in Resources */,
@@ -858,10 +898,12 @@
 				3366C5C91C24B38A001AF86E /* SpriteKit+Spring+Extension.swift in Sources */,
 				337847671C1F3D3600B3722D /* FirebaseHelper.swift in Sources */,
 				337199CC1C3B2307008108B6 /* GameManagerHolder.swift in Sources */,
+				33D307021C5F2B6D00607DDC /* StoreViewModel.swift in Sources */,
 				33EF1AD11C477D5700FF1672 /* PopUpLayer.swift in Sources */,
 				337847621C1E826500B3722D /* Pet.swift in Sources */,
 				3378475E1C1E054700B3722D /* SKButtonSprite.swift in Sources */,
 				3324827C1C2E55BB00C4655E /* SKAction+Extension.swift in Sources */,
+				33D307061C5F2D4100607DDC /* Achievement.swift in Sources */,
 				3366C5CA1C24B38A001AF86E /* CGFrame+Extension.swift in Sources */,
 				3318222F1C28CCA10094245D /* RxCompliant.swift in Sources */,
 				3315D8601C3F7C0900878F7C /* ActionManager.swift in Sources */,
@@ -897,9 +939,11 @@
 				33BBFD601C121E9900E76511 /* DashboardViewModel.swift in Sources */,
 				3366C5C61C24B38A001AF86E /* SKLabelNode+Extension.swift in Sources */,
 				337847751C1F556A00B3722D /* Firebase+Rx.swift in Sources */,
+				333C0A9C1C541E5900A1C84F /* DetailSettingsCell.swift in Sources */,
 				330F6B4D1C151557004CCAED /* StatsViewModel.swift in Sources */,
 				33FC7CB51C3E594700012283 /* Food.swift in Sources */,
 				3366C5AA1C2373D9001AF86E /* StatsStore.swift in Sources */,
+				33D307041C5F2BEE00607DDC /* StoreItem.swift in Sources */,
 				333532731C165176003145AA /* MenuLayer.swift in Sources */,
 				3366C5AC1C2390FA001AF86E /* HistogramPointer.swift in Sources */,
 				334A91211C44CF57009A324D /* ProgressReportPopUp.swift in Sources */,
@@ -908,11 +952,14 @@
 				339874281BFFFE7200F47B2B /* GameManager.swift in Sources */,
 				337847831C22202E00B3722D /* PetJsonModel.swift in Sources */,
 				33B9907B1C2F5C9400D6CA10 /* CGFloat+Extension.swift in Sources */,
+				333C0A971C540B6900A1C84F /* SwitchSettingsCell.swift in Sources */,
 				330C80EE1C33164700ADF713 /* AwardsViewController.swift in Sources */,
 				3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */,
 				3366C5C41C24B38A001AF86E /* NSNumberFormatter+Extension.swift in Sources */,
 				3315D8641C3F7C0900878F7C /* PandoStateFunctions.swift in Sources */,
+				333C0AA61C54A07C00A1C84F /* StoreItemCell.swift in Sources */,
 				3366C5CC1C24B38A001AF86E /* UIColor+Extension.swift in Sources */,
+				333C0A991C5419D900A1C84F /* SettingsViewModel.swift in Sources */,
 				3335326E1C164F6B003145AA /* StatsLayer.swift in Sources */,
 				339914311C310D8500268C2A /* Double+Extension.swift in Sources */,
 				3366C5C71C24B38A001AF86E /* SKNode+Extension.swift in Sources */,

@@ -10,13 +10,31 @@ import UIKit
 
 
 class LeaderboardMainView: UIView {
+    
+    // MARK: - Property
+    
+    @IBOutlet weak var navigationBar: UINavigationBar!
 
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
+    // MARK: - Awake from nib
+    
+    override func awakeFromNib() {
+        
+        setup()
+        
     }
-    */
+    
+    private func setup() {
+        
+        // navigation bar
+        navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        navigationBar.shadowImage = nil
+        navigationBar.translucent = true
+        
+        // navigation title
+        navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "Avenir-HeavyOblique", size: 18)!,
+            NSForegroundColorAttributeName: UIColor.darkGrayColor()]
+        
+    }
 
 }

@@ -54,23 +54,17 @@ extension AwardsViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        if (indexPath.section == mainView.selectedIndexPath) {
-            if mainView.cellIsSelected {
-                mainView.cellIsSelected = false
-                return 44
-            } else {
-                mainView.cellIsSelected = true
-                return 88
-            }
+        if (mainView.selectedSection == indexPath.section) {
+            return 100
+        } else {
+            return 50
         }
-        
-        return 44
         
     }
     
-    // MARK: - Cell footer
+    // MARK: - Cell spacing header
     
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let view = UIView()
         view.backgroundColor = UIColor.clearColor()
@@ -79,9 +73,9 @@ extension AwardsViewController: UITableViewDelegate {
         
     }
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        return 15
+        return 20
         
     }
     
@@ -89,10 +83,26 @@ extension AwardsViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        mainView.selectedIndexPath = indexPath.section
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! AwardCell
         
+        if cell.selectionStatus == true {
+            cell.selectionStatus = false
+            mainView.selectedSection = nil
+        } else {
+            cell.selectionStatus = true
+            mainView.selectedSection = indexPath.section
+        }
+
         tableView.beginUpdates()
         tableView.endUpdates()
+        
+    }
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! AwardCell
+        
+        cell.selectionStatus = false
         
     }
     

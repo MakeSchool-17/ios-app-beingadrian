@@ -19,7 +19,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum odor ismet." textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62D-sR-CrA">
                                 <rect key="frame" x="20" y="5" width="280" height="46"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -34,22 +34,22 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xUd-GM-N7w" userLabel="Top View">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some Award" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igd-UL-dp5">
-                                <rect key="frame" x="60" y="13" width="90.5" height="19.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <rect key="frame" x="60" y="14" width="91" height="22"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100/1000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7I-bw-kt9">
-                                <rect key="frame" x="238.5" y="14.5" width="61" height="17"/>
+                                <rect key="frame" x="239" y="16" width="61" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fRH-4B-C2U">
-                                <rect key="frame" x="20" y="7" width="30" height="30"/>
+                                <rect key="frame" x="20" y="10" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="DHh-Ha-8ef"/>
                                     <constraint firstAttribute="height" constant="30" id="iFc-rn-N5Q"/>
@@ -59,7 +59,7 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="p7I-bw-kt9" firstAttribute="centerY" secondItem="igd-UL-dp5" secondAttribute="centerY" id="2Dc-t1-TJV"/>
-                            <constraint firstAttribute="height" constant="44" id="J6s-Kr-ju0"/>
+                            <constraint firstAttribute="height" constant="50" id="J6s-Kr-ju0"/>
                             <constraint firstAttribute="trailing" secondItem="p7I-bw-kt9" secondAttribute="trailing" constant="20" id="PE4-4m-EE5"/>
                             <constraint firstItem="fRH-4B-C2U" firstAttribute="leading" secondItem="xUd-GM-N7w" secondAttribute="leading" constant="20" id="aGV-N8-WYs"/>
                             <constraint firstItem="igd-UL-dp5" firstAttribute="leading" secondItem="fRH-4B-C2U" secondAttribute="trailing" constant="10" id="c3p-eQ-hd5"/>

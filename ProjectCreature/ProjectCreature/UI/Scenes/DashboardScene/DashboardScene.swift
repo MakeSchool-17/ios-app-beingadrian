@@ -63,6 +63,7 @@ class DashboardScene: SKScene {
                 onNext: nil,
                 onError: { (error) -> Void in
                     print("> Failed performing initial check: \(error)")
+                    self.didFinishPerformingInitialCheck()
                 },
                 onCompleted: {
                     print("> Completed performing initial check")

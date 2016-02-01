@@ -14,15 +14,31 @@ class AwardsMainView: UIView {
     // MARK: - Properties
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
-    var selectedIndexPath = 0
-    var cellIsSelected = false
+    var selectedSection: Int?
     
     // MARK: - Awake from nib
     
     override func awakeFromNib() {
         
+        setup()
+        
+    }
+    
+    private func setup() {
+        
         setupTableView()
+        
+        // navigation bar
+        navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        navigationBar.shadowImage = nil
+        navigationBar.translucent = true
+        
+        // navigation title
+        navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont(name: "Avenir-HeavyOblique", size: 18)!,
+            NSForegroundColorAttributeName: UIColor.darkGrayColor()]
         
     }
     
@@ -37,5 +53,5 @@ class AwardsMainView: UIView {
         tableView.registerNib(awardCellNib, forCellReuseIdentifier: "AwardCell")
         
     }
-
+    
 }
