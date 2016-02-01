@@ -38,9 +38,7 @@
 		333C0AA41C548F2D00A1C84F /* StoreItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 333C0AA21C548F2D00A1C84F /* StoreItemCell.xib */; };
 		333C0AA61C54A07C00A1C84F /* StoreItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333C0AA51C54A07C00A1C84F /* StoreItemCell.swift */; };
 		3346CAE71C37125C00921A4B /* AwardsMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3346CAE61C37125C00921A4B /* AwardsMainView.swift */; };
-		334A91211C44CF57009A324D /* ProgressReportPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334A91201C44CF57009A324D /* ProgressReportPopUp.swift */; };
 		3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */; };
-		3358949E1C46333A0087633C /* LevelUpPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3358949D1C46333A0087633C /* LevelUpPopUp.swift */; };
 		336008561C40DB2000FDD89E /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336008551C40DB2000FDD89E /* NSDate+Extension.swift */; };
 		3366C5A81C2337C7001AF86E /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5A71C2337C7001AF86E /* Test.swift */; };
 		3366C5AA1C2373D9001AF86E /* StatsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5A91C2373D9001AF86E /* StatsStore.swift */; };
@@ -100,10 +98,16 @@
 		33BBFD7A1C121F8300E76511 /* DashboardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD6C1C121F8300E76511 /* DashboardScene.swift */; };
 		33BBFD7B1C121F8300E76511 /* DashboardSceneUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD6D1C121F8300E76511 /* DashboardSceneUI.swift */; };
 		33BBFD7F1C121F8300E76511 /* BarHorizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD731C121F8300E76511 /* BarHorizontal.swift */; };
+		33BEF71B1C5F493700DCE27F /* LevelUpPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF7161C5F493700DCE27F /* LevelUpPopUp.swift */; };
+		33BEF71C1C5F493700DCE27F /* PopUpLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF7171C5F493700DCE27F /* PopUpLayer.swift */; };
+		33BEF71D1C5F493700DCE27F /* ProgressReportPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF7181C5F493700DCE27F /* ProgressReportPopUp.swift */; };
+		33BEF71E1C5F493700DCE27F /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF71A1C5F493700DCE27F /* PopUpViewController.swift */; };
+		33BEF7201C5F494D00DCE27F /* PopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33BEF71F1C5F494D00DCE27F /* PopUp.storyboard */; };
+		33BEF7221C5F52B700DCE27F /* PopUpMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF7211C5F52B700DCE27F /* PopUpMainView.swift */; };
 		33D307021C5F2B6D00607DDC /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D307011C5F2B6D00607DDC /* StoreViewModel.swift */; };
 		33D307041C5F2BEE00607DDC /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D307031C5F2BEE00607DDC /* StoreItem.swift */; };
 		33D307061C5F2D4100607DDC /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D307051C5F2D4100607DDC /* Achievement.swift */; };
-		33EF1AD11C477D5700FF1672 /* PopUpLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EF1AD01C477D5700FF1672 /* PopUpLayer.swift */; };
+		33D307081C5F300C00607DDC /* StoreBuyButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D307071C5F300C00607DDC /* StoreBuyButtonDelegate.swift */; };
 		33FC7CB51C3E594700012283 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FC7CB41C3E594700012283 /* Food.swift */; };
 /* End PBXBuildFile section */
 
@@ -172,9 +176,7 @@
 		333C0AA21C548F2D00A1C84F /* StoreItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreItemCell.xib; sourceTree = "<group>"; };
 		333C0AA51C54A07C00A1C84F /* StoreItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreItemCell.swift; sourceTree = "<group>"; };
 		3346CAE61C37125C00921A4B /* AwardsMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwardsMainView.swift; sourceTree = "<group>"; };
-		334A91201C44CF57009A324D /* ProgressReportPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressReportPopUp.swift; sourceTree = "<group>"; };
 		3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
-		3358949D1C46333A0087633C /* LevelUpPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelUpPopUp.swift; sourceTree = "<group>"; };
 		336008551C40DB2000FDD89E /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
 		3366C5A71C2337C7001AF86E /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		3366C5A91C2373D9001AF86E /* StatsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsStore.swift; sourceTree = "<group>"; };
@@ -238,10 +240,16 @@
 		33BBFD6C1C121F8300E76511 /* DashboardScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardScene.swift; sourceTree = "<group>"; };
 		33BBFD6D1C121F8300E76511 /* DashboardSceneUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardSceneUI.swift; sourceTree = "<group>"; };
 		33BBFD731C121F8300E76511 /* BarHorizontal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarHorizontal.swift; sourceTree = "<group>"; };
+		33BEF7161C5F493700DCE27F /* LevelUpPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelUpPopUp.swift; sourceTree = "<group>"; };
+		33BEF7171C5F493700DCE27F /* PopUpLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpLayer.swift; sourceTree = "<group>"; };
+		33BEF7181C5F493700DCE27F /* ProgressReportPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressReportPopUp.swift; sourceTree = "<group>"; };
+		33BEF71A1C5F493700DCE27F /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		33BEF71F1C5F494D00DCE27F /* PopUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PopUp.storyboard; sourceTree = "<group>"; };
+		33BEF7211C5F52B700DCE27F /* PopUpMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpMainView.swift; sourceTree = "<group>"; };
 		33D307011C5F2B6D00607DDC /* StoreViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
 		33D307031C5F2BEE00607DDC /* StoreItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreItem.swift; sourceTree = "<group>"; };
 		33D307051C5F2D4100607DDC /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
-		33EF1AD01C477D5700FF1672 /* PopUpLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpLayer.swift; sourceTree = "<group>"; };
+		33D307071C5F300C00607DDC /* StoreBuyButtonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreBuyButtonDelegate.swift; sourceTree = "<group>"; };
 		33FC7CB41C3E594700012283 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -433,9 +441,8 @@
 		334A911F1C44CE95009A324D /* PopUps */ = {
 			isa = PBXGroup;
 			children = (
-				33EF1AD01C477D5700FF1672 /* PopUpLayer.swift */,
-				334A91201C44CF57009A324D /* ProgressReportPopUp.swift */,
-				3358949D1C46333A0087633C /* LevelUpPopUp.swift */,
+				33BEF7151C5F493700DCE27F /* SpriteKit */,
+				33BEF7191C5F493700DCE27F /* UIKit */,
 			);
 			path = PopUps;
 			sourceTree = "<group>";
@@ -521,6 +528,7 @@
 			isa = PBXGroup;
 			children = (
 				337199CB1C3B2307008108B6 /* GameManagerHolder.swift */,
+				33D307071C5F300C00607DDC /* StoreBuyButtonDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -750,6 +758,26 @@
 			path = Subclasses;
 			sourceTree = "<group>";
 		};
+		33BEF7151C5F493700DCE27F /* SpriteKit */ = {
+			isa = PBXGroup;
+			children = (
+				33BEF7161C5F493700DCE27F /* LevelUpPopUp.swift */,
+				33BEF7171C5F493700DCE27F /* PopUpLayer.swift */,
+				33BEF7181C5F493700DCE27F /* ProgressReportPopUp.swift */,
+			);
+			path = SpriteKit;
+			sourceTree = "<group>";
+		};
+		33BEF7191C5F493700DCE27F /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				33BEF71A1C5F493700DCE27F /* PopUpViewController.swift */,
+				33BEF71F1C5F494D00DCE27F /* PopUp.storyboard */,
+				33BEF7211C5F52B700DCE27F /* PopUpMainView.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -866,6 +894,7 @@
 				338368E91BF67852006407FF /* LaunchScreen.storyboard in Resources */,
 				333C0A951C540A8C00A1C84F /* SwitchSettingsCell.xib in Resources */,
 				333C0A9D1C541E5900A1C84F /* DetailSettingsCell.xib in Resources */,
+				33BEF7201C5F494D00DCE27F /* PopUp.storyboard in Resources */,
 				338368E61BF67852006407FF /* Assets.xcassets in Resources */,
 				338326A21C38651B00D21CAC /* AwardCell.xib in Resources */,
 				3315D85F1C3F7C0900878F7C /* ActionFactory.sks in Resources */,
@@ -899,21 +928,21 @@
 				337847671C1F3D3600B3722D /* FirebaseHelper.swift in Sources */,
 				337199CC1C3B2307008108B6 /* GameManagerHolder.swift in Sources */,
 				33D307021C5F2B6D00607DDC /* StoreViewModel.swift in Sources */,
-				33EF1AD11C477D5700FF1672 /* PopUpLayer.swift in Sources */,
 				337847621C1E826500B3722D /* Pet.swift in Sources */,
 				3378475E1C1E054700B3722D /* SKButtonSprite.swift in Sources */,
+				33BEF71E1C5F493700DCE27F /* PopUpViewController.swift in Sources */,
 				3324827C1C2E55BB00C4655E /* SKAction+Extension.swift in Sources */,
 				33D307061C5F2D4100607DDC /* Achievement.swift in Sources */,
 				3366C5CA1C24B38A001AF86E /* CGFrame+Extension.swift in Sources */,
 				3318222F1C28CCA10094245D /* RxCompliant.swift in Sources */,
 				3315D8601C3F7C0900878F7C /* ActionManager.swift in Sources */,
 				33BBFD7B1C121F8300E76511 /* DashboardSceneUI.swift in Sources */,
+				33BEF7221C5F52B700DCE27F /* PopUpMainView.swift in Sources */,
 				3315D8621C3F7C0900878F7C /* PetHead.swift in Sources */,
 				33BBFD7F1C121F8300E76511 /* BarHorizontal.swift in Sources */,
 				330B40FB1C3B3ECE00D44558 /* SKTimer.swift in Sources */,
 				33AC1D031C266F170066FCB3 /* BarVertical.swift in Sources */,
 				3366C5A81C2337C7001AF86E /* Test.swift in Sources */,
-				3358949E1C46333A0087633C /* LevelUpPopUp.swift in Sources */,
 				339914331C310DE800268C2A /* Float+Extension.swift in Sources */,
 				3366C5C51C24B38A001AF86E /* SKLabelNode+Rx.swift in Sources */,
 				336EC6231C3FA107007F35B8 /* PetSprite.swift in Sources */,
@@ -921,12 +950,15 @@
 				338326A11C38651B00D21CAC /* AwardCell.swift in Sources */,
 				3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */,
 				3315D8681C3F975600878F7C /* FoodSprite.swift in Sources */,
+				33BEF71B1C5F493700DCE27F /* LevelUpPopUp.swift in Sources */,
 				33B990791C2F544800D6CA10 /* CGPoint+Extension.swift in Sources */,
 				336008561C40DB2000FDD89E /* NSDate+Extension.swift in Sources */,
 				337847641C1EA1F100B3722D /* User.swift in Sources */,
+				33BEF71D1C5F493700DCE27F /* ProgressReportPopUp.swift in Sources */,
 				337199BF1C3B1DD6008108B6 /* LeaderboardViewController.swift in Sources */,
 				338368DB1BF67852006407FF /* AppDelegate.swift in Sources */,
 				3389EEC41C3C442800EA08FC /* LoadingLayer.swift in Sources */,
+				33BEF71C1C5F493700DCE27F /* PopUpLayer.swift in Sources */,
 				337199C51C3B1E11008108B6 /* SettingsViewController.swift in Sources */,
 				3315D8631C3F7C0900878F7C /* PandoSprite.swift in Sources */,
 				33BBFD7A1C121F8300E76511 /* DashboardScene.swift in Sources */,
@@ -946,7 +978,7 @@
 				33D307041C5F2BEE00607DDC /* StoreItem.swift in Sources */,
 				333532731C165176003145AA /* MenuLayer.swift in Sources */,
 				3366C5AC1C2390FA001AF86E /* HistogramPointer.swift in Sources */,
-				334A91211C44CF57009A324D /* ProgressReportPopUp.swift in Sources */,
+				33D307081C5F300C00607DDC /* StoreBuyButtonDelegate.swift in Sources */,
 				337199C91C3B1E2A008108B6 /* StoreMainView.swift in Sources */,
 				337199C71C3B1E20008108B6 /* SettingsMainView.swift in Sources */,
 				339874281BFFFE7200F47B2B /* GameManager.swift in Sources */,

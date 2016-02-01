@@ -26,7 +26,7 @@ class StoreItemCell: UITableViewCell {
         
     }
     
-    // MARK: - Properties
+    // MARK: - UI Properties
     
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var itemTitle: UILabel!
@@ -38,6 +38,26 @@ class StoreItemCell: UITableViewCell {
     var buyButtonState: BuyButtonState = .Normal {
         didSet {
             animateButtonColor(buyButton, color: buyButtonState.color)
+            
+            guard let item = self.storeItem else { return }
+            let priceString = formatNumberToString(item.price)
+            self.buyButton.setTitle(priceString, forState: .Normal)
+        }
+    }
+    
+    // MARK: - Properties
+    
+    weak var delegate: StoreBuyButtonDelegate?
+    
+    var storeItem: StoreItem? {
+        didSet {
+            guard let item = storeItem else { return }
+            
+            self.itemTitle.text = item.title
+            self.itemDescription.text = item.description
+            
+            let priceString = formatNumberToString(item.price)
+            self.buyButton.setTitle(priceString, forState: .Normal)
         }
     }
     
@@ -65,9 +85,10 @@ class StoreItemCell: UITableViewCell {
         switch buyButtonState {
         case .Normal:
             buyButtonState = .Buy
+            self.buyButton.setTitle("Buy", forState: .Normal)
         case .Buy:
-            // purchase itme
-            break
+            guard let storeItem = self.storeItem else { return }
+            delegate?.didTapBuyButton(storeItem)
         }
         
     }
@@ -79,6 +100,25 @@ class StoreItemCell: UITableViewCell {
             button.backgroundColor = color
             
         }
+        
+    }
+    
+    /**
+     * Formats a number to string.
+     *
+     * - parameter number: A number of type `Double`.
+     * - returns: A string e.g. `1,000`.
+     */
+    private func formatNumberToString(number: Double) -> String {
+        
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = .DecimalStyle
+        
+        guard let numberString = numberFormatter.stringFromNumber(number) else {
+            return ""
+        }
+        
+        return numberString
         
     }
 

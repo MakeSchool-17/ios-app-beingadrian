@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Pop Up View Controller-->
+        <scene sceneID="gk5-xl-xdi">
+            <objects>
+                <viewController storyboardIdentifier="PopUpViewController" id="WwO-sd-KPf" customClass="PopUpViewController" customModule="ProjectCreature" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="63r-RD-8Pf"/>
+                        <viewControllerLayoutGuide type="bottom" id="0eY-JK-4Qm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GAj-r2-Ln3" customClass="PopUpMainView" customModule="ProjectCreature" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ltd-l3-aKa">
+                                <rect key="frame" x="45" y="226" width="230" height="117"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm purchase" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xoO-fP-JlI">
+                                        <rect key="frame" x="48" y="23" width="135" height="24"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="xoO-fP-JlI" firstAttribute="centerX" secondItem="ltd-l3-aKa" secondAttribute="centerX" id="0gu-dP-aJh"/>
+                                    <constraint firstItem="xoO-fP-JlI" firstAttribute="top" secondItem="ltd-l3-aKa" secondAttribute="top" constant="23" id="Ygx-eF-pcW"/>
+                                    <constraint firstAttribute="height" constant="117" id="YtE-Ta-VPa"/>
+                                    <constraint firstAttribute="width" constant="230" id="r0j-3J-5dg"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ltd-l3-aKa" firstAttribute="centerX" secondItem="GAj-r2-Ln3" secondAttribute="centerX" id="p5H-nL-TXf"/>
+                            <constraint firstItem="ltd-l3-aKa" firstAttribute="centerY" secondItem="GAj-r2-Ln3" secondAttribute="centerY" id="ziT-8s-1tE"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="popUpView" destination="ltd-l3-aKa" id="aPK-98-hdA"/>
+                        </connections>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="mainView" destination="GAj-r2-Ln3" id="NHk-Us-yXe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tmT-2s-PZF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="368" y="586"/>
+        </scene>
+    </scenes>
+</document>

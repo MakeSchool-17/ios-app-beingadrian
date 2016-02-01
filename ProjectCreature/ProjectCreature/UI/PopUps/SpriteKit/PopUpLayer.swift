@@ -59,16 +59,8 @@ class PopUpLayer: SKSpriteNode {
     
     // MARK: - Transitions
     
-    func transitionIn() {
-        
-
-        
-    }
+    func transitionIn() {}
     
-    func transitionOut() {
-        
-//        let scaleDownAction = SKAction
-        
-    }
+    func transitionOut() {}
     
 }

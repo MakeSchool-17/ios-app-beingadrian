@@ -18,5 +18,7 @@ class StoreViewModel {
     
     // MARK: - Methods
     
+    
+    
 }
 

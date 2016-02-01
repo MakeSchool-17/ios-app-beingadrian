@@ -108,8 +108,6 @@ extension StoreViewController: UITableViewDelegate {
         // reset buy button state
         cell.buyButtonState = .Normal
         
-        cell.selectionStatus = false
-        
     }
     
 }
@@ -132,7 +130,30 @@ extension StoreViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("StoreItemCell") as! StoreItemCell
         
+        let sampleItem = StoreItem(
+            title: "Sample item",
+            description: "Description of sample item",
+            price: 10_000,
+            image: UIImage())
+        
+        cell.storeItem = sampleItem
+        
+        cell.delegate = self
+        
         return cell
+        
+    }
+    
+}
+
+extension StoreViewController: StoreBuyButtonDelegate {
+    
+    func didTapBuyButton(storeItem: StoreItem) {
+        
+        let storyboard = UIStoryboard(name: "PopUp", bundle: nil)
+        let popUpViewController = storyboard.instantiateViewControllerWithIdentifier("PopUpViewController") as! PopUpViewController
+        
+        popUpViewController.showInView(self.view, animated: true)
         
     }
     
