@@ -14,28 +14,55 @@ class PopUpMainView: UIView {
     // MARK: - Properties
     
     @IBOutlet weak var popUpView: UIView!
+    @IBOutlet weak var confirmButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    
+    var delegate: PopUpMainViewDelegate?
     
     // MARK: - Awake from nib
     
     override func awakeFromNib() {
         
-        self.popUpView.userInteractionEnabled = false
-        
         // add gesture recognizer for exit
         let tapGesture = UITapGestureRecognizer(target: self, action: "didTapBackgroundView:")
+        tapGesture.delegate = self
+        tapGesture.cancelsTouchesInView = false
         self.addGestureRecognizer(tapGesture)
         
     }
     
+    func popUpDidFinishAnimateIn() {
+        
+        setupButtonTargets()
+    
+    }
+    
     // MARK: - Tap gesture actions
     
-    func didTapBackgroundView(tapRecognizer: UITapGestureRecognizer) {
+    func didTapBackgroundView(gestureRecognizer: UIGestureRecognizer) {
         
-        let touchPoint = tapRecognizer.locationInView(self)
+        self.animateOut()
         
-        if !popUpView.frame.contains(touchPoint) {
-            self.animateOut()
-        }
+    }
+    
+    func setupButtonTargets() {
+        
+        self.confirmButton.addTarget(self,
+            action: "onConfirmButtonTap:", forControlEvents: .TouchUpInside)
+        self.cancelButton.addTarget(self,
+            action: "onCancelButtonTap:", forControlEvents: .TouchUpInside)
+        
+    }
+    
+    func onConfirmButtonTap(sender: UIButton) {
+        
+        delegate?.didTapConfirmButton()
+        
+    }
+    
+    func onCancelButtonTap(sender: UIButton) {
+        
+        delegate?.didTapCancelButton()
         
     }
     
@@ -51,12 +78,14 @@ class PopUpMainView: UIView {
             delay: 0,
             usingSpringWithDamping: 0.7,
             initialSpringVelocity: 0,
-            options: .CurveEaseOut,
+            options: [.CurveEaseIn, .AllowUserInteraction],
             animations: { () -> Void in
                 self.alpha = 1
                 self.popUpView.transform = CGAffineTransformMakeScale(1, 1)
             },
-            completion: nil)
+            completion: { finished in
+                if finished { self.popUpDidFinishAnimateIn() }
+            })
         
     }
 
@@ -67,7 +96,7 @@ class PopUpMainView: UIView {
             delay: 0,
             usingSpringWithDamping: 0.7,
             initialSpringVelocity: 0,
-            options: .CurveEaseIn,
+            options: [.CurveEaseIn, .AllowUserInteraction],
             animations: { () -> Void in
                 self.popUpView.transform = CGAffineTransformMakeScale(0, 0)
                 self.alpha = 0
@@ -79,4 +108,26 @@ class PopUpMainView: UIView {
         
     }
 
+}
+
+extension PopUpMainView: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        
+        if self.popUpView.superview != nil {
+            if touch.view!.isDescendantOfView(self.popUpView) {
+                return false
+            }
+        }
+        
+        let touchPoint = touch.locationInView(self)
+        
+        if popUpView.frame.contains(touchPoint) {
+            return false
+        } else {
+            return true
+        }
+        
+    }
+    
 }

@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import RxSwift
 
 
 class PopUpViewController: UIViewController {
     
+    var disposeBag = DisposeBag()
+    
     // MARK: - UI Properties
     
     @IBOutlet var mainView: PopUpMainView!
+    
+    // MARK: - Properties
+    
+    var gameManager: GameManager?
     
     // MARK: - View did load
     
@@ -28,8 +35,6 @@ class PopUpViewController: UIViewController {
         
         self.view.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
         
-        self.view.userInteractionEnabled = true
-        
         setupPopUpView()
         
     }
@@ -41,6 +46,8 @@ class PopUpViewController: UIViewController {
         self.mainView.popUpView.layer.borderWidth = 6.5
         self.mainView.popUpView.layer.borderColor = UIColor.rgbaColor(
             r: 115, g: 115, b: 115, a: 1).CGColor
+        
+        self.mainView.delegate = self
         
     }
     
@@ -71,4 +78,20 @@ class PopUpViewController: UIViewController {
         
     }
 
+}
+
+extension PopUpViewController: PopUpMainViewDelegate {
+    
+    func didTapConfirmButton() {
+        
+        print("> Did tap confirm button")
+        
+    }
+    
+    func didTapCancelButton() {
+        
+        self.transitionOut()
+        
+    }
+    
 }
