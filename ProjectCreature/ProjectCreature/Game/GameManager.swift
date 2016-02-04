@@ -29,6 +29,13 @@ final class GameManager: NSObject, NSCoding {
     var user: User
     var pet: Pet
     
+    // food
+    var currentFood: Variable<Food?>
+    
+    enum FoodError: ErrorType {
+        case FoodAlreadyExists
+    }
+    
     // level properties
     var petLeveledUp = PublishSubject<Int>()
     var expDifference: Float = 0
@@ -46,6 +53,9 @@ final class GameManager: NSObject, NSCoding {
         
         self.user = user
         self.pet = pet
+        
+        // food
+        self.currentFood = Variable(nil)
 
         super.init()
         
@@ -242,6 +252,24 @@ final class GameManager: NSObject, NSCoding {
         let maxHp = Int(self.pet.hpMax.value)
         let newValue = pet.hp.value + Float(food.hpValue)
         pet.hp.value = newValue.clamped(0...maxHp)
+        self.currentFood.value = nil
+        
+    }
+    
+    func didBuyFood(food: Food) -> Observable<Food> {
+        
+        guard (self.currentFood.value == nil) else {
+            return Observable.error(FoodError.FoodAlreadyExists)
+        }
+        
+        self.currentFood.value = food
+        
+        return Observable.create { observer in
+            
+            observer.onNext(food)
+            
+            return NopDisposable.instance
+        }
         
     }
     

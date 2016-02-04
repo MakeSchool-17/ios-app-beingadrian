@@ -11,6 +11,12 @@ import UIKit
 
 class StoreItem {
     
+    enum ItemType: String {
+        
+        case Food = "food"
+        
+    }
+    
     // MARK: - Properties
     
     var title: String

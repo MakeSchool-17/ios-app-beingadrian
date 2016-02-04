@@ -82,9 +82,6 @@ class DashboardScene: SKScene {
     
         self.userInteractionEnabled = true
         
-        let simplePie = Food(name: "Simple pie", hpValue: 90)
-        insertFood(simplePie)
-        
     }
     
     // MARK: - Checks
@@ -248,6 +245,7 @@ class DashboardScene: SKScene {
         
         observePetting()
         observePetLevelUp()
+        observeFood()
         
     }
     
@@ -291,6 +289,24 @@ class DashboardScene: SKScene {
             .subscribeNext { newLevel in
                 print("> Dashboard - Pet did level up: \(newLevel)")
             }.addDisposableTo(disposeBag)
+        
+    }
+    
+    /**
+     * Creates an observer for 'gameManager''s 'currentFood'.
+     * Inserts new food on the plate.
+     */
+    private func observeFood() {
+        
+        gameManager.currentFood
+            .asObservable()
+            .subscribeNext { food in
+                guard let food = food else { return }
+                print("> New food: \(food.name)")
+                let simplePie = Food(name: "Simple pie", hpValue: 90)
+                self.insertFood(simplePie)
+            }
+            .addDisposableTo(disposeBag)
         
     }
     

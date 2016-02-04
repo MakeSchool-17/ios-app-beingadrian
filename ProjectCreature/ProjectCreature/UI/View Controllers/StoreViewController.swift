@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import RxSwift
 
 
 class StoreViewController: UIViewController {
 
+    var disposeBag = DisposeBag()
+    
     // MARK: - Properties
     
     weak var gameManager: GameManager?
@@ -152,9 +155,34 @@ extension StoreViewController: StoreBuyButtonDelegate {
         
         let storyboard = UIStoryboard(name: "PopUp", bundle: nil)
         let popUpViewController = storyboard.instantiateViewControllerWithIdentifier("PopUpViewController") as! PopUpViewController
+        popUpViewController.storeItem = storeItem
+        popUpViewController.delegate = self
         
         popUpViewController.showInView(self.view, animated: true)
         
     }
     
 }
+
+extension StoreViewController: PopUpControllerDelegate {
+    
+    func didConfirmBuyingFood(item: StoreItem) {
+        
+        let food = Food(name: item.title, hpValue: 30)
+        gameManager?.didBuyFood(food)
+            .subscribe(
+                onNext: { (food) -> Void in
+                    // send success message
+                    print("> Did buy: \(food)")
+                },
+                onError: { (error) -> Void in
+                    print("> Error buying item: \(error)")
+                },
+                onCompleted: nil,
+                onDisposed: nil)
+            .addDisposableTo(disposeBag)
+        
+    }
+    
+}
+

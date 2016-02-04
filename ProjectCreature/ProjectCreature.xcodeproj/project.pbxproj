@@ -109,6 +109,11 @@
 		33D307041C5F2BEE00607DDC /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D307031C5F2BEE00607DDC /* StoreItem.swift */; };
 		33D307061C5F2D4100607DDC /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D307051C5F2D4100607DDC /* Achievement.swift */; };
 		33D307081C5F300C00607DDC /* StoreBuyButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D307071C5F300C00607DDC /* StoreBuyButtonDelegate.swift */; };
+		33D877531C63315500AFDF3D /* DashboardScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D877521C63315400AFDF3D /* DashboardScreenManager.swift */; };
+		33D877551C63317500AFDF3D /* FoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D877541C63317500AFDF3D /* FoodManager.swift */; };
+		33D877571C6338C600AFDF3D /* PopUpControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D877561C6338C600AFDF3D /* PopUpControllerDelegate.swift */; };
+		33EFAE9E1C61E851007F8A49 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EFAE9D1C61E851007F8A49 /* StoreManager.swift */; };
+		33EFAEA01C61EB74007F8A49 /* ItemEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EFAE9F1C61EB74007F8A49 /* ItemEffect.swift */; };
 		33FC7CB51C3E594700012283 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FC7CB41C3E594700012283 /* Food.swift */; };
 /* End PBXBuildFile section */
 
@@ -252,6 +257,11 @@
 		33D307031C5F2BEE00607DDC /* StoreItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreItem.swift; sourceTree = "<group>"; };
 		33D307051C5F2D4100607DDC /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		33D307071C5F300C00607DDC /* StoreBuyButtonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreBuyButtonDelegate.swift; sourceTree = "<group>"; };
+		33D877521C63315400AFDF3D /* DashboardScreenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardScreenManager.swift; sourceTree = "<group>"; };
+		33D877541C63317500AFDF3D /* FoodManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodManager.swift; sourceTree = "<group>"; };
+		33D877561C6338C600AFDF3D /* PopUpControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpControllerDelegate.swift; sourceTree = "<group>"; };
+		33EFAE9D1C61E851007F8A49 /* StoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		33EFAE9F1C61EB74007F8A49 /* ItemEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEffect.swift; sourceTree = "<group>"; };
 		33FC7CB41C3E594700012283 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -531,6 +541,7 @@
 			children = (
 				337199CB1C3B2307008108B6 /* GameManagerHolder.swift */,
 				33D307071C5F300C00607DDC /* StoreBuyButtonDelegate.swift */,
+				33D877561C6338C600AFDF3D /* PopUpControllerDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -682,6 +693,9 @@
 			isa = PBXGroup;
 			children = (
 				339874271BFFFE7200F47B2B /* GameManager.swift */,
+				33EFAE9D1C61E851007F8A49 /* StoreManager.swift */,
+				33D877521C63315400AFDF3D /* DashboardScreenManager.swift */,
+				33D877541C63317500AFDF3D /* FoodManager.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -725,6 +739,7 @@
 				337847631C1EA1F100B3722D /* User.swift */,
 				33FC7CB41C3E594700012283 /* Food.swift */,
 				33D307031C5F2BEE00607DDC /* StoreItem.swift */,
+				33EFAE9F1C61EB74007F8A49 /* ItemEffect.swift */,
 				33D307051C5F2D4100607DDC /* Achievement.swift */,
 			);
 			path = DataModels;
@@ -933,6 +948,7 @@
 				33D307021C5F2B6D00607DDC /* StoreViewModel.swift in Sources */,
 				337847621C1E826500B3722D /* Pet.swift in Sources */,
 				3378475E1C1E054700B3722D /* SKButtonSprite.swift in Sources */,
+				33D877531C63315500AFDF3D /* DashboardScreenManager.swift in Sources */,
 				33BEF71E1C5F493700DCE27F /* PopUpViewController.swift in Sources */,
 				3324827C1C2E55BB00C4655E /* SKAction+Extension.swift in Sources */,
 				33D307061C5F2D4100607DDC /* Achievement.swift in Sources */,
@@ -953,17 +969,21 @@
 				338326A11C38651B00D21CAC /* AwardCell.swift in Sources */,
 				3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */,
 				3315D8681C3F975600878F7C /* FoodSprite.swift in Sources */,
+				33EFAE9E1C61E851007F8A49 /* StoreManager.swift in Sources */,
 				33BEF71B1C5F493700DCE27F /* LevelUpPopUp.swift in Sources */,
 				33B990791C2F544800D6CA10 /* CGPoint+Extension.swift in Sources */,
 				336008561C40DB2000FDD89E /* NSDate+Extension.swift in Sources */,
 				337847641C1EA1F100B3722D /* User.swift in Sources */,
+				33D877571C6338C600AFDF3D /* PopUpControllerDelegate.swift in Sources */,
 				33BEF71D1C5F493700DCE27F /* ProgressReportPopUp.swift in Sources */,
 				337199BF1C3B1DD6008108B6 /* LeaderboardViewController.swift in Sources */,
 				338368DB1BF67852006407FF /* AppDelegate.swift in Sources */,
+				33EFAEA01C61EB74007F8A49 /* ItemEffect.swift in Sources */,
 				3389EEC41C3C442800EA08FC /* LoadingLayer.swift in Sources */,
 				33BEF71C1C5F493700DCE27F /* PopUpLayer.swift in Sources */,
 				337199C51C3B1E11008108B6 /* SettingsViewController.swift in Sources */,
 				3315D8631C3F7C0900878F7C /* PandoSprite.swift in Sources */,
+				33D877551C63317500AFDF3D /* FoodManager.swift in Sources */,
 				33BBFD7A1C121F8300E76511 /* DashboardScene.swift in Sources */,
 				3366C5CB1C24B38A001AF86E /* CGSize+Extension.swift in Sources */,
 				333532771C169158003145AA /* DashboardSceneAnimations.swift in Sources */,

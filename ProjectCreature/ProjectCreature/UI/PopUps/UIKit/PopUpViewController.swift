@@ -20,7 +20,9 @@ class PopUpViewController: UIViewController {
     
     // MARK: - Properties
     
-    var gameManager: GameManager?
+    weak var delegate: PopUpControllerDelegate?
+    
+    var storeItem: StoreItem?
     
     // MARK: - View did load
     
@@ -84,7 +86,11 @@ extension PopUpViewController: PopUpMainViewDelegate {
     
     func didTapConfirmButton() {
         
-        print("> Did tap confirm button")
+        guard let item = self.storeItem else { return }
+        
+        delegate?.didConfirmBuyingFood(item)
+        
+        self.transitionOut()
         
     }
     
