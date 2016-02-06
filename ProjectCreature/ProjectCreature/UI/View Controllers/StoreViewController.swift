@@ -20,6 +20,8 @@ class StoreViewController: UIViewController {
     
     // MARK: - UI Properties
     
+    var viewModel: StoreViewModel?
+    
     @IBOutlet var mainView: StoreMainView!
     
     // MARK: - View did load
@@ -32,6 +34,8 @@ class StoreViewController: UIViewController {
     }
     
     private func setup() {
+        
+        self.viewModel = StoreViewModel()
         
         // table view setup
         mainView.tableView.delegate = self
@@ -153,6 +157,8 @@ extension StoreViewController: StoreBuyButtonDelegate {
     
     func didTapBuyButton(storeItem: StoreItem) {
         
+        self.viewModel?.selectedItem = storeItem
+        
         guard let popUpView = NSBundle.mainBundle()
             .loadNibNamed("PopUpView", owner: self, options: nil).first as? PopUpView
         else { return }
@@ -161,17 +167,19 @@ extension StoreViewController: StoreBuyButtonDelegate {
             .loadNibNamed("StorePopUpView", owner: self, options: nil).first as? StorePopUpView
         else { return }
         
-        popUpView.popUp = storePopUpView
+        storePopUpView.delegate = self
         
-        popUpView.transitionInView(self.view)
+        popUpView.transitionInView(self.view, withPopUp: storePopUpView)
         
     }
     
 }
 
-extension StoreViewController: PopUpControllerDelegate {
+extension StoreViewController: StorePopUpViewDelegate {
     
-    func didConfirmBuyingFood(item: StoreItem) {
+    func didTapConfirmButton() {
+        
+        guard let item = self.viewModel?.selectedItem else { return }
         
         let food = Food(name: item.title, hpValue: 30)
         gameManager?.didBuyFood(food)

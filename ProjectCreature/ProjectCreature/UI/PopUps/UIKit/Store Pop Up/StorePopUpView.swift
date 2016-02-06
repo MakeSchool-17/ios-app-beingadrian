@@ -11,10 +11,14 @@ import UIKit
 
 class StorePopUpView: UIView {
 
-    // MARK: - Properties
+    // MARK: - UI Properties
     
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var confirmButton: UIButton!
+    
+    // MARK: - Properties
+    
+    weak var delegate: StorePopUpViewDelegate?
     
     // MARK: - Awake from nib
     
@@ -35,10 +39,19 @@ class StorePopUpView: UIView {
     
     func onConfirmButtonTap() {
         
-        print("Heck yeah")
+        delegate?.didTapConfirmButton()
+        
+        exit()
+        
     }
     
     func onCancelButtonTap() {
+        
+        exit()
+        
+    }
+    
+    private func exit() {
         
         guard let superview = self.superview as? PopUpView else { return }
         superview.transitionOut()
@@ -49,7 +62,7 @@ class StorePopUpView: UIView {
 
 extension StorePopUpView: PopUpViewable {
     
-    func didFinishTransition() {
+    func didFinishTransitionIn() {
         
         setupButtonActions()
         

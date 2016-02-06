@@ -13,7 +13,7 @@ class PopUpView: UIView {
     
     // MARK: - Property
     
-    var popUp: PopUpViewable?
+    var popUp: PopUpViewable!
     
     // MARK: - Awake from nib 
     
@@ -28,13 +28,15 @@ class PopUpView: UIView {
     
     // MARK: - Transitions
     
-    func transitionInView(view: UIView) {
+    func transitionInView(view: UIView, withPopUp popUp: PopUpViewable) {
+        
+        self.popUp = popUp
         
         view.addSubview(self)
         
         self.frame.size = view.frame.size
         
-        popUp?.showInView(self, animated: true)
+        popUp.showInView(self, animated: true)
         
         self.backgroundColor = UIColor.clearColor()
         

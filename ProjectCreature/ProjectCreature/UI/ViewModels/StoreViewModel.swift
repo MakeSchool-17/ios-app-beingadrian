@@ -16,6 +16,8 @@ class StoreViewModel {
     
     var items: [StoreItem] = []
     
+    var selectedItem: StoreItem?
+    
     // MARK: - Methods
     
     

@@ -12,9 +12,10 @@ import UIKit
 
 protocol PopUpViewable: class {
     
-    // MARK: - Transitions
-    
-    func didFinishTransition()
+    /**
+     * Called when a pop up viewable finishes in transition.
+     */
+    func didFinishTransitionIn()
     
 }
 
@@ -38,6 +39,12 @@ extension PopUpViewable {
     
     // MARK: - Transitions
     
+    /**
+     * Shows the pop up on a given view.
+     *
+     * - parameter view: A view.
+     * - parameter animated: Determines whether to execute an animated transition.
+     */
     func showInView(view: UIView, animated: Bool) {
         
         guard let selfAsView = self as? UIView else { return }
@@ -75,7 +82,7 @@ extension PopUpViewable {
                 selfAsView.transform = CGAffineTransformMakeScale(1, 1)
             },
             completion: { finished in
-                if finished { self.didFinishTransition() }
+                if finished { self.didFinishTransitionIn() }
         })
         
     }
@@ -99,12 +106,6 @@ extension PopUpViewable {
         })
         
     }
-    
-}
-
-extension PopUpViewable {
-    
-    
     
 }
 
