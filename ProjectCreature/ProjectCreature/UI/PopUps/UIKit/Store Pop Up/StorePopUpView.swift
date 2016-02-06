@@ -30,7 +30,7 @@ class StorePopUpView: UIView {
     
     // MARK: - Button actions
     
-    func setupButtonActions() {
+    private func setupButtonActions() {
         
         self.confirmButton.addTarget(self, action: "onConfirmButtonTap", forControlEvents: .TouchUpInside)
         self.cancelButton.addTarget(self, action: "onCancelButtonTap", forControlEvents: .TouchUpInside)
@@ -53,7 +53,7 @@ class StorePopUpView: UIView {
     
     private func exit() {
         
-        guard let superview = self.superview as? PopUpView else { return }
+        guard let superview = self.superview as? PopUpBaseView else { return }
         superview.transitionOut()
         
     }
@@ -65,22 +65,6 @@ extension StorePopUpView: PopUpViewable {
     func didFinishTransitionIn() {
         
         setupButtonActions()
-        
-    }
-    
-}
-
-extension StorePopUpView: UIGestureRecognizerDelegate {
-    
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
-        
-        let touchPoint = touch.locationInView(self.superview)
-    
-        if self.frame.contains(touchPoint) {
-            return false
-        }
-        
-        return true
         
     }
     

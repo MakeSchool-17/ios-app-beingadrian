@@ -159,8 +159,8 @@ extension StoreViewController: StoreBuyButtonDelegate {
         
         self.viewModel?.selectedItem = storeItem
         
-        guard let popUpView = NSBundle.mainBundle()
-            .loadNibNamed("PopUpView", owner: self, options: nil).first as? PopUpView
+        guard let popUpBaseView = NSBundle.mainBundle()
+            .loadNibNamed("PopUpBaseView", owner: self, options: nil).first as? PopUpBaseView
         else { return }
         
         guard let storePopUpView = NSBundle.mainBundle()
@@ -169,7 +169,7 @@ extension StoreViewController: StoreBuyButtonDelegate {
         
         storePopUpView.delegate = self
         
-        popUpView.transitionInView(self.view, withPopUp: storePopUpView)
+        popUpBaseView.transitionInView(self.view, withPopUp: storePopUpView)
         
     }
     
@@ -187,13 +187,33 @@ extension StoreViewController: StorePopUpViewDelegate {
                 onNext: { (food) -> Void in
                     // send success message
                     print("> Did buy: \(food)")
+                    self.presentPopUpMessage("Successfully purchased \(item.title)!")
                 },
                 onError: { (error) -> Void in
                     print("> Error buying item: \(error)")
+                    if error is GameManager.FoodError {
+                        self.presentPopUpMessage("You already have food on the plate!")
+                    }
                 },
                 onCompleted: nil,
                 onDisposed: nil)
             .addDisposableTo(disposeBag)
+        
+    }
+    
+    func presentPopUpMessage(message: String) {
+        
+        guard let popUpBaseView = NSBundle.mainBundle()
+            .loadNibNamed("PopUpBaseView", owner: self, options: nil).first as? PopUpBaseView
+            else { return }
+        
+        guard let simpleMessagePopUpView = NSBundle.mainBundle()
+            .loadNibNamed("SimpleMessagePopUpView", owner: self, options: nil).first as? SimpleMessagePopUpView
+            else { return }
+        
+        simpleMessagePopUpView.text = message
+        
+        popUpBaseView.transitionInView(self.view, withPopUp: simpleMessagePopUpView)
         
     }
     

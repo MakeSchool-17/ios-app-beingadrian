@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MessagePopUpView" customModule="ProjectCreature" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="230" height="110"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fdo-2o-IDL">
+                    <rect key="frame" x="73" y="59" width="85" height="30"/>
+                    <color key="backgroundColor" red="0.2784313725" green="0.84705882349999995" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="7JB-c4-qRh"/>
+                        <constraint firstAttribute="width" constant="85" id="p2d-PW-NhK"/>
+                        <constraint firstAttribute="width" constant="85" id="qNU-Hp-VJG"/>
+                        <constraint firstAttribute="height" constant="30" id="qby-cG-gNl"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="85" id="vSf-Ih-fLE"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                    <state key="normal" title="OK">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="p2d-PW-NhK"/>
+                            <exclude reference="qby-cG-gNl"/>
+                            <exclude reference="vSf-Ih-fLE"/>
+                        </mask>
+                    </variation>
+                </button>
+                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOa-Yv-IhZ">
+                    <rect key="frame" x="83" y="24" width="64" height="22"/>
+                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                    <color key="textColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="JOa-Yv-IhZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ebb-39-sk0"/>
+                <constraint firstItem="JOa-Yv-IhZ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.8" id="OY2-6K-VjI"/>
+                <constraint firstItem="Fdo-2o-IDL" firstAttribute="top" secondItem="JOa-Yv-IhZ" secondAttribute="bottom" constant="13" id="RAV-2B-q7G"/>
+                <constraint firstItem="JOa-Yv-IhZ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-20" id="YV2-MN-Mdd"/>
+                <constraint firstItem="JOa-Yv-IhZ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.8" id="cny-8R-Zlh"/>
+                <constraint firstItem="Fdo-2o-IDL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vhY-ef-2ao"/>
+                <constraint firstItem="JOa-Yv-IhZ" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="y85-Ow-Lj6"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="OY2-6K-VjI"/>
+                    <exclude reference="cny-8R-Zlh"/>
+                    <exclude reference="y85-Ow-Lj6"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="messageLabel" destination="JOa-Yv-IhZ" id="fS0-fV-E3M"/>
+                <outlet property="okayButton" destination="Fdo-2o-IDL" id="d2b-Sr-lEk"/>
+            </connections>
+        </view>
+    </objects>
+</document>

@@ -24,9 +24,13 @@
 		3323A2421C65C15E009D4260 /* StorePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3323A2411C65C15E009D4260 /* StorePopUpView.swift */; };
 		3323A24A1C65D2CB009D4260 /* StorePopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3323A2491C65D2CB009D4260 /* StorePopUpView.xib */; };
 		3323A24C1C65D2F0009D4260 /* PopUpViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3323A24B1C65D2F0009D4260 /* PopUpViewable.swift */; };
-		3323A24E1C65FACF009D4260 /* PopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3323A24D1C65FACF009D4260 /* PopUpView.xib */; };
-		3323A2501C65FB0C009D4260 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3323A24F1C65FB0C009D4260 /* PopUpView.swift */; };
+		3323A24E1C65FACF009D4260 /* PopUpBaseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3323A24D1C65FACF009D4260 /* PopUpBaseView.xib */; };
 		3323A2561C66766D009D4260 /* StorePopUpViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3323A2551C66766D009D4260 /* StorePopUpViewDelegate.swift */; };
+		3323A2581C668BFB009D4260 /* MessagePopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3323A2571C668BFB009D4260 /* MessagePopUpView.xib */; };
+		3323A25A1C668CB7009D4260 /* MessagePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3323A2591C668CB7009D4260 /* MessagePopUpView.swift */; };
+		3323A25C1C668DB9009D4260 /* PopUpBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3323A25B1C668DB9009D4260 /* PopUpBaseView.swift */; };
+		3323A25E1C668FB9009D4260 /* SimpleMessagePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3323A25D1C668FB9009D4260 /* SimpleMessagePopUpView.swift */; };
+		3323A2601C668FC3009D4260 /* SimpleMessagePopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3323A25F1C668FC3009D4260 /* SimpleMessagePopUpView.xib */; };
 		3324827C1C2E55BB00C4655E /* SKAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3324827B1C2E55BB00C4655E /* SKAction+Extension.swift */; };
 		3324EA8A1C4EFD57000D7A21 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3324EA891C4EFD57000D7A21 /* RxCocoa.framework */; };
 		3324EA8B1C4EFD5C000D7A21 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3324EA891C4EFD57000D7A21 /* RxCocoa.framework */; };
@@ -171,9 +175,13 @@
 		3323A2411C65C15E009D4260 /* StorePopUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorePopUpView.swift; sourceTree = "<group>"; };
 		3323A2491C65D2CB009D4260 /* StorePopUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StorePopUpView.xib; sourceTree = "<group>"; };
 		3323A24B1C65D2F0009D4260 /* PopUpViewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewable.swift; sourceTree = "<group>"; };
-		3323A24D1C65FACF009D4260 /* PopUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpView.xib; sourceTree = "<group>"; };
-		3323A24F1C65FB0C009D4260 /* PopUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopUpView.swift; path = "Store Pop Up/PopUpView.swift"; sourceTree = "<group>"; };
+		3323A24D1C65FACF009D4260 /* PopUpBaseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpBaseView.xib; sourceTree = "<group>"; };
 		3323A2551C66766D009D4260 /* StorePopUpViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorePopUpViewDelegate.swift; sourceTree = "<group>"; };
+		3323A2571C668BFB009D4260 /* MessagePopUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessagePopUpView.xib; path = ProjectCreature/UI/PopUps/UIKit/MessagePopUpView.xib; sourceTree = SOURCE_ROOT; };
+		3323A2591C668CB7009D4260 /* MessagePopUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagePopUpView.swift; sourceTree = "<group>"; };
+		3323A25B1C668DB9009D4260 /* PopUpBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopUpBaseView.swift; path = ProjectCreature/UI/PopUps/UIKit/PopUpBaseView.swift; sourceTree = SOURCE_ROOT; };
+		3323A25D1C668FB9009D4260 /* SimpleMessagePopUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleMessagePopUpView.swift; sourceTree = "<group>"; };
+		3323A25F1C668FC3009D4260 /* SimpleMessagePopUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleMessagePopUpView.xib; sourceTree = "<group>"; };
 		3324827B1C2E55BB00C4655E /* SKAction+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKAction+Extension.swift"; sourceTree = "<group>"; };
 		3324EA891C4EFD57000D7A21 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = SOURCE_ROOT; };
 		3335326D1C164F6B003145AA /* StatsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsLayer.swift; sourceTree = "<group>"; };
@@ -382,6 +390,7 @@
 				3323A2491C65D2CB009D4260 /* StorePopUpView.xib */,
 				3323A2411C65C15E009D4260 /* StorePopUpView.swift */,
 				3323A2551C66766D009D4260 /* StorePopUpViewDelegate.swift */,
+				3323A2571C668BFB009D4260 /* MessagePopUpView.xib */,
 			);
 			path = "Store Pop Up";
 			sourceTree = "<group>";
@@ -801,8 +810,11 @@
 			children = (
 				3323A2401C65C141009D4260 /* Store Pop Up */,
 				3323A24B1C65D2F0009D4260 /* PopUpViewable.swift */,
-				3323A24D1C65FACF009D4260 /* PopUpView.xib */,
-				3323A24F1C65FB0C009D4260 /* PopUpView.swift */,
+				3323A25B1C668DB9009D4260 /* PopUpBaseView.swift */,
+				3323A24D1C65FACF009D4260 /* PopUpBaseView.xib */,
+				3323A25D1C668FB9009D4260 /* SimpleMessagePopUpView.swift */,
+				3323A25F1C668FC3009D4260 /* SimpleMessagePopUpView.xib */,
+				3323A2591C668CB7009D4260 /* MessagePopUpView.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -919,9 +931,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3315D8611C3F7C0900878F7C /* TestScene.sks in Resources */,
+				3323A2581C668BFB009D4260 /* MessagePopUpView.xib in Resources */,
 				333C0AA41C548F2D00A1C84F /* StoreItemCell.xib in Resources */,
 				338368E91BF67852006407FF /* LaunchScreen.storyboard in Resources */,
-				3323A24E1C65FACF009D4260 /* PopUpView.xib in Resources */,
+				3323A24E1C65FACF009D4260 /* PopUpBaseView.xib in Resources */,
 				333C0A951C540A8C00A1C84F /* SwitchSettingsCell.xib in Resources */,
 				333C0A9D1C541E5900A1C84F /* DetailSettingsCell.xib in Resources */,
 				3323A24A1C65D2CB009D4260 /* StorePopUpView.xib in Resources */,
@@ -929,6 +942,7 @@
 				338326A21C38651B00D21CAC /* AwardCell.xib in Resources */,
 				3315D85F1C3F7C0900878F7C /* ActionFactory.sks in Resources */,
 				338368E41BF67852006407FF /* Main.storyboard in Resources */,
+				3323A2601C668FC3009D4260 /* SimpleMessagePopUpView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -974,9 +988,11 @@
 				3366C5A81C2337C7001AF86E /* Test.swift in Sources */,
 				339914331C310DE800268C2A /* Float+Extension.swift in Sources */,
 				3366C5C51C24B38A001AF86E /* SKLabelNode+Rx.swift in Sources */,
+				3323A25A1C668CB7009D4260 /* MessagePopUpView.swift in Sources */,
 				336EC6231C3FA107007F35B8 /* PetSprite.swift in Sources */,
 				337199C31C3B1E09008108B6 /* StoreViewController.swift in Sources */,
 				338326A11C38651B00D21CAC /* AwardCell.swift in Sources */,
+				3323A25C1C668DB9009D4260 /* PopUpBaseView.swift in Sources */,
 				3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */,
 				3315D8681C3F975600878F7C /* FoodSprite.swift in Sources */,
 				33EFAE9E1C61E851007F8A49 /* StoreManager.swift in Sources */,
@@ -998,6 +1014,7 @@
 				3366C5CB1C24B38A001AF86E /* CGSize+Extension.swift in Sources */,
 				333532771C169158003145AA /* DashboardSceneAnimations.swift in Sources */,
 				337847781C1F6B4000B3722D /* UserJsonModel.swift in Sources */,
+				3323A25E1C668FB9009D4260 /* SimpleMessagePopUpView.swift in Sources */,
 				333532701C164FC9003145AA /* StatsLayerUI.swift in Sources */,
 				337199C11C3B1DEC008108B6 /* LeaderboardMainView.swift in Sources */,
 				333532751C1651D4003145AA /* MenuLayerUI.swift in Sources */,
@@ -1021,7 +1038,6 @@
 				330C80EE1C33164700ADF713 /* AwardsViewController.swift in Sources */,
 				3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */,
 				3323A2421C65C15E009D4260 /* StorePopUpView.swift in Sources */,
-				3323A2501C65FB0C009D4260 /* PopUpView.swift in Sources */,
 				3366C5C41C24B38A001AF86E /* NSNumberFormatter+Extension.swift in Sources */,
 				3315D8641C3F7C0900878F7C /* PandoStateFunctions.swift in Sources */,
 				333C0AA61C54A07C00A1C84F /* StoreItemCell.swift in Sources */,

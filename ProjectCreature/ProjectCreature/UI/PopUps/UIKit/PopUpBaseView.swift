@@ -9,11 +9,11 @@
 import UIKit
 
 
-class PopUpView: UIView {
+class PopUpBaseView: UIView {
     
     // MARK: - Property
     
-    var popUp: PopUpViewable!
+    var popUpView: PopUpViewable!
     
     // MARK: - Awake from nib 
     
@@ -30,7 +30,7 @@ class PopUpView: UIView {
     
     func transitionInView(view: UIView, withPopUp popUp: PopUpViewable) {
         
-        self.popUp = popUp
+        self.popUpView = popUp
         
         view.addSubview(self)
         
@@ -57,7 +57,7 @@ class PopUpView: UIView {
     
     func transitionOut() {
         
-        popUp?.transitionOut()
+        popUpView?.transitionOut()
         
         UIView.animateWithDuration(
             0.5,
@@ -76,11 +76,11 @@ class PopUpView: UIView {
 
 }
 
-extension PopUpView: UIGestureRecognizerDelegate {
+extension PopUpBaseView: UIGestureRecognizerDelegate {
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
         
-        guard let popUp = self.popUp as? UIView else { return true }
+        guard let popUp = self.popUpView as? UIView else { return true }
         
         if touch.view!.isDescendantOfView(popUp) {
             return false
