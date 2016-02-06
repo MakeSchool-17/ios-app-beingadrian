@@ -153,11 +153,17 @@ extension StoreViewController: StoreBuyButtonDelegate {
     
     func didTapBuyButton(storeItem: StoreItem) {
         
-        let storePopUpViewController = StorePopUpViewController()
-        storePopUpViewController.storeItem = storeItem
-        storePopUpViewController.delegate = self
+        guard let popUpView = NSBundle.mainBundle()
+            .loadNibNamed("PopUpView", owner: self, options: nil).first as? PopUpView
+        else { return }
         
-        storePopUpViewController.showInView(self.view, animated: true)
+        guard let storePopUpView = NSBundle.mainBundle()
+            .loadNibNamed("StorePopUpView", owner: self, options: nil).first as? StorePopUpView
+        else { return }
+        
+        popUpView.popUp = storePopUpView
+        
+        popUpView.transitionInView(self.view)
         
     }
     
