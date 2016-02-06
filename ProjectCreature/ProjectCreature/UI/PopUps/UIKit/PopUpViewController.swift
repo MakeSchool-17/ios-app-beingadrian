@@ -1,8 +1,8 @@
-//
 //  PopUpViewController.swift
 //  ProjectCreature
 //
 //  Created by Adrian Wisaksana on 1/31/16.
+//  Created by Adrian Wisaksana on 2/5/16.
 //  Copyright © 2016 BeingAdrian. All rights reserved.
 //
 
@@ -12,19 +12,14 @@ import RxSwift
 
 class PopUpViewController: UIViewController {
     
-    var disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
     
     // MARK: - UI Properties
     
-    @IBOutlet var mainView: PopUpMainView!
-    
-    // MARK: - Properties
-    
-    weak var delegate: PopUpControllerDelegate?
-    
-    var storeItem: StoreItem?
+    var mainView: PopUpMainView!
     
     // MARK: - View did load
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,23 +28,10 @@ class PopUpViewController: UIViewController {
         
     }
     
-    private func setup() {
+    func setup() {
         
-        self.view.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
-        
-        setupPopUpView()
-        
-    }
-    
-    private func setupPopUpView() {
-        
-        self.mainView.popUpView.backgroundColor = UIColor.whiteColor()
-        self.mainView.popUpView.layer.cornerRadius = 23
-        self.mainView.popUpView.layer.borderWidth = 6.5
-        self.mainView.popUpView.layer.borderColor = UIColor.rgbaColor(
-            r: 115, g: 115, b: 115, a: 1).CGColor
-        
-        self.mainView.delegate = self
+        self.mainView = PopUpMainView()
+        self.mainView.frame.size = self.view.frame.size
         
     }
     
@@ -57,8 +39,9 @@ class PopUpViewController: UIViewController {
     
     func showInView(view: UIView, animated: Bool) {
         
-        let viewToAdd = self.view as! PopUpMainView
-        view.addSubview(viewToAdd)
+        self.viewDidLoad()
+        
+        view.addSubview(self.mainView)
         
         if animated {
             self.transitionIn()
@@ -77,26 +60,6 @@ class PopUpViewController: UIViewController {
     func transitionOut() {
         
         self.mainView.animateOut()
-        
-    }
-
-}
-
-extension PopUpViewController: PopUpMainViewDelegate {
-    
-    func didTapConfirmButton() {
-        
-        guard let item = self.storeItem else { return }
-        
-        delegate?.didConfirmBuyingFood(item)
-        
-        self.transitionOut()
-        
-    }
-    
-    func didTapCancelButton() {
-        
-        self.transitionOut()
         
     }
     

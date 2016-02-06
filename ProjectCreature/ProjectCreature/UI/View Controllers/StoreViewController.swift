@@ -153,12 +153,11 @@ extension StoreViewController: StoreBuyButtonDelegate {
     
     func didTapBuyButton(storeItem: StoreItem) {
         
-        let storyboard = UIStoryboard(name: "PopUp", bundle: nil)
-        let popUpViewController = storyboard.instantiateViewControllerWithIdentifier("PopUpViewController") as! PopUpViewController
-        popUpViewController.storeItem = storeItem
-        popUpViewController.delegate = self
+        let storePopUpViewController = StorePopUpViewController()
+        storePopUpViewController.storeItem = storeItem
+        storePopUpViewController.delegate = self
         
-        popUpViewController.showInView(self.view, animated: true)
+        storePopUpViewController.showInView(self.view, animated: true)
         
     }
     

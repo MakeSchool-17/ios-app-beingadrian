@@ -21,6 +21,12 @@
 		3315D8681C3F975600878F7C /* FoodSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3315D8671C3F975600878F7C /* FoodSprite.swift */; };
 		3318222F1C28CCA10094245D /* RxCompliant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3318222E1C28CCA10094245D /* RxCompliant.swift */; };
 		331E66D31BF6AEDB003AB81D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331E66D21BF6AEDB003AB81D /* MainViewController.swift */; };
+		3323A23D1C65BE5E009D4260 /* PopUpBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3323A23C1C65BE5E009D4260 /* PopUpBaseViewController.swift */; };
+		3323A23F1C65BFA1009D4260 /* StorePopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3323A23E1C65BFA1009D4260 /* StorePopUpView.xib */; };
+		3323A2421C65C15E009D4260 /* StorePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3323A2411C65C15E009D4260 /* StorePopUpView.swift */; };
+		3323A2441C65C2EA009D4260 /* PopUpMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3323A2431C65C2EA009D4260 /* PopUpMainView.swift */; };
+		3323A2461C65C79D009D4260 /* StorePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3323A2451C65C79D009D4260 /* StorePopUpViewController.swift */; };
+		3323A2481C65C8C5009D4260 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3323A2471C65C8C5009D4260 /* PopUpViewController.swift */; };
 		3324827C1C2E55BB00C4655E /* SKAction+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3324827B1C2E55BB00C4655E /* SKAction+Extension.swift */; };
 		3324EA8A1C4EFD57000D7A21 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3324EA891C4EFD57000D7A21 /* RxCocoa.framework */; };
 		3324EA8B1C4EFD5C000D7A21 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3324EA891C4EFD57000D7A21 /* RxCocoa.framework */; };
@@ -102,9 +108,7 @@
 		33BEF71B1C5F493700DCE27F /* LevelUpPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF7161C5F493700DCE27F /* LevelUpPopUp.swift */; };
 		33BEF71C1C5F493700DCE27F /* PopUpLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF7171C5F493700DCE27F /* PopUpLayer.swift */; };
 		33BEF71D1C5F493700DCE27F /* ProgressReportPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF7181C5F493700DCE27F /* ProgressReportPopUp.swift */; };
-		33BEF71E1C5F493700DCE27F /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF71A1C5F493700DCE27F /* PopUpViewController.swift */; };
-		33BEF7201C5F494D00DCE27F /* PopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33BEF71F1C5F494D00DCE27F /* PopUp.storyboard */; };
-		33BEF7221C5F52B700DCE27F /* PopUpMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF7211C5F52B700DCE27F /* PopUpMainView.swift */; };
+		33BEF7221C5F52B700DCE27F /* StorePopUpMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BEF7211C5F52B700DCE27F /* StorePopUpMainView.swift */; };
 		33D307021C5F2B6D00607DDC /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D307011C5F2B6D00607DDC /* StoreViewModel.swift */; };
 		33D307041C5F2BEE00607DDC /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D307031C5F2BEE00607DDC /* StoreItem.swift */; };
 		33D307061C5F2D4100607DDC /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D307051C5F2D4100607DDC /* Achievement.swift */; };
@@ -167,6 +171,12 @@
 		3315D8671C3F975600878F7C /* FoodSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodSprite.swift; sourceTree = "<group>"; };
 		3318222E1C28CCA10094245D /* RxCompliant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCompliant.swift; sourceTree = "<group>"; };
 		331E66D21BF6AEDB003AB81D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3323A23C1C65BE5E009D4260 /* PopUpBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpBaseViewController.swift; sourceTree = "<group>"; };
+		3323A23E1C65BFA1009D4260 /* StorePopUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StorePopUpView.xib; sourceTree = "<group>"; };
+		3323A2411C65C15E009D4260 /* StorePopUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorePopUpView.swift; sourceTree = "<group>"; };
+		3323A2431C65C2EA009D4260 /* PopUpMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpMainView.swift; sourceTree = "<group>"; };
+		3323A2451C65C79D009D4260 /* StorePopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorePopUpViewController.swift; sourceTree = "<group>"; };
+		3323A2471C65C8C5009D4260 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		3324827B1C2E55BB00C4655E /* SKAction+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SKAction+Extension.swift"; sourceTree = "<group>"; };
 		3324EA891C4EFD57000D7A21 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = SOURCE_ROOT; };
 		3335326D1C164F6B003145AA /* StatsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsLayer.swift; sourceTree = "<group>"; };
@@ -250,9 +260,7 @@
 		33BEF7161C5F493700DCE27F /* LevelUpPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelUpPopUp.swift; sourceTree = "<group>"; };
 		33BEF7171C5F493700DCE27F /* PopUpLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpLayer.swift; sourceTree = "<group>"; };
 		33BEF7181C5F493700DCE27F /* ProgressReportPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressReportPopUp.swift; sourceTree = "<group>"; };
-		33BEF71A1C5F493700DCE27F /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
-		33BEF71F1C5F494D00DCE27F /* PopUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PopUp.storyboard; sourceTree = "<group>"; };
-		33BEF7211C5F52B700DCE27F /* PopUpMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpMainView.swift; sourceTree = "<group>"; };
+		33BEF7211C5F52B700DCE27F /* StorePopUpMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorePopUpMainView.swift; sourceTree = "<group>"; };
 		33D307011C5F2B6D00607DDC /* StoreViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
 		33D307031C5F2BEE00607DDC /* StoreItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreItem.swift; sourceTree = "<group>"; };
 		33D307051C5F2D4100607DDC /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
@@ -372,6 +380,14 @@
 				3366C5A91C2373D9001AF86E /* StatsStore.swift */,
 			);
 			path = HealthKit;
+			sourceTree = "<group>";
+		};
+		3323A2401C65C141009D4260 /* Store Pop Up */ = {
+			isa = PBXGroup;
+			children = (
+				3323A2411C65C15E009D4260 /* StorePopUpView.swift */,
+			);
+			path = "Store Pop Up";
 			sourceTree = "<group>";
 		};
 		333532651C160273003145AA /* NodeLayers */ = {
@@ -788,10 +804,14 @@
 		33BEF7191C5F493700DCE27F /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				33BEF71A1C5F493700DCE27F /* PopUpViewController.swift */,
-				33BEF71F1C5F494D00DCE27F /* PopUp.storyboard */,
-				33BEF7211C5F52B700DCE27F /* PopUpMainView.swift */,
+				3323A2401C65C141009D4260 /* Store Pop Up */,
+				33BEF7211C5F52B700DCE27F /* StorePopUpMainView.swift */,
 				338E91791C60B2F800F34979 /* PopUpViewDelegate.swift */,
+				3323A23C1C65BE5E009D4260 /* PopUpBaseViewController.swift */,
+				3323A23E1C65BFA1009D4260 /* StorePopUpView.xib */,
+				3323A2431C65C2EA009D4260 /* PopUpMainView.swift */,
+				3323A2451C65C79D009D4260 /* StorePopUpViewController.swift */,
+				3323A2471C65C8C5009D4260 /* PopUpViewController.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -909,10 +929,10 @@
 			files = (
 				3315D8611C3F7C0900878F7C /* TestScene.sks in Resources */,
 				333C0AA41C548F2D00A1C84F /* StoreItemCell.xib in Resources */,
+				3323A23F1C65BFA1009D4260 /* StorePopUpView.xib in Resources */,
 				338368E91BF67852006407FF /* LaunchScreen.storyboard in Resources */,
 				333C0A951C540A8C00A1C84F /* SwitchSettingsCell.xib in Resources */,
 				333C0A9D1C541E5900A1C84F /* DetailSettingsCell.xib in Resources */,
-				33BEF7201C5F494D00DCE27F /* PopUp.storyboard in Resources */,
 				338368E61BF67852006407FF /* Assets.xcassets in Resources */,
 				338326A21C38651B00D21CAC /* AwardCell.xib in Resources */,
 				3315D85F1C3F7C0900878F7C /* ActionFactory.sks in Resources */,
@@ -947,16 +967,16 @@
 				337199CC1C3B2307008108B6 /* GameManagerHolder.swift in Sources */,
 				33D307021C5F2B6D00607DDC /* StoreViewModel.swift in Sources */,
 				337847621C1E826500B3722D /* Pet.swift in Sources */,
+				3323A23D1C65BE5E009D4260 /* PopUpBaseViewController.swift in Sources */,
 				3378475E1C1E054700B3722D /* SKButtonSprite.swift in Sources */,
 				33D877531C63315500AFDF3D /* DashboardScreenManager.swift in Sources */,
-				33BEF71E1C5F493700DCE27F /* PopUpViewController.swift in Sources */,
 				3324827C1C2E55BB00C4655E /* SKAction+Extension.swift in Sources */,
 				33D307061C5F2D4100607DDC /* Achievement.swift in Sources */,
 				3366C5CA1C24B38A001AF86E /* CGFrame+Extension.swift in Sources */,
 				3318222F1C28CCA10094245D /* RxCompliant.swift in Sources */,
 				3315D8601C3F7C0900878F7C /* ActionManager.swift in Sources */,
 				33BBFD7B1C121F8300E76511 /* DashboardSceneUI.swift in Sources */,
-				33BEF7221C5F52B700DCE27F /* PopUpMainView.swift in Sources */,
+				33BEF7221C5F52B700DCE27F /* StorePopUpMainView.swift in Sources */,
 				3315D8621C3F7C0900878F7C /* PetHead.swift in Sources */,
 				33BBFD7F1C121F8300E76511 /* BarHorizontal.swift in Sources */,
 				330B40FB1C3B3ECE00D44558 /* SKTimer.swift in Sources */,
@@ -972,6 +992,7 @@
 				33EFAE9E1C61E851007F8A49 /* StoreManager.swift in Sources */,
 				33BEF71B1C5F493700DCE27F /* LevelUpPopUp.swift in Sources */,
 				33B990791C2F544800D6CA10 /* CGPoint+Extension.swift in Sources */,
+				3323A2481C65C8C5009D4260 /* PopUpViewController.swift in Sources */,
 				336008561C40DB2000FDD89E /* NSDate+Extension.swift in Sources */,
 				337847641C1EA1F100B3722D /* User.swift in Sources */,
 				33D877571C6338C600AFDF3D /* PopUpControllerDelegate.swift in Sources */,
@@ -982,6 +1003,7 @@
 				3389EEC41C3C442800EA08FC /* LoadingLayer.swift in Sources */,
 				33BEF71C1C5F493700DCE27F /* PopUpLayer.swift in Sources */,
 				337199C51C3B1E11008108B6 /* SettingsViewController.swift in Sources */,
+				3323A2461C65C79D009D4260 /* StorePopUpViewController.swift in Sources */,
 				3315D8631C3F7C0900878F7C /* PandoSprite.swift in Sources */,
 				33D877551C63317500AFDF3D /* FoodManager.swift in Sources */,
 				33BBFD7A1C121F8300E76511 /* DashboardScene.swift in Sources */,
@@ -1011,8 +1033,10 @@
 				333C0A971C540B6900A1C84F /* SwitchSettingsCell.swift in Sources */,
 				330C80EE1C33164700ADF713 /* AwardsViewController.swift in Sources */,
 				3309FB501BF7F72C00BE0310 /* HKHelper.swift in Sources */,
+				3323A2421C65C15E009D4260 /* StorePopUpView.swift in Sources */,
 				3366C5C41C24B38A001AF86E /* NSNumberFormatter+Extension.swift in Sources */,
 				3315D8641C3F7C0900878F7C /* PandoStateFunctions.swift in Sources */,
+				3323A2441C65C2EA009D4260 /* PopUpMainView.swift in Sources */,
 				333C0AA61C54A07C00A1C84F /* StoreItemCell.swift in Sources */,
 				3366C5CC1C24B38A001AF86E /* UIColor+Extension.swift in Sources */,
 				333C0A991C5419D900A1C84F /* SettingsViewModel.swift in Sources */,

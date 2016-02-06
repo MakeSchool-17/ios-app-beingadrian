@@ -13,15 +13,13 @@ class PopUpMainView: UIView {
     
     // MARK: - Properties
     
-    @IBOutlet weak var popUpView: UIView!
-    @IBOutlet weak var confirmButton: UIButton!
-    @IBOutlet weak var cancelButton: UIButton!
-    
-    var delegate: PopUpMainViewDelegate?
+    var popUpView: UIView!
     
     // MARK: - Awake from nib
     
     override func awakeFromNib() {
+        
+        setup()
         
         // add gesture recognizer for exit
         let tapGesture = UITapGestureRecognizer(target: self, action: "didTapBackgroundView:")
@@ -31,10 +29,30 @@ class PopUpMainView: UIView {
         
     }
     
+    private func setup() {
+        
+        setCustomPopUpView()
+        
+        self.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
+        
+        self.popUpView.backgroundColor = UIColor.whiteColor()
+        self.popUpView.layer.cornerRadius = 23
+        self.popUpView.layer.borderWidth = 6.5
+        self.popUpView.layer.borderColor = UIColor.rgbaColor(
+            r: 115, g: 115, b: 115, a: 1).CGColor
+        
+    }
+    
+    func setCustomPopUpView() {
+        
+        
+        
+    }
+    
     func popUpDidFinishAnimateIn() {
         
-        setupButtonTargets()
-    
+        
+        
     }
     
     // MARK: - Tap gesture actions
@@ -45,30 +63,11 @@ class PopUpMainView: UIView {
         
     }
     
-    func setupButtonTargets() {
-        
-        self.confirmButton.addTarget(self,
-            action: "onConfirmButtonTap:", forControlEvents: .TouchUpInside)
-        self.cancelButton.addTarget(self,
-            action: "onCancelButtonTap:", forControlEvents: .TouchUpInside)
-        
-    }
-    
-    func onConfirmButtonTap(sender: UIButton) {
-        
-        delegate?.didTapConfirmButton()
-        
-    }
-    
-    func onCancelButtonTap(sender: UIButton) {
-        
-        delegate?.didTapCancelButton()
-        
-    }
-    
     // MARK: - Animations
     
     func animateIn() {
+        
+        self.awakeFromNib()
         
         self.popUpView.transform = CGAffineTransformMakeScale(0, 0)
         self.alpha = 0
@@ -85,10 +84,10 @@ class PopUpMainView: UIView {
             },
             completion: { finished in
                 if finished { self.popUpDidFinishAnimateIn() }
-            })
+        })
         
     }
-
+    
     func animateOut() {
         
         UIView.animateWithDuration(
@@ -104,10 +103,10 @@ class PopUpMainView: UIView {
             completion: { finished in
                 guard finished else { return }
                 self.removeFromSuperview()
-            })
+        })
         
     }
-
+    
 }
 
 extension PopUpMainView: UIGestureRecognizerDelegate {
