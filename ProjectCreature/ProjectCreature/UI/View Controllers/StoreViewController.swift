@@ -182,7 +182,7 @@ extension StoreViewController: StorePopUpViewDelegate {
         guard let item = self.viewModel?.selectedItem else { return }
         
         let food = Food(name: item.title, hpValue: 30)
-        gameManager?.didBuyFood(food)
+        gameManager?.foodManager.didBuyFood(food)
             .subscribe(
                 onNext: { (food) -> Void in
                     // send success message
@@ -191,7 +191,7 @@ extension StoreViewController: StorePopUpViewDelegate {
                 },
                 onError: { (error) -> Void in
                     print("> Error buying item: \(error)")
-                    if error is GameManager.FoodError {
+                    if error is FoodManager.Error {
                         self.presentPopUpMessage("You already have food on the plate!")
                     }
                 },
@@ -212,6 +212,7 @@ extension StoreViewController: StorePopUpViewDelegate {
             else { return }
         
         simpleMessagePopUpView.text = message
+        simpleMessagePopUpView.delay = 2
         
         popUpBaseView.transitionInView(self.view, withPopUp: simpleMessagePopUpView)
         

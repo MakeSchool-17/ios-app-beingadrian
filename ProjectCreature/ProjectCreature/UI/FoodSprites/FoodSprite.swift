@@ -82,7 +82,7 @@ class FoodSprite: SKSpriteNode {
     
     // MARK: - Animations
     
-    func performEatenAction(completion: () -> Void) {
+    func performEatenAction() -> Observable<Void> {
         
         let scaleUpAction = SKAction.scaleTo(1.5, duration: 0.10)
         scaleUpAction.timingMode = .EaseOut
@@ -92,9 +92,15 @@ class FoodSprite: SKSpriteNode {
         
         let sequence = SKAction.sequence([scaleUpAction, scaleDownAction])
         
-        self.runAction(sequence) {
-            self.removeFromParent()
-            completion()
+        return Observable.create { observer in
+            
+            self.runAction(sequence) {
+                self.removeFromParent()
+                observer.onNext()
+                observer.onCompleted()
+            }
+            
+            return NopDisposable.instance
         }
         
     }

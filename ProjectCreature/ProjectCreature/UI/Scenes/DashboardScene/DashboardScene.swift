@@ -57,7 +57,7 @@ class DashboardScene: SKScene {
         
         setup()
         
-        performCheck()
+        checkHealthKitPermissions()
             .subscribeOn(MainScheduler.instance)
             .subscribe(
                 onNext: nil,
@@ -95,7 +95,7 @@ class DashboardScene: SKScene {
         
         pushLoadingScreen()
         
-        performCheck()
+        checkHealthKitPermissions()
             .subscribeOn(MainScheduler.instance)
             .subscribe(
                 onNext: nil,
@@ -105,17 +105,17 @@ class DashboardScene: SKScene {
                 onCompleted: {
                     print("> Completed performing check")
                     self.loadingLayer.didFinishLoading()
+//                    if let currentFood = self.gameManager.foodManager.currentFood.value {
+//                        self.foodSprite = FoodSprite(food: currentFood)
+//                    }
                 },
                 onDisposed: nil)
             .addDisposableTo(disposeBag)
         
     }
     
-    /**
-     * Reloads the data of the `gameManager`'s `statsStore`. 
-     * Error handling also occurs in this function.
-     */
-    private func performCheck() -> Observable<Void> {
+    // TODO: - Check health kit permissions
+    private func checkHealthKitPermissions() -> Observable<Void> {
         
         return HKHelper().requestHealthKitAuthorization()
             .flatMap { success -> Observable<Void> in
@@ -259,14 +259,14 @@ class DashboardScene: SKScene {
         guard let petSprite = self.petSprite else { return }
         
         petSprite.head.isBeingPet
-            .subscribeOn(MainScheduler.instance)
+            .observeOn(MainScheduler.instance)
             .subscribeNext { count in
                 
-                let limitIsReached = gameManager.checkPettingLimitIsReached()
+                let limitIsReached = gameManager.petManager.checkPettingLimitIsReached()
                 
                 if !limitIsReached {
                     
-                    gameManager.pettingCount.value += 1
+                    gameManager.petManager.pettingCount.value += 1
                     
                     let head = petSprite.head
                     if (!head.isSmiling && self.petSprite.state.value != .Sad) {
@@ -285,7 +285,7 @@ class DashboardScene: SKScene {
      */
     private func observePetLevelUp() {
         
-        gameManager.petLeveledUp
+        gameManager.petManager.petLeveledUp
             .subscribeNext { newLevel in
                 print("> Dashboard - Pet did level up: \(newLevel)")
             }.addDisposableTo(disposeBag)
@@ -298,7 +298,7 @@ class DashboardScene: SKScene {
      */
     private func observeFood() {
         
-        gameManager.currentFood
+        gameManager.foodManager.currentFood
             .asObservable()
             .subscribeNext { food in
                 guard let food = food else { return }
@@ -331,9 +331,15 @@ class DashboardScene: SKScene {
     private func consumeFoodSprite(foodSprite: FoodSprite) {
         
         petSprite.smileForDuration(2.0)
-        foodSprite.performEatenAction {
-            self.gameManager.consumeFood(foodSprite.food)
-        }
+        foodSprite.performEatenAction()
+            .observeOn(MainScheduler.instance)
+            .map {
+                return self.gameManager.petManager.consumeFood(foodSprite.food)
+            }
+            .subscribeCompleted {
+                self.gameManager.foodManager.currentFood.value = nil
+            }
+            .addDisposableTo(disposeBag)
         
     }
     

@@ -29,15 +29,9 @@ class StoreManager {
     
     func purchaseItem(item: StoreItem) {
         
-        handleFoodPurchase(item)
-        
-    }
-    
-    func handleFoodPurchase(item: StoreItem) {
-        
-        // get item from server
-            
-        
+        // check if item is food
+        // if food, handle food purchase
+        // if not food, handle item purchase
         
     }
     

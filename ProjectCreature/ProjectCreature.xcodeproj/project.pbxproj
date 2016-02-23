@@ -102,6 +102,7 @@
 		339DA2CD1C0F6E8B0025F064 /* RxBlocking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C61C0F6E430025F064 /* RxBlocking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		339DA2D11C0F6E8B0025F064 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 339DA2C81C0F6E430025F064 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		33AC1D031C266F170066FCB3 /* BarVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AC1D021C266F170066FCB3 /* BarVertical.swift */; };
+		33B578F31C6ADBF70080D9B7 /* StoreManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B578F21C6ADBF70080D9B7 /* StoreManagerDelegate.swift */; };
 		33B990791C2F544800D6CA10 /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B990781C2F544800D6CA10 /* CGPoint+Extension.swift */; };
 		33B9907B1C2F5C9400D6CA10 /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9907A1C2F5C9400D6CA10 /* CGFloat+Extension.swift */; };
 		33BBFD601C121E9900E76511 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBFD5E1C121E9900E76511 /* DashboardViewModel.swift */; };
@@ -117,6 +118,7 @@
 		33D307081C5F300C00607DDC /* StoreBuyButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D307071C5F300C00607DDC /* StoreBuyButtonDelegate.swift */; };
 		33D877531C63315500AFDF3D /* DashboardScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D877521C63315400AFDF3D /* DashboardScreenManager.swift */; };
 		33D877551C63317500AFDF3D /* FoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D877541C63317500AFDF3D /* FoodManager.swift */; };
+		33E9C52B1C7A48F400B9A973 /* PetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E9C52A1C7A48F400B9A973 /* PetManager.swift */; };
 		33EFAE9E1C61E851007F8A49 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EFAE9D1C61E851007F8A49 /* StoreManager.swift */; };
 		33EFAEA01C61EB74007F8A49 /* ItemEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EFAE9F1C61EB74007F8A49 /* ItemEffect.swift */; };
 		33FC7CB51C3E594700012283 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FC7CB41C3E594700012283 /* Food.swift */; };
@@ -255,6 +257,7 @@
 		339DA2C71C0F6E430025F064 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = SOURCE_ROOT; };
 		339DA2C81C0F6E430025F064 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = SOURCE_ROOT; };
 		33AC1D021C266F170066FCB3 /* BarVertical.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarVertical.swift; sourceTree = "<group>"; };
+		33B578F21C6ADBF70080D9B7 /* StoreManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreManagerDelegate.swift; sourceTree = "<group>"; };
 		33B990781C2F544800D6CA10 /* CGPoint+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
 		33B9907A1C2F5C9400D6CA10 /* CGFloat+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
 		33BBFD5E1C121E9900E76511 /* DashboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
@@ -270,6 +273,7 @@
 		33D307071C5F300C00607DDC /* StoreBuyButtonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreBuyButtonDelegate.swift; sourceTree = "<group>"; };
 		33D877521C63315400AFDF3D /* DashboardScreenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardScreenManager.swift; sourceTree = "<group>"; };
 		33D877541C63317500AFDF3D /* FoodManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodManager.swift; sourceTree = "<group>"; };
+		33E9C52A1C7A48F400B9A973 /* PetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetManager.swift; sourceTree = "<group>"; };
 		33EFAE9D1C61E851007F8A49 /* StoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		33EFAE9F1C61EB74007F8A49 /* ItemEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEffect.swift; sourceTree = "<group>"; };
 		33FC7CB41C3E594700012283 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
@@ -716,6 +720,8 @@
 				33EFAE9D1C61E851007F8A49 /* StoreManager.swift */,
 				33D877521C63315400AFDF3D /* DashboardScreenManager.swift */,
 				33D877541C63317500AFDF3D /* FoodManager.swift */,
+				33B578F21C6ADBF70080D9B7 /* StoreManagerDelegate.swift */,
+				33E9C52A1C7A48F400B9A973 /* PetManager.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -1002,6 +1008,7 @@
 				336008561C40DB2000FDD89E /* NSDate+Extension.swift in Sources */,
 				337847641C1EA1F100B3722D /* User.swift in Sources */,
 				33BEF71D1C5F493700DCE27F /* ProgressReportPopUp.swift in Sources */,
+				33E9C52B1C7A48F400B9A973 /* PetManager.swift in Sources */,
 				337199BF1C3B1DD6008108B6 /* LeaderboardViewController.swift in Sources */,
 				338368DB1BF67852006407FF /* AppDelegate.swift in Sources */,
 				33EFAEA01C61EB74007F8A49 /* ItemEffect.swift in Sources */,
@@ -1029,6 +1036,7 @@
 				333532731C165176003145AA /* MenuLayer.swift in Sources */,
 				3366C5AC1C2390FA001AF86E /* HistogramPointer.swift in Sources */,
 				33D307081C5F300C00607DDC /* StoreBuyButtonDelegate.swift in Sources */,
+				33B578F31C6ADBF70080D9B7 /* StoreManagerDelegate.swift in Sources */,
 				337199C91C3B1E2A008108B6 /* StoreMainView.swift in Sources */,
 				337199C71C3B1E20008108B6 /* SettingsMainView.swift in Sources */,
 				339874281BFFFE7200F47B2B /* GameManager.swift in Sources */,

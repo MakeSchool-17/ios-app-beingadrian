@@ -26,7 +26,7 @@ class SimpleMessagePopUpView: UIView {
     
     /**
      * The duration of the delay before the pop up dismisses itself.
-     * Default is `1` second.
+     * Default is `1` second. Use `-1` to disable auto-dismiss.
      */
     var delay: Double = 1
     
@@ -49,6 +49,8 @@ class SimpleMessagePopUpView: UIView {
 extension SimpleMessagePopUpView: PopUpViewable {
     
     func didFinishTransitionIn() {
+        
+        guard (self.delay >= 0) else { return }
         
         // start timer
         let delay = self.delay * Double(NSEC_PER_SEC)

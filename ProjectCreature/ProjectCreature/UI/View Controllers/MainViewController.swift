@@ -77,7 +77,7 @@ class MainViewController: UIViewController {
         
         let scene = DashboardScene()
         scene.gameManager = gameManager
-        scene.viewModel = DashboardViewModel(pet: gameManager.pet, user: gameManager.user)
+        scene.viewModel = DashboardViewModel(pet: gameManager.petManager.pet, user: gameManager.user)
         
         scene.size = CGSize(width: 320, height: 568)
         scene.scaleMode = .Fill
