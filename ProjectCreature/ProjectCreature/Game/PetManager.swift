@@ -27,6 +27,9 @@ class PetManager: NSObject, NSCoding {
     private var lastLimitReachedDate = NSDate()
     var pettingCount = Variable(0)
     
+    // decrease rate
+    let happinessDecreaseRate: Float = 0.0625
+    
     // MARK: - Initialization 
     
     init(pet: Pet) {
@@ -132,6 +135,20 @@ class PetManager: NSObject, NSCoding {
         
     }
     
+    // MARK: - Health
+    
+    func decreaseHealth(byValue value: Float) {
+        
+        pet.hp.value -= value
+        
+    }
+    
+    func decreaseHealth(byPercentage percentage: Float) {
+        
+        pet.hp.value -= pet.hp.value * percentage
+        
+    }
+    
     // MARK: - Petting
     
     /**
@@ -222,7 +239,7 @@ class PetManager: NSObject, NSCoding {
     
     func consumeFood(food: Food) -> Observable<Void> {
         
-        let maxHp = Int(self.pet.hpMax.value)
+        let maxHp = Int(pet.hpMax.value)
         let newValue = pet.hp.value + Float(food.hpValue)
         pet.hp.value = newValue.clamped(0...maxHp)
         

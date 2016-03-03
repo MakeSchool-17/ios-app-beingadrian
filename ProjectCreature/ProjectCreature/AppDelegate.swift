@@ -17,7 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    // MARK: - Properties
+    
     private var didEnterBackground = false
+    
+    private var notificationManager: NotificationManager?
+    
+    private let defaults = NSUserDefaults.standardUserDefaults()
+    
+    // MARK: - App delegate methods
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -25,45 +33,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Firebase.defaultConfig().persistenceEnabled = true
         
+        // request for notification settings
+        
+        let settings = UIUserNotificationSettings(forTypes: [.Sound, .Badge, .Alert], categories: nil)
+        application.registerUserNotificationSettings(settings)
+        
         return true
         
     }
 
     func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-        
-        guard let mainViewController = window?.rootViewController as? MainViewController else { return }
-        guard let gameManager = mainViewController.gameManager else { return }
-        
-        let defaults = NSUserDefaults.standardUserDefaults()
 
-        let gameManagerData = NSKeyedArchiver.archivedDataWithRootObject(gameManager)
-        defaults.setObject(gameManagerData, forKey: "GameManagerArchive")
+        // insert code here
         
-//        let userData = NSKeyedArchiver.archivedDataWithRootObject(gameManager.user)
-//        defaults.setObject(userData, forKey: "UserArchive")
-//        
-//        let petData = NSKeyedArchiver.archivedDataWithRootObject(gameManager.pet)
-//        defaults.setObject(petData, forKey: "PetArchive")
-        
-        print("> Hit application will terminate")
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-        didEnterBackground = true
+        defer {
+            saveGameManagerData()
+            didEnterBackground = true
+        }
+        
+        notificationManager?.schedulePetNotification()
         
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        
+        notificationManager?.cancelAllNotifications()
+        
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
         if didEnterBackground {
             guard let mainViewController = window?.rootViewController as? MainViewController else { return }
@@ -71,14 +73,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             guard let scene = view.scene as? DashboardScene else { return }
             scene.didBecomeActive()
             didEnterBackground = false
+            
+            self.notificationManager = NotificationManager(gameManager: scene.gameManager)
         }
   
     }
 
     func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         
-
+        notificationManager?.schedulePetNotification()
+        
+        saveGameManagerData()
+        
+    }
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        
+        print("Did receive local notification")
+        
+    }
+    
+    // MARK: - Custom methods
+    
+    private func saveGameManagerData() {
+        
+        guard let mainViewController = window?.rootViewController as? MainViewController else { return }
+        guard let gameManager = mainViewController.gameManager else { return }
+        
+        let gameManagerData = NSKeyedArchiver.archivedDataWithRootObject(gameManager)
+        defaults.setObject(gameManagerData, forKey: "GameManagerArchive")
         
     }
 

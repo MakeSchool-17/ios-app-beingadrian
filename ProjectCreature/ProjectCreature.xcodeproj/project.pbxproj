@@ -49,6 +49,7 @@
 		333C0AA61C54A07C00A1C84F /* StoreItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333C0AA51C54A07C00A1C84F /* StoreItemCell.swift */; };
 		3346CAE71C37125C00921A4B /* AwardsMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3346CAE61C37125C00921A4B /* AwardsMainView.swift */; };
 		3355570B1C1BA0530027FAE4 /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */; };
+		335FDA541C8682CD005564A5 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335FDA531C8682CD005564A5 /* NotificationManager.swift */; };
 		336008561C40DB2000FDD89E /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336008551C40DB2000FDD89E /* NSDate+Extension.swift */; };
 		3366C5A81C2337C7001AF86E /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5A71C2337C7001AF86E /* Test.swift */; };
 		3366C5AA1C2373D9001AF86E /* StatsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3366C5A91C2373D9001AF86E /* StatsStore.swift */; };
@@ -116,7 +117,6 @@
 		33D307041C5F2BEE00607DDC /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D307031C5F2BEE00607DDC /* StoreItem.swift */; };
 		33D307061C5F2D4100607DDC /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D307051C5F2D4100607DDC /* Achievement.swift */; };
 		33D307081C5F300C00607DDC /* StoreBuyButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D307071C5F300C00607DDC /* StoreBuyButtonDelegate.swift */; };
-		33D877531C63315500AFDF3D /* DashboardScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D877521C63315400AFDF3D /* DashboardScreenManager.swift */; };
 		33D877551C63317500AFDF3D /* FoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D877541C63317500AFDF3D /* FoodManager.swift */; };
 		33E9C52B1C7A48F400B9A973 /* PetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E9C52A1C7A48F400B9A973 /* PetManager.swift */; };
 		33EFAE9E1C61E851007F8A49 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EFAE9D1C61E851007F8A49 /* StoreManager.swift */; };
@@ -200,6 +200,7 @@
 		333C0AA51C54A07C00A1C84F /* StoreItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreItemCell.swift; sourceTree = "<group>"; };
 		3346CAE61C37125C00921A4B /* AwardsMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwardsMainView.swift; sourceTree = "<group>"; };
 		3355570A1C1BA0530027FAE4 /* CircleProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
+		335FDA531C8682CD005564A5 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		336008551C40DB2000FDD89E /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
 		3366C5A71C2337C7001AF86E /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		3366C5A91C2373D9001AF86E /* StatsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsStore.swift; sourceTree = "<group>"; };
@@ -271,7 +272,6 @@
 		33D307031C5F2BEE00607DDC /* StoreItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreItem.swift; sourceTree = "<group>"; };
 		33D307051C5F2D4100607DDC /* Achievement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		33D307071C5F300C00607DDC /* StoreBuyButtonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreBuyButtonDelegate.swift; sourceTree = "<group>"; };
-		33D877521C63315400AFDF3D /* DashboardScreenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardScreenManager.swift; sourceTree = "<group>"; };
 		33D877541C63317500AFDF3D /* FoodManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodManager.swift; sourceTree = "<group>"; };
 		33E9C52A1C7A48F400B9A973 /* PetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetManager.swift; sourceTree = "<group>"; };
 		33EFAE9D1C61E851007F8A49 /* StoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
@@ -717,11 +717,11 @@
 			isa = PBXGroup;
 			children = (
 				339874271BFFFE7200F47B2B /* GameManager.swift */,
-				33EFAE9D1C61E851007F8A49 /* StoreManager.swift */,
-				33D877521C63315400AFDF3D /* DashboardScreenManager.swift */,
-				33D877541C63317500AFDF3D /* FoodManager.swift */,
-				33B578F21C6ADBF70080D9B7 /* StoreManagerDelegate.swift */,
 				33E9C52A1C7A48F400B9A973 /* PetManager.swift */,
+				33D877541C63317500AFDF3D /* FoodManager.swift */,
+				33EFAE9D1C61E851007F8A49 /* StoreManager.swift */,
+				33B578F21C6ADBF70080D9B7 /* StoreManagerDelegate.swift */,
+				335FDA531C8682CD005564A5 /* NotificationManager.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -973,6 +973,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				335FDA541C8682CD005564A5 /* NotificationManager.swift in Sources */,
 				3346CAE71C37125C00921A4B /* AwardsMainView.swift in Sources */,
 				3366C5C91C24B38A001AF86E /* SpriteKit+Spring+Extension.swift in Sources */,
 				337847671C1F3D3600B3722D /* FirebaseHelper.swift in Sources */,
@@ -980,7 +981,6 @@
 				33D307021C5F2B6D00607DDC /* StoreViewModel.swift in Sources */,
 				337847621C1E826500B3722D /* Pet.swift in Sources */,
 				3378475E1C1E054700B3722D /* SKButtonSprite.swift in Sources */,
-				33D877531C63315500AFDF3D /* DashboardScreenManager.swift in Sources */,
 				3324827C1C2E55BB00C4655E /* SKAction+Extension.swift in Sources */,
 				33D307061C5F2D4100607DDC /* Achievement.swift in Sources */,
 				3366C5CA1C24B38A001AF86E /* CGFrame+Extension.swift in Sources */,

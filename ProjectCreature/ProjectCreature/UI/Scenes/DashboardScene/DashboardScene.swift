@@ -105,9 +105,6 @@ class DashboardScene: SKScene {
                 onCompleted: {
                     print("> Completed performing check")
                     self.loadingLayer.didFinishLoading()
-//                    if let currentFood = self.gameManager.foodManager.currentFood.value {
-//                        self.foodSprite = FoodSprite(food: currentFood)
-//                    }
                 },
                 onDisposed: nil)
             .addDisposableTo(disposeBag)
