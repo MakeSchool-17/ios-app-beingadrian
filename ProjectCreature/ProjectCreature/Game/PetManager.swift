@@ -27,8 +27,12 @@ class PetManager: NSObject, NSCoding {
     private var lastLimitReachedDate = NSDate()
     var pettingCount = Variable(0)
     
-    // decrease rate
-    let happinessDecreaseRate: Float = 0.0625
+    /**
+     * The decrease rate of happiness per hour.
+     */
+    var happinessDecreaseRate: Float {
+        return 0.0625
+    }
     
     // MARK: - Initialization 
     
@@ -135,17 +139,20 @@ class PetManager: NSObject, NSCoding {
         
     }
     
-    // MARK: - Health
+    // MARK: - Happiness
     
-    func decreaseHealth(byValue value: Float) {
+    /**
+     * Decreases the pet's happiness based on the time between the last time the
+     * app was closed.
+     * 
+     * - parameter date: The date in which the app was last closed
+     */
+    func decreaseHappinessBasedOnDate(date: NSDate) {
         
-        pet.hp.value -= value
+        let hours = abs(date.timeIntervalSinceNow) / (60 * 60)
+        let happinessDecrease = happinessDecreaseRate * Float(hours)
         
-    }
-    
-    func decreaseHealth(byPercentage percentage: Float) {
-        
-        pet.hp.value -= pet.hp.value * percentage
+        pet.hp.value = pet.hp.value - happinessDecrease
         
     }
     

@@ -94,7 +94,13 @@ class CircleProgressBar: SKShapeNode {
         let action = SKAction.customActionWithDuration(duration) {
             (node, elapsedTime) in
             
-            let progressFraction = CGFloat(progress) * (elapsedTime / CGFloat(duration))
+            var progressFraction = CGFloat(progress) * (elapsedTime / CGFloat(duration))
+            
+            if (progressFraction > 1) {
+                self.lineWidth = self.lineWidth + 1
+                progressFraction = 0.99999999
+            }
+            
             self.path = self.createBezierPath(self.radius, progress: progressFraction).CGPath
         }
         

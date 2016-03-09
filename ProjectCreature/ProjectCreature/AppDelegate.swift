@@ -44,18 +44,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillResignActive(application: UIApplication) {
 
-        // insert code here
+        
         
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        
-        defer {
-            saveGameManagerData()
-            didEnterBackground = true
-        }
+
+        saveGameManagerData()
         
         notificationManager?.schedulePetNotification()
+        
+        recordApplicationClosedDate()
+        
+        didEnterBackground = true
         
     }
 
@@ -67,15 +68,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         
+        
         if didEnterBackground {
             guard let mainViewController = window?.rootViewController as? MainViewController else { return }
             guard let view = mainViewController.view as? SKView else { return }
             guard let scene = view.scene as? DashboardScene else { return }
+            
+            if let lastClosedDate = defaults.objectForKey("LastClosedDate") as? NSDate {
+                scene.gameManager.petManager.decreaseHappinessBasedOnDate(lastClosedDate)
+            }
+            
             scene.didBecomeActive()
-            didEnterBackground = false
             
             self.notificationManager = NotificationManager(gameManager: scene.gameManager)
+            didEnterBackground = false
         }
+        
+        notificationManager?.cancelAllNotifications()
   
     }
 
@@ -84,6 +93,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notificationManager?.schedulePetNotification()
         
         saveGameManagerData()
+        
+        recordApplicationClosedDate()
         
     }
     
@@ -94,6 +105,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // MARK: - Custom methods
+    
+    private func recordApplicationClosedDate() {
+        
+        defaults.setObject(NSDate(), forKey: "LastClosedDate")
+        
+    }
     
     private func saveGameManagerData() {
         

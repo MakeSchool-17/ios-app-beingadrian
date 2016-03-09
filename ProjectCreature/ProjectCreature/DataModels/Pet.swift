@@ -137,9 +137,6 @@ class Pet: NSObject, NSCoding {
         self.hpMax.value = hpMaxValue
         self.id.value = idValue
         
-        // FIXME: Test
-//        self.hp.value = self.hpMax.value * 0.61
-        
     }
     
     func encodeWithCoder(coder: NSCoder) {
