@@ -30,8 +30,8 @@ class PetManager: NSObject, NSCoding {
     /**
      * The decrease rate of happiness per hour.
      */
-    var happinessDecreaseRate: Float {
-        return 0.0625
+    var hpDecreasePerHour: Float {
+        return 0.1 * pet.hpMax.value
     }
     
     // MARK: - Initialization 
@@ -150,9 +150,12 @@ class PetManager: NSObject, NSCoding {
     func decreaseHappinessBasedOnDate(date: NSDate) {
         
         let hours = abs(date.timeIntervalSinceNow) / (60 * 60)
-        let happinessDecrease = happinessDecreaseRate * Float(hours)
+        let hpDecrease = hpDecreasePerHour * Float(hours)
         
-        pet.hp.value = pet.hp.value - happinessDecrease
+        print("> Hours: \(hours)")
+        print("> HP Decrease: \(hpDecrease)")
+        
+        pet.hp.value = pet.hp.value - hpDecrease
         
     }
     

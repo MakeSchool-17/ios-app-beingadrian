@@ -135,7 +135,7 @@ class NotificationManager {
         let pet = gameManager.petManager.pet
         let amount = pet.hp.value - (pet.hpMax.value * 0.6)
 
-        let timeInterval = NSTimeInterval(amount / gameManager.petManager.happinessDecreaseRate)
+        let timeInterval = NSTimeInterval(amount / gameManager.petManager.hpDecreasePerHour) * 60 * 60
         
         print("> Seconds: \(timeInterval)")
         
@@ -148,7 +148,7 @@ class NotificationManager {
         let pet = gameManager.petManager.pet
         let amount = pet.hp.value - (pet.hpMax.value * 0.05)
         
-        let timeInterval = NSTimeInterval(amount / gameManager.petManager.happinessDecreaseRate)
+        let timeInterval = NSTimeInterval(amount / gameManager.petManager.hpDecreasePerHour)
         
         return NSDate(timeIntervalSinceNow: timeInterval)
         
