@@ -155,7 +155,7 @@ class PetManager: NSObject, NSCoding {
         print("> Hours: \(hours)")
         print("> HP Decrease: \(hpDecrease)")
         
-        pet.hp.value = pet.hp.value - hpDecrease
+        pet.hp.value -= hpDecrease
         
     }
     

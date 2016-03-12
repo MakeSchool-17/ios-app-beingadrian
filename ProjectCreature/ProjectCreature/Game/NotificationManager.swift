@@ -13,7 +13,8 @@ import UIKit
 class NotificationManager {
 
     enum Category: String {
-        case Pet = "PET"
+        case PetFaint = "PET_FAINT"
+        case PetSad = "PET_SAD"
         case Progress = "PROGRESS"
         
     }
@@ -65,9 +66,10 @@ class NotificationManager {
     }
     
     func schedulePetNotification() {
+
+        let notification = UILocalNotification()
         
         let percentage = gameManager.petManager.pet.hp.value / gameManager.petManager.pet.hpMax.value
-        
         var message: String?
         var date: NSDate?
         
@@ -75,20 +77,20 @@ class NotificationManager {
         case 0.6...1.0:
             message = createMessage(.Sad)
             date = calculatePetSadnessDate()
+            notification.category = Category.PetSad.rawValue
         case 0..<0.6:
             message = createMessage(.Faint)
             date = calculatePetFaintDate()
+            notification.category = Category.PetFaint.rawValue
         default:
             break
         }
         
         guard let alertBody = message, let fireDate = date else { return }
-        
-        let notification = UILocalNotification()
+
         notification.alertBody = alertBody
         notification.alertAction = "open"
         notification.fireDate = fireDate
-        notification.category = Category.Pet.rawValue
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
         
@@ -136,8 +138,6 @@ class NotificationManager {
         let amount = pet.hp.value - (pet.hpMax.value * 0.6)
 
         let timeInterval = NSTimeInterval(amount / gameManager.petManager.hpDecreasePerHour) * 60 * 60
-        
-        print("> Seconds: \(timeInterval)")
         
         return NSDate(timeIntervalSinceNow: timeInterval)
 

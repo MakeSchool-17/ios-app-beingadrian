@@ -68,20 +68,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         
+        guard let mainViewController = window?.rootViewController as? MainViewController else { return }
+        guard let view = mainViewController.view as? SKView else { return }
+        guard let scene = view.scene as? DashboardScene else { return }
+        
+        self.notificationManager = NotificationManager(gameManager: scene.gameManager)
         
         if didEnterBackground {
-            guard let mainViewController = window?.rootViewController as? MainViewController else { return }
-            guard let view = mainViewController.view as? SKView else { return }
-            guard let scene = view.scene as? DashboardScene else { return }
-            
-            if let lastClosedDate = defaults.objectForKey("LastClosedDate") as? NSDate {
-                scene.gameManager.petManager.decreaseHappinessBasedOnDate(lastClosedDate)
-            }
-            
             scene.didBecomeActive()
-            
-            self.notificationManager = NotificationManager(gameManager: scene.gameManager)
             didEnterBackground = false
+        }
+        
+        if let lastClosedDate = defaults.objectForKey("LastClosedDate") as? NSDate {
+            scene.gameManager.petManager.decreaseHappinessBasedOnDate(lastClosedDate)
         }
         
         notificationManager?.cancelAllNotifications()
@@ -99,6 +98,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        
+        guard let categoryString = notification.category else { return }
+        guard let category = NotificationManager.Category(rawValue: categoryString) else { return }
+        
+        // TODO: Refactor category implementation
+        switch category {
+        case .PetSad:
+            break
+        case .PetFaint:
+            break
+        case .Progress:
+            break
+        }
+        
+        notificationManager?.schedulePetNotification()
         
         print("Did receive local notification")
         
