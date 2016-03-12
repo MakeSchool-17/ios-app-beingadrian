@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         if let lastClosedDate = defaults.objectForKey("LastClosedDate") as? NSDate {
-            scene.gameManager.petManager.decreaseHappinessBasedOnDate(lastClosedDate)
+            scene.gameManager.petManager?.decreaseHappinessBasedOnDate(lastClosedDate)
         }
         
         notificationManager?.cancelAllNotifications()

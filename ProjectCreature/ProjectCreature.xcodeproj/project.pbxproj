@@ -95,6 +95,10 @@
 		338368F41BF67852006407FF /* ProjectCreatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338368F31BF67852006407FF /* ProjectCreatureTests.swift */; };
 		338368FF1BF67852006407FF /* ProjectCreatureUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338368FE1BF67852006407FF /* ProjectCreatureUITests.swift */; };
 		3389EEC41C3C442800EA08FC /* LoadingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3389EEC31C3C442800EA08FC /* LoadingLayer.swift */; };
+		33908FD71C94A06F00855238 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33908FD51C94A06F00855238 /* Realm.framework */; };
+		33908FD81C94A07000855238 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 33908FD51C94A06F00855238 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		33908FD91C94A07000855238 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33908FD61C94A06F00855238 /* RealmSwift.framework */; };
+		33908FDA1C94A07000855238 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 33908FD61C94A06F00855238 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		339874281BFFFE7200F47B2B /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339874271BFFFE7200F47B2B /* GameManager.swift */; };
 		339914311C310D8500268C2A /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339914301C310D8500268C2A /* Double+Extension.swift */; };
 		339914331C310DE800268C2A /* Float+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339914321C310DE800268C2A /* Float+Extension.swift */; };
@@ -150,8 +154,10 @@
 			files = (
 				3324EA8C1C4EFD5C000D7A21 /* RxCocoa.framework in Embed Frameworks */,
 				339DA2CD1C0F6E8B0025F064 /* RxBlocking.framework in Embed Frameworks */,
+				33908FDA1C94A07000855238 /* RealmSwift.framework in Embed Frameworks */,
 				339DA2D11C0F6E8B0025F064 /* RxSwift.framework in Embed Frameworks */,
 				3378477C1C1F6D4200B3722D /* Gloss.framework in Embed Frameworks */,
+				33908FD81C94A07000855238 /* Realm.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,6 +257,8 @@
 		338369001BF67852006407FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		338369181BF68F46006407FF /* ProjectCreature-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProjectCreature-Bridging-Header.h"; sourceTree = "<group>"; };
 		3389EEC31C3C442800EA08FC /* LoadingLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingLayer.swift; sourceTree = "<group>"; };
+		33908FD51C94A06F00855238 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		33908FD61C94A06F00855238 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		339874271BFFFE7200F47B2B /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		339914301C310D8500268C2A /* Double+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		339914321C310DE800268C2A /* Float+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Float+Extension.swift"; sourceTree = "<group>"; };
@@ -288,12 +296,14 @@
 				337847731C1F40A000B3722D /* SystemConfiguration.framework in Frameworks */,
 				3324EA8B1C4EFD5C000D7A21 /* RxCocoa.framework in Frameworks */,
 				337847711C1F409400B3722D /* Security.framework in Frameworks */,
+				33908FD71C94A06F00855238 /* Realm.framework in Frameworks */,
 				3378476F1C1F408D00B3722D /* CFNetwork.framework in Frameworks */,
 				3378476D1C1F408700B3722D /* libc++.tbd in Frameworks */,
 				3378477B1C1F6D4200B3722D /* Gloss.framework in Frameworks */,
 				3378476B1C1F407F00B3722D /* libicucore.tbd in Frameworks */,
 				337847601C1E5EAE00B3722D /* Firebase.framework in Frameworks */,
 				339DA2CB1C0F6E430025F064 /* RxSwift.framework in Frameworks */,
+				33908FD91C94A07000855238 /* RealmSwift.framework in Frameworks */,
 				339DA2CC1C0F6E8B0025F064 /* RxBlocking.framework in Frameworks */,
 				3309FB4D1BF7F64300BE0310 /* HealthKit.framework in Frameworks */,
 				3378477A1C1F6D3200B3722D /* Gloss.framework in Frameworks */,
@@ -592,6 +602,8 @@
 		338368CE1BF67852006407FF = {
 			isa = PBXGroup;
 			children = (
+				33908FD51C94A06F00855238 /* Realm.framework */,
+				33908FD61C94A06F00855238 /* RealmSwift.framework */,
 				338368D91BF67852006407FF /* ProjectCreature */,
 				338368F21BF67852006407FF /* ProjectCreatureTests */,
 				338368FD1BF67852006407FF /* ProjectCreatureUITests */,

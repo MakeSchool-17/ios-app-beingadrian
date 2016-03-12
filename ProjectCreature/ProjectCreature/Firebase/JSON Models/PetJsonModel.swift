@@ -19,21 +19,21 @@ struct PetJsonModel: Glossy {
     var expMax: Float
     var hp: Float
     var hpMax: Float
-    var family: Pet.Family
+    var family: String
     var ownerUID: String
     
     // MARK: - Initialization
     
     init(pet: Pet) {
         
-        self.name = pet.name.value
-        self.level = pet.level.value
-        self.exp = pet.exp.value
-        self.expMax = pet.expMax.value
-        self.hp = pet.hp.value
-        self.hpMax = pet.hpMax.value
-        self.family = pet.family.value
-        self.ownerUID = pet.ownerUID.value
+        self.name = pet.name
+        self.level = pet.level
+        self.exp = pet.exp
+        self.expMax = pet.expMax
+        self.hp = pet.hp
+        self.hpMax = pet.hpMax
+        self.family = pet.family
+        self.ownerUID = pet.ownerUID
         
     }
     
@@ -48,7 +48,7 @@ struct PetJsonModel: Glossy {
         guard let expMax: Float = "expMax" <~~ json else { return nil }
         guard let hp: Float = "hp" <~~ json else { return nil }
         guard let hpMax: Float = "hpMax" <~~ json else { return nil }
-        guard let family: Pet.Family = "family" <~~ json else { return nil }
+        guard let family: String = "family" <~~ json else { return nil }
         guard let ownerUID: String = "ownerUID" <~~ json else { return nil }
         
         self.name = name

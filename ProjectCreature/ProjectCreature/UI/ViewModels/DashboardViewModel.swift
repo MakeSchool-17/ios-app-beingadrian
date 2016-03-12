@@ -29,7 +29,7 @@ class DashboardViewModel {
     init(pet: Pet, user: User) {
         
         // set initial petSprite
-        self.petSprite = Variable(pet.sprite.value)
+        self.petSprite = Variable(pet.sprite)
         
         bindPetToViewModel(pet, currentUser: user)
         
@@ -39,46 +39,59 @@ class DashboardViewModel {
     
     private func bindPetToViewModel(pet: Pet, currentUser: User) {
         
-        pet.name
+        pet.rx_observe(String.self, "name")
             .asObservable()
             .subscribeNext { name in
+                guard let name = name else { return }
                 self.petName.value = name
             }
             .addDisposableTo(disposeBag)
 
-        pet.level
+        pet.rx_observe(Int.self, "level")
             .asObservable()
             .subscribeNext {
-                self.petLevel.value = String($0)
+                guard let level = $0 else { return }
+                self.petLevel.value = String(level)
             }
             .addDisposableTo(disposeBag)
 
-        Observable.combineLatest(pet.exp.asObservable(), pet.expMax.asObservable()) {
-                return round($0 / $1 * 100)
+        let expObservable = pet.rx_observe(Float.self, "exp")
+        let expMaxObservable = pet.rx_observe(Float.self, "expMax")
+        
+        Observable.combineLatest(expObservable, expMaxObservable) {
+                (exp: Float?, expMax: Float?) -> Float in
+                guard let exp = exp, expMax = expMax else { return 0 }
+                return round(exp / expMax * 100)
             }
             .subscribeNext { percentage in
                 print("> Dashboard view model - exp percentage: \(percentage)")
                 self.petExpPercentage.value = percentage
             }.addDisposableTo(disposeBag)
         
-        Observable.combineLatest(pet.hp.asObservable(), pet.hpMax.asObservable()) {
-                return round($0 / $1 * 100)
+        let hpObservable = pet.rx_observe(Float.self, "hp")
+        let hpMaxObservable = pet.rx_observe(Float.self, "hpMax")
+
+        Observable.combineLatest(hpObservable, hpMaxObservable) {
+                (hp: Float?, hpMax: Float?) -> Float in
+                guard let hp = hp, hpMax = hpMax else { return 0 }
+                return round(hp / hpMax * 100)
             }
             .subscribeNext {
                 self.petHpPercentage.value = $0
             }
             .addDisposableTo(disposeBag)
-        
-        pet.sprite
-            .asObservable()
+
+        pet.rx_observe(PetSprite.self, "sprite")
             .subscribeNext { sprite in
+                guard let sprite = sprite else { return }
                 self.petSprite.value = sprite
             }
             .addDisposableTo(disposeBag)
-        
-        currentUser.charge
+
+        currentUser.rx_observe(Float.self, "charge")
             .asObservable()
-            .map { cash in
+            .map { cash -> String in
+                guard let cash = cash else { return "" }
                 let formattedNumber = NSNumberFormatter()
                 formattedNumber.numberStyle = .DecimalStyle
                 guard let cashString = formattedNumber.stringFromNumber(cash) else { return "" }

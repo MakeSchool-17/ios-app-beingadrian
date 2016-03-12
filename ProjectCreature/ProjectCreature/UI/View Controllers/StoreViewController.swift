@@ -181,7 +181,7 @@ extension StoreViewController: StorePopUpViewDelegate {
         
         guard let item = self.viewModel?.selectedItem else { return }
         
-        let food = Food(name: item.title, hpValue: 30)
+        let food = Food.create(item.title, hpValue: 30)
         gameManager?.foodManager.didBuyFood(food)
             .subscribe(
                 onNext: { (food) -> Void in

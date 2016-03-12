@@ -29,17 +29,21 @@ class StatsViewModel {
     
     init(gameManager: GameManager) {
          
-        gameManager.statsStore.distanceTravelledToday
-            .asObservable()
-            .map { return Float($0 / 1000) }
+        gameManager.statsStore.rx_observe(Double.self, "distanceTravelledToday")
+            .map {
+                guard let distance = $0 else { return 0 }
+                return Float(distance / 1000)
+            }
             .subscribeNext { distance in
                 self.distance = distance
             }
             .addDisposableTo(disposeBag)
         
-        gameManager.statsStore.totalStepsToday
-            .asObservable()
-            .map { return Float($0) }
+        gameManager.statsStore.rx_observe(Double.self, "totalStepsToday")
+            .map {
+                guard let steps = $0 else { return 0 }
+                return Float(steps)
+            }
             .subscribeNext { steps in
                 self.totalSteps = steps
             }
@@ -49,9 +53,9 @@ class StatsViewModel {
         
         self.currentWeekday = NSDate().weekday
         
-        gameManager.statsStore.weekProgress
-            .asObservable()
-            .subscribeNext { weekProgress in
+        gameManager.statsStore.rx_observe(Dictionary.self, "weekProgress")
+            .subscribeNext { (weekProgress: Dictionary<Int, Double>?) in
+                guard let weekProgress = weekProgress else { return }
                 self.weekProgress = weekProgress
             }
             .addDisposableTo(disposeBag)

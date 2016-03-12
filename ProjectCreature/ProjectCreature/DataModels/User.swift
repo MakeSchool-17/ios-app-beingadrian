@@ -12,7 +12,7 @@ import Firebase
 import RealmSwift
 
 
-class User: NSObject, NSCoding {
+class User: Object {
     
     var disposeBag = DisposeBag()
     
@@ -20,71 +20,34 @@ class User: NSObject, NSCoding {
     
     // MARK: - Properties
     
-    var email: String
-    var username: String
-    var charge: Variable<Int>
-
-    var uid: String
+    dynamic var email: String = ""
+    dynamic var username: String = ""
+    dynamic var charge: Int = 0
+    dynamic var uid: String = ""
     
-    /**
-     * Initializes the class from scratch.
-     */
-    init(email: String, username: String, uid: String) {
-        
-        self.email = email
-        self.username = username
-        self.charge = Variable(0)
-        self.uid = uid
-        
-        super.init()
-        
-        bindToFirebase()
-        
-    }
+    // MARK: - Creation
     
     /**
      * Initializes the class from a Firebase data model.
      */
-    init(uid: String, model: UserJsonModel) {
+    static func createFromJSONModel(model: UserJsonModel, uid: String) -> User {
         
         print("> Initializing User from a Firebase data model")
         
-        self.email = model.email
-        self.username = model.username
-        self.charge = Variable(model.cash)
-        self.uid = uid
+        let user = User()
         
-        super.init()
+        user.email = model.email
+        user.username = model.username
+        user.charge = model.cash
+        user.uid = uid
         
-        bindToFirebase()
+        user.bindToFirebase()
         
-    }
-    
-    // MARK: - NSCopying
-    
-    required convenience init?(coder decoder: NSCoder) {
-        
-        guard
-            let email = decoder.decodeObjectForKey("UserEmail") as? String,
-            let username = decoder.decodeObjectForKey("UserUsername") as? String,
-            let chargeValue = decoder.decodeObjectForKey("UserChargeValue") as? Int,
-            let uid = decoder.decodeObjectForKey("UserUID") as? String
-            else { return nil }
-        
-        self.init(email: email, username: username, uid: uid)
-        
-        self.charge.value = chargeValue
+        return user
         
     }
     
-    func encodeWithCoder(coder: NSCoder) {
-        
-        coder.encodeObject(self.email, forKey: "UserEmail")
-        coder.encodeObject(self.username, forKey: "UserUsername")
-        coder.encodeObject(self.charge.value, forKey: "UserChargeValue")
-        coder.encodeObject(self.uid, forKey: "UserUID")
-        
-    }
+    // MARK: - Firebase
     
     /**
      * Binds the `cash` property with its corresponding property on Firebase.
@@ -93,9 +56,10 @@ class User: NSObject, NSCoding {
         
         let ref = firebaseHelper.usersRef.childByAppendingPath(uid)
         
-        charge
+        rx_observe(Int.self, "charge")
             .asObservable()
             .subscribeNext { cash in
+                guard let cash = cash else { return }
                 ref.updateChildValues(["cash": cash])
             }
             .addDisposableTo(disposeBag)

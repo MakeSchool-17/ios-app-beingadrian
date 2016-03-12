@@ -118,7 +118,7 @@ class DashboardScene: SKScene {
             .flatMap { success -> Observable<Void> in
                 if success {
                     print("> Successfully authorized HealthKit")
-                    return self.gameManager.statsStore.reloadData()
+                    return self.gameManager.statsStore!.reloadData()
                 } else {
                     print("> Failed to authorize HealthKit")
                     return Observable.empty()
@@ -162,7 +162,7 @@ class DashboardScene: SKScene {
         
         let actionBlock = SKAction.runBlock {
             self.pushNewStepsPopUp(newSteps)
-            self.gameManager.user.charge.value += newSteps
+            self.gameManager.user.charge += newSteps
         }
         
         let actionSequence = SKAction.sequence([delayAction, actionBlock])
@@ -263,7 +263,7 @@ class DashboardScene: SKScene {
                 
                 if !limitIsReached {
                     
-                    gameManager.petManager.pettingCount.value += 1
+                    gameManager.petManager.pettingCount += 1
                     
                     let head = petSprite.head
                     if (!head.isSmiling && self.petSprite.state.value != .Sad) {
@@ -295,12 +295,12 @@ class DashboardScene: SKScene {
      */
     private func observeFood() {
         
-        gameManager.foodManager.currentFood
+        gameManager.foodManager.rx_observe(Food.self, "currentFood")
             .asObservable()
             .subscribeNext { food in
                 guard let food = food else { return }
                 print("> New food: \(food.name)")
-                let simplePie = Food(name: "Simple pie", hpValue: 90)
+                let simplePie = Food.create("Simple pie", hpValue: 90)
                 self.insertFood(simplePie)
             }
             .addDisposableTo(disposeBag)
@@ -334,7 +334,7 @@ class DashboardScene: SKScene {
                 return self.gameManager.petManager.consumeFood(foodSprite.food)
             }
             .subscribeCompleted {
-                self.gameManager.foodManager.currentFood.value = nil
+                self.gameManager.foodManager.currentFood = nil
             }
             .addDisposableTo(disposeBag)
         

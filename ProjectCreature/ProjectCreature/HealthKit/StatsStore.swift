@@ -9,9 +9,10 @@
 
 import Foundation
 import RxSwift
+import RealmSwift
 
 
-class StatsStore: NSObject, NSCoding {
+class StatsStore: Object {
     
     private var disposeBag = DisposeBag()
     
@@ -25,52 +26,19 @@ class StatsStore: NSObject, NSCoding {
     
     // MARK: - Properties
     
-    var lastReloadDate: NSDate?
-    var newSteps: Double = 0
+    dynamic var lastReloadDate: NSDate?
+    dynamic var newSteps: Double = 0
     
     /**
      * Distance travelled today in Meters.
      */
-    var distanceTravelledToday: Variable<Double> = Variable(0.0)
-    var totalStepsToday: Variable<Double> = Variable(0.0)
+    dynamic var distanceTravelledToday: Double = 0
+    dynamic var totalStepsToday: Double = 0
     
     /**
      * An observable dictionary containing the week progresses between `0.0` and `1.0`.
      */
-    var weekProgress = Variable(Dictionary<Int, Double>())
-
-    // MARK: - NSCoding
-    
-    required convenience init?(coder decoder: NSCoder) {
-        
-        let lastReloadDate = decoder.decodeObjectForKey("SSLastReloadDate") as? NSDate
-        
-        guard
-            let newSteps = decoder.decodeObjectForKey("SSNewSteps") as? Double,
-            let distanceTravelledTodayValue = decoder.decodeObjectForKey("SSDistanceTravelledTodayValue") as? Double,
-            let totalStepsTodayValue = decoder.decodeObjectForKey("SSTotalStepsTodayValue") as? Double,
-            let weekProgressValue = decoder.decodeObjectForKey("SSWeekProgressValue") as? Dictionary<Int, Double>
-        else { return nil }
-        
-        self.init()
-        
-        self.lastReloadDate = lastReloadDate
-        self.newSteps = newSteps
-        self.distanceTravelledToday.value = distanceTravelledTodayValue
-        self.totalStepsToday.value = totalStepsTodayValue
-        self.weekProgress.value = weekProgressValue
-        
-    }
-    
-    func encodeWithCoder(coder: NSCoder) {
-        
-        coder.encodeObject(self.lastReloadDate, forKey: "SSLastReloadDate")
-        coder.encodeObject(self.newSteps, forKey: "SSNewSteps")
-        coder.encodeObject(self.distanceTravelledToday.value, forKey: "SSDistanceTravelledTodayValue")
-        coder.encodeObject(self.totalStepsToday.value, forKey: "SSTotalStepsTodayValue")
-        coder.encodeObject(self.weekProgress.value, forKey: "SSWeekProgressValue")
-        
-    }
+    dynamic var weekProgress = Dictionary<Int, Double>()
     
     // MARK: - Data reloading
     
@@ -95,16 +63,16 @@ class StatsStore: NSObject, NSCoding {
                         return Observable.just(0.0)
                     }
             }.flatMap { distanceToday -> Observable<Double> in
-                self.distanceTravelledToday.value = distanceToday
+                self.distanceTravelledToday = distanceToday
                 return self.getStepsForWeekday(currentWeekday)
                     .catchError { error in
                         return Observable.just(0.0)
                     }
             }.flatMap { stepsToday -> Observable<[Int: Double]> in
-                self.totalStepsToday.value = stepsToday
+                self.totalStepsToday = stepsToday
                 return self.getWeekProgress()
             }.flatMap { weekProgress -> Observable<Void> in
-                self.weekProgress.value = weekProgress
+                self.weekProgress = weekProgress
                 self.lastReloadDate = NSDate()
                 return Observable.empty()
             }

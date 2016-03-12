@@ -8,9 +8,10 @@
 
 import Foundation
 import RxSwift
+import RealmSwift
 
 
-class FoodManager: NSObject, NSCoding {
+class FoodManager: Object {
     
     enum Error: ErrorType {
         case FoodAlreadyExists
@@ -18,43 +19,18 @@ class FoodManager: NSObject, NSCoding {
     
     // MARK: - Properties
     
-    var currentFood: Variable<Food?>
-    
-    // MARK: - Initialization
-    
-    override init() {
-        
-        self.currentFood = Variable(nil)
-        
-    }
-    
-    // MARK: - NSCoding
-    
-    required convenience init?(coder decoder: NSCoder) {
-        
-        let currentFood = decoder.decodeObjectForKey("FMCurrentFood") as? Food
-        
-        self.init()
-        
-        self.currentFood = Variable(currentFood)
-        
-    }
-    
-    func encodeWithCoder(coder: NSCoder) {
-        
-        coder.encodeObject(self.currentFood.value, forKey: "FMCurrentFood")
-        
-    }
+    dynamic var currentFood: Food?
+
     
     // MARK: - Methods
     
     func didBuyFood(food: Food) -> Observable<Food> {
         
-        guard (self.currentFood.value == nil) else {
+        guard (self.currentFood == nil) else {
             return Observable.error(Error.FoodAlreadyExists)
         }
         
-        self.currentFood.value = food
+        self.currentFood = food
         
         return Observable.create { observer in
             

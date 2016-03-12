@@ -7,46 +7,28 @@
 //
 
 import Foundation
+import RealmSwift
 
 
-class Food: NSObject, NSCoding {
+class Food: Object {
     
     // MARK: - Properties
     
-    var name: String
-    var hpValue: Double
-    var textureName: String {
+    dynamic var name: String = ""
+    dynamic var hpValue: Double = 0
+    dynamic var textureName: String {
         return name + " - texture"
     }
     
-    // MARK: - Initialization
+    // MARK: - Creation
     
-    init(name: String, hpValue: Double) {
+    static func create(name: String, hpValue: Double) -> Food {
         
-        self.name = name
-        self.hpValue = hpValue
+        let food = Food()
+        food.name = name
+        food.hpValue = hpValue
         
-    }
-    
-    // MARK: - NSCoding
-    
-    required convenience init?(coder decoder: NSCoder) {
-        
-        guard
-            let name = decoder.decodeObjectForKey("FoodName") as? String,
-            let hpValue = decoder.decodeObjectForKey("FoodHpValue") as? Double
-        else {
-            return nil
-        }
-        
-        self.init(name: name, hpValue: hpValue)
-        
-    }
-    
-    func encodeWithCoder(coder: NSCoder) {
-        
-        coder.encodeObject(self.name, forKey: "FoodName")
-        coder.encodeObject(self.hpValue, forKey: "FoodHpValue")
+        return food
         
     }
     

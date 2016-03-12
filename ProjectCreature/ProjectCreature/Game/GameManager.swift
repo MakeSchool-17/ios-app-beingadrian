@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import SpriteKit
+import RealmSwift
 
 /**
  * The GameManager class manages the game logic of the application. 
@@ -16,65 +17,36 @@ import SpriteKit
  * e.g. `Pet` and `User` and data changes due to the 
  * user interaction on scene layer.
  */
-final class GameManager: NSObject, NSCoding {
+class GameManager: Object {
 
     private var disposeBag = DisposeBag()
     
     // MARK: - Properties
     
-    var statsStore: StatsStore
+    dynamic var statsStore: StatsStore?
     
-    var storeManager: StoreManager!
-    var petManager: PetManager
-    var foodManager: FoodManager!
+    var storeManager: StoreManager?
+    dynamic var petManager: PetManager?
+    dynamic var foodManager: FoodManager?
     
-    var user: User
+    dynamic var user: User = User()
     
-    // MARK: - Initialization
-
-    init(user: User, pet: Pet) {
-
-        self.statsStore = StatsStore()
+    // MARK: - Create
     
-        self.petManager = PetManager(pet: pet)
-        self.foodManager = FoodManager()
+    static func create(user: User, pet: Pet) -> GameManager {
         
-        self.user = user
-
-        super.init()
+        let gameManager = GameManager()
         
-        self.storeManager = StoreManager(gameManager: self)
+        gameManager.statsStore = StatsStore()
+        gameManager.petManager = PetManager.create(pet)
+        gameManager.foodManager = FoodManager()
         
-    }
-    
-    // MARK: - NSCoding
-    
-    required convenience init?(coder decoder: NSCoder) {
-    
-        guard
-            let statsStore = decoder.decodeObjectForKey("GMStatsStore") as? StatsStore,
-            let user = decoder.decodeObjectForKey("GMUser") as? User,
-            let petManager = decoder.decodeObjectForKey("GMPetManager") as? PetManager,
-            let foodManager = decoder.decodeObjectForKey("GMFoodManager") as? FoodManager
-        else {
-            return nil
-        }
+        gameManager.user = user
         
-        self.init(user: user, pet: petManager.pet)
+        gameManager.storeManager = StoreManager(gameManager: gameManager)
         
-        self.statsStore = statsStore
-        self.petManager = petManager
-        self.foodManager = foodManager
+        return gameManager
         
     }
-    
-    func encodeWithCoder(coder: NSCoder) {
-        
-        coder.encodeObject(self.statsStore, forKey: "GMStatsStore")
-        coder.encodeObject(self.petManager, forKey: "GMPetManager")
-        coder.encodeObject(self.foodManager, forKey: "GMFoodManager")
-        coder.encodeObject(self.user, forKey: "GMUser")
-        
-    }
-    
+
 }

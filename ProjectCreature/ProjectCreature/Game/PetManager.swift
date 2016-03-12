@@ -8,71 +8,43 @@
 
 import Foundation
 import RxSwift
+import RealmSwift
 
 
-class PetManager: NSObject, NSCoding {
+class PetManager: Object {
     
     var disposeBag = DisposeBag()
     
     // MARK: - Properties
     
-    var pet: Pet
+    var pet: Pet = Pet()
     
     // level-related properties
     var petLeveledUp = PublishSubject<Int>()
     var expDifference: Float = 0
     
     // petting-related properties
-    private var pettingLimitIsReached = false
-    private var lastLimitReachedDate = NSDate()
-    var pettingCount = Variable(0)
+    dynamic private var pettingLimitIsReached = false
+    dynamic private var lastLimitReachedDate = NSDate()
+    dynamic var pettingCount = 0
     
     /**
      * The decrease rate of happiness per hour.
      */
     var hpDecreasePerHour: Float {
-        return 0.1 * pet.hpMax.value
+        return 0.1 * pet.hpMax
     }
     
-    // MARK: - Initialization 
+    // MARK: - Creation
     
-    init(pet: Pet) {
+    static func create(pet: Pet) -> PetManager {
         
-        self.pet = pet
+        let petManager = PetManager()
+        petManager.pet = pet
         
-        super.init()
+        petManager.makeObservations()
         
-        makeObservations()
-        
-    }
-    
-    // MARK: - NSCoding
-    
-    required convenience init? (coder decoder: NSCoder) {
-        
-        guard
-            let pet = decoder.decodeObjectForKey("PMPet") as? Pet,
-            let pettingLimitIsReached = decoder.decodeObjectForKey("PMPettingLimitIsReached") as? Bool,
-            let lastLimitReachedDate = decoder.decodeObjectForKey("PMLastLimitReachedDate") as? NSDate,
-            let pettingCountValue = decoder.decodeObjectForKey("PMPettingCountValue") as? Int
-        else {
-            return nil
-        }
-        
-        self.init(pet: pet)
-        
-        self.pettingLimitIsReached = pettingLimitIsReached
-        self.lastLimitReachedDate = lastLimitReachedDate
-        self.pettingCount.value = pettingCountValue
-        
-    }
-    
-    func encodeWithCoder(coder: NSCoder) {
-    
-        coder.encodeObject(self.pet, forKey: "PMPet")
-        coder.encodeObject(self.pettingLimitIsReached, forKey: "PMPettingLimitIsReached")
-        coder.encodeObject(self.lastLimitReachedDate, forKey: "PMLastLimitReachedDate")
-        coder.encodeObject(self.pettingCount.value, forKey: "PMPettingCountValue")
+        return petManager
         
     }
     
@@ -93,12 +65,12 @@ class PetManager: NSObject, NSCoding {
     */
     private func observePetExp() {
         
-        pet.exp
+        pet.rx_observe(Float.self, "exp")
             .asObservable()
             .delaySubscription(0.5, scheduler: MainScheduler.instance)
             .subscribeNext { exp in
-                
-                let percentage = exp / self.pet.expMax.value * 100
+                guard let exp = exp else { return }
+                let percentage = exp / self.pet.expMax * 100
                 
                 if (percentage >= 100) {
                     let difference = percentage - 100
@@ -117,9 +89,9 @@ class PetManager: NSObject, NSCoding {
      */
     private func levelUpPet() {
         
-        pet.level.value += 1
+        pet.level += 1
         
-        petLeveledUp.onNext(self.pet.level.value)
+        petLeveledUp.onNext(self.pet.level)
         
     }
     
@@ -130,12 +102,12 @@ class PetManager: NSObject, NSCoding {
      */
     func resetPetExp() {
         
-        pet.exp.value = 0
-        pet.expMax.value = 100 // TODO: Replace expMax with next value
+        pet.exp = 0
+        pet.expMax = 100 // TODO: Replace expMax with next value
         
         // TODO: Set next hp depending on level
-        pet.hpMax.value = 100
-        pet.hp.value = pet.hpMax.value
+        pet.hpMax = 100
+        pet.hp = pet.hpMax
         
     }
     
@@ -155,7 +127,7 @@ class PetManager: NSObject, NSCoding {
         print("> Hours: \(hours)")
         print("> HP Decrease: \(hpDecrease)")
         
-        pet.hp.value -= hpDecrease
+        pet.hp -= hpDecrease
         
     }
     
@@ -168,23 +140,22 @@ class PetManager: NSObject, NSCoding {
     */
     private func observePetting() {
         
-        pettingCount
-            .asObservable()
+        rx_observe(Int.self, "pettingCount")
             .filter { return $0 > 0 }
             .subscribeNext { count in
-                
+                guard let count = count else { return }
                 guard (count != 4) else {
                     // limit is reached
-                    self.pettingCount.value = 0
+                    self.pettingCount = 0
                     self.lastLimitReachedDate = NSDate()
                     self.pettingLimitIsReached = true
                     return
                 }
                 
-                let maxHp = Int(self.pet.hpMax.value)
-                let newHpValue = self.pet.hp.value + 5
-                self.pet.hp.value = newHpValue.clamped(0...maxHp)
-                self.pet.exp.value += 11
+                let maxHp = Int(self.pet.hpMax)
+                let newHpValue = self.pet.hp + 5
+                self.pet.hp = newHpValue.clamped(0...maxHp)
+                self.pet.exp += 11
             }.addDisposableTo(disposeBag)
         
     }
@@ -214,13 +185,19 @@ class PetManager: NSObject, NSCoding {
     */
     private func observePetHappiness() {
         
-        Observable.combineLatest(pet.hp.asObservable(), pet.hpMax.asObservable()) {
-            return $0 / $1
+        let hpObservable = pet.rx_observe(Float.self, "hp")
+        let hpMaxObservable = pet.rx_observe(Float.self, "hpMax")
+        
+        Observable.combineLatest(hpObservable, hpMaxObservable) {
+            (hp: Float?, hpMax: Float?) -> Float in
+            guard let hp = hp else { return 0 }
+            guard let hpMax = hpMax else { return 0 }
+            return hp / hpMax
             }.subscribeNext { fraction in
                 let percentage = fraction * 100
                 print("> Pet HP: \(percentage)")
-                self.pet.sprite.value.state.value = self.switchPetState(percentage)
-                print("> Pet is \(self.pet.sprite.value.state.value)")
+                self.pet.sprite.state.value = self.switchPetState(percentage)
+                print("> Pet is \(self.pet.sprite.state.value)")
             }.addDisposableTo(disposeBag)
         
     }
@@ -249,11 +226,11 @@ class PetManager: NSObject, NSCoding {
     
     func consumeFood(food: Food) -> Observable<Void> {
         
-        let maxHp = Int(pet.hpMax.value)
-        let newValue = pet.hp.value + Float(food.hpValue)
-        pet.hp.value = newValue.clamped(0...maxHp)
+        let maxHp = Int(pet.hpMax)
+        let newValue = pet.hp + Float(food.hpValue)
+        pet.hp = newValue.clamped(0...maxHp)
         
-        return Observable.just()
+        return Observable.empty()
         
     }
     

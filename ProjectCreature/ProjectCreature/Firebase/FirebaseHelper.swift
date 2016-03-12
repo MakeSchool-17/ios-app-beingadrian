@@ -76,34 +76,34 @@ class FirebaseHelper {
      * 2. Logs in the new user through password authentication
      * 3. Creates user json tree if previous steps are successful
      */
-    func signupUser(username username: String, email: String, password: String) -> Observable<User> {
-        
-        return rootRef.rx_createUser(email, password: password)
-            .flatMap { _ -> Observable<User> in
-                
-                return self.rootRef.rx_authUser(email, password: password)
-                    .flatMap { (authData: FAuthData!) -> Observable<User> in
-                        
-                        let userJson = UserJsonModel(email: email, username: username)
-                            .toJSON()
-                        
-                        let ref = self.usersRef.childByAppendingPath(authData.uid)
-                        return ref.rx_setValue(userJson)
-                            .map { (firebaseRef: Firebase!) -> User in
-                                return User(email: email, username: username, uid: authData.uid)
-                            }
-                    }
-            }
-        
-    }
+//    func signupUser(username username: String, email: String, password: String) -> Observable<User> {
+//        
+//        return rootRef.rx_createUser(email, password: password)
+//            .flatMap { _ -> Observable<FAuthData> in
+//                return self.rootRef.rx_authUser(email, password: password)
+//            }
+//            .flatMap { (authData: FAuthData!) -> Observable<User> in
+//                
+//                let userJson = UserJsonModel(email: email, username: username)
+//                    .toJSON()
+//                
+//                let ref = self.usersRef.childByAppendingPath(authData.uid)
+//                return ref.rx_setValue(userJson)
+//            }
+//            .map { (firebaseRef: Firebase!) -> User in
+//                let user = User.createFromJSONModel(<#T##model: UserJsonModel##UserJsonModel#>, uid: <#T##String#>)
+//                return User(email: email, username: username, uid: authData.uid)
+//            }
+//        
+//    }
     
-    func loginUser(email email: String, password: String) -> Observable<User> {
-        
-        return usersRef.rx_authUser(email, password: password)
-            .flatMap { authData in
-                return self.fetchUserData(byUID: authData.uid)
-            }
-    }
+//    func loginUser(email email: String, password: String) -> Observable<User> {
+//        
+//        return usersRef.rx_authUser(email, password: password)
+//            .flatMap { authData in
+//                return self.fetchUserData(byUID: authData.uid)
+//            }
+//    }
     
     func logoutUser() {
         
@@ -114,114 +114,115 @@ class FirebaseHelper {
     
     // MARK: - Fetching data
     
-    func fetchUserData(byUID uid: String) -> Observable<User> {
-        
-        return Observable.create { observer in
-            
-            self.usersRef
-                .childByAppendingPath(uid)
-                .observeSingleEventOfType(.Value, withBlock: {
-                    (snapshot: FDataSnapshot!) in
-                    
-                    guard let userJson = snapshot.value as? JSON else {
-                        observer.onError(FirebaseError.ParsingError)
-                        return
-                    }
-                    guard let userJsonModel = UserJsonModel(json: userJson) else {
-                        observer.onError(FirebaseError.UnexpectedError(
-                            message: "Error creating UserJsonModel"))
-                        return
-                    }
-                    
-                    let user = User(uid: uid, model: userJsonModel)
-                    observer.onNext(user)
-                    observer.onCompleted()
-                }, withCancelBlock: { error in
-                    print("> Error accessing data snapshot: \(error)")
-                    observer.onError(FirebaseError.SomeError(error))
-                })
-            
-            return NopDisposable.instance
-        }
-        
-    }
+//    func fetchUserData(byUID uid: String) -> Observable<User> {
+//        
+//        return Observable.create { observer in
+//            
+//            self.usersRef
+//                .childByAppendingPath(uid)
+//                .observeSingleEventOfType(.Value, withBlock: {
+//                    (snapshot: FDataSnapshot!) in
+//                    
+//                    guard let userJson = snapshot.value as? JSON else {
+//                        observer.onError(FirebaseError.ParsingError)
+//                        return
+//                    }
+//                    guard let userJsonModel = UserJsonModel(json: userJson) else {
+//                        observer.onError(FirebaseError.UnexpectedError(
+//                            message: "Error creating UserJsonModel"))
+//                        return
+//                    }
+//                    
+//                    let user = User(uid: uid, model: userJsonModel)
+//                    observer.onNext(user)
+//                    observer.onCompleted()
+//                }, withCancelBlock: { error in
+//                    print("> Error accessing data snapshot: \(error)")
+//                    observer.onError(FirebaseError.SomeError(error))
+//                })
+//            
+//            return NopDisposable.instance
+//        }
+//        
+//    }
     
-    func fetchUserData(byUsername username: String) -> Observable<User> {
-        
-        return Observable.create { observer in
-            
-            self.usersRef
-                .queryOrderedByChild("username")
-                .queryEqualToValue(username)
-                .observeSingleEventOfType(.Value) {
-                    (snapshot: FDataSnapshot!) in
-                    
-                    guard let (uid, jsonModel) = self.parseSnapshotValue(snapshot.value) else {
-                        observer.onError(FirebaseError.ParsingError)
-                        return
-                    }
-                    
-                    guard let userJsonModel = UserJsonModel(json: jsonModel) else {
-                        observer.onError(FirebaseError.UnexpectedError(
-                            message: "Error creating UserJsonModel")
-                        )
-                        return
-                    }
-                    
-                    let user = User(uid: uid, model: userJsonModel)
-                    observer.onNext(user)
-                    observer.onCompleted()
-            }
-            
-            return NopDisposable.instance
-        }
-    
-    }
+//    func fetchUserData(byUsername username: String) -> Observable<User> {
+//        
+//        return Observable.create { observer in
+//            
+//            self.usersRef
+//                .queryOrderedByChild("username")
+//                .queryEqualToValue(username)
+//                .observeSingleEventOfType(.Value) {
+//                    (snapshot: FDataSnapshot!) in
+//                    
+//                    guard let (uid, jsonModel) = self.parseSnapshotValue(snapshot.value) else {
+//                        observer.onError(FirebaseError.ParsingError)
+//                        return
+//                    }
+//                    
+//                    guard let userJsonModel = UserJsonModel(json: jsonModel) else {
+//                        observer.onError(FirebaseError.UnexpectedError(
+//                            message: "Error creating UserJsonModel")
+//                        )
+//                        return
+//                    }
+//                    
+//                    let user = User(uid: uid, model: userJsonModel)
+//                    observer.onNext(user)
+//                    observer.onCompleted()
+//            }
+//            
+//            return NopDisposable.instance
+//        }
+//    
+//    }
     
     // MARK: - Creature methods
     
-    func createPet(fromPet pet: Pet) {
-        
-        let petJson = PetJsonModel(pet: pet).toJSON()
-
-        petsRef
-            .childByAppendingPath(String(pet.id.value))
-            .setValue(petJson)
-        
-    }
+//    func createPet(fromPet pet: Pet) {
+//        
+//        let petJson = PetJsonModel(pet: pet).toJSON()
+//
+//        petsRef
+//            .childByAppendingPath(String(pet.id.value))
+//            .setValue(petJson)
+//        
+//    }
     
-    func fetchPet(fromUser user: User) -> Observable<Pet> {
-        
-        return Observable.create { observer in
-            
-            self.petsRef
-                .queryOrderedByChild("ownerUID")
-                .queryEqualToValue(user.uid)
-                .observeSingleEventOfType(.Value, withBlock: {
-                    (snapshot: FDataSnapshot!) in
-                    
-                    guard let (id, jsonModel) = self.parseSnapshotValue(snapshot.value) else {
-                        observer.onError(FirebaseError.ParsingError)
-                        return
-                    }
-                    
-                    guard let petJsonModel = PetJsonModel(json: jsonModel) else {
-                        observer.onError(FirebaseError.UnexpectedError(
-                            message: "Error creating PetJsonModel")
-                        )
-                        return
-                    }
-                    
-                    let pet = Pet(id: id, model: petJsonModel)
-                    observer.onNext(pet)
-                    observer.onCompleted()
-                    }, withCancelBlock: { error in
-                        print("> Error accessing data snapshot: \(error)")
-                        observer.onError(FirebaseError.SomeError(error))
-                    })
-            
-            return NopDisposable.instance
-        }
-        
-    }
+//    func fetchPet(fromUser user: User) -> Observable<Pet> {
+//        
+//        return Observable.create { observer in
+//            
+//            self.petsRef
+//                .queryOrderedByChild("ownerUID")
+//                .queryEqualToValue(user.uid)
+//                .observeSingleEventOfType(.Value, withBlock: {
+//                    (snapshot: FDataSnapshot!) in
+//                    
+//                    guard let (id, jsonModel) = self.parseSnapshotValue(snapshot.value) else {
+//                        observer.onError(FirebaseError.ParsingError)
+//                        return
+//                    }
+//                    
+//                    guard let petJsonModel = PetJsonModel(json: jsonModel) else {
+//                        observer.onError(FirebaseError.UnexpectedError(
+//                            message: "Error creating PetJsonModel")
+//                        )
+//                        return
+//                    }
+//                    
+//                    let pet = Pet(id: id, model: petJsonModel)
+//                    observer.onNext(pet)
+//                    observer.onCompleted()
+//                    }, withCancelBlock: { error in
+//                        print("> Error accessing data snapshot: \(error)")
+//                        observer.onError(FirebaseError.SomeError(error))
+//                    })
+//            
+//            return NopDisposable.instance
+//        }
+//        
+//    }
+    
 }

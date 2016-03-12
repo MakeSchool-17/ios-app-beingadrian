@@ -36,7 +36,7 @@ class MainViewController: UIViewController {
             // simulate pet and user
             guard let testPet = Test().createTestPet() else { return }
             let testUser = Test().createTestUser()
-            self.gameManager = GameManager(user: testUser, pet: testPet)
+            self.gameManager = GameManager.create(testUser, pet: testPet)
         }
         
         guard let gameManager = self.gameManager else { return }
@@ -53,14 +53,14 @@ class MainViewController: UIViewController {
      */
     private func loadDataFromLocal() -> GameManager? {
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        
-        let gameManagerData = defaults.objectForKey("GameManagerArchive") as? NSData
-        
-        if let gameManagerData = gameManagerData {
-            let gameManager = NSKeyedUnarchiver.unarchiveObjectWithData(gameManagerData) as! GameManager
-            return gameManager
-        }
+//        let defaults = NSUserDefaults.standardUserDefaults()
+//        
+//        let gameManagerData = defaults.objectForKey("GameManagerArchive") as? NSData
+//        
+//        if let gameManagerData = gameManagerData {
+//            let gameManager = NSKeyedUnarchiver.unarchiveObjectWithData(gameManagerData) as! GameManager
+//            return gameManager
+//        }
         
         return nil
         

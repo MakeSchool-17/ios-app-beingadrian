@@ -67,9 +67,11 @@ class NotificationManager {
     
     func schedulePetNotification() {
 
+        guard let petManager = gameManager.petManager else { return }
+        
         let notification = UILocalNotification()
         
-        let percentage = gameManager.petManager.pet.hp.value / gameManager.petManager.pet.hpMax.value
+        let percentage = petManager.pet.hp / petManager.pet.hpMax
         var message: String?
         var date: NSDate?
         
@@ -109,7 +111,9 @@ class NotificationManager {
     
     private func createMessage(state: PetState) -> String {
         
-        let petName = gameManager.petManager.pet.name.value
+        guard let petManager = gameManager.petManager else { return "" }
+        
+        let petName = petManager.pet.name
         
         let sadStateMessages = [
             "\(petName) is sad :(",
@@ -134,10 +138,12 @@ class NotificationManager {
     
     private func calculatePetSadnessDate() -> NSDate {
         
-        let pet = gameManager.petManager.pet
-        let amount = pet.hp.value - (pet.hpMax.value * 0.6)
+        guard let petManager = gameManager.petManager else { return NSDate() }
+        
+        let pet = petManager.pet
+        let amount = pet.hp - (pet.hpMax * 0.6)
 
-        let timeInterval = NSTimeInterval(amount / gameManager.petManager.hpDecreasePerHour) * 60 * 60
+        let timeInterval = NSTimeInterval(amount / petManager.hpDecreasePerHour) * 60 * 60
         
         return NSDate(timeIntervalSinceNow: timeInterval)
 
@@ -145,10 +151,12 @@ class NotificationManager {
     
     private func calculatePetFaintDate() -> NSDate {
         
-        let pet = gameManager.petManager.pet
-        let amount = pet.hp.value - (pet.hpMax.value * 0.05)
+        guard let petManager = gameManager.petManager else { return NSDate() }
         
-        let timeInterval = NSTimeInterval(amount / gameManager.petManager.hpDecreasePerHour)
+        let pet = petManager.pet
+        let amount = pet.hp - (pet.hpMax * 0.05)
+        
+        let timeInterval = NSTimeInterval(amount / petManager.hpDecreasePerHour)
         
         return NSDate(timeIntervalSinceNow: timeInterval)
         

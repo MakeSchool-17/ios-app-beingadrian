@@ -26,7 +26,7 @@ class Test {
         
         guard let jsonModel = PetJsonModel(json: json) else { return nil }
         
-        let testPet = Pet(id: "-K5hF9edT-9NWKyMi-MI", model: jsonModel)
+        let testPet = Pet.createFromJSONModel(jsonModel, id: "-K5hF9edT-9NWKyMi-MI")
         
         return testPet
         
@@ -34,10 +34,8 @@ class Test {
     
     func createTestUser() -> User {
         
-        let testUser = User(
-            email: "test@test.com",
-            username: "tester",
-            uid: "d4331a6c-7ae5-4b62-86dc-cf01283ae933")
+        let userJsonModel = UserJsonModel(email: "bob@iger.com", username: "bobiger")
+        let testUser = User.createFromJSONModel(userJsonModel, uid: "")
         return testUser
         
     }
