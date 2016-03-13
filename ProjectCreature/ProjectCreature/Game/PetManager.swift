@@ -25,7 +25,8 @@ class PetManager: NSObject, NSCoding {
     // petting-related properties
     private var pettingLimitIsReached = false
     private var lastLimitReachedDate = NSDate()
-    var pettingCount = Variable(0)
+    private var pettingCount = 0
+    var pettingObserver = PublishSubject<Void>()
     
     /**
      * The decrease rate of happiness per hour.
@@ -63,16 +64,16 @@ class PetManager: NSObject, NSCoding {
         
         self.pettingLimitIsReached = pettingLimitIsReached
         self.lastLimitReachedDate = lastLimitReachedDate
-        self.pettingCount.value = pettingCountValue
+        self.pettingCount = pettingCountValue
         
     }
     
     func encodeWithCoder(coder: NSCoder) {
     
-        coder.encodeObject(self.pet, forKey: "PMPet")
-        coder.encodeObject(self.pettingLimitIsReached, forKey: "PMPettingLimitIsReached")
-        coder.encodeObject(self.lastLimitReachedDate, forKey: "PMLastLimitReachedDate")
-        coder.encodeObject(self.pettingCount.value, forKey: "PMPettingCountValue")
+        coder.encodeObject(pet, forKey: "PMPet")
+        coder.encodeObject(pettingLimitIsReached, forKey: "PMPettingLimitIsReached")
+        coder.encodeObject(lastLimitReachedDate, forKey: "PMLastLimitReachedDate")
+        coder.encodeObject(pettingCount, forKey: "PMPettingCountValue")
         
     }
     
@@ -121,6 +122,8 @@ class PetManager: NSObject, NSCoding {
         
         petLeveledUp.onNext(self.pet.level.value)
         
+        resetPetExp()
+        
     }
     
     /**
@@ -154,8 +157,11 @@ class PetManager: NSObject, NSCoding {
         
         print("> Hours: \(hours)")
         print("> HP Decrease: \(hpDecrease)")
+        print("> HP: \(pet.hp.value)")
         
         pet.hp.value -= hpDecrease
+        
+        print("> HP After: \(pet.hp.value)")
         
     }
     
@@ -168,14 +174,13 @@ class PetManager: NSObject, NSCoding {
     */
     private func observePetting() {
         
-        pettingCount
-            .asObservable()
-            .filter { return $0 > 0 }
-            .subscribeNext { count in
+        pettingObserver
+            .subscribeNext {
+                self.pettingCount += 1
                 
-                guard (count != 4) else {
+                guard (self.pettingCount < 4) else {
                     // limit is reached
-                    self.pettingCount.value = 0
+                    self.pettingCount = 0
                     self.lastLimitReachedDate = NSDate()
                     self.pettingLimitIsReached = true
                     return

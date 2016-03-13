@@ -91,7 +91,7 @@ class DashboardScene: SKScene {
      * The main purpose of the method is to reload data and perform
      * checks. The method is called from the AppDelegate.
      */
-    func didBecomeActive() {
+    func didBecomeActive(lastClosedDate: NSDate?=nil) {
         
         pushLoadingScreen()
         
@@ -104,6 +104,9 @@ class DashboardScene: SKScene {
                 },
                 onCompleted: {
                     print("> Completed performing check")
+                    if let lastClosedDate = lastClosedDate {
+                        self.gameManager.petManager.decreaseHappinessBasedOnDate(lastClosedDate)
+                    }
                     self.loadingLayer.didFinishLoading()
                 },
                 onDisposed: nil)
@@ -263,7 +266,7 @@ class DashboardScene: SKScene {
                 
                 if !limitIsReached {
                     
-                    gameManager.petManager.pettingCount.value += 1
+                    gameManager.petManager.pettingObserver.onNext()
                     
                     let head = petSprite.head
                     if (!head.isSmiling && self.petSprite.state.value != .Sad) {

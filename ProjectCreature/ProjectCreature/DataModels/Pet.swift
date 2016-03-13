@@ -131,10 +131,16 @@ class Pet: NSObject, NSCoding {
         self.init(name: nameValue, family: family, ownerUID: ownerUIDValue)
         
         self.level.value = levelValue
+        print("> Exp value: \(expValue)")
+        print("> Exp max value: \(expMaxValue)")
         self.exp.value = expValue
         self.expMax.value = expMaxValue
+        
+        print("> HP value: \(hpValue)")
+        print("> HP max value: \(hpMaxValue)")
         self.hp.value = hpValue
         self.hpMax.value = hpMaxValue
+        
         self.id.value = idValue
         
     }

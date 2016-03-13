@@ -75,12 +75,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.notificationManager = NotificationManager(gameManager: scene.gameManager)
         
         if didEnterBackground {
-            scene.didBecomeActive()
+            let lastClosedDate = defaults.objectForKey("LastClosedDate") as? NSDate
+            scene.didBecomeActive(lastClosedDate)
             didEnterBackground = false
-        }
-        
-        if let lastClosedDate = defaults.objectForKey("LastClosedDate") as? NSDate {
-            scene.gameManager.petManager.decreaseHappinessBasedOnDate(lastClosedDate)
         }
         
         notificationManager?.cancelAllNotifications()
