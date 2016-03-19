@@ -69,7 +69,9 @@ class NotificationManager {
 
         let notification = UILocalNotification()
         
-        let percentage = gameManager.petManager.pet.hp.value / gameManager.petManager.pet.hpMax.value
+        let pet = gameManager.petManager.pet
+        
+        let percentage = pet.hp.value / pet.hpMax.value
         var message: String?
         var date: NSDate?
         
@@ -148,7 +150,7 @@ class NotificationManager {
         let pet = gameManager.petManager.pet
         let amount = pet.hp.value - (pet.hpMax.value * 0.05)
         
-        let timeInterval = NSTimeInterval(amount / gameManager.petManager.hpDecreasePerHour)
+        let timeInterval = NSTimeInterval(amount / gameManager.petManager.hpDecreasePerHour) * 60 * 60
         
         return NSDate(timeIntervalSinceNow: timeInterval)
         

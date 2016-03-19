@@ -43,15 +43,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(application: UIApplication) {
-
-        
-        
+    
+        saveGameManagerData()
+    
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
 
         saveGameManagerData()
         
+        guard let gameManager = getGameManager() else { return }
+        
+        self.notificationManager = NotificationManager(gameManager: gameManager)
+        
+        notificationManager?.cancelAllNotifications()
         notificationManager?.schedulePetNotification()
         
         recordApplicationClosedDate()
@@ -62,6 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         
+        recordApplicationClosedDate()
+        
         notificationManager?.cancelAllNotifications()
         
     }
@@ -71,8 +78,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let mainViewController = window?.rootViewController as? MainViewController else { return }
         guard let view = mainViewController.view as? SKView else { return }
         guard let scene = view.scene as? DashboardScene else { return }
-        
-        self.notificationManager = NotificationManager(gameManager: scene.gameManager)
         
         if didEnterBackground {
             let lastClosedDate = defaults.objectForKey("LastClosedDate") as? NSDate
@@ -102,14 +107,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // TODO: Refactor category implementation
         switch category {
         case .PetSad:
-            break
+            notificationManager?.schedulePetNotification()
         case .PetFaint:
-            break
+            notificationManager?.schedulePetNotification()
         case .Progress:
             break
         }
-        
-        notificationManager?.schedulePetNotification()
         
         print("Did receive local notification")
         
@@ -125,13 +128,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func saveGameManagerData() {
         
-        guard let mainViewController = window?.rootViewController as? MainViewController else { return }
-        guard let gameManager = mainViewController.gameManager else { return }
+        guard let gameManager = getGameManager() else { return }
         
         let gameManagerData = NSKeyedArchiver.archivedDataWithRootObject(gameManager)
         defaults.setObject(gameManagerData, forKey: "GameManagerArchive")
         
     }
 
+    
+    private func getGameManager() -> GameManager? {
+        
+        guard let mainViewController = window?.rootViewController as? MainViewController else { return nil }
+        guard let gameManager = mainViewController.gameManager else { return nil }
+        
+        return gameManager
+        
+    }
 }
 
