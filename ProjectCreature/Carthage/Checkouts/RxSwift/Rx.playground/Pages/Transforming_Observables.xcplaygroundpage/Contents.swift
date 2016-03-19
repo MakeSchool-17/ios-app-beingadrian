@@ -1,3 +1,12 @@
+/*:
+> # IMPORTANT: To use `Rx.playground`, please:
+
+1. Open `Rx.xcworkspace`
+2. Build `RxSwift-OSX` scheme
+3. And then open `Rx` playground in `Rx.xcworkspace` tree view.
+4. Choose `View > Show Debug Area`
+*/
+
 //: [<< Previous](@previous) - [Index](Index)
 
 import RxSwift
@@ -19,11 +28,11 @@ Transform the items emitted by an Observable by applying a function to each item
 */
 
 example("map") {
-    let originalSequence = Observable.of(Character("A"), Character("B"), Character("C"))
+    let originalSequence = Observable.of(1, 2, 3)
 
     _ = originalSequence
-        .map { char in
-            char.hashValue
+        .map { number in
+            number * 2
         }
         .subscribe { print($0) }
 }

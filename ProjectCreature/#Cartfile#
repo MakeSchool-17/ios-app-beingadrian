@@ -1,0 +1,11 @@
+# RxSwift 2.0.0-beta.3
+ithub "ReactiveX/RxSwift" ~> 2.0
+
+# SpriteKit Spring
+github "ataugeron/SpriteKit-Spring"
+
+# Gloss 
+github "hkellaway/Gloss"
+
+# Realm
+github "realm/realm-cocoa"

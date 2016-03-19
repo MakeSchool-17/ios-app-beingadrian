@@ -1,3 +1,12 @@
+/*:
+> # IMPORTANT: To use `Rx.playground`, please:
+
+1. Open `Rx.xcworkspace`
+2. Build `RxSwift-OSX` scheme
+3. And then open `Rx` playground in `Rx.xcworkspace` tree view.
+4. Choose `View > Show Debug Area`
+*/
+
 //: [<< Index](@previous)
 
 import RxSwift
@@ -106,6 +115,24 @@ example("create") {
     }
     
     let subscription = myJust(5)
+        .subscribe { event in
+            print(event)
+        }
+}
+
+/*:
+### generate
+`generate` creates sequence that generates its values and determines when to terminate based on its previous values.
+*/
+
+example("generate") {
+    let generated = Observable.generate(
+        initialState: 0,
+        condition: { $0 < 3 },
+        iterate: { $0 + 1 }
+    )
+
+    let subscription = generated
         .subscribe { event in
             print(event)
         }

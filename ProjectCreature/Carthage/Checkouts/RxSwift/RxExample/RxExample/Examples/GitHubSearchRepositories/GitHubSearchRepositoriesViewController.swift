@@ -30,14 +30,14 @@ class GitHubSearchRepositoriesViewController: ViewController, UITableViewDelegat
         let tableView = self.tableView
         let searchBar = self.searchBar
 
-        dataSource.cellFactory = { (tv, ip, repository: Repository) in
+        dataSource.configureCell = { (_, tv, ip, repository: Repository) in
             let cell = tv.dequeueReusableCellWithIdentifier("Cell")!
             cell.textLabel?.text = repository.name
             cell.detailTextLabel?.text = repository.url
             return cell
         }
 
-        dataSource.titleForHeaderInSection = { [unowned dataSource] sectionIndex in
+        dataSource.titleForHeaderInSection = { dataSource, sectionIndex in
             let section = dataSource.sectionAtIndex(sectionIndex)
             return section.items.count > 0 ? "Repositories (\(section.items.count))" : "No repositories found"
         }
@@ -95,9 +95,7 @@ class GitHubSearchRepositoriesViewController: ViewController, UITableViewDelegat
         // activity indicator in status bar
         // {
         GitHubSearchRepositoriesAPI.sharedAPI.activityIndicator
-            .driveNext { active in
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = active
-            }
+            .drive(UIApplication.sharedApplication().rx_networkActivityIndicatorVisible)
             .addDisposableTo(disposeBag)
         // }
     }

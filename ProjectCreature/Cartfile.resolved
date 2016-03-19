@@ -1,4 +1,4 @@
-github "hkellaway/Gloss" "0.6.2"
-github "ReactiveX/RxSwift" "2.1.0"
+github "hkellaway/Gloss" "0.7.1"
+github "ReactiveX/RxSwift" "2.3.0"
 github "ataugeron/SpriteKit-Spring" "1.0.1"
-github "realm/realm-cocoa" "v0.97.0"
+github "realm/realm-cocoa" "v0.98.5"
