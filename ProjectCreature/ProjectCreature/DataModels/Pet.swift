@@ -14,8 +14,6 @@ class Pet: NSObject, NSCoding {
     
     var disposeBag = DisposeBag()
     
-    let firebaseHelper = FirebaseHelper()
-    
     // MARK: - Properties
     
     var name: Variable<String>
@@ -25,8 +23,6 @@ class Pet: NSObject, NSCoding {
     var hp: Variable<Float>
     var hpMax: Variable<Float>
     var family: Variable<Family>
-    var ownerUID: Variable<String>
-    var id: Variable<String>
     
     /**
      * The pet's corresponding sprite. It's not stored on Firebase and 
@@ -61,7 +57,7 @@ class Pet: NSObject, NSCoding {
     /**
      * Initializes the class from scratch.
      */
-    init(name: String, family: Family, ownerUID: String) {
+    init(name: String, family: Family) {
         
         self.name = Variable(name)
         self.level = Variable(0)
@@ -70,39 +66,9 @@ class Pet: NSObject, NSCoding {
         self.hp = Variable(0)
         self.hpMax = Variable(10)
         self.family = Variable(family)
-        self.ownerUID = Variable(ownerUID)
         self.sprite = Variable(family.sprite)
         
-        let id = firebaseHelper.petsRef.childByAutoId().key
-        self.id = Variable(id)
-        
         super.init()
-        
-        bindToFirebase()
-        
-    }
-    
-    /**
-     * Initializes the class from a Firebase JSON data model.
-     */
-    init(id: String, model: PetJsonModel) {
-        
-        print("> Initializing Pet from a Firebase data model")
-        
-        self.name = Variable(model.name)
-        self.level = Variable(model.level)
-        self.exp = Variable(model.exp)
-        self.expMax = Variable(model.expMax)
-        self.hp = Variable(model.hp)
-        self.hpMax = Variable(model.hpMax)
-        self.family = Variable(model.family)
-        self.ownerUID = Variable(model.ownerUID)
-        self.sprite = Variable(model.family.sprite)
-        self.id = Variable(id)
-        
-        super.init()
-        
-        bindToFirebase()
         
     }
     
@@ -121,25 +87,18 @@ class Pet: NSObject, NSCoding {
             let expMaxValue = decodeWithKey("PetExpMaxValue") as? Float,
             let hpValue = decodeWithKey("PetHpValue") as? Float,
             let hpMaxValue = decodeWithKey("PetHpMaxValue") as? Float,
-            let familyRawValue = decodeWithKey("PetFamilyRawValue") as? String,
-            let ownerUIDValue = decodeWithKey("PetOwnerUIDValue") as? String,
-            let idValue = decodeWithKey("PetIDValue") as? String
+            let familyRawValue = decodeWithKey("PetFamilyRawValue") as? String
         else { return nil }
         
         guard let family = Family(rawValue: familyRawValue) else { return nil }
         
-        self.init(name: nameValue, family: family, ownerUID: ownerUIDValue)
+        self.init(name: nameValue, family: family)
         
         self.level.value = levelValue
         self.exp.value = expValue
         self.expMax.value = expMaxValue
         self.hp.value = hpValue
         self.hpMax.value = hpMaxValue
-        
-        self.id.value = idValue
-        
-        // test
-//        self.hp.value = 61
         
     }
     
@@ -152,73 +111,6 @@ class Pet: NSObject, NSCoding {
         coder.encodeObject(self.hp.value, forKey: "PetHpValue")
         coder.encodeObject(self.hpMax.value, forKey: "PetHpMaxValue")
         coder.encodeObject(self.family.value.rawValue, forKey: "PetFamilyRawValue")
-        coder.encodeObject(self.ownerUID.value, forKey: "PetOwnerUIDValue")
-        coder.encodeObject(self.id.value, forKey: "PetIDValue")
-        
-    }
-    
-    /**
-     * Binds each of `Pet` property to Firebase.
-     */
-    func bindToFirebase() {
-        
-        let ref = firebaseHelper.petsRef.childByAppendingPath(id.value)
-        
-        name
-            .asObservable()
-            .subscribeNext { name in
-                ref.updateChildValues(["name": name])
-            }
-            .addDisposableTo(disposeBag)
-        
-        level
-            .asObservable()
-            .subscribeNext { level in
-                ref.updateChildValues(["level": level])
-            }
-            .addDisposableTo(disposeBag)
-        
-        exp
-            .asObservable()
-            .subscribeNext { exp in
-                ref.updateChildValues(["exp": exp])
-            }
-            .addDisposableTo(disposeBag)
-        
-        expMax
-            .asObservable()
-            .subscribeNext { expMax in
-                ref.updateChildValues(["expMax": expMax])
-            }
-            .addDisposableTo(disposeBag)
-        
-        hp
-            .asObservable()
-            .subscribeNext { hp in
-                ref.updateChildValues(["hp": hp])
-            }
-            .addDisposableTo(disposeBag)
-        
-        hpMax
-            .asObservable()
-            .subscribeNext { hpMax in
-                ref.updateChildValues(["hpMax": hpMax])
-            }
-            .addDisposableTo(disposeBag)
-        
-        family
-            .asObservable()
-            .subscribeNext { family in
-                ref.updateChildValues(["family": family.rawValue])
-            }
-            .addDisposableTo(disposeBag)
-        
-        ownerUID
-            .asObservable()
-            .subscribeNext { ownerUID in
-                ref.updateChildValues(["ownerUID": ownerUID])
-            }
-            .addDisposableTo(disposeBag)
         
     }
     

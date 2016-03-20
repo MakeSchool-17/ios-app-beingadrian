@@ -79,18 +79,14 @@
 		337847601C1E5EAE00B3722D /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3378475F1C1E5EAE00B3722D /* Firebase.framework */; };
 		337847621C1E826500B3722D /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337847611C1E826500B3722D /* Pet.swift */; };
 		337847641C1EA1F100B3722D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337847631C1EA1F100B3722D /* User.swift */; };
-		337847671C1F3D3600B3722D /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337847661C1F3D3600B3722D /* FirebaseHelper.swift */; };
 		3378476B1C1F407F00B3722D /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3378476A1C1F407F00B3722D /* libicucore.tbd */; };
 		3378476D1C1F408700B3722D /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3378476C1C1F408700B3722D /* libc++.tbd */; };
 		3378476F1C1F408D00B3722D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3378476E1C1F408D00B3722D /* CFNetwork.framework */; };
 		337847711C1F409400B3722D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337847701C1F409400B3722D /* Security.framework */; };
 		337847731C1F40A000B3722D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337847721C1F40A000B3722D /* SystemConfiguration.framework */; };
-		337847751C1F556A00B3722D /* Firebase+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337847741C1F556A00B3722D /* Firebase+Rx.swift */; };
-		337847781C1F6B4000B3722D /* UserJsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337847771C1F6B4000B3722D /* UserJsonModel.swift */; };
 		3378477A1C1F6D3200B3722D /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337847791C1F6D3200B3722D /* Gloss.framework */; };
 		3378477B1C1F6D4200B3722D /* Gloss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 337847791C1F6D3200B3722D /* Gloss.framework */; };
 		3378477C1C1F6D4200B3722D /* Gloss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 337847791C1F6D3200B3722D /* Gloss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		337847831C22202E00B3722D /* PetJsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337847821C22202E00B3722D /* PetJsonModel.swift */; };
 		338326A11C38651B00D21CAC /* AwardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3383269F1C38651B00D21CAC /* AwardCell.swift */; };
 		338326A21C38651B00D21CAC /* AwardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 338326A01C38651B00D21CAC /* AwardCell.xib */; };
 		338368DB1BF67852006407FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338368DA1BF67852006407FF /* AppDelegate.swift */; };
@@ -230,16 +226,12 @@
 		3378475F1C1E5EAE00B3722D /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		337847611C1E826500B3722D /* Pet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
 		337847631C1EA1F100B3722D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		337847661C1F3D3600B3722D /* FirebaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		3378476A1C1F407F00B3722D /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
 		3378476C1C1F408700B3722D /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		3378476E1C1F408D00B3722D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		337847701C1F409400B3722D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		337847721C1F40A000B3722D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		337847741C1F556A00B3722D /* Firebase+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Firebase+Rx.swift"; sourceTree = "<group>"; };
-		337847771C1F6B4000B3722D /* UserJsonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserJsonModel.swift; sourceTree = "<group>"; };
 		337847791C1F6D3200B3722D /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = Carthage/Build/iOS/Gloss.framework; sourceTree = SOURCE_ROOT; };
-		337847821C22202E00B3722D /* PetJsonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetJsonModel.swift; sourceTree = "<group>"; };
 		3383269F1C38651B00D21CAC /* AwardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwardCell.swift; sourceTree = "<group>"; };
 		338326A01C38651B00D21CAC /* AwardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AwardCell.xib; sourceTree = "<group>"; };
 		338368D71BF67852006407FF /* ProjectCreature.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectCreature.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -570,25 +562,6 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		337847651C1F3D2400B3722D /* Firebase */ = {
-			isa = PBXGroup;
-			children = (
-				337847761C1F6B0D00B3722D /* JSON Models */,
-				337847661C1F3D3600B3722D /* FirebaseHelper.swift */,
-				337847741C1F556A00B3722D /* Firebase+Rx.swift */,
-			);
-			path = Firebase;
-			sourceTree = "<group>";
-		};
-		337847761C1F6B0D00B3722D /* JSON Models */ = {
-			isa = PBXGroup;
-			children = (
-				337847771C1F6B4000B3722D /* UserJsonModel.swift */,
-				337847821C22202E00B3722D /* PetJsonModel.swift */,
-			);
-			path = "JSON Models";
-			sourceTree = "<group>";
-		};
 		338368CE1BF67852006407FF = {
 			isa = PBXGroup;
 			children = (
@@ -616,7 +589,6 @@
 				3383692C1BF69FE6006407FF /* UI */,
 				339874261BFFFE5E00F47B2B /* Game */,
 				33BBFD611C121EB600E76511 /* DataModels */,
-				337847651C1F3D2400B3722D /* Firebase */,
 				331E66C71BF6A6B4003AB81D /* HealthKit */,
 				3366C5B41C24B31F001AF86E /* Extras */,
 				3366C5A61C2337AF001AF86E /* InitialTests */,
@@ -975,7 +947,6 @@
 			files = (
 				3346CAE71C37125C00921A4B /* AwardsMainView.swift in Sources */,
 				3366C5C91C24B38A001AF86E /* SpriteKit+Spring+Extension.swift in Sources */,
-				337847671C1F3D3600B3722D /* FirebaseHelper.swift in Sources */,
 				33291C841C9DDFC000835CFB /* StoreManager.swift in Sources */,
 				337199CC1C3B2307008108B6 /* GameManagerHolder.swift in Sources */,
 				33D307021C5F2B6D00607DDC /* StoreViewModel.swift in Sources */,
@@ -1019,14 +990,12 @@
 				33291C801C9DDFC000835CFB /* FoodManager.swift in Sources */,
 				3366C5CB1C24B38A001AF86E /* CGSize+Extension.swift in Sources */,
 				333532771C169158003145AA /* DashboardSceneAnimations.swift in Sources */,
-				337847781C1F6B4000B3722D /* UserJsonModel.swift in Sources */,
 				3323A25E1C668FB9009D4260 /* SimpleMessagePopUpView.swift in Sources */,
 				333532701C164FC9003145AA /* StatsLayerUI.swift in Sources */,
 				337199C11C3B1DEC008108B6 /* LeaderboardMainView.swift in Sources */,
 				333532751C1651D4003145AA /* MenuLayerUI.swift in Sources */,
 				33BBFD601C121E9900E76511 /* DashboardViewModel.swift in Sources */,
 				3366C5C61C24B38A001AF86E /* SKLabelNode+Extension.swift in Sources */,
-				337847751C1F556A00B3722D /* Firebase+Rx.swift in Sources */,
 				333C0A9C1C541E5900A1C84F /* DetailSettingsCell.swift in Sources */,
 				330F6B4D1C151557004CCAED /* StatsViewModel.swift in Sources */,
 				33FC7CB51C3E594700012283 /* Food.swift in Sources */,
@@ -1039,7 +1008,6 @@
 				33291C811C9DDFC000835CFB /* GameManager.swift in Sources */,
 				337199C91C3B1E2A008108B6 /* StoreMainView.swift in Sources */,
 				337199C71C3B1E20008108B6 /* SettingsMainView.swift in Sources */,
-				337847831C22202E00B3722D /* PetJsonModel.swift in Sources */,
 				33B9907B1C2F5C9400D6CA10 /* CGFloat+Extension.swift in Sources */,
 				333C0A971C540B6900A1C84F /* SwitchSettingsCell.swift in Sources */,
 				330C80EE1C33164700ADF713 /* AwardsViewController.swift in Sources */,
