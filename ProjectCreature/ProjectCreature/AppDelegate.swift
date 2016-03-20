@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import Firebase
 import SpriteKit
 
 
@@ -29,12 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        // MARK: - Firebase setup
-        
-        Firebase.defaultConfig().persistenceEnabled = true
-        
-        // request for notification settings
-        
+        // MARK: - Notifications setup
+                
         let settings = UIUserNotificationSettings(forTypes: [.Sound, .Badge, .Alert], categories: nil)
         application.registerUserNotificationSettings(settings)
         

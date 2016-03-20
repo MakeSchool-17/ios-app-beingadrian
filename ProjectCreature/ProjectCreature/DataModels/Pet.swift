@@ -7,7 +7,7 @@
 //
 
 import RxSwift
-import Firebase
+import Foundation
 
 
 class Pet: NSObject, NSCoding {
@@ -25,7 +25,7 @@ class Pet: NSObject, NSCoding {
     var family: Variable<Family>
     
     /**
-     * The pet's corresponding sprite. It's not stored on Firebase and 
+     * The pet's corresponding sprite. It's not stored on the server and 
      * it's dynamically initialized from the Pet's `family` property.
      */
     var sprite: Variable<PetSprite>
