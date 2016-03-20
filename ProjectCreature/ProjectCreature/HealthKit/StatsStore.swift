@@ -17,8 +17,6 @@ class StatsStore: NSObject, NSCoding {
     
     private let healthHelper = HKHelper()
     
-    private let firebaseHelper = FirebaseHelper()
-    
     enum StatsError: ErrorType {
         case ErrorGettingDate
     }
