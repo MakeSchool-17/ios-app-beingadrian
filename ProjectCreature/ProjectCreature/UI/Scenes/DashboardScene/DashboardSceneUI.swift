@@ -28,13 +28,13 @@ extension DashboardScene {
         statsButton.setVerticalPosition(15 + statsButton.size.halfHeight,
             fromMargin: .BottomMargin)
         
-        // MARK: Menu button
+        // MARK: - Store button
         
-        menuButton = SKButtonSprite(imageNamed: "Menu button")
-        self.addChild(menuButton)
-        menuButton.setHorizontalPosition(15 + menuButton.size.halfWidth,
+        storeButton = SKButtonSprite(imageNamed: "Store button")
+        self.addChild(storeButton)
+        storeButton.setHorizontalPosition(15 + storeButton.size.halfWidth,
             fromMargin: .RightMargin)
-        menuButton.setVerticalPosition(15 + menuButton.size.halfHeight,
+        storeButton.setVerticalPosition(15 + storeButton.size.halfHeight,
             fromMargin: .BottomMargin)
         
         // MARK: Dashboard

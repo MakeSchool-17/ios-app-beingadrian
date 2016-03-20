@@ -27,7 +27,7 @@ class DashboardScene: SKScene {
     var loadingLayer: LoadingLayer!
     
     var statsButton: SKButtonSprite!
-    var menuButton: SKButtonSprite!
+    var storeButton: SKButtonSprite!
     
     var dashboard: SKSpriteNode!
     var circleFrame: SKSpriteNode!
@@ -368,8 +368,8 @@ class DashboardScene: SKScene {
         
         if touchedNode.isEqualToNode(statsButton) {
             pushStatsLayer()
-        } else if touchedNode.isEqualToNode(menuButton) {
-            pushMenuLayer()
+        } else if touchedNode.isEqualToNode(storeButton) {
+            presentStoreViewController()
         }
     
     }
@@ -412,11 +412,10 @@ class DashboardScene: SKScene {
         
     }
     
-    private func pushMenuLayer() {
+    private func presentStoreViewController() {
         
-        let menuLayer = MenuLayer(size: self.frame.size)
-        self.addChild(menuLayer)
-        menuLayer.transitionIn()
+        guard let view = self.view else { return }
+        view.window?.rootViewController?.performSegueWithIdentifier("storeSegue", sender: self)
         
     }
     
