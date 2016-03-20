@@ -21,22 +21,22 @@ extension DashboardScene {
         // set initial position
         dashboard.position.y = self.frame.maxY + 70
         statsButton.position.y = -200
-        menuButton.position.y = -200
+        storeButton.position.y = -200
         chargeGroup.position.y = -200
         
         let dashboardAction = createMoveActionCustomEaseOut(
             finalPositionY: self.frame.maxY - 30)
         let statsButtonAction = createMoveActionCustomEaseOut(
             finalPositionY: 15 + statsButton.size.halfHeight)
-        let menuButtonAction = createMoveActionCustomEaseOut(
-            finalPositionY: 15 + menuButton.size.halfWidth)
+        let storeButtonAction = createMoveActionCustomEaseOut(
+            finalPositionY: 15 + storeButton.size.halfWidth)
         let chargeGroupAction = createMoveActionCustomEaseOut(
             finalPositionY: 35)
         
         let action = SKAction.runBlock {
             self.dashboard.runAction(dashboardAction)
             self.statsButton.runAction(statsButtonAction)
-            self.menuButton.runAction(menuButtonAction)
+            self.storeButton.runAction(storeButtonAction)
             self.chargeGroup.runAction(chargeGroupAction)
         }
         
@@ -58,7 +58,7 @@ extension DashboardScene {
         let action = SKAction.runBlock {
             self.dashboard.runAction(dashboardAction)
             self.statsButton.runAction(statsButtonAction)
-            self.menuButton.runAction(menuButtonAction)
+            self.storeButton.runAction(menuButtonAction)
             self.chargeGroup.runAction(chargeGroupAction)
         }
         
