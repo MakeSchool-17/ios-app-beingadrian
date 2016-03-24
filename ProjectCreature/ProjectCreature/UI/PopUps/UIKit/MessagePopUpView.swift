@@ -34,7 +34,7 @@ class MessagePopUpView: UIView {
     
     private func setupButtonActions() {
         
-        self.okayButton.addTarget(self, action: "onOkayButtonTap", forControlEvents: .TouchUpInside)
+        self.okayButton.addTarget(self, action: #selector(onOkayButtonTap), forControlEvents: .TouchUpInside)
         
     }
     

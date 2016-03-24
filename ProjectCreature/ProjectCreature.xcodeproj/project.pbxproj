@@ -184,11 +184,11 @@
 		33291C7D1C9DDFC000835CFB /* PetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetManager.swift; sourceTree = "<group>"; };
 		33291C7E1C9DDFC000835CFB /* StoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		33291C7F1C9DDFC000835CFB /* StoreManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreManagerDelegate.swift; sourceTree = "<group>"; };
-		3332E66E1C9E973E00354EA8 /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = Carthage/Build/iOS/Gloss.framework; sourceTree = "<group>"; };
-		3332E66F1C9E973E00354EA8 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
-		3332E6751C9E976400354EA8 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
-		3332E6761C9E976400354EA8 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
-		3332E6771C9E976400354EA8 /* RxTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTests.framework; path = Carthage/Build/iOS/RxTests.framework; sourceTree = "<group>"; };
+		3332E66E1C9E973E00354EA8 /* Gloss.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Gloss.framework; path = ../../Carthage/Build/iOS/Gloss.framework; sourceTree = "<group>"; };
+		3332E66F1C9E973E00354EA8 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		3332E6751C9E976400354EA8 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = ../../Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
+		3332E6761C9E976400354EA8 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = ../../Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		3332E6771C9E976400354EA8 /* RxTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTests.framework; path = ../../Carthage/Build/iOS/RxTests.framework; sourceTree = "<group>"; };
 		3335326D1C164F6B003145AA /* StatsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsLayer.swift; sourceTree = "<group>"; };
 		3335326F1C164FC9003145AA /* StatsLayerUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsLayerUI.swift; sourceTree = "<group>"; };
 		333532721C165176003145AA /* MenuLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuLayer.swift; sourceTree = "<group>"; };
@@ -558,11 +558,6 @@
 		338368CE1BF67852006407FF = {
 			isa = PBXGroup;
 			children = (
-				3332E6751C9E976400354EA8 /* RxBlocking.framework */,
-				3332E6761C9E976400354EA8 /* RxCocoa.framework */,
-				3332E6771C9E976400354EA8 /* RxTests.framework */,
-				3332E66E1C9E973E00354EA8 /* Gloss.framework */,
-				3332E66F1C9E973E00354EA8 /* RxSwift.framework */,
 				338368D91BF67852006407FF /* ProjectCreature */,
 				338368F21BF67852006407FF /* ProjectCreatureTests */,
 				338368FD1BF67852006407FF /* ProjectCreatureUITests */,
@@ -630,6 +625,11 @@
 		338369191BF69042006407FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3332E6751C9E976400354EA8 /* RxBlocking.framework */,
+				3332E6761C9E976400354EA8 /* RxCocoa.framework */,
+				3332E6771C9E976400354EA8 /* RxTests.framework */,
+				3332E66E1C9E973E00354EA8 /* Gloss.framework */,
+				3332E66F1C9E973E00354EA8 /* RxSwift.framework */,
 				3378476C1C1F408700B3722D /* libc++.tbd */,
 				3378476A1C1F407F00B3722D /* libicucore.tbd */,
 				337847721C1F40A000B3722D /* SystemConfiguration.framework */,

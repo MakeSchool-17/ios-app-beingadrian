@@ -19,7 +19,9 @@ class PopUpBaseView: UIView {
     
     override func awakeFromNib() {
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: "transitionOut")
+        let tapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(PopUpBaseView.transitionOut))
         tapGesture.delegate = self
         tapGesture.cancelsTouchesInView = false
         self.addGestureRecognizer(tapGesture)

@@ -30,6 +30,8 @@ final class GameManager: NSObject, NSCoding {
     
     var user: User
     
+    var lastClosedDate: NSDate?
+    
     // MARK: - Initialization
 
     init(user: User, pet: Pet) {
@@ -62,6 +64,8 @@ final class GameManager: NSObject, NSCoding {
         
         self.init(user: user, pet: petManager.pet)
         
+        self.lastClosedDate = decoder.decodeObjectForKey("GMLastClosedDate") as? NSDate
+        
         self.statsStore = statsStore
         self.petManager = petManager
         self.foodManager = foodManager
@@ -70,10 +74,11 @@ final class GameManager: NSObject, NSCoding {
     
     func encodeWithCoder(coder: NSCoder) {
         
-        coder.encodeObject(self.statsStore, forKey: "GMStatsStore")
-        coder.encodeObject(self.petManager, forKey: "GMPetManager")
-        coder.encodeObject(self.foodManager, forKey: "GMFoodManager")
-        coder.encodeObject(self.user, forKey: "GMUser")
+        coder.encodeObject(statsStore, forKey: "GMStatsStore")
+        coder.encodeObject(petManager, forKey: "GMPetManager")
+        coder.encodeObject(foodManager, forKey: "GMFoodManager")
+        coder.encodeObject(user, forKey: "GMUser")
+        coder.encodeObject(lastClosedDate, forKey: "GMLastClosedDate")
         
     }
     

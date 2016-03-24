@@ -24,6 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private let defaults = NSUserDefaults.standardUserDefaults()
     
+    private var gameManager: GameManager? {
+        guard let mainViewController = window?.rootViewController as? MainViewController else { return nil }
+        return mainViewController.gameManager
+    }
+    
     // MARK: - App delegate methods
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -32,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
         let settings = UIUserNotificationSettings(forTypes: [.Sound, .Badge, .Alert], categories: nil)
         application.registerUserNotificationSettings(settings)
+        
+        
         
         return true
         
@@ -47,22 +54,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         saveGameManagerData()
         
-        guard let gameManager = getGameManager() else { return }
+        guard let gameManager = gameManager else { return }
         
         self.notificationManager = NotificationManager(gameManager: gameManager)
         
         notificationManager?.cancelAllNotifications()
         notificationManager?.schedulePetNotification()
         
-        recordApplicationClosedDate()
+        saveGameManagerData()
         
         didEnterBackground = true
         
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
-        
-        recordApplicationClosedDate()
         
         notificationManager?.cancelAllNotifications()
         
@@ -75,8 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let scene = view.scene as? DashboardScene else { return }
         
         if didEnterBackground {
-            let lastClosedDate = defaults.objectForKey("LastClosedDate") as? NSDate
-            scene.didBecomeActive(lastClosedDate)
+            scene.didBecomeActive()
             didEnterBackground = false
         }
         
@@ -89,8 +93,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notificationManager?.schedulePetNotification()
         
         saveGameManagerData()
-        
-        recordApplicationClosedDate()
         
     }
     
@@ -115,29 +117,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Custom methods
     
-    private func recordApplicationClosedDate() {
-        
-        defaults.setObject(NSDate(), forKey: "LastClosedDate")
-        
-    }
-    
     private func saveGameManagerData() {
         
-        guard let gameManager = getGameManager() else { return }
+        guard let gameManager = gameManager else { return }
+        
+        gameManager.lastClosedDate = NSDate()
         
         let gameManagerData = NSKeyedArchiver.archivedDataWithRootObject(gameManager)
         defaults.setObject(gameManagerData, forKey: "GameManagerArchive")
         
     }
 
-    
-    private func getGameManager() -> GameManager? {
-        
-        guard let mainViewController = window?.rootViewController as? MainViewController else { return nil }
-        guard let gameManager = mainViewController.gameManager else { return nil }
-        
-        return gameManager
-        
-    }
 }
 

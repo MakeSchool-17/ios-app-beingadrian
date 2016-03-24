@@ -32,8 +32,8 @@ class StorePopUpView: UIView {
     
     private func setupButtonActions() {
         
-        self.confirmButton.addTarget(self, action: "onConfirmButtonTap", forControlEvents: .TouchUpInside)
-        self.cancelButton.addTarget(self, action: "onCancelButtonTap", forControlEvents: .TouchUpInside)
+        self.confirmButton.addTarget(self, action: #selector(onConfirmButtonTap), forControlEvents: .TouchUpInside)
+        self.cancelButton.addTarget(self, action: #selector(onCancelButtonTap), forControlEvents: .TouchUpInside)
         
     }
     
